@@ -1,4 +1,9 @@
 <?php
-register_nav_menus( array(
-    'menu-1' => esc_html__( 'Primary', 'antyki' ),
-) );
+function antyki_register_menus() {
+    register_nav_menus(
+        array(
+            'header-menu' => __( 'Header Menu' )
+        )
+    );
+}
+add_action( 'init', 'antyki_register_menus' );
