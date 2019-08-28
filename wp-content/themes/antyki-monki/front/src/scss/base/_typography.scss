@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/* Global texts
+========================================================================== */
+html {
+    @include font-smoothing(on);
+
+    font-size: font-size(main);
+}
+
+body {
+    font-family: font(main);
+    color: color(main);
+
+    line-height: default(line-height);
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+
+    color: currentColor;
+    &:hover {
+        text-decoration: none;
+    }
+}

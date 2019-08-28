@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Inner
+   ========================================================================== */
+@mixin inner () {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: size(inner, desktop);
+    margin: 0 auto;
+
+    vertical-align: baseline;
+
+    @include media(0, tablet) {
+        padding-right: $white-space;
+        padding-left: $white-space;
+    }
+}
+
+.l-inner {
+    @include inner;
+}
