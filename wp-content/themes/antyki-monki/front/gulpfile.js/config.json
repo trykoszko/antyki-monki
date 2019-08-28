@@ -1,5 +1,6 @@
 {
     "root": {
+        "phpSrc": "../",
         "src": "./src",
         "dest": "./static",
         "dist": "./dist"
@@ -9,9 +10,12 @@
         "browserSync": {
             "port": 4500,
             "open": false,
-            "server": {
-                "baseDir": "./"
-            }
+            "proxy": "http://antyki-monki.loc"
+        },
+
+        "php": {
+            "extensions": ["php"],
+            "src": "../"
         },
 
         "static": {

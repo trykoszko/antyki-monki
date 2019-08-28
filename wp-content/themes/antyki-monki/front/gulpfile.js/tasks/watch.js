@@ -15,6 +15,11 @@ const watchTask = () => {
       })
     }
   })
+
+  const phpGlob = path.join(config.root.phpSrc, config.tasks.php.src, '**/*.php')
+  watch(phpGlob, () => {
+    require('./php')()
+  })
 }
 
 gulp.task('watch', ['browserSync'], watchTask)
