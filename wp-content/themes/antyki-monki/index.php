@@ -74,7 +74,7 @@ $slides = get_field('slider_items');
                                     ?>
                                     <a href="<?php the_permalink(); ?>">
                                         <?php if ($gallery) : ?>
-                                            <img class="card-img-top" src="<?php echo $gallery[0]['url']; ?>" alt="<?php the_title(); ?>" />
+                                            <img class="card-img-top" src="<?php echo $gallery[0]['sizes']['medium']; ?>" alt="<?php the_title(); ?>" />
                                         <?php endif; ?>
                                         <div class="card-body">
                                             <h4 class="card-title font-weight-bold">
