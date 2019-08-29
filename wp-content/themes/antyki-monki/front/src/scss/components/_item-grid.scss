@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Item grid
+   ========================================================================== */
+.c-item-grid {
+
+    .card {
+        .card-inside {
+            position: relative;
+
+            .card-body {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: 100%;
+                height: 100%;
+
+                background-color: rgba(#6c757d, .7);
+
+                opacity: 0;
+                transition: all .2s;
+            }
+        }
+        &:hover {
+            .card-inside {
+                .card-body {
+                    opacity: 1;
+                    transition: all .2s;
+                }
+            }
+        }
+    }
+}

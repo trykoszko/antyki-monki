@@ -55,6 +55,7 @@
     "gulp-wait": "^0.0.2",
     "gulp-watch": "^4.3.8",
     "imagesloaded": "^4.1.4",
+    "macy": "^2.5.0",
     "popper": "^1.0.1",
     "popper.js": "^1.15.0",
     "pre-commit": "^1.2.2",

@@ -8364,6 +8364,11 @@ lru_map@^0.3.3:
   resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.3.3.tgz#b5c8351b9464cbd750335a79650a0ec0e56118dd"
   integrity sha1-tcg1G5Rky9dQM1p5ZQoOwOVhGN0=
 
+macy@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/macy/-/macy-2.5.0.tgz#60b1fa80ee57b2e005110f4f0cb74f798d786a52"
+  integrity sha512-pmFmJm9ivdMm0ZwlcF77XLu7pX8fuw7ryY2l49Sq7KI5ZE/n+OTRV9JIv+629Enj1ZUZSiSt3lsaCiNGM0oAmA==
+
 magic-string@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.14.0.tgz#57224aef1701caeed273b17a39a956e72b172462"

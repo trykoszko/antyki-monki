@@ -6,4 +6,6 @@ import 'jquery'
 import 'bootstrap'
 import 'popper.js'
 
+import './modules/macy'
+
 svg4everybody()
