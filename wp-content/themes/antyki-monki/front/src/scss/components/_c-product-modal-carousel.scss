@@ -1,0 +1,41 @@
+.c-product-modal-carousel {
+    .modal-dialog {
+        max-width: 80vw;
+
+        .modal-content {
+            background: transparent;
+            border: none;
+
+            .modal-header {
+                background: transparent;
+                border: none;
+            }
+            .modal-body {
+                height: 80vh;
+
+                background-size: contain;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+
+                .carousel-item {
+                    height: 70vh;
+                    width: 100%;
+
+                    text-align: center;
+
+                    img {
+                        height: 70vh;
+                        width: auto;
+
+                        object-fit: contain;
+                    }
+                }
+            }
+        }
+    }
+    .close {
+        color: white;
+        text-shadow: none;
+        font-size: 4rem;
+    }
+}

@@ -1,19 +1,5 @@
 <?php
 
-class Advert {
-    public static $title;
-    public static $description;
-    public static $category_id;
-    public static $advertiser_type;
-    public static $external_url;
-    public static $external_id;
-    public static $contact;
-    public static $location;
-    public static $price;
-    public static $images;
-    public static $attributes;
-}
-
 class Olx {
 
     public $textdomain = 'olx';
@@ -135,9 +121,10 @@ class Olx {
         ));
         $res = curl_exec($ch);
         $res_json = json_decode($res);
+        var_dump($res_json);
         $new_acces_token = $res_json->access_token;
         $access_token_file = fopen('olx_token.php', 'w') or die ('Unable to open file.');
-        fwrite($access_token_file, '<?php $access_token = "' . $new_acces_token . '"; ?>');
+        fwrite($access_token_file, '<?php $access_token = "' . $new_acces_token . '";');
         fclose($access_token_file);
         return;
     }

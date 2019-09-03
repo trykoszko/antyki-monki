@@ -1,10 +1,13 @@
-<footer class="py-5 bg-dark">
+	</div>
+</div>
+
+<!-- <footer class="py-5 mt-5">
 	<div class="container">
-		<p class="m-0 text-center text-white">
+		<p class="m-0 text-center">
 			&copy; 2019 Antyki Mońki
 		</p>
 	</div>
-</footer>
+</footer> -->
 
 <?php wp_footer(); ?>
 
