@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Search modal
+   ========================================================================== */
+.l-search-modal {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background-color: color(main);
+
+    z-index: 600;
+
+    transition: all .3s;
+
+    &.is-active {
+        top: 0;
+
+        transition: all .3s;
+    }
+}
+
+.c-search-modal__close {
+    position: absolute;
+    top: $s * 5;
+    right: $s * 5;
+
+    outline: none;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    padding: $s * 1.25;
+
+    border-radius: 25px;
+
+    .c-icon {
+        color: white;
+    }
+    &:hover {
+        background-color: rgba(color(lgrey), .1);
+    }
+}

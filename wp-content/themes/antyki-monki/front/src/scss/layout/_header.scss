@@ -2,5 +2,18 @@
    Header
    ========================================================================== */
 .l-header {
+    width: 100%;
+    height: $d-header-height;
 
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: color(white);
+
+    z-index: 500;
+
+    &.is-scrolled {
+        height: $d-header-height-scrolled;
+    }
 }

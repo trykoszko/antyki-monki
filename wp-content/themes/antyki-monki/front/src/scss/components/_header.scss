@@ -2,10 +2,128 @@
    Header
    ========================================================================== */
 .c-header {
-    height: 80px;
-    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .menu-item {
-        padding-left: 20px;
+    position: relative;
+
+    padding: $s * 2 0;
+}
+
+.c-header__nav {
+    height: $m-header-menu-height;
+
+    position: fixed;
+    top: 0;
+    left: -100vw;
+
+    width: 100vw;
+    height: 100vh;
+
+    &.is-active {
+        left: 0;
+    }
+    @include media(desktop) {
+        height: $d-header-menu-height;
+
+        position: absolute;
+        left: 0;
+    }
+}
+
+.c-header__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+}
+
+.c-header__menu-item {
+    margin-right: $s;
+
+    a {
+        line-height: $d-header-menu-height;
+        font-size: font-size(h3);
+        border-radius: 25px;
+
+        padding: $s * 1.25 $s * 2;
+    }
+    &.is-active {
+        a {
+            background-color: color(light);
+        }
+    }
+    &:hover {
+        a {
+            background-color: color(lgrey);
+        }
+    }
+    @include media(desktop) {
+        a {
+            line-height: $d-header-menu-height;
+            font-size: font-size(h4);
+        }
+    }
+}
+
+.c-header__logo {
+    justify-self: center;
+
+    margin: 0;
+    padding: 0;
+
+    height: #{$d-header-height - $s * 4};
+    width: auto;
+
+    transition: all .3s;
+
+    img {
+        height: #{$d-header-height - $s * 4};
+        width: auto;
+
+        transition: all .3s;
+    }
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.c-header__toggle {
+
+    @include media(desktop) {
+        display: none;
+    }
+}
+
+.c-header__search {
+    position: absolute;
+    right: 0;
+
+    outline: none;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    padding: $s * 1.25;
+
+    border-radius: 25px;
+
+    &:hover {
+        background-color: color(lgrey);
+    }
+}
+
+.is-scrolled {
+    .c-header__logo {
+        height: #{$d-header-height-scrolled - $s * 4};
+
+        img {
+            height: #{$d-header-height-scrolled - $s * 4};
+        }
     }
 }
