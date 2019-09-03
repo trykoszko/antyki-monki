@@ -1,13 +1,21 @@
-	</div>
-</div>
+<?php
+    $theme_url = get_template_directory_uri() . '/front';
+?>
 
-<!-- <footer class="py-5 mt-5">
-	<div class="container">
-		<p class="m-0 text-center">
-			&copy; 2019 Antyki Mońki
-		</p>
+</main>
+
+<section class="l-search-modal js-search-modal">
+	<div class="l-inner">
+		<div class="c-search-modal">
+			<button class="c-search-modal__close js-close-search">
+                <svg class="ui-icon c-icon c-icon--search">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#close"></use>
+                </svg>
+            </button>
+			<h2>Search form here</h2>
+		</div>
 	</div>
-</footer> -->
+</section>
 
 <?php wp_footer(); ?>
 

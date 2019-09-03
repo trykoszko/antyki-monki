@@ -2,9 +2,18 @@
 function init_acf_options_page() {
     acf_add_options_page(
         array(
-        'page_title'  => __( 'Opcje', 'antyki' ),
-        'menu_title'  => __( 'Opcje', 'antyki' ),
+        'page_title'  => __( 'Opcje OLX', 'antyki' ),
+        'menu_title'  => __( 'Opcje OLX', 'antyki' ),
         'menu_slug'   => 'theme-options',
+        'capability'  => 'edit_posts',
+        'redirect'    => false
+        )
+    );
+    acf_add_options_page(
+        array(
+        'page_title'  => __( 'Opcje Motywu', 'antyki' ),
+        'menu_title'  => __( 'Opcje Motywu', 'antyki' ),
+        'menu_slug'   => 'theme-settings',
         'capability'  => 'edit_posts',
         'redirect'    => false
         )
