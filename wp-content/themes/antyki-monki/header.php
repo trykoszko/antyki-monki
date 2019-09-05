@@ -17,7 +17,7 @@
         <div class="c-header">
             <nav class="c-header__nav js-header-nav">
                 <button class="c-header__nav-close js-close-nav">
-                    <svg class="ui-icon c-icon c-icon--search">
+                    <svg class="ui-icon c-icon c-icon--close">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#close"></use>
                     </svg>
                 </button>
@@ -42,7 +42,9 @@
                 </svg>
             </button>
             <button class="c-header__toggle js-toggle-menu">
-                <span class="c-label"></span>
+                <svg class="ui-icon c-icon c-icon--burger">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#burger"></use>
+                </svg>
             </button>
         </div>
     </div>

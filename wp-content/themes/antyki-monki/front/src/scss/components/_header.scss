@@ -16,13 +16,21 @@
 
     position: fixed;
     top: 0;
-    left: -100vw;
+    left: -100%;
 
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+
+    background-color: color(white);
+
+    transition: all .3s;
+
+    z-index: 900;
 
     &.is-active {
         left: 0;
+
+        transition: all .3s;
     }
     @include media(desktop) {
         height: $d-header-menu-height;
@@ -32,17 +40,28 @@
     }
 }
 
+.c-header__nav-close {
+    position: absolute;
+    right: $s * 3;
+    top: $s * 3;
+}
+
 .c-header__menu {
+    width: 100%;
+    height: 100%;
+
     list-style: none;
     margin: 0;
     padding: 0;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .c-header__menu-item {
-    margin-right: $s;
+    margin-bottom: $s * 4;
 
     a {
         line-height: $d-header-menu-height;
@@ -56,15 +75,18 @@
             background-color: color(light);
         }
     }
-    &:hover {
-        a {
-            background-color: color(lgrey);
-        }
-    }
     @include media(desktop) {
+        margin-right: $s;
+
         a {
             line-height: $d-header-menu-height;
             font-size: font-size(h4);
+
+            &:hover {
+                a {
+                    background-color: color(lgrey);
+                }
+            }
         }
     }
 }
@@ -75,13 +97,13 @@
     margin: 0;
     padding: 0;
 
-    height: #{$d-header-height - $s * 4};
+    height: #{$m-header-height - $s * 4};
     width: auto;
 
     transition: all .3s;
 
     img {
-        height: #{$d-header-height - $s * 4};
+        height: #{$m-header-height - $s * 4};
         width: auto;
 
         transition: all .3s;
@@ -89,12 +111,12 @@
     &:hover {
         transform: scale(1.05);
     }
-}
-
-.c-header__toggle {
-
     @include media(desktop) {
-        display: none;
+        height: #{$d-header-height - $s * 4};
+
+        img {
+            height: #{$d-header-height - $s * 4};
+        }
     }
 }
 
@@ -109,8 +131,6 @@
 
     cursor: pointer;
 
-    padding: $s * 1.25;
-
     border-radius: 25px;
 
     &:hover {
@@ -118,12 +138,37 @@
     }
 }
 
+.c-header__toggle {
+    position: absolute;
+    left: 0;
+
+    @include media(desktop) {
+        display: none;
+    }
+}
+
+.c-header__search,
+.c-header__toggle {
+    padding: $s * 1.25;
+    cursor: pointer;
+}
+
 .is-scrolled {
+
     .c-header__logo {
-        height: #{$d-header-height-scrolled - $s * 4};
+        height: #{$m-header-height-scrolled - $s * 4};
 
         img {
+            height: #{$m-header-height-scrolled - $s * 4};
+        }
+    }
+    @include media(desktop) {
+        .c-header__logo {
             height: #{$d-header-height-scrolled - $s * 4};
+
+            img {
+                height: #{$d-header-height-scrolled - $s * 4};
+            }
         }
     }
 }

@@ -36,7 +36,8 @@ $colors: (
 $sizes: (
     media: 400px,
     inner: (
-        desktop: 1280px,
+        wide: 1360px,
+        desktop: 1180px,
         tablet: 760px,
         mobile: 320px
     ),
@@ -75,8 +76,10 @@ $defaults: (
 $white-space: 1em;
 $form-control-height: 2rem;
 
-$m-header-height: 100px;
-$m-header-height-scrolled: 80px;
+$border-radius-default: 5px;
+
+$m-header-height: 140px;
+$m-header-height-scrolled: 90px;
 $m-header-menu-height: auto;
 
 $d-header-height: 180px;

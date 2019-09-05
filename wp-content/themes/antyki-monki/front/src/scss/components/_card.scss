@@ -1,14 +1,12 @@
 /* ==========================================================================
-   Main content
+   Main grid card
    ========================================================================== */
-* {
-    box-sizing: border-box;
-}
+.c-card {
+    width: 100%;
+    height: auto;
 
-.l-main {
-    margin-top: $m-header-height;
-
-    @include media(desktop) {
-        margin-top: $d-header-height;
+    img {
+        max-width: 100px;
+        height: auto;
     }
 }

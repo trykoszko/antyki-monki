@@ -19,4 +19,8 @@
 
 .l-inner {
     @include inner;
+
+    &--wide {
+        max-width: size(inner, wide);
+    }
 }
