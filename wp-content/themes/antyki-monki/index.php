@@ -14,31 +14,33 @@ $all_cats = get_categories( array(
 
     <div class="l-inner l-inner--wide">
         <?php if ($all_cats) : ?>
-            <h3 class="c-section-title">
-                <?php _e('Kategorie', 'antyki'); ?>
-            </h3>
-            <ul class="c-main-cats">
-                <?php foreach ($all_cats as $cat) : ?>
-                    <?php
-                        $is_disabled = $cat->count === 0;
-                        $is_current = $cat->name === $current_cat_name;
-                    ?>
-                    <li class="c-main-cats__cat<?php if ($is_current) : ?> c-main-cats__cat--current<?php endif; ?>">
-                        <a class="c-link" <?php if (!$is_disabled) : ?>href="<?php echo get_category_link($cat); ?>"<?php endif; ?>>
-                            <span class="c-label"><?php echo $cat->name; ?> (<?php echo $cat->count; ?>)<span>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+            <div class="c-accordion js-accordion">
+                <h2 class="c-section-title c-accordion__title js-accordion-title">
+                    <?php _e('Kategorie', 'antyki'); ?>
+                </h2>
+                <ul class="c-main-cats c-accordion__content js-accordion-content">
+                    <?php foreach ($all_cats as $cat) : ?>
+                        <?php
+                            $is_disabled = $cat->count === 0;
+                            $is_current = $cat->name === $current_cat_name;
+                        ?>
+                        <li class="c-main-cats__cat<?php if ($is_current) : ?> c-main-cats__cat--current<?php endif; ?>">
+                            <a class="c-link" <?php if (!$is_disabled) : ?>href="<?php echo get_category_link($cat); ?>"<?php endif; ?>>
+                                <span class="c-label"><?php echo $cat->name; ?> (<?php echo $cat->count; ?>)<span>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         <?php endif; ?>
         <?php if ( have_posts() ) : ?>
-            <h3 class="c-section-title">
+            <h2 class="c-section-title">
                 <?php if ($current_cat_name) : ?>
                 <?php _e('Kategoria: ', 'antyki'); ?> <?php echo $current_cat_name; ?>
                 <?php else : ?>
-                    <?php _e('Antyki', 'antyki'); ?>
+                    <?php _e('Wszystkie produkty', 'antyki'); ?>
                 <?php endif; ?>
-            </h3>
+            </h2>
             <div class="c-main-grid">
                 <?php while ( have_posts() ) : the_post(); ?>
                     <div class="c-card">
