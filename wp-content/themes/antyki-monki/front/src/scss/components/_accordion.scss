@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Accordion
+   ========================================================================== */
+.c-accordion {
+    position: relative;
+
+    &:before,
+    &:after {
+        content: '';
+
+        position: absolute;
+        top: $s * 2.5;
+
+        background-color: black;
+
+        width: $s * 1.5;
+        height: $s * 0.3;
+
+        transition: all .3s;
+    }
+    &:before {
+        right: #{$s + $s * 0.9};
+
+        transform: rotate(45deg);
+    }
+    &:after {
+        right: $s;
+
+        transform: rotate(-45deg);
+    }
+}
+
+.c-accordion__title {
+    cursor: pointer;
+
+    background-color: color(light);
+    border-radius: $border-radius-default;
+}
+
+.c-accordion.is-active {
+
+    &:before,
+    &:after {
+        top: $s * 1.5;
+        transition: all .3s;
+    }
+    &:before {
+        transform: rotate(45deg) translate(85%);
+    }
+    &:after {
+        transform: rotate(-45deg) translate(-85%);
+    }
+    .c-accordion__content {
+        max-height: 500px;
+        transition: all .3s;
+    }
+}

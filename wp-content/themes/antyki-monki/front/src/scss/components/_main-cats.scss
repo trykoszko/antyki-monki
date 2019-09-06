@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Main cats list
+   ========================================================================== */
+.c-main-cats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+.c-accordion .c-main-cats {
+    max-height: 0;
+
+    transition: all .3s;
+
+    overflow: hidden;
+}
+
+.c-accordion.is-active .c-main-cats {
+    padding: $s * 1.5 0;
+}
+
+.c-main-cats__cat {
+    margin-right: $s;
+    margin-bottom: $s;
+
+    font-size: font-size(h4);
+
+    padding: $s * .85 $s;
+    background-color: color(light);
+
+    border-radius: 25px;
+}
+
+.c-main-cats__cat .c-link {
+
+}
