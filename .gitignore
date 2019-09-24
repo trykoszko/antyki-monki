@@ -1,2 +1,3 @@
 /wp/wp-config.php
 /wp/wp-content/uploads
+/db/*.sql
