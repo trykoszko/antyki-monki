@@ -1,4 +1,2 @@
-/wp/wp-config.php
-/wp/wp-content/uploads
-/db/*.sql
-.vscode
+wp-config.php
+wp-content/uploads
