@@ -11,7 +11,7 @@
 
     vertical-align: baseline;
 
-    @include media(0, tablet) {
+    @include media(0, desktop) {
         padding-right: $white-space;
         padding-left: $white-space;
     }

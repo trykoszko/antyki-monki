@@ -13,13 +13,17 @@
 
     z-index: 500;
 
-    &.is-scrolled {
+    &.is-scrolled,
+    &:hover {
         height: $m-header-height-scrolled;
+
+        @include shadow-default;
     }
     @include media(desktop) {
         height: $d-header-height;
 
-        &.is-scrolled {
+        &.is-scrolled,
+        &:hover {
             height: $d-header-height-scrolled;
         }
     }

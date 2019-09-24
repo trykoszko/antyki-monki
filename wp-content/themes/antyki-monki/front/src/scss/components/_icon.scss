@@ -6,7 +6,7 @@
 
     fill: currentColor;
 
-    transition: all .3s;
+    @include anim-default;
 
     &--search {
         font-size: 2em;
@@ -29,11 +29,18 @@
             font-size: 2em;
         }
     }
+    &--arrow {
+        font-size: 1em;
+
+        @include media(desktop) {
+            font-size: 2em;
+        }
+    }
 }
 
 .l-header.is-scrolled {
     .c-icon {
-        transition: all .3s;
+        @include anim-default;
 
         &--search {
             font-size: 1.5em;

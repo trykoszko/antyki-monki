@@ -16,7 +16,7 @@
         width: $s * 1.5;
         height: $s * 0.3;
 
-        transition: all .3s;
+        @include anim-default;
     }
     &:before {
         right: #{$s + $s * 0.9};
@@ -42,7 +42,7 @@
     &:before,
     &:after {
         top: $s * 1.5;
-        transition: all .3s;
+        @include anim-default;
     }
     &:before {
         transform: rotate(45deg) translate(85%);
@@ -52,6 +52,10 @@
     }
     .c-accordion__content {
         max-height: 500px;
-        transition: all .3s;
+        @include anim-default;
+
+        @include media(desktop) {
+            max-height: 200px;
+        }
     }
 }

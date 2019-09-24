@@ -15,7 +15,7 @@
 .c-accordion .c-main-cats {
     max-height: 0;
 
-    transition: all .3s;
+    @include anim-default;
 
     overflow: hidden;
 }

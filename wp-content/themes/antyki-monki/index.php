@@ -6,7 +6,7 @@ if ($cat && $cat->taxonomy === 'category') {
     $current_cat_name = $cat->name;
 }
 $all_cats = get_categories( array(
-    'hide_empty' => false,
+    // 'hide_empty' => false,
     'orderby' => 'count',
     'order' => 'DESC'
 ) );
@@ -16,7 +16,11 @@ $all_cats = get_categories( array(
         <?php if ($all_cats) : ?>
             <div class="c-accordion js-accordion">
                 <h2 class="c-section-title c-accordion__title js-accordion-title">
-                    <?php _e('Kategorie', 'antyki'); ?>
+                    <?php if ($current_cat_name) : ?>
+                        <?php _e('Kategoria', 'antyki'); ?>: <?php echo $current_cat_name; ?>
+                    <?php else : ?>
+                        <?php _e('Kategorie', 'antyki'); ?>
+                    <?php endif; ?>
                 </h2>
                 <ul class="c-main-cats c-accordion__content js-accordion-content">
                     <?php foreach ($all_cats as $cat) : ?>
@@ -34,13 +38,18 @@ $all_cats = get_categories( array(
             </div>
         <?php endif; ?>
         <?php if ( have_posts() ) : ?>
-            <h2 class="c-section-title">
-                <?php if ($current_cat_name) : ?>
-                <?php _e('Kategoria: ', 'antyki'); ?> <?php echo $current_cat_name; ?>
-                <?php else : ?>
+            <?php if (!$current_cat_name) : ?>
+                <h2 class="c-section-title">
                     <?php _e('Wszystkie produkty', 'antyki'); ?>
-                <?php endif; ?>
-            </h2>
+                </h2>
+            <?php endif; ?>
+            <?php if ($current_cat_name) : ?>
+                <a href="/" class="c-section-link">
+                    <span class="c-label">
+                        &laquo; Powrót do wszystkich produktów
+                    </span>
+                </a>
+            <?php endif; ?>
             <div class="c-main-grid">
                 <?php while ( have_posts() ) : the_post(); ?>
                     <div class="c-card">
@@ -50,30 +59,36 @@ $all_cats = get_categories( array(
                                 $first_img = $gallery[0]['sizes']['large'];
                                 $first_img_aspect_ratio = round($gallery[0]['sizes']['large-width'] / $gallery[0]['sizes']['large-height'], 2);
                                 $first_img_object_fit = $first_img_aspect_ratio === 1.78 || $first_img_aspect_ratio === 0.56 ? 'contain' : 'cover';
+                                $first_img_orientation = $first_img_aspect_ratio > 1 ? 'landscape' : 'portrait';
                                 $second_img = $gallery[1]['sizes']['large'];
                                 $second_img_aspect_ratio = round($gallery[1]['sizes']['large-width'] / $gallery[1]['sizes']['large-height'], 2);
                                 $second_img_object_fit = $second_img_aspect_ratio === 1.78 || $second_img_aspect_ratio === 0.56 ? 'contain' : 'cover';
+                                $second_img_orientation = $second_img_aspect_ratio > 1 ? 'landscape' : 'portrait'
                             ?>
                             <?php if ($gallery) : ?>
-                                <div class="c-card-gallery">
-                                    <figure class="c-card-gallery__img c-card-gallery__img--first">
-                                        <img
-                                            class="c-img o-object-fit-<?php echo $first_img_object_fit; ?>"
-                                            src="<?php echo $gallery[0]['sizes']['large']; ?>" alt="<?php the_title(); ?>"
-                                            />
-                                    </figure>
-                                    <figure class="c-card-gallery__img c-card-gallery__img--second">
-                                        <img
-                                            class="c-img o-object-fit-<?php echo $second_img_object_fit; ?>"
-                                            src="<?php echo $gallery[1]['sizes']['large']; ?>" alt="<?php the_title(); ?>"
-                                            />
-                                    </figure>
-                                </div>
+                                <a href="<?php the_permalink(); ?>">
+                                    <div class="c-card-gallery">
+                                        <figure class="c-card-gallery__img c-card-gallery__img--<?php echo $first_img_orientation; ?> c-card-gallery__img--first">
+                                            <img
+                                                class="c-img o-object-fit-<?php echo $first_img_object_fit; ?>"
+                                                src="<?php echo $gallery[0]['sizes']['large']; ?>" alt="<?php the_title(); ?>"
+                                                />
+                                        </figure>
+                                        <figure class="c-card-gallery__img c-card-gallery__img--<?php echo $second_img_orientation; ?> c-card-gallery__img--second">
+                                            <img
+                                                class="c-img o-object-fit-<?php echo $second_img_object_fit; ?>"
+                                                src="<?php echo $gallery[1]['sizes']['large']; ?>" alt="<?php the_title(); ?>"
+                                                />
+                                        </figure>
+                                    </div>
+                                </a>
                             <?php endif; ?>
                             <div class="c-card__body">
-                                <h4 class="c-card__title">
-                                    <?php the_title(); ?>
-                                </h4>
+                                <a href="<?php the_permalink(); ?>">
+                                    <h4 class="c-card__title">
+                                        <?php the_title(); ?>
+                                    </h4>
+                                </a>
                                 <?php
                                     $cats = get_the_category();
                                     $cat_count = count($cats);
@@ -90,11 +105,24 @@ $all_cats = get_categories( array(
                     </div>
                 <?php endwhile; ?>
             </div>
+            <?php if ($current_cat_name) : ?>
+                <a href="/" class="c-section-link">
+                    <span class="c-label">
+                        &laquo; Powrót do wszystkich produktów
+                    </span>
+                </a>
+            <?php endif; ?>
+            <?php get_template_part('components/pagination'); ?>
         <?php else : ?>
             <div class="c-main-grid c-main-grid--empty">
-                <h4 class="h4">
+                <h2 class="c-section-title">
                     <?php _e('Nie znaleziono produktów', 'antyki'); ?>
-                </h4>
+                </h2>
+                <a href="#" class="c-section-link" onclick="window.history.go('-1')">
+                    <span class="c-label">
+                        &laquo; Powrót
+                    </span>
+                </a>
             </div>
         <?php endif; ?>
     </div>

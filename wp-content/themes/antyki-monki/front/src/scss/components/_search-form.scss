@@ -18,18 +18,17 @@
 }
 
 .c-search-form__label {
-    margin-bottom: $s;
+    margin-bottom: $s * 4;
+
+    font-size: font-size(h2);
 }
 
 .c-search-form__input {
     background-color: color(light);
-}
 
-.c-search-form__label {
+    margin-bottom: $s * 4;
 
-}
-
-.c-search-form__submit {
+    font-size: font-size(h3);
 }
 
 .c-search-form__input,

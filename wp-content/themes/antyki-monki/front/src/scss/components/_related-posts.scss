@@ -1,10 +1,18 @@
 /* ==========================================================================
-   Main grid
+   Related posts
    ========================================================================== */
-.c-main-grid {
+.c-related-posts {
+    margin: 0;
+    padding: 0;
+    margin-bottom: $s * 2;
+
+    list-style: none;
+
     display: flex;
-    flex-direction: row;
     align-items: stretch;
     justify-content: space-between;
-    flex-wrap: wrap;
+
+    @include media(desktop) {
+        margin-bottom: $s * 6
+    }
 }

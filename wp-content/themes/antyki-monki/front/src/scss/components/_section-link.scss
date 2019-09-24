@@ -1,17 +1,17 @@
 /* ==========================================================================
-   Section title
+   Section link
    ========================================================================== */
-.c-section-title {
-    margin: 0;
-    padding: $s * 3 0;
+.c-section-link {
+    padding: $s * 2 0;
+    margin: $s 0;
 
     width: 100%;
 
     @include media(tablet) {
-        font-size: font-size(h2);
+        font-size: font-size(h4);
     }
 }
 
-.c-accordion .c-section-title {
-    padding: $s * 1.5 $s;
+.c-section-title + .c-section-link {
+    padding: 0 0 $s * 3;
 }

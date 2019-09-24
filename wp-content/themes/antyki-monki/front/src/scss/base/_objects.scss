@@ -1,10 +1,10 @@
 /* ==========================================================================
-   Main grid
+   Objects
    ========================================================================== */
-.c-main-grid {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.o-object-fit-contain {
+    object-fit: contain;
+}
+
+.o-object-fit-cover {
+    object-fit: cover;
 }

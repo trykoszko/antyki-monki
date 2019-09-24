@@ -30,7 +30,8 @@ $colors: (
     light: #FAFAFA,
     lgrey: #EDEDED,
     accent: #d4213d,
-    blue: #09A6E4
+    blue: #09A6E4,
+    grey: #AAAAAA
 );
 
 $sizes: (
@@ -48,8 +49,10 @@ $font-sizes: (
     main: 14px,
     h1: 3rem,
     h2: 2rem,
-    h3: 1.5rem,
+    h3: 1.75rem,
+    h35: 1.55rem,
     h4: 1.25rem,
+    h5: 1.1rem,
     small: 0.8rem,
     quote: 9px
 );
@@ -63,7 +66,7 @@ $offsets: (
 $s: 10px;
 
 $fonts: (
-    main: #{'Source Sans Pro', 'Arial', sans-serif}
+    main: #{'IBM Plex Sans', 'Arial', sans-serif}
 );
 
 $defaults: (
@@ -78,10 +81,23 @@ $form-control-height: 2rem;
 
 $border-radius-default: 5px;
 
-$m-header-height: 140px;
+$transition-default: all .3s;
+
+$m-header-height: 160px;
 $m-header-height-scrolled: 90px;
 $m-header-menu-height: auto;
 
-$d-header-height: 180px;
+$d-header-height: 200px;
 $d-header-height-scrolled: 120px;
 $d-header-menu-height: 40px;
+
+$card-gallery-height-m: 180px;
+$card-gallery-height-d: 320px;
+
+$product-gallery-height-m: 400px;
+$product-gallery-height-d: 600px;
+
+$related-product-thumb-height-m: 120px;
+$related-product-thumb-height-d: 280px;
+
+$img-background-gradient: linear-gradient(135deg, rgba(202,210,223,.3) 0%,rgba(178,166,152,.3) 100%);

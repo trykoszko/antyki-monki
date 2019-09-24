@@ -2,11 +2,59 @@
    Main grid card
    ========================================================================== */
 .c-card {
-    width: 100%;
+    width: calc((100% / 2) - #{$s});
     height: auto;
 
-    img {
-        max-width: 100px;
-        height: auto;
+    margin-bottom: $s * 2;
+
+    transition: $transition-default;
+
+    @include shadow-default;
+
+    @include media(desktop) {
+        width: calc((100% / 3) - #{$s});
+    }
+
+    &:hover {
+        transition: $transition-default;
+
+        @include shadow-small;
+    }
+}
+
+.c-card__inside {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.c-card__body {
+    padding: $s;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.c-card__title {
+    padding: $s / 2 0;
+    margin: 0;
+    margin-bottom: $s;
+
+    font-size: font-size(h4);
+
+    @include media(tablet) {
+        font-size: font-size(h3);
+    }
+}
+
+.c-card__categories {
+    margin: 0 0 $s;
+
+    font-size: font-size(h5);
+
+    @include media(tablet) {
+        font-size: font-size(h4);
     }
 }

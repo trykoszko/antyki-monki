@@ -4,18 +4,33 @@
 
 </main>
 
-<section class="l-search-modal js-search-modal">
+<?php if ( is_singular('product') ) : ?>
+    <?php get_template_part('components/image-modal'); ?>
+<?php endif; ?>
+
+<?php get_template_part('components/search-modal'); ?>
+
+<footer class="l-footer">
     <div class="l-inner">
-        <div class="c-search-modal">
-            <button class="c-search-modal__close js-close-search">
-                <svg class="ui-icon c-icon c-icon--search">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#close"></use>
-                </svg>
-            </button>
-            <?php get_search_form(); ?>
+        <div class="c-footer">
+            <?php
+                wp_nav_menu( array(
+                    'theme_location'  => 'footer-menu',
+                    'depth'	          => 1,
+                    'container'       => false,
+                    'menu_class'      => 'c-footer__nav',
+                    'walker'          => new Antyki_Footer_Walker
+                ) );
+            ?>
+            <p class="c-footer__info">
+                <?php _e('Przedstawiona oferta ma charakter informacyjny i nie stanowi oferty handlowej w rozumieniu Art. 66 par. 1 Kodeksu Cywilnego.', 'antyki'); ?>
+            </p>
+            <p class="c-footer__copyright">
+                &copy; <?php echo get_bloginfo('name') . ' ' . date('Y'); ?>
+            </p>
         </div>
     </div>
-</section>
+</footer>
 
 <?php wp_footer(); ?>
 
