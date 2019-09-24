@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.l-header {
+    width: 100%;
+    height: $m-header-height;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: color(white);
+
+    z-index: 500;
+
+    &.is-scrolled,
+    &:hover {
+        height: $m-header-height-scrolled;
+
+        @include shadow-default;
+    }
+    @include media(desktop) {
+        height: $d-header-height;
+
+        &.is-scrolled,
+        &:hover {
+            height: $d-header-height-scrolled;
+        }
+    }
+}

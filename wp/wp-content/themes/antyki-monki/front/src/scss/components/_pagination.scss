@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Pagination
+   ========================================================================== */
+.c-pagination {
+    margin: 0;
+    padding: 0;
+    margin: $s * 3 0;
+
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-pagination__item {
+    margin: 0 $s;
+
+    font-size: 1.25em;
+
+    .c-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: $s * 4;
+        height: $s * 4;
+
+        background-color: color(white);
+
+        @include shadow-small;
+        border-radius: 100%;
+
+        .c-label {
+
+        }
+    }
+    &.is-active {
+
+        .c-link {
+            color: color(grey);
+        }
+    }
+}

@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Product
+   ========================================================================== */
+.c-product {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 0 $s;
+
+    @include media(desktop) {
+        flex-direction: row;
+        justify-content: space-between;
+
+        margin: $s * 2 0 $s * 4;
+    }
+}

@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Section link
+   ========================================================================== */
+.c-section-link {
+    padding: $s * 2 0;
+    margin: $s 0;
+
+    width: 100%;
+
+    @include media(tablet) {
+        font-size: font-size(h4);
+    }
+}
+
+.c-section-title + .c-section-link {
+    padding: 0 0 $s * 3;
+}

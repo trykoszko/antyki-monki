@@ -1,0 +1,10 @@
+/* ==========================================================================
+   Main grid
+   ========================================================================== */
+.c-main-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

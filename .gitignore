@@ -1,4 +1,3 @@
-wp-config.php
-dploy.yaml
-
-wp-content/uploads
+/wp/wp-config.php
+/wp/wp-content/uploads
+/db/*.sql

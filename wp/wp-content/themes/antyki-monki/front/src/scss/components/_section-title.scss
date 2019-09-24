@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Section title
+   ========================================================================== */
+.c-section-title {
+    margin: 0;
+    padding: $s * 3 0;
+
+    width: 100%;
+
+    @include media(tablet) {
+        font-size: font-size(h2);
+    }
+}
+
+.c-accordion .c-section-title {
+    padding: $s * 1.5 $s;
+}
