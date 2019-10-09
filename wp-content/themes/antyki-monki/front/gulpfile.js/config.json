@@ -10,7 +10,7 @@
         "browserSync": {
             "port": 4500,
             "open": false,
-            "proxy": "http://antyki-monki.loc"
+            "proxy": "http://localhost"
         },
 
         "php": {
