@@ -9,10 +9,15 @@
     list-style: none;
 
     display: flex;
+    flex-wrap: wrap;
     align-items: stretch;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     @include media(desktop) {
-        margin-bottom: $s * 6
+        margin-bottom: $s * 6;
+
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: space-between;
     }
 }

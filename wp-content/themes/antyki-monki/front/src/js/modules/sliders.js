@@ -1,11 +1,13 @@
-import Swiper from 'swiper'
+import Swiper from 'swiper/dist/js/swiper.js'
 
 const showImageModal = (url, orientation) => {
   const imageModal = document.querySelector('.js-image-modal')
   const fig = imageModal.querySelector('.js-image')
   const image = fig.querySelector('img')
   image.src = url
-  fig.classList = `c-image-modal__img c-image-modal__img--${orientation} js-image`
+  fig.classList.remove('c-image-modal__img--portrait')
+  fig.classList.remove('c-image-modal__img--landscape')
+  fig.classList.add(`c-image-modal__img--${orientation}`)
   imageModal.classList.add('is-active')
 }
 

@@ -46,7 +46,7 @@ $all_cats = get_categories( array(
             <?php if ($current_cat_name) : ?>
                 <a href="/" class="c-section-link">
                     <span class="c-label">
-                        &laquo; Powrót do wszystkich produktów
+                        <?php _e('&laquo; Powrót do wszystkich produktów', 'antyki'); ?>
                     </span>
                 </a>
             <?php endif; ?>
@@ -108,7 +108,7 @@ $all_cats = get_categories( array(
             <?php if ($current_cat_name) : ?>
                 <a href="/" class="c-section-link">
                     <span class="c-label">
-                        &laquo; Powrót do wszystkich produktów
+                        <?php _e('&laquo; Powrót do wszystkich produktów', 'antyki'); ?>
                     </span>
                 </a>
             <?php endif; ?>
@@ -116,11 +116,11 @@ $all_cats = get_categories( array(
         <?php else : ?>
             <div class="c-main-grid c-main-grid--empty">
                 <h2 class="c-section-title">
-                    <?php _e('Nie znaleziono produktów', 'antyki'); ?>
+                    <?php _e('Nie znaleziono produktów.', 'antyki'); ?>
                 </h2>
                 <a href="#" class="c-section-link" onclick="window.history.go('-1')">
                     <span class="c-label">
-                        &laquo; Powrót
+                        <?php _e('&laquo; Powrót do wszystkich produktów', 'antyki'); ?>
                     </span>
                 </a>
             </div>

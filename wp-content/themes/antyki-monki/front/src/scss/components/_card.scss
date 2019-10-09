@@ -11,8 +11,21 @@
 
     @include shadow-default;
 
+    margin-left: $s * 2;
+    &:nth-child(2n+1) {
+        margin-left: 0;
+    }
+
     @include media(desktop) {
         width: calc((100% / 3) - #{$s});
+
+        margin-left: $s;
+        &:nth-child(2n+1) {
+            margin-left: $s;
+        }
+        &:nth-child(3n+1) {
+            margin-left: 0;
+        }
     }
 
     &:hover {

@@ -30,7 +30,7 @@
                         $thumb_orientation = $thumb_aspect_ratio > 1 ? 'landscape' : 'portrait';
                     ?>
                     <li class="c-related-post">
-                        <a href="#">
+                        <a href="<?php echo get_permalink($post_id); ?>">
                             <figure class="c-related-post__img c-related-post__img--<?php echo $thumb_orientation; ?>">
                                 <img src="<?php echo $thumb['sizes']['medium']; ?>" />
                             </figure>
