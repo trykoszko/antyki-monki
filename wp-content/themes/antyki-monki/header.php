@@ -33,7 +33,7 @@
             </nav>
             <a href="/">
                 <figure class="c-header__logo">
-                    <img src="<?php echo get_field('logo', 'option'); ?>" alt="<?php echo get_bloginfo('title'); ?> Logo" />
+                    <img src="<?php echo $theme_url; ?>/static/img/antyki-logo.png" alt="<?php echo get_bloginfo('title'); ?> Logo" />
                 </figure>
             </a>
             <button class="c-header__search js-toggle-search">
