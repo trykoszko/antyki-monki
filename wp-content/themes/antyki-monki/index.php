@@ -3,8 +3,10 @@ get_header();
 
 $cat = get_queried_object();
 $current_cat_name = '';
+$current_cat_id = '';
 if ($cat && $cat->taxonomy === 'category') {
     $current_cat_name = $cat->name;
+    $current_cat_id = $cat->term_id;
 }
 $all_cats = get_categories( array(
     'orderby' => 'count',
@@ -15,6 +17,10 @@ $cats_count = count($all_cats);
 $query_args = array(
     'post_type' => 'product'
 );
+
+if (isset($current_cat_id) && $current_cat_id !== NULL) {
+    $query_args['cat'] = $current_cat_id;
+}
 
 $is_search = get_search_query();
 if ($is_search) {
