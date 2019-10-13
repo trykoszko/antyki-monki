@@ -26,14 +26,18 @@
                 <?php foreach ($posts as $post_id) : ?>
                     <?php
                         $thumb = get_field('product_gallery', $post_id)[0];
-                        $thumb_aspect_ratio = round($thumb['width'] / $thumb['height'], 2);
-                        $thumb_orientation = $thumb_aspect_ratio > 1 ? 'landscape' : 'portrait';
+                        if ($thumb) {
+                            $thumb_aspect_ratio = round($thumb['width'] / $thumb['height'], 2);
+                            $thumb_orientation = $thumb_aspect_ratio > 1 ? 'landscape' : 'portrait';
+                        }
                     ?>
                     <li class="c-related-post">
                         <a href="<?php echo get_permalink($post_id); ?>">
-                            <figure class="c-related-post__img c-related-post__img--<?php echo $thumb_orientation; ?>">
-                                <img src="<?php echo $thumb['sizes']['medium']; ?>" />
-                            </figure>
+                            <?php if ($thumb) : ?>
+                                <figure class="c-related-post__img c-related-post__img--<?php echo $thumb_orientation; ?>">
+                                    <img src="<?php echo $thumb['sizes']['medium']; ?>" />
+                                </figure>
+                            <?php endif; ?>
                             <h4 class="c-related-post__title">
                                 <?php echo get_the_title($post_id); ?>
                             </h4>
