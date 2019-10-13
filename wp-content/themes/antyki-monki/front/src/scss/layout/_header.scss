@@ -3,7 +3,7 @@
    ========================================================================== */
 .l-header {
     width: 100%;
-    height: $m-header-height;
+    height: $m-header-height-scrolled;
 
     position: fixed;
     top: 0;
@@ -13,18 +13,13 @@
 
     z-index: 500;
 
-    &.is-scrolled,
-    &:hover {
-        height: $m-header-height-scrolled;
+    transition: $transition-default;
 
+    &.is-scrolled {
         @include shadow-default;
     }
-    @include media(desktop) {
-        height: $d-header-height;
 
-        &.is-scrolled,
-        &:hover {
-            height: $d-header-height-scrolled;
-        }
+    @include media(desktop) {
+        height: $d-header-height-scrolled;
     }
 }

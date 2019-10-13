@@ -51,6 +51,11 @@
     right: $s * 3;
     top: $s * 3;
 
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
     padding: $s * 1.25;
 
     @include media(desktop) {
@@ -187,8 +192,8 @@
     @include anim-default;
 }
 
-.is-scrolled,
-.l-header:hover {
+// .is-scrolled,
+// .l-header:hover {
 
     .c-header__logo {
         height: #{$m-header-height-scrolled - $s * 4};
@@ -215,4 +220,4 @@
             opacity: 1;
         }
     }
-}
+// }

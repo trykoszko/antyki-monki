@@ -9,7 +9,7 @@
         content: '';
 
         position: absolute;
-        top: $s * 2.5;
+        top: $s * 3;
 
         background-color: black;
 
@@ -17,14 +17,16 @@
         height: $s * 0.3;
 
         @include anim-default;
+
+        pointer-events: none;
     }
     &:before {
-        right: #{$s + $s * 0.9};
+        right: #{$s * 2 + $s * 0.9};
 
         transform: rotate(45deg);
     }
     &:after {
-        right: $s;
+        right: $s * 2;
 
         transform: rotate(-45deg);
     }
@@ -41,7 +43,7 @@
 
     &:before,
     &:after {
-        top: $s * 1.5;
+        top: $s * 2;
         @include anim-default;
     }
     &:before {

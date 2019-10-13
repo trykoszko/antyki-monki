@@ -2,7 +2,39 @@
    Footer
    ========================================================================== */
 .c-footer {
-    padding: $s * 5 0 $s;
+    padding: $s * 3 0 $s;
+
+    @include media(tablet) {
+        padding: $s * 8 0 $s * 2;
+    }
+}
+
+.c-footer__row {
+
+    @include media(tablet) {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+
+.c-footer__col {
+    width: 100%;
+
+    margin-bottom: $s * 4;
+
+    @include media(tablet) {
+        width: 30%;
+
+        margin-bottom: $s * 8;
+    }
+}
+
+.c-footer__title {
+}
+
+.c-footer__text {
+    line-height: 1.75;
 }
 
 .c-footer__nav {

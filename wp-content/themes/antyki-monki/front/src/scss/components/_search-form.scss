@@ -19,20 +19,16 @@
     &--alt {
         margin-bottom: $s * 3;
     }
+
+    @include media(tablet) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .c-search-form__label {
-    margin-bottom: $s * 4;
-
     font-size: font-size(h2);
-}
-
-.c-search-form__input {
-    background-color: color(light);
-
-    margin-bottom: $s * 4;
-
-    font-size: font-size(h3);
 }
 
 .c-search-form__input,
@@ -41,5 +37,33 @@
     border-radius: $border-radius-default;
 
     padding: $s;
-    height: 3rem;
+    height: $s * 6;
+}
+
+.c-search-form__input {
+    width: 100%;
+
+    margin: 0;
+    padding: $s * 2;
+    margin-bottom: $s * 2;
+
+    background-color: color(lgrey);
+
+    font-size: font-size(h2);
+
+    @include media(tablet) {
+        width: 80%;
+        margin-right: $s * 4;
+        margin-bottom: 0;
+    }
+}
+
+.c-search-form__submit {
+    width: 50%;
+
+    cursor: pointer;
+
+    @include media(tablet) {
+        width: 20%;
+    }
 }

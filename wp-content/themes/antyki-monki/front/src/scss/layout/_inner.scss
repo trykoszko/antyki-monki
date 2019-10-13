@@ -23,4 +23,7 @@
     &--wide {
         max-width: size(inner, wide);
     }
+    &--narrow {
+        max-width: size(inner, narrow);
+    }
 }

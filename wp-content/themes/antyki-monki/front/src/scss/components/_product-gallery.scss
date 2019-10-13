@@ -23,16 +23,19 @@
     margin: 0;
     padding: 0;
 
-    width: 100%;
     height: $product-gallery-height-m;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     img {
-        width: 100%;
         height: $product-gallery-height-m;
 
-        object-fit: contain;
-
         cursor: pointer;
+
+        object-fit: contain;
+        font-family: 'object-fit: contain; object-position: 50%;';
     }
 
     @include media(desktop) {
@@ -40,6 +43,9 @@
 
         img {
             height: $product-gallery-height-d;
+
+            object-fit: contain;
+            font-family: 'object-fit: contain; object-position: 50%;';
         }
     }
 }
