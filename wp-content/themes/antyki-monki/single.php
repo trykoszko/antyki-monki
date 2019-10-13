@@ -118,10 +118,14 @@ $is_painting = isset(get_field('product_attributes')['canvas_type']);
                                 ?>
                                 <span>Materiał wykonania</span>
                                 <span>
-                                    <?php foreach ($attrs['material'] as $material) : ?>
-                                        <?php echo $material; ?><?php if ($i < $materials) : ?>, <?php endif; ?>
-                                        <?php $i++; ?>
-                                    <?php endforeach; ?>
+                                    <?php if ($materials) : ?>
+                                        <?php foreach ($attrs['material'] as $material) : ?>
+                                            <?php echo $material; ?><?php if ($i < $materials) : ?>, <?php endif; ?>
+                                            <?php $i++; ?>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        Brak danych
+                                    <?php endif; ?>
                                 </span>
                             </div>
                         </li>
