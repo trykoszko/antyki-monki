@@ -1,4 +1,5 @@
 <?php
+
 include 'inc/theme-supports.php';
 include 'inc/widgets.php';
 include 'inc/cpt.php';
@@ -7,9 +8,10 @@ include 'inc/enqueues.php';
 include 'inc/acf.php';
 include 'inc/walker.php';
 
-function wpse_modify_category_query( $query ) {
-    if ( ! is_admin() && $query->is_main_query() ) {
+function antyki_modify_category_query( $query ) {
+    if ( !is_admin() && $query->is_main_query() && !is_page() ) {
         $query->set( 'post_type', 'product' );
     }
 }
-add_action( 'pre_get_posts', 'wpse_modify_category_query' );
+add_action( 'pre_get_posts', 'antyki_modify_category_query' );
+

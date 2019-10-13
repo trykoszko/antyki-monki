@@ -13,7 +13,7 @@
 <body <?php body_class( 'bg-light' ); ?>>
 
 <header class="l-header js-header">
-    <div class="l-inner">
+    <div class="l-inner l-inner--wide">
         <div class="c-header">
             <nav class="c-header__nav js-header-nav">
                 <button class="c-header__nav-close js-close-nav">

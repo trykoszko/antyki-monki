@@ -7,6 +7,11 @@ $is_painting = isset(get_field('product_attributes')['canvas_type']);
 <article class="l-article">
     <div class="l-inner l-inner--wide">
         <?php get_template_part('components/breadcrumbs'); ?>
+        <a href="/" class="c-section-link">
+            <span class="c-label">
+                <?php _e('&laquo; Powrót do wszystkich produktów', 'antyki'); ?>
+            </span>
+        </a>
         <div class="c-product">
             <div class="c-product-gallery swiper-container js-product-gallery-slider">
                 <div class="c-product-gallery__wrapper swiper-wrapper">

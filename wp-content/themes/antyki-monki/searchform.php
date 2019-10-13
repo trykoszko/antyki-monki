@@ -3,15 +3,10 @@
 ?>
 
 <form class="c-search-form" action="/" method="get">
-    <div class="c-search-form__group c-search-form__group--alt">
-        <svg class="ui-icon c-icon c-icon--search">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#search"></use>
-        </svg>
+    <div class="c-search-form__group">
+        <h2 class="t-h1"><?php _e('Szukaj...', 'antyki'); ?></h2>
     </div>
     <div class="c-search-form__group">
-        <label class="c-search-form__label" for="search">
-            <?php _e('Wyszukaj na stronie', 'antyki'); ?>
-        </label>
         <input
             class="c-search-form__input"
             type="text"
@@ -20,8 +15,6 @@
             placeholder="<?php _e('Wpisz frazę...', 'antyki'); ?>"
             value="<?php the_search_query(); ?>"
             />
-    </div>
-    <div class="c-search-form__group">
         <button
             class="c-search-form__submit c-btn"
             type="submit"

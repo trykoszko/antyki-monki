@@ -1,23 +1,43 @@
 <?php
 get_header();
+
 $cat = get_queried_object();
 $current_cat_name = '';
 if ($cat && $cat->taxonomy === 'category') {
     $current_cat_name = $cat->name;
 }
 $all_cats = get_categories( array(
-    // 'hide_empty' => false,
     'orderby' => 'count',
     'order' => 'DESC'
 ) );
+$cats_count = count($all_cats);
+
+$query_args = array(
+    'post_type' => 'product'
+);
+
+$is_search = get_search_query();
+if ($is_search) {
+    $query_args['s'] = $is_search;
+    $query_args['posts_per_page'] = 99;
+}
+
+$queried_page = get_query_var('paged') === 0 ? 1 : get_query_var('paged');
+if ($queried_page) {
+    $query_args['paged'] = $queried_page;
+}
+
+$query = new WP_Query($query_args);
+
+$found_posts = $query->found_posts;
 ?>
 
     <div class="l-inner l-inner--wide">
-        <?php if ($all_cats) : ?>
+        <?php if ($all_cats && !$is_search) : ?>
             <div class="c-accordion js-accordion">
                 <h2 class="c-section-title c-accordion__title js-accordion-title">
                     <?php if ($current_cat_name) : ?>
-                        <?php _e('Kategoria', 'antyki'); ?>: <?php echo $current_cat_name; ?>
+                        <?php _e('Kategoria', 'antyki'); ?>: <?php echo $current_cat_name; ?> (<?php echo $cat->count; ?>)
                     <?php else : ?>
                         <?php _e('Kategorie', 'antyki'); ?>
                     <?php endif; ?>
@@ -37,10 +57,10 @@ $all_cats = get_categories( array(
                 </ul>
             </div>
         <?php endif; ?>
-        <?php if ( have_posts() ) : ?>
-            <?php if (!$current_cat_name) : ?>
+        <?php if ( $query->have_posts() ) : ?>
+            <?php if (!$current_cat_name && !$is_search) : ?>
                 <h2 class="c-section-title">
-                    <?php _e('Wszystkie produkty', 'antyki'); ?>
+                    <?php _e('Wszystkie produkty', 'antyki'); ?> (<?php echo $found_posts; ?>)
                 </h2>
             <?php endif; ?>
             <?php if ($current_cat_name) : ?>
@@ -50,8 +70,13 @@ $all_cats = get_categories( array(
                     </span>
                 </a>
             <?php endif; ?>
+            <?php if ($is_search) : ?>
+                <h2 class="c-section-title">
+                    <?php _e('Wyniki wyszukiwania frazy: ', 'antyki'); ?> <i><?php echo get_search_query(); ?></i> (<?php echo $found_posts; ?>)
+                </h2>
+            <?php endif; ?>
             <div class="c-main-grid">
-                <?php while ( have_posts() ) : the_post(); ?>
+                <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                     <div class="c-card">
                         <div class="c-card__inside">
                             <?php
@@ -95,6 +120,7 @@ $all_cats = get_categories( array(
                                     $i = 1;
                                 ?>
                                 <p class="c-card__categories">
+                                    <?php _e('Kategoria:', 'antyki'); ?>
                                     <?php foreach ($cats as $cat) : ?>
                                         <a class="c-link" href="<?php echo get_category_link($cat); ?>"><span class="c-label"><?php echo $cat->name; ?></span></a><?php if ($i < $cat_count) { echo ', '; } ?>
                                         <?php $i++; ?>
@@ -112,7 +138,9 @@ $all_cats = get_categories( array(
                     </span>
                 </a>
             <?php endif; ?>
-            <?php get_template_part('components/pagination'); ?>
+            <?php if (!$is_search) : ?>
+                <?php get_template_part('components/pagination'); ?>
+            <?php endif; ?>
         <?php else : ?>
             <div class="c-main-grid c-main-grid--empty">
                 <h2 class="c-section-title">
