@@ -1,6 +1,6 @@
 <?php
     $theme_url = get_template_directory_uri() . '/front';
-    $seo_title = get_the_title() ? get_the_title() . ' - ' . get_bloginfo('title') : get_bloginfo('title');
+    $seo_title = is_home() ? get_bloginfo('title') : get_the_title() . ' - ' . get_bloginfo('title');
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
