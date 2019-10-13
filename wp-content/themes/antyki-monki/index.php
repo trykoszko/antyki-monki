@@ -82,29 +82,41 @@ $found_posts = $query->found_posts;
                             <?php
                                 $gallery = get_field('product_gallery');
                                 $first_img = $gallery[0]['sizes']['large'];
-                                $first_img_aspect_ratio = round($gallery[0]['sizes']['large-width'] / $gallery[0]['sizes']['large-height'], 2);
-                                $first_img_object_fit = $first_img_aspect_ratio === 1.78 || $first_img_aspect_ratio === 0.56 ? 'contain' : 'cover';
-                                $first_img_orientation = $first_img_aspect_ratio > 1 ? 'landscape' : 'portrait';
                                 $second_img = $gallery[1]['sizes']['large'];
-                                $second_img_aspect_ratio = round($gallery[1]['sizes']['large-width'] / $gallery[1]['sizes']['large-height'], 2);
-                                $second_img_object_fit = $second_img_aspect_ratio === 1.78 || $second_img_aspect_ratio === 0.56 ? 'contain' : 'cover';
-                                $second_img_orientation = $second_img_aspect_ratio > 1 ? 'landscape' : 'portrait'
+                                $first_img_exists = false;
+                                $second_img_exists = false;
+                                if ($first_img) {
+                                    $first_img_exists = true;
+                                    $first_img_aspect_ratio = round($gallery[0]['sizes']['large-width'] / $gallery[0]['sizes']['large-height'], 2);
+                                    $first_img_object_fit = $first_img_aspect_ratio === 1.78 || $first_img_aspect_ratio === 0.56 ? 'contain' : 'cover';
+                                    $first_img_orientation = $first_img_aspect_ratio > 1 ? 'landscape' : 'portrait';
+                                }
+                                if ($second_img) {
+                                    $second_img_exists = true;
+                                    $second_img_aspect_ratio = round($gallery[1]['sizes']['large-width'] / $gallery[1]['sizes']['large-height'], 2);
+                                    $second_img_object_fit = $second_img_aspect_ratio === 1.78 || $second_img_aspect_ratio === 0.56 ? 'contain' : 'cover';
+                                    $second_img_orientation = $second_img_aspect_ratio > 1 ? 'landscape' : 'portrait';
+                                }
                             ?>
                             <?php if ($gallery) : ?>
                                 <a href="<?php the_permalink(); ?>">
                                     <div class="c-card-gallery">
-                                        <figure class="c-card-gallery__img c-card-gallery__img--<?php echo $first_img_orientation; ?> c-card-gallery__img--first">
-                                            <img
-                                                class="c-img o-object-fit-<?php echo $first_img_object_fit; ?>"
-                                                src="<?php echo $gallery[0]['sizes']['large']; ?>" alt="<?php the_title(); ?>"
-                                                />
-                                        </figure>
-                                        <figure class="c-card-gallery__img c-card-gallery__img--<?php echo $second_img_orientation; ?> c-card-gallery__img--second">
-                                            <img
-                                                class="c-img o-object-fit-<?php echo $second_img_object_fit; ?>"
-                                                src="<?php echo $gallery[1]['sizes']['large']; ?>" alt="<?php the_title(); ?>"
-                                                />
-                                        </figure>
+                                        <?php if ($first_img_exists) : ?>
+                                            <figure class="c-card-gallery__img c-card-gallery__img--<?php echo $first_img_orientation; ?> c-card-gallery__img--first">
+                                                <img
+                                                    class="c-img o-object-fit-<?php echo $first_img_object_fit; ?>"
+                                                    src="<?php echo $gallery[0]['sizes']['large']; ?>" alt="<?php the_title(); ?>"
+                                                    />
+                                            </figure>
+                                        <?php endif; ?>
+                                        <?php if ($first_img_exists) : ?>
+                                            <figure class="c-card-gallery__img c-card-gallery__img--<?php echo $second_img_orientation; ?> c-card-gallery__img--second">
+                                                <img
+                                                    class="c-img o-object-fit-<?php echo $second_img_object_fit; ?>"
+                                                    src="<?php echo $gallery[1]['sizes']['large']; ?>" alt="<?php the_title(); ?>"
+                                                    />
+                                            </figure>
+                                        <?php endif; ?>
                                     </div>
                                 </a>
                             <?php endif; ?>

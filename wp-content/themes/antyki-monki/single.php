@@ -13,37 +13,39 @@ $is_painting = isset(get_field('product_attributes')['canvas_type']);
             </span>
         </a>
         <div class="c-product">
-            <div class="c-product-gallery swiper-container js-product-gallery-slider">
-                <div class="c-product-gallery__wrapper swiper-wrapper">
-                    <?php foreach ($slides as $slide) : ?>
-                        <?php
-                            $img_aspect_ratio = round($slide['sizes']['large-width'] / $slide['sizes']['large-height'], 2);
-                            $img_orientation = $img_aspect_ratio > 1 ? 'landscape' : 'portrait';
-                        ?>
-                        <div
-                            class="c-product-gallery__slide swiper-slide js-slide"
-                            data-full-size-url="<?php echo $slide['url']; ?>"
-                            data-img-orientation="<?php echo $img_orientation; ?>"
-                            >
-                            <figure class="c-product-gallery__img">
-                                <img src="<?php echo $slide['sizes']['medium_large']; ?>" alt="<?php echo $slide['name']; ?>">
-                            </figure>
-                        </div>
-                    <?php endforeach; ?>
+            <?php if ($slides) : ?>
+                <div class="c-product-gallery swiper-container js-product-gallery-slider">
+                    <div class="c-product-gallery__wrapper swiper-wrapper">
+                        <?php foreach ($slides as $slide) : ?>
+                            <?php
+                                $img_aspect_ratio = round($slide['sizes']['large-width'] / $slide['sizes']['large-height'], 2);
+                                $img_orientation = $img_aspect_ratio > 1 ? 'landscape' : 'portrait';
+                            ?>
+                            <div
+                                class="c-product-gallery__slide swiper-slide js-slide"
+                                data-full-size-url="<?php echo $slide['url']; ?>"
+                                data-img-orientation="<?php echo $img_orientation; ?>"
+                                >
+                                <figure class="c-product-gallery__img">
+                                    <img src="<?php echo $slide['sizes']['medium_large']; ?>" alt="<?php echo $slide['name']; ?>">
+                                </figure>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <button title="<?php _e('Poprzednie', 'antyki'); ?>" class="c-product-gallery__btn c-product-gallery__btn--prev">
+                        <svg class="ui-icon c-icon c-icon--arrow">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#arrow"></use>
+                        </svg>
+                    </button>
+                    <button title="<?php _e('Następne', 'antyki'); ?>" class="c-product-gallery__btn c-product-gallery__btn--next">
+                        <svg class="ui-icon c-icon c-icon--arrow">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#arrow"></use>
+                        </svg>
+                    </button>
+                    <ul class="c-product-gallery__nav">
+                    </ul>
                 </div>
-                <button title="<?php _e('Poprzednie', 'antyki'); ?>" class="c-product-gallery__btn c-product-gallery__btn--prev">
-                    <svg class="ui-icon c-icon c-icon--arrow">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#arrow"></use>
-                    </svg>
-                </button>
-                <button title="<?php _e('Następne', 'antyki'); ?>" class="c-product-gallery__btn c-product-gallery__btn--next">
-                    <svg class="ui-icon c-icon c-icon--arrow">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#arrow"></use>
-                    </svg>
-                </button>
-                <ul class="c-product-gallery__nav">
-                </ul>
-            </div>
+            <?php endif; ?>
             <div class="c-product-info">
                 <?php
                     $attrs = get_field('product_attributes');
