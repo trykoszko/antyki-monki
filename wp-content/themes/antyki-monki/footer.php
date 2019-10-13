@@ -29,13 +29,13 @@
                 </div>
             <?php endif; ?>
             <?php
-                // wp_nav_menu( array(
-                //     'theme_location'  => 'footer-menu',
-                //     'depth'	          => 1,
-                //     'container'       => false,
-                //     'menu_class'      => 'c-footer__nav',
-                //     'walker'          => new Antyki_Footer_Walker
-                // ) );
+                wp_nav_menu( array(
+                    'theme_location'  => 'footer-menu',
+                    'depth'	          => 1,
+                    'container'       => false,
+                    'menu_class'      => 'c-footer__nav',
+                    'walker'          => new Antyki_Footer_Walker
+                ) );
             ?>
             <p class="c-footer__info">
                 <?php _e('Przedstawiona oferta ma charakter informacyjny i nie stanowi oferty handlowej w rozumieniu Art. 66 par. 1 Kodeksu Cywilnego.', 'antyki'); ?>
