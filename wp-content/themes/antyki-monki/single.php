@@ -118,7 +118,7 @@ $is_painting = isset(get_field('product_attributes')['canvas_type']);
                                 ?>
                                 <span>Materiał wykonania</span>
                                 <span>
-                                    <?php if ($materials) : ?>
+                                    <?php if ($materials > 0) : ?>
                                         <?php foreach ($attrs['material'] as $material) : ?>
                                             <?php echo $material; ?><?php if ($i < $materials) : ?>, <?php endif; ?>
                                             <?php $i++; ?>
