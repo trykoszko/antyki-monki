@@ -105,3 +105,4 @@ Stack trace:
 [05-Apr-2020 17:44:44 UTC] PHP Notice:  Trying to get property 'valid_to' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 496
 [07-Apr-2020 17:48:54 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 208
 [07-Apr-2020 18:00:23 UTC] PHP Notice:  Trying to get property 'status' of non-object in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 423
+[07-Apr-2020 18:12:42 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 208
