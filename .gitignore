@@ -1,2 +1,6 @@
 wp-config.php
 wp-content/uploads
+wp-content/cache
+
+php_errorlog
+wp-admin/php_errorlog
