@@ -243,10 +243,11 @@ add_filter( 'option_siteurl', '_config_wp_siteurl' );
 add_filter( 'tiny_mce_before_init', '_mce_set_direction' );
 add_filter( 'teeny_mce_before_init', '_mce_set_direction' );
 add_filter( 'pre_kses', 'wp_pre_kses_less_than' );
+add_filter( 'pre_kses', 'wp_pre_kses_block_attributes', 10, 3 );
 add_filter( 'sanitize_title', 'sanitize_title_with_dashes', 10, 3 );
 add_action( 'check_comment_flood', 'check_comment_flood_db', 10, 4 );
 add_filter( 'comment_flood_filter', 'wp_throttle_comment_flood', 10, 3 );
-add_filter( 'pre_comment_content', 'wp_rel_nofollow', 15 );
+add_filter( 'pre_comment_content', 'wp_rel_ugc', 15 );
 add_filter( 'comment_email', 'antispambot' );
 add_filter( 'option_tag_base', '_wp_filter_taxonomy_base' );
 add_filter( 'option_category_base', '_wp_filter_taxonomy_base' );
@@ -331,11 +332,11 @@ if ( ! defined( 'DOING_CRON' ) ) {
 }
 
 // 2 Actions 2 Furious
-add_action( 'do_feed_rdf', 'do_feed_rdf', 10, 1 );
-add_action( 'do_feed_rss', 'do_feed_rss', 10, 1 );
+add_action( 'do_feed_rdf', 'do_feed_rdf', 10, 0 );
+add_action( 'do_feed_rss', 'do_feed_rss', 10, 0 );
 add_action( 'do_feed_rss2', 'do_feed_rss2', 10, 1 );
 add_action( 'do_feed_atom', 'do_feed_atom', 10, 1 );
-add_action( 'do_pings', 'do_all_pings', 10, 1 );
+add_action( 'do_pings', 'do_all_pings', 10, 0 );
 add_action( 'do_robots', 'do_robots' );
 add_action( 'set_comment_cookies', 'wp_set_comment_cookies', 10, 3 );
 add_action( 'sanitize_comment_cookies', 'sanitize_comment_cookies' );

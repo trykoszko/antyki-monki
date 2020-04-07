@@ -82,7 +82,7 @@ this["wp"] = this["wp"] || {}; this["wp"]["editor"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 382);
+/******/ 	return __webpack_require__(__webpack_require__.s = 343);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -123,20 +123,6 @@ function _defineProperty(obj, key, value) {
 
 /***/ }),
 
-/***/ 104:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["wordcount"]; }());
-
-/***/ }),
-
-/***/ 106:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["mediaUtils"]; }());
-
-/***/ }),
-
 /***/ 11:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -160,39 +146,7 @@ function _createClass(Constructor, protoProps, staticProps) {
 
 /***/ }),
 
-/***/ 12:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _classCallCheck; });
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-/***/ }),
-
-/***/ 13:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _possibleConstructorReturn; });
-/* harmony import */ var _helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31);
-/* harmony import */ var _assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (Object(_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return Object(_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(self);
-}
-
-/***/ }),
-
-/***/ 132:
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -227,8 +181,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 exports.__esModule = true;
 var React = __webpack_require__(28);
 var PropTypes = __webpack_require__(33);
-var autosize = __webpack_require__(133);
-var _getLineHeight = __webpack_require__(134);
+var autosize = __webpack_require__(116);
+var _getLineHeight = __webpack_require__(117);
 var getLineHeight = _getLineHeight;
 var UPDATE = 'autosize:update';
 var DESTROY = 'autosize:destroy';
@@ -321,7 +275,7 @@ exports["default"] = TextareaAutosize;
 
 /***/ }),
 
-/***/ 133:
+/***/ 116:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -610,11 +564,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 134:
+/***/ 117:
 /***/ (function(module, exports, __webpack_require__) {
 
 // Load in dependencies
-var computedStyle = __webpack_require__(135);
+var computedStyle = __webpack_require__(118);
 
 /**
  * Calculate the `line-height` of a given node
@@ -714,7 +668,7 @@ module.exports = lineHeight;
 
 /***/ }),
 
-/***/ 135:
+/***/ 118:
 /***/ (function(module, exports) {
 
 // This code has been refactored for 140 bytes
@@ -748,6 +702,38 @@ module.exports = computedStyle;
 
 /***/ }),
 
+/***/ 12:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _classCallCheck; });
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+/***/ }),
+
+/***/ 13:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _possibleConstructorReturn; });
+/* harmony import */ var _helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31);
+/* harmony import */ var _assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (Object(_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return Object(_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(self);
+}
+
+/***/ }),
+
 /***/ 14:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -759,6 +745,13 @@ function _getPrototypeOf(o) {
   };
   return _getPrototypeOf(o);
 }
+
+/***/ }),
+
+/***/ 142:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["notices"]; }());
 
 /***/ }),
 
@@ -793,13 +786,6 @@ function _inherits(subClass, superClass) {
   });
   if (superClass) _setPrototypeOf(subClass, superClass);
 }
-
-/***/ }),
-
-/***/ 157:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["notices"]; }());
 
 /***/ }),
 
@@ -936,7 +922,7 @@ function _extends() {
 /***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(48);
+module.exports = __webpack_require__(47);
 
 
 /***/ }),
@@ -1105,319 +1091,11 @@ function _typeof(obj) {
 /***/ 32:
 /***/ (function(module, exports) {
 
-(function() { module.exports = this["wp"]["apiFetch"]; }());
-
-/***/ }),
-
-/***/ 33:
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (false) { var throwOnDirectAccess, ReactIs; } else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(94)();
-}
-
-
-/***/ }),
-
-/***/ 35:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-var LEAF_KEY, hasWeakMap;
-
-/**
- * Arbitrary value used as key for referencing cache object in WeakMap tree.
- *
- * @type {Object}
- */
-LEAF_KEY = {};
-
-/**
- * Whether environment supports WeakMap.
- *
- * @type {boolean}
- */
-hasWeakMap = typeof WeakMap !== 'undefined';
-
-/**
- * Returns the first argument as the sole entry in an array.
- *
- * @param {*} value Value to return.
- *
- * @return {Array} Value returned as entry in array.
- */
-function arrayOf( value ) {
-	return [ value ];
-}
-
-/**
- * Returns true if the value passed is object-like, or false otherwise. A value
- * is object-like if it can support property assignment, e.g. object or array.
- *
- * @param {*} value Value to test.
- *
- * @return {boolean} Whether value is object-like.
- */
-function isObjectLike( value ) {
-	return !! value && 'object' === typeof value;
-}
-
-/**
- * Creates and returns a new cache object.
- *
- * @return {Object} Cache object.
- */
-function createCache() {
-	var cache = {
-		clear: function() {
-			cache.head = null;
-		},
-	};
-
-	return cache;
-}
-
-/**
- * Returns true if entries within the two arrays are strictly equal by
- * reference from a starting index.
- *
- * @param {Array}  a         First array.
- * @param {Array}  b         Second array.
- * @param {number} fromIndex Index from which to start comparison.
- *
- * @return {boolean} Whether arrays are shallowly equal.
- */
-function isShallowEqual( a, b, fromIndex ) {
-	var i;
-
-	if ( a.length !== b.length ) {
-		return false;
-	}
-
-	for ( i = fromIndex; i < a.length; i++ ) {
-		if ( a[ i ] !== b[ i ] ) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
-/**
- * Returns a memoized selector function. The getDependants function argument is
- * called before the memoized selector and is expected to return an immutable
- * reference or array of references on which the selector depends for computing
- * its own return value. The memoize cache is preserved only as long as those
- * dependant references remain the same. If getDependants returns a different
- * reference(s), the cache is cleared and the selector value regenerated.
- *
- * @param {Function} selector      Selector function.
- * @param {Function} getDependants Dependant getter returning an immutable
- *                                 reference or array of reference used in
- *                                 cache bust consideration.
- *
- * @return {Function} Memoized selector.
- */
-/* harmony default export */ __webpack_exports__["a"] = (function( selector, getDependants ) {
-	var rootCache, getCache;
-
-	// Use object source as dependant if getter not provided
-	if ( ! getDependants ) {
-		getDependants = arrayOf;
-	}
-
-	/**
-	 * Returns the root cache. If WeakMap is supported, this is assigned to the
-	 * root WeakMap cache set, otherwise it is a shared instance of the default
-	 * cache object.
-	 *
-	 * @return {(WeakMap|Object)} Root cache object.
-	 */
-	function getRootCache() {
-		return rootCache;
-	}
-
-	/**
-	 * Returns the cache for a given dependants array. When possible, a WeakMap
-	 * will be used to create a unique cache for each set of dependants. This
-	 * is feasible due to the nature of WeakMap in allowing garbage collection
-	 * to occur on entries where the key object is no longer referenced. Since
-	 * WeakMap requires the key to be an object, this is only possible when the
-	 * dependant is object-like. The root cache is created as a hierarchy where
-	 * each top-level key is the first entry in a dependants set, the value a
-	 * WeakMap where each key is the next dependant, and so on. This continues
-	 * so long as the dependants are object-like. If no dependants are object-
-	 * like, then the cache is shared across all invocations.
-	 *
-	 * @see isObjectLike
-	 *
-	 * @param {Array} dependants Selector dependants.
-	 *
-	 * @return {Object} Cache object.
-	 */
-	function getWeakMapCache( dependants ) {
-		var caches = rootCache,
-			isUniqueByDependants = true,
-			i, dependant, map, cache;
-
-		for ( i = 0; i < dependants.length; i++ ) {
-			dependant = dependants[ i ];
-
-			// Can only compose WeakMap from object-like key.
-			if ( ! isObjectLike( dependant ) ) {
-				isUniqueByDependants = false;
-				break;
-			}
-
-			// Does current segment of cache already have a WeakMap?
-			if ( caches.has( dependant ) ) {
-				// Traverse into nested WeakMap.
-				caches = caches.get( dependant );
-			} else {
-				// Create, set, and traverse into a new one.
-				map = new WeakMap();
-				caches.set( dependant, map );
-				caches = map;
-			}
-		}
-
-		// We use an arbitrary (but consistent) object as key for the last item
-		// in the WeakMap to serve as our running cache.
-		if ( ! caches.has( LEAF_KEY ) ) {
-			cache = createCache();
-			cache.isUniqueByDependants = isUniqueByDependants;
-			caches.set( LEAF_KEY, cache );
-		}
-
-		return caches.get( LEAF_KEY );
-	}
-
-	// Assign cache handler by availability of WeakMap
-	getCache = hasWeakMap ? getWeakMapCache : getRootCache;
-
-	/**
-	 * Resets root memoization cache.
-	 */
-	function clear() {
-		rootCache = hasWeakMap ? new WeakMap() : createCache();
-	}
-
-	// eslint-disable-next-line jsdoc/check-param-names
-	/**
-	 * The augmented selector call, considering first whether dependants have
-	 * changed before passing it to underlying memoize function.
-	 *
-	 * @param {Object} source    Source object for derivation.
-	 * @param {...*}   extraArgs Additional arguments to pass to selector.
-	 *
-	 * @return {*} Selector result.
-	 */
-	function callSelector( /* source, ...extraArgs */ ) {
-		var len = arguments.length,
-			cache, node, i, args, dependants;
-
-		// Create copy of arguments (avoid leaking deoptimization).
-		args = new Array( len );
-		for ( i = 0; i < len; i++ ) {
-			args[ i ] = arguments[ i ];
-		}
-
-		dependants = getDependants.apply( null, args );
-		cache = getCache( dependants );
-
-		// If not guaranteed uniqueness by dependants (primitive type or lack
-		// of WeakMap support), shallow compare against last dependants and, if
-		// references have changed, destroy cache to recalculate result.
-		if ( ! cache.isUniqueByDependants ) {
-			if ( cache.lastDependants && ! isShallowEqual( dependants, cache.lastDependants, 0 ) ) {
-				cache.clear();
-			}
-
-			cache.lastDependants = dependants;
-		}
-
-		node = cache.head;
-		while ( node ) {
-			// Check whether node arguments match arguments
-			if ( ! isShallowEqual( node.args, args, 1 ) ) {
-				node = node.next;
-				continue;
-			}
-
-			// At this point we can assume we've found a match
-
-			// Surface matched node to head if not already
-			if ( node !== cache.head ) {
-				// Adjust siblings to point to each other.
-				node.prev.next = node.next;
-				if ( node.next ) {
-					node.next.prev = node.prev;
-				}
-
-				node.next = cache.head;
-				node.prev = null;
-				cache.head.prev = node;
-				cache.head = node;
-			}
-
-			// Return immediately
-			return node.val;
-		}
-
-		// No cached value found. Continue to insertion phase:
-
-		node = {
-			// Generate the result from original function
-			val: selector.apply( null, args ),
-		};
-
-		// Avoid including the source object in the cache.
-		args[ 0 ] = null;
-		node.args = args;
-
-		// Don't need to check whether node is already head, since it would
-		// have been returned above already if it was
-
-		// Shift existing head down list
-		if ( cache.head ) {
-			cache.head.prev = node;
-			node.next = cache.head;
-		}
-
-		cache.head = node;
-
-		return node.val;
-	}
-
-	callSelector.getDependants = getDependants;
-	callSelector.clear = clear;
-	clear();
-
-	return callSelector;
-});
-
-
-/***/ }),
-
-/***/ 36:
-/***/ (function(module, exports) {
-
 (function() { module.exports = this["wp"]["dataControls"]; }());
 
 /***/ }),
 
-/***/ 365:
+/***/ 325:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1583,25 +1261,33 @@ function separateState(state) {
 
 /***/ }),
 
-/***/ 37:
-/***/ (function(module, exports) {
+/***/ 33:
+/***/ (function(module, exports, __webpack_require__) {
 
-(function() { module.exports = this["wp"]["deprecated"]; }());
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-/***/ }),
-
-/***/ 38:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _arrayWithHoles; });
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
+if (false) { var throwOnDirectAccess, ReactIs; } else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(87)();
 }
 
+
 /***/ }),
 
-/***/ 382:
+/***/ 34:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["apiFetch"]; }());
+
+/***/ }),
+
+/***/ 343:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1631,6 +1317,7 @@ __webpack_require__.d(actions_namespaceObject, "savePost", function() { return s
 __webpack_require__.d(actions_namespaceObject, "refreshPost", function() { return refreshPost; });
 __webpack_require__.d(actions_namespaceObject, "trashPost", function() { return trashPost; });
 __webpack_require__.d(actions_namespaceObject, "autosave", function() { return actions_autosave; });
+__webpack_require__.d(actions_namespaceObject, "__experimentalLocalAutosave", function() { return actions_experimentalLocalAutosave; });
 __webpack_require__.d(actions_namespaceObject, "redo", function() { return actions_redo; });
 __webpack_require__.d(actions_namespaceObject, "undo", function() { return actions_undo; });
 __webpack_require__.d(actions_namespaceObject, "createUndoLevel", function() { return createUndoLevel; });
@@ -1814,19 +1501,19 @@ var external_this_wp_blockEditor_ = __webpack_require__(6);
 var external_this_wp_blocks_ = __webpack_require__(9);
 
 // EXTERNAL MODULE: external {"this":["wp","coreData"]}
-var external_this_wp_coreData_ = __webpack_require__(97);
+var external_this_wp_coreData_ = __webpack_require__(89);
 
 // EXTERNAL MODULE: external {"this":["wp","notices"]}
-var external_this_wp_notices_ = __webpack_require__(157);
+var external_this_wp_notices_ = __webpack_require__(142);
 
 // EXTERNAL MODULE: external {"this":["wp","nux"]}
-var external_this_wp_nux_ = __webpack_require__(63);
+var external_this_wp_nux_ = __webpack_require__(61);
 
 // EXTERNAL MODULE: external {"this":["wp","richText"]}
 var external_this_wp_richText_ = __webpack_require__(22);
 
 // EXTERNAL MODULE: external {"this":["wp","viewport"]}
-var external_this_wp_viewport_ = __webpack_require__(43);
+var external_this_wp_viewport_ = __webpack_require__(42);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread.js
 var objectSpread = __webpack_require__(7);
@@ -1835,7 +1522,7 @@ var objectSpread = __webpack_require__(7);
 var external_this_wp_data_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: external {"this":["wp","dataControls"]}
-var external_this_wp_dataControls_ = __webpack_require__(36);
+var external_this_wp_dataControls_ = __webpack_require__(32);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 var defineProperty = __webpack_require__(10);
@@ -1844,7 +1531,7 @@ var defineProperty = __webpack_require__(10);
 var esm_typeof = __webpack_require__(31);
 
 // EXTERNAL MODULE: ./node_modules/redux-optimist/index.js
-var redux_optimist = __webpack_require__(90);
+var redux_optimist = __webpack_require__(83);
 var redux_optimist_default = /*#__PURE__*/__webpack_require__.n(redux_optimist);
 
 // EXTERNAL MODULE: external "lodash"
@@ -2299,7 +1986,7 @@ function reducer_editorSettings() {
 })));
 
 // EXTERNAL MODULE: ./node_modules/refx/refx.js
-var refx = __webpack_require__(76);
+var refx = __webpack_require__(72);
 var refx_default = /*#__PURE__*/__webpack_require__.n(refx);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/regenerator/index.js
@@ -2307,10 +1994,10 @@ var regenerator = __webpack_require__(20);
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js
-var asyncToGenerator = __webpack_require__(44);
+var asyncToGenerator = __webpack_require__(43);
 
 // EXTERNAL MODULE: external {"this":["wp","apiFetch"]}
-var external_this_wp_apiFetch_ = __webpack_require__(32);
+var external_this_wp_apiFetch_ = __webpack_require__(34);
 var external_this_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_this_wp_apiFetch_);
 
 // EXTERNAL MODULE: external {"this":["wp","i18n"]}
@@ -2485,11 +2172,11 @@ function getNotificationArgumentsForTrashFail(data) {
 }
 
 // EXTERNAL MODULE: ./node_modules/memize/index.js
-var memize = __webpack_require__(45);
+var memize = __webpack_require__(44);
 var memize_default = /*#__PURE__*/__webpack_require__.n(memize);
 
 // EXTERNAL MODULE: external {"this":["wp","autop"]}
-var external_this_wp_autop_ = __webpack_require__(72);
+var external_this_wp_autop_ = __webpack_require__(69);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/editor/build-module/store/utils/serialize-blocks.js
 /**
@@ -2560,6 +2247,36 @@ function getRegistry() {
     type: 'GET_REGISTRY'
   };
 }
+/**
+ * Function returning a sessionStorage key to set or retrieve a given post's
+ * automatic session backup.
+ *
+ * Keys are crucially prefixed with 'wp-autosave-' so that wp-login.php's
+ * `loggedout` handler can clear sessionStorage of any user-private content.
+ *
+ * @see https://github.com/WordPress/wordpress-develop/blob/6dad32d2aed47e6c0cf2aee8410645f6d7aba6bd/src/wp-login.php#L103
+ *
+ * @param {string} postId  Post ID.
+ * @return {string}        sessionStorage key
+ */
+
+function postKey(postId) {
+  return "wp-autosave-block-editor-post-".concat(postId);
+}
+
+function localAutosaveGet(postId) {
+  return window.sessionStorage.getItem(postKey(postId));
+}
+function localAutosaveSet(postId, title, content, excerpt) {
+  window.sessionStorage.setItem(postKey(postId), JSON.stringify({
+    post_title: title,
+    content: content,
+    excerpt: excerpt
+  }));
+}
+function localAutosaveClear(postId) {
+  window.sessionStorage.removeItem(postKey(postId));
+}
 var controls = {
   AWAIT_NEXT_STATE_CHANGE: Object(external_this_wp_data_["createRegistryControl"])(function (registry) {
     return function () {
@@ -2575,7 +2292,14 @@ var controls = {
     return function () {
       return registry;
     };
-  })
+  }),
+  LOCAL_AUTOSAVE_SET: function LOCAL_AUTOSAVE_SET(_ref) {
+    var postId = _ref.postId,
+        title = _ref.title,
+        content = _ref.content,
+        excerpt = _ref.excerpt;
+    localAutosaveSet(postId, title, content, excerpt);
+  }
 };
 /* harmony default export */ var store_controls = (controls);
 
@@ -2719,11 +2443,14 @@ regenerator_default.a.mark(trashPost),
 regenerator_default.a.mark(actions_autosave),
     _marked11 =
 /*#__PURE__*/
-regenerator_default.a.mark(actions_redo),
+regenerator_default.a.mark(actions_experimentalLocalAutosave),
     _marked12 =
 /*#__PURE__*/
-regenerator_default.a.mark(actions_undo),
+regenerator_default.a.mark(actions_redo),
     _marked13 =
+/*#__PURE__*/
+regenerator_default.a.mark(actions_undo),
+    _marked14 =
 /*#__PURE__*/
 regenerator_default.a.mark(actions_resetEditorBlocks);
 
@@ -3483,7 +3210,7 @@ function savePost() {
           return external_this_wp_dataControls_["dispatch"].apply(void 0, ['core/notices', 'createErrorNotice'].concat(Object(toConsumableArray["a" /* default */])(args)));
 
         case 36:
-          _context7.next = 53;
+          _context7.next = 56;
           break;
 
         case 38:
@@ -3518,6 +3245,15 @@ function savePost() {
           return external_this_wp_dataControls_["dispatch"].apply(void 0, ['core/notices', 'createSuccessNotice'].concat(Object(toConsumableArray["a" /* default */])(_args7)));
 
         case 53:
+          if (options.isAutosave) {
+            _context7.next = 56;
+            break;
+          }
+
+          _context7.next = 56;
+          return Object(external_this_wp_dataControls_["dispatch"])('core/block-editor', '__unstableMarkLastChangeAsPersistent');
+
+        case 56:
         case "end":
           return _context7.stop();
       }
@@ -3650,6 +3386,48 @@ function actions_autosave(options) {
     }
   }, _marked10);
 }
+function actions_experimentalLocalAutosave() {
+  var post, title, content, excerpt;
+  return regenerator_default.a.wrap(function __experimentalLocalAutosave$(_context11) {
+    while (1) {
+      switch (_context11.prev = _context11.next) {
+        case 0:
+          _context11.next = 2;
+          return Object(external_this_wp_dataControls_["select"])(STORE_KEY, 'getCurrentPost');
+
+        case 2:
+          post = _context11.sent;
+          _context11.next = 5;
+          return Object(external_this_wp_dataControls_["select"])(STORE_KEY, 'getEditedPostAttribute', 'title');
+
+        case 5:
+          title = _context11.sent;
+          _context11.next = 8;
+          return Object(external_this_wp_dataControls_["select"])(STORE_KEY, 'getEditedPostAttribute', 'content');
+
+        case 8:
+          content = _context11.sent;
+          _context11.next = 11;
+          return Object(external_this_wp_dataControls_["select"])(STORE_KEY, 'getEditedPostAttribute', 'excerpt');
+
+        case 11:
+          excerpt = _context11.sent;
+          _context11.next = 14;
+          return {
+            type: 'LOCAL_AUTOSAVE_SET',
+            postId: post.id,
+            title: title,
+            content: content,
+            excerpt: excerpt
+          };
+
+        case 14:
+        case "end":
+          return _context11.stop();
+      }
+    }
+  }, _marked11);
+}
 /**
  * Returns an action object used in signalling that undo history should
  * restore last popped state.
@@ -3658,19 +3436,19 @@ function actions_autosave(options) {
  */
 
 function actions_redo() {
-  return regenerator_default.a.wrap(function redo$(_context11) {
+  return regenerator_default.a.wrap(function redo$(_context12) {
     while (1) {
-      switch (_context11.prev = _context11.next) {
+      switch (_context12.prev = _context12.next) {
         case 0:
-          _context11.next = 2;
+          _context12.next = 2;
           return Object(external_this_wp_dataControls_["dispatch"])('core', 'redo');
 
         case 2:
         case "end":
-          return _context11.stop();
+          return _context12.stop();
       }
     }
-  }, _marked11);
+  }, _marked12);
 }
 /**
  * Returns an action object used in signalling that undo history should pop.
@@ -3679,19 +3457,19 @@ function actions_redo() {
  */
 
 function actions_undo() {
-  return regenerator_default.a.wrap(function undo$(_context12) {
+  return regenerator_default.a.wrap(function undo$(_context13) {
     while (1) {
-      switch (_context12.prev = _context12.next) {
+      switch (_context13.prev = _context13.next) {
         case 0:
-          _context12.next = 2;
+          _context13.next = 2;
           return Object(external_this_wp_dataControls_["dispatch"])('core', 'undo');
 
         case 2:
         case "end":
-          return _context12.stop();
+          return _context13.stop();
       }
     }
-  }, _marked12);
+  }, _marked13);
 }
 /**
  * Returns an action object used in signalling that undo history record should
@@ -3946,26 +3724,30 @@ function actions_resetEditorBlocks(blocks) {
       _i4,
       _Object$entries3,
       _Object$entries3$_i,
-      _attributeName,
+      attributeName,
       newAttributeValue,
-      _schema,
+      schema,
       source,
       edits,
-      _args14 = arguments;
+      _ref2,
+      id,
+      type,
+      noChange,
+      _args15 = arguments;
 
-  return regenerator_default.a.wrap(function resetEditorBlocks$(_context13) {
+  return regenerator_default.a.wrap(function resetEditorBlocks$(_context14) {
     while (1) {
-      switch (_context13.prev = _context13.next) {
+      switch (_context14.prev = _context14.next) {
         case 0:
-          options = _args14.length > 1 && _args14[1] !== undefined ? _args14[1] : {};
-          _context13.next = 3;
+          options = _args15.length > 1 && _args15[1] !== undefined ? _args15[1] : {};
+          _context14.next = 3;
           return Object(external_this_wp_dataControls_["select"])('core/block-editor', '__experimentalGetLastBlockAttributeChanges');
 
         case 3:
-          lastBlockAttributesChange = _context13.sent;
+          lastBlockAttributesChange = _context14.sent;
 
           if (!lastBlockAttributesChange) {
-            _context13.next = 36;
+            _context14.next = 36;
             break;
           }
 
@@ -3975,103 +3757,134 @@ function actions_resetEditorBlocks(blocks) {
 
         case 8:
           if (!(_i3 < _Object$entries2.length)) {
-            _context13.next = 35;
+            _context14.next = 35;
             break;
           }
 
           _Object$entries2$_i = Object(slicedToArray["a" /* default */])(_Object$entries2[_i3], 2), clientId = _Object$entries2$_i[0], attributes = _Object$entries2$_i[1];
-          _context13.next = 12;
+          _context14.next = 12;
           return Object(external_this_wp_dataControls_["select"])('core/block-editor', 'getBlockName', clientId);
 
         case 12:
-          blockName = _context13.sent;
+          blockName = _context14.sent;
 
           if (!updatedBlockTypes.has(blockName)) {
-            _context13.next = 15;
+            _context14.next = 15;
             break;
           }
 
-          return _context13.abrupt("continue", 32);
+          return _context14.abrupt("continue", 32);
 
         case 15:
           updatedBlockTypes.add(blockName);
-          _context13.next = 18;
+          _context14.next = 18;
           return Object(external_this_wp_dataControls_["select"])('core/blocks', 'getBlockType', blockName);
 
         case 18:
-          blockType = _context13.sent;
+          blockType = _context14.sent;
           _i4 = 0, _Object$entries3 = Object.entries(attributes);
 
         case 20:
           if (!(_i4 < _Object$entries3.length)) {
-            _context13.next = 32;
+            _context14.next = 32;
             break;
           }
 
-          _Object$entries3$_i = Object(slicedToArray["a" /* default */])(_Object$entries3[_i4], 2), _attributeName = _Object$entries3$_i[0], newAttributeValue = _Object$entries3$_i[1];
+          _Object$entries3$_i = Object(slicedToArray["a" /* default */])(_Object$entries3[_i4], 2), attributeName = _Object$entries3$_i[0], newAttributeValue = _Object$entries3$_i[1];
 
-          if (blockType.attributes.hasOwnProperty(_attributeName)) {
-            _context13.next = 24;
+          if (blockType.attributes.hasOwnProperty(attributeName)) {
+            _context14.next = 24;
             break;
           }
 
-          return _context13.abrupt("continue", 29);
+          return _context14.abrupt("continue", 29);
 
         case 24:
-          _schema = blockType.attributes[_attributeName];
-          source = block_sources_namespaceObject[_schema.source];
+          schema = blockType.attributes[attributeName];
+          source = block_sources_namespaceObject[schema.source];
 
           if (!(source && source.update)) {
-            _context13.next = 29;
+            _context14.next = 29;
             break;
           }
 
-          return _context13.delegateYield(source.update(_schema, newAttributeValue), "t0", 28);
+          return _context14.delegateYield(source.update(schema, newAttributeValue), "t0", 28);
 
         case 28:
           updatedSources.add(source);
 
         case 29:
           _i4++;
-          _context13.next = 20;
+          _context14.next = 20;
           break;
 
         case 32:
           _i3++;
-          _context13.next = 8;
+          _context14.next = 8;
           break;
 
         case 35:
-          return _context13.delegateYield(resetLastBlockSourceDependencies(Array.from(updatedSources)), "t1", 36);
+          return _context14.delegateYield(resetLastBlockSourceDependencies(Array.from(updatedSources)), "t1", 36);
 
         case 36:
-          return _context13.delegateYield(getBlocksWithSourcedAttributes(blocks), "t2", 37);
+          return _context14.delegateYield(getBlocksWithSourcedAttributes(blocks), "t2", 37);
 
         case 37:
-          _context13.t3 = _context13.t2;
+          _context14.t3 = _context14.t2;
           edits = {
-            blocks: _context13.t3
+            blocks: _context14.t3
           };
 
-          if (options.__unstableShouldCreateUndoLevel !== false) {
-            // We create a new function here on every persistent edit
-            // to make sure the edit makes the post dirty and creates
-            // a new undo level.
-            edits.content = function (_ref2) {
-              var _ref2$blocks = _ref2.blocks,
-                  blocksForSerialization = _ref2$blocks === void 0 ? [] : _ref2$blocks;
-              return serialize_blocks(blocksForSerialization);
-            };
+          if (!(options.__unstableShouldCreateUndoLevel !== false)) {
+            _context14.next = 55;
+            break;
           }
 
-          return _context13.delegateYield(actions_editPost(edits), "t4", 41);
+          _context14.next = 42;
+          return Object(external_this_wp_dataControls_["select"])(STORE_KEY, 'getCurrentPost');
 
-        case 41:
+        case 42:
+          _ref2 = _context14.sent;
+          id = _ref2.id;
+          type = _ref2.type;
+          _context14.next = 47;
+          return Object(external_this_wp_dataControls_["select"])('core', 'getEditedEntityRecord', 'postType', type, id);
+
+        case 47:
+          _context14.t4 = _context14.sent.blocks;
+          _context14.t5 = edits.blocks;
+          noChange = _context14.t4 === _context14.t5;
+
+          if (!noChange) {
+            _context14.next = 54;
+            break;
+          }
+
+          _context14.next = 53;
+          return Object(external_this_wp_dataControls_["dispatch"])('core', '__unstableCreateUndoLevel', 'postType', type, id);
+
+        case 53:
+          return _context14.abrupt("return", _context14.sent);
+
+        case 54:
+          // We create a new function here on every persistent edit
+          // to make sure the edit makes the post dirty and creates
+          // a new undo level.
+          edits.content = function (_ref3) {
+            var _ref3$blocks = _ref3.blocks,
+                blocksForSerialization = _ref3$blocks === void 0 ? [] : _ref3$blocks;
+            return serialize_blocks(blocksForSerialization);
+          };
+
+        case 55:
+          return _context14.delegateYield(actions_editPost(edits), "t6", 56);
+
+        case 56:
         case "end":
-          return _context13.stop();
+          return _context14.stop();
       }
     }
-  }, _marked13);
+  }, _marked14);
 }
 /*
  * Returns an action object used in signalling that the post editor settings have been updated.
@@ -4098,26 +3911,26 @@ var actions_getBlockEditorAction = function getBlockEditorAction(name) {
       var _len,
           args,
           _key,
-          _args15 = arguments;
+          _args16 = arguments;
 
-      return regenerator_default.a.wrap(function _callee$(_context14) {
+      return regenerator_default.a.wrap(function _callee$(_context15) {
         while (1) {
-          switch (_context14.prev = _context14.next) {
+          switch (_context15.prev = _context15.next) {
             case 0:
               external_this_wp_deprecated_default()('`wp.data.dispatch( \'core/editor\' ).' + name + '`', {
                 alternative: '`wp.data.dispatch( \'core/block-editor\' ).' + name + '`'
               });
 
-              for (_len = _args15.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-                args[_key] = _args15[_key];
+              for (_len = _args16.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = _args16[_key];
               }
 
-              _context14.next = 4;
+              _context15.next = 4;
               return external_this_wp_dataControls_["dispatch"].apply(void 0, ['core/block-editor', name].concat(args));
 
             case 4:
             case "end":
-              return _context14.stop();
+              return _context15.stop();
           }
         }
       }, _callee);
@@ -4282,10 +4095,10 @@ var insertDefaultBlock = actions_getBlockEditorAction('insertDefaultBlock');
 var updateBlockListSettings = actions_getBlockEditorAction('updateBlockListSettings');
 
 // EXTERNAL MODULE: ./node_modules/rememo/es/rememo.js
-var rememo = __webpack_require__(35);
+var rememo = __webpack_require__(36);
 
 // EXTERNAL MODULE: external {"this":["wp","date"]}
-var external_this_wp_date_ = __webpack_require__(56);
+var external_this_wp_date_ = __webpack_require__(53);
 
 // EXTERNAL MODULE: external {"this":["wp","url"]}
 var external_this_wp_url_ = __webpack_require__(26);
@@ -7269,6 +7082,7 @@ function (_Component) {
  */
 
 
+
 var requestIdleCallback = window.requestIdleCallback ? window.requestIdleCallback : window.requestAnimationFrame;
 /**
  * Function which returns true if the current environment supports browser
@@ -7289,66 +7103,27 @@ var hasSessionStorageSupport = Object(external_lodash_["once"])(function () {
   }
 });
 /**
- * Function returning a sessionStorage key to set or retrieve a given post's
- * automatic session backup.
- *
- * Keys are crucially prefixed with 'wp-autosave-' so that wp-login.php's
- * `loggedout` handler can clear sessionStorage of any user-private content.
- *
- * @see https://github.com/WordPress/wordpress-develop/blob/6dad32d2aed47e6c0cf2aee8410645f6d7aba6bd/src/wp-login.php#L103
- *
- * @param {string} postId  Post ID.
- * @return {string}        sessionStorage key
- */
-
-function postKey(postId) {
-  return "wp-autosave-block-editor-post-".concat(postId);
-}
-/**
- * Custom hook which returns a callback function to be invoked when a local
- * autosave should occur.
- *
- * @return {Function} Callback function.
- */
-
-
-function useAutosaveCallback() {
-  var _useSelect = Object(external_this_wp_data_["useSelect"])(function (select) {
-    return {
-      postId: select('core/editor').getCurrentPostId(),
-      getEditedPostAttribute: select('core/editor').getEditedPostAttribute
-    };
-  }),
-      postId = _useSelect.postId,
-      getEditedPostAttribute = _useSelect.getEditedPostAttribute;
-
-  return Object(external_this_wp_element_["useCallback"])(function () {
-    var saveToSessionStorage = function saveToSessionStorage() {
-      window.sessionStorage.setItem(postKey(postId), JSON.stringify({
-        post_title: getEditedPostAttribute('title'),
-        content: getEditedPostAttribute('content'),
-        excerpt: getEditedPostAttribute('excerpt')
-      }));
-    };
-
-    requestIdleCallback(saveToSessionStorage);
-  }, [postId]);
-}
-/**
  * Custom hook which manages the creation of a notice prompting the user to
  * restore a local autosave, if one exists.
  */
 
-
 function useAutosaveNotice() {
-  var _useSelect2 = Object(external_this_wp_data_["useSelect"])(function (select) {
+  var _useSelect = Object(external_this_wp_data_["useSelect"])(function (select) {
+    var _postId = select('core/editor').getCurrentPostId();
+
+    var postType = select('core/editor').getCurrentPostType();
+    var user = select('core').getCurrentUser();
     return {
-      postId: select('core/editor').getCurrentPostId(),
-      getEditedPostAttribute: select('core/editor').getEditedPostAttribute
+      postId: _postId,
+      getEditedPostAttribute: select('core/editor').getEditedPostAttribute,
+      remoteAutosave: select('core').getAutosave(postType, _postId, user.id),
+      hasFetchedAutosave: select('core').hasFetchedAutosaves(postType, _postId) && user.id
     };
   }),
-      postId = _useSelect2.postId,
-      getEditedPostAttribute = _useSelect2.getEditedPostAttribute;
+      postId = _useSelect.postId,
+      getEditedPostAttribute = _useSelect.getEditedPostAttribute,
+      remoteAutosave = _useSelect.remoteAutosave,
+      hasFetchedAutosave = _useSelect.hasFetchedAutosave;
 
   var _useDispatch = Object(external_this_wp_data_["useDispatch"])('core/notices'),
       createWarningNotice = _useDispatch.createWarningNotice,
@@ -7359,37 +7134,47 @@ function useAutosaveNotice() {
       resetEditorBlocks = _useDispatch2.resetEditorBlocks;
 
   Object(external_this_wp_element_["useEffect"])(function () {
-    var autosave = window.sessionStorage.getItem(postKey(postId));
+    if (!hasFetchedAutosave) {
+      return;
+    }
 
-    if (!autosave) {
+    var localAutosave = localAutosaveGet(postId);
+
+    if (!localAutosave) {
       return;
     }
 
     try {
-      autosave = JSON.parse(autosave);
+      localAutosave = JSON.parse(localAutosave);
     } catch (error) {
       // Not usable if it can't be parsed.
       return;
     }
 
-    var _autosave = autosave,
-        title = _autosave.post_title,
-        content = _autosave.content,
-        excerpt = _autosave.excerpt;
+    var _localAutosave = localAutosave,
+        title = _localAutosave.post_title,
+        content = _localAutosave.content,
+        excerpt = _localAutosave.excerpt;
     var edits = {
       title: title,
       content: content,
       excerpt: excerpt
-    }; // Only display a notice if there is a difference between what has been
-    // saved and that which is stored in sessionStorage.
+    };
+    {
+      // Only display a notice if there is a difference between what has been
+      // saved and that which is stored in sessionStorage.
+      var hasDifference = Object.keys(edits).some(function (key) {
+        return edits[key] !== getEditedPostAttribute(key);
+      });
 
-    var hasDifference = Object.keys(edits).some(function (key) {
-      return edits[key] !== getEditedPostAttribute(key);
-    });
+      if (!hasDifference) {
+        // If there is no difference, it can be safely ejected from storage.
+        localAutosaveClear(postId);
+        return;
+      }
+    }
 
-    if (!hasDifference) {
-      // If there is no difference, it can be safely ejected from storage.
-      window.sessionStorage.removeItem(postKey(postId));
+    if (remoteAutosave) {
       return;
     }
 
@@ -7405,7 +7190,7 @@ function useAutosaveNotice() {
         }
       }]
     });
-  }, [postId]);
+  }, [postId, hasFetchedAutosave]);
 }
 /**
  * Custom hook which ejects a local autosave after a successful save occurs.
@@ -7413,36 +7198,48 @@ function useAutosaveNotice() {
 
 
 function useAutosavePurge() {
-  var _useSelect3 = Object(external_this_wp_data_["useSelect"])(function (select) {
+  var _useSelect2 = Object(external_this_wp_data_["useSelect"])(function (select) {
     return {
       postId: select('core/editor').getCurrentPostId(),
-      isDirty: select('core/editor').isEditedPostDirty()
+      postType: select('core/editor').getCurrentPostType(),
+      isDirty: select('core/editor').isEditedPostDirty(),
+      isAutosaving: select('core/editor').isAutosavingPost(),
+      didError: select('core/editor').didPostSaveRequestFail()
     };
   }),
-      postId = _useSelect3.postId,
-      isDirty = _useSelect3.isDirty;
+      postId = _useSelect2.postId,
+      isDirty = _useSelect2.isDirty,
+      isAutosaving = _useSelect2.isAutosaving,
+      didError = _useSelect2.didError;
 
   var lastIsDirty = Object(external_this_wp_element_["useRef"])(isDirty);
+  var lastIsAutosaving = Object(external_this_wp_element_["useRef"])(isAutosaving);
   Object(external_this_wp_element_["useEffect"])(function () {
-    if (lastIsDirty.current && !isDirty) {
-      window.sessionStorage.removeItem(postKey(postId));
+    if (!didError && (lastIsAutosaving.current && !isAutosaving || lastIsDirty.current && !isDirty)) {
+      localAutosaveClear(postId);
     }
 
     lastIsDirty.current = isDirty;
-  }, [isDirty]);
+    lastIsAutosaving.current = isAutosaving;
+  }, [isDirty, isAutosaving, didError]);
 }
 
 function LocalAutosaveMonitor() {
-  var autosave = useAutosaveCallback();
+  var _useDispatch3 = Object(external_this_wp_data_["useDispatch"])('core/editor'),
+      __experimentalLocalAutosave = _useDispatch3.__experimentalLocalAutosave;
+
+  var autosave = Object(external_this_wp_element_["useCallback"])(function () {
+    requestIdleCallback(__experimentalLocalAutosave);
+  }, []);
   useAutosaveNotice();
   useAutosavePurge();
 
-  var _useSelect4 = Object(external_this_wp_data_["useSelect"])(function (select) {
+  var _useSelect3 = Object(external_this_wp_data_["useSelect"])(function (select) {
     return {
       localAutosaveInterval: select('core/editor').getEditorSettings().__experimentalLocalAutosaveInterval
     };
   }),
-      localAutosaveInterval = _useSelect4.localAutosaveInterval;
+      localAutosaveInterval = _useSelect3.localAutosaveInterval;
 
   return Object(external_this_wp_element_["createElement"])(autosave_monitor, {
     interval: localAutosaveInterval,
@@ -7811,7 +7608,7 @@ function PageTemplate(_ref) {
 }))(PageTemplate));
 
 // EXTERNAL MODULE: external {"this":["wp","htmlEntities"]}
-var external_this_wp_htmlEntities_ = __webpack_require__(54);
+var external_this_wp_htmlEntities_ = __webpack_require__(52);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/editor/build-module/components/post-author/check.js
 
@@ -8184,7 +7981,8 @@ function PostFeaturedImage(_ref) {
         "aria-label": !featuredImageId ? null : Object(external_this_wp_i18n_["__"])('Edit or update the image')
       }, !!featuredImageId && media && Object(external_this_wp_element_["createElement"])(external_this_wp_components_["ResponsiveWrapper"], {
         naturalWidth: mediaWidth,
-        naturalHeight: mediaHeight
+        naturalHeight: mediaHeight,
+        isInline: true
       }, Object(external_this_wp_element_["createElement"])("img", {
         src: mediaSourceUrl,
         alt: ""
@@ -10813,7 +10611,7 @@ function (_Component) {
     onSave: dispatch('core/editor').savePost
   };
 }), external_this_wp_compose_["withSafeTimeout"], Object(external_this_wp_viewport_["withViewportMatch"])({
-  isLargeViewport: 'medium'
+  isLargeViewport: 'small'
 })])(post_saved_state_PostSavedState));
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/editor/build-module/components/post-schedule/check.js
@@ -10998,13 +10796,12 @@ function (_Component) {
 
   Object(createClass["a" /* default */])(HierarchicalTermSelector, [{
     key: "onChange",
-    value: function onChange(event) {
+    value: function onChange(termId) {
       var _this$props = this.props,
           onUpdateTerms = _this$props.onUpdateTerms,
           _this$props$terms = _this$props.terms,
           terms = _this$props$terms === void 0 ? [] : _this$props$terms,
           taxonomy = _this$props.taxonomy;
-      var termId = parseInt(event.target.value, 10);
       var hasTerm = terms.indexOf(termId) !== -1;
       var newTerms = hasTerm ? Object(external_lodash_["without"])(terms, termId) : [].concat(Object(toConsumableArray["a" /* default */])(terms), [termId]);
       onUpdateTerms(newTerms, taxonomy.rest_base);
@@ -11316,20 +11113,18 @@ function (_Component) {
       var _this$props$terms2 = this.props.terms,
           terms = _this$props$terms2 === void 0 ? [] : _this$props$terms2;
       return renderedTerms.map(function (term) {
-        var id = "editor-post-taxonomies-hierarchical-term-".concat(term.id);
         return Object(external_this_wp_element_["createElement"])("div", {
           key: term.id,
           className: "editor-post-taxonomies__hierarchical-terms-choice"
-        }, Object(external_this_wp_element_["createElement"])("input", {
-          id: id,
-          className: "editor-post-taxonomies__hierarchical-terms-input",
-          type: "checkbox",
+        }, Object(external_this_wp_element_["createElement"])(external_this_wp_components_["CheckboxControl"], {
           checked: terms.indexOf(term.id) !== -1,
-          value: term.id,
-          onChange: _this4.onChange
-        }), Object(external_this_wp_element_["createElement"])("label", {
-          htmlFor: id
-        }, Object(external_lodash_["unescape"])(term.name)), !!term.children.length && Object(external_this_wp_element_["createElement"])("div", {
+          onChange: function onChange() {
+            var termId = parseInt(term.id, 10);
+
+            _this4.onChange(termId);
+          },
+          label: Object(external_lodash_["unescape"])(term.name)
+        }), !!term.children.length && Object(external_this_wp_element_["createElement"])("div", {
           className: "editor-post-taxonomies__hierarchical-terms-subchoices"
         }, _this4.renderTerms(term.children)));
       });
@@ -11532,7 +11327,7 @@ function PostTaxonomiesCheck(_ref) {
 })])(PostTaxonomiesCheck));
 
 // EXTERNAL MODULE: ./node_modules/react-autosize-textarea/lib/index.js
-var lib = __webpack_require__(64);
+var lib = __webpack_require__(62);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/editor/build-module/components/post-text-editor/index.js
@@ -12328,7 +12123,7 @@ function PostVisibilityCheck(_ref) {
 })])(PostVisibilityCheck));
 
 // EXTERNAL MODULE: external {"this":["wp","wordcount"]}
-var external_this_wp_wordcount_ = __webpack_require__(104);
+var external_this_wp_wordcount_ = __webpack_require__(97);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/editor/build-module/components/word-count/index.js
 
@@ -12534,9 +12329,9 @@ function (_Component) {
   }, {
     key: "warnIfUnsavedChanges",
     value: function warnIfUnsavedChanges(event) {
-      var isDirty = this.props.isDirty;
+      var isEditedPostDirty = this.props.isEditedPostDirty;
 
-      if (isDirty) {
+      if (isEditedPostDirty()) {
         event.returnValue = Object(external_this_wp_i18n_["__"])('You have unsaved changes. If you proceed, they will be lost.');
         return event.returnValue;
       }
@@ -12553,7 +12348,11 @@ function (_Component) {
 
 /* harmony default export */ var unsaved_changes_warning = (Object(external_this_wp_data_["withSelect"])(function (select) {
   return {
-    isDirty: select('core/editor').isEditedPostDirty()
+    // We need to call the selector directly in the listener to avoid race
+    // conditions with `BrowserURL` where `componentDidUpdate` gets the
+    // new value of `isEditedPostDirty` before this component does,
+    // causing this component to incorrectly think a trashed post is still dirty.
+    isEditedPostDirty: select('core/editor').isEditedPostDirty
   };
 })(unsaved_changes_warning_UnsavedChangesWarning));
 
@@ -12613,7 +12412,7 @@ var withRegistryProvider = Object(external_this_wp_compose_["createHigherOrderCo
 /* harmony default export */ var with_registry_provider = (withRegistryProvider);
 
 // EXTERNAL MODULE: external {"this":["wp","mediaUtils"]}
-var external_this_wp_mediaUtils_ = __webpack_require__(106);
+var external_this_wp_mediaUtils_ = __webpack_require__(99);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/editor/build-module/utils/media-upload/index.js
 
@@ -13842,7 +13641,7 @@ function Stars(_ref) {
   var halfStarCount = Math.ceil(rating - fullStarCount);
   var emptyStarCount = 5 - (fullStarCount + halfStarCount);
   return Object(external_this_wp_element_["createElement"])("div", {
-    "aria-label": Object(external_this_wp_i18n_["sprintf"])(Object(external_this_wp_i18n_["__"])('%s out of 5 stars', stars), stars)
+    "aria-label": Object(external_this_wp_i18n_["sprintf"])(Object(external_this_wp_i18n_["__"])('%s out of 5 stars'), stars)
   }, Object(external_lodash_["times"])(fullStarCount, function (i) {
     return Object(external_this_wp_element_["createElement"])(external_this_wp_components_["Icon"], {
       key: "full_stars_".concat(i),
@@ -13959,7 +13758,7 @@ function DownloadableBlockAuthorInfo(_ref) {
     className: "block-directory-downloadable-block-author-info__content-author"
   }, Object(external_this_wp_i18n_["sprintf"])(Object(external_this_wp_i18n_["__"])('Authored by %s'), author)), Object(external_this_wp_element_["createElement"])("span", {
     className: "block-directory-downloadable-block-author-info__content"
-  }, Object(external_this_wp_i18n_["sprintf"])(Object(external_this_wp_i18n_["_n"])('This author has %d block, with an average rating of %d.', 'This author has %d blocks, with an average rating of %d.', authorBlockCount, authorBlockRating), authorBlockCount, authorBlockRating)));
+  }, Object(external_this_wp_i18n_["sprintf"])(Object(external_this_wp_i18n_["_n"])('This author has %d block, with an average rating of %d.', 'This author has %d blocks, with an average rating of %d.', authorBlockCount), authorBlockCount, authorBlockRating)));
 }
 
 /* harmony default export */ var downloadable_block_author_info = (DownloadableBlockAuthorInfo);
@@ -14286,7 +14085,7 @@ function InserterMenuDownloadableBlocksPanel() {
         filterValue = _ref.filterValue,
         hasItems = _ref.hasItems;
 
-    if (!hasItems) {
+    if (hasItems || !filterValue) {
       return null;
     }
 
@@ -14569,7 +14368,7 @@ function (_Component) {
 })])(provider_EditorProvider));
 
 // EXTERNAL MODULE: external {"this":["wp","serverSideRender"]}
-var external_this_wp_serverSideRender_ = __webpack_require__(55);
+var external_this_wp_serverSideRender_ = __webpack_require__(58);
 var external_this_wp_serverSideRender_default = /*#__PURE__*/__webpack_require__.n(external_this_wp_serverSideRender_);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/editor/build-module/components/deprecated.js
@@ -14744,16 +14543,15 @@ var withFontSizes = deprecateFunction('withFontSizes', external_this_wp_blockEdi
  */
 
 
-var defaultAutocompleters = [autocompleters_user];
 
-function setDefaultCompleters(completers, blockName) {
-  if (!completers) {
-    // Provide copies so filters may directly modify them.
-    completers = defaultAutocompleters.map(external_lodash_["clone"]); // Add blocks autocompleter for Paragraph block
+function setDefaultCompleters() {
+  var completers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var blockName = arguments.length > 1 ? arguments[1] : undefined;
+  // Provide copies so filters may directly modify them.
+  completers.push(Object(external_lodash_["clone"])(autocompleters_user)); // Add blocks autocompleter for Paragraph block
 
-    if (blockName === Object(external_this_wp_blocks_["getDefaultBlockName"])()) {
-      completers.push(Object(external_lodash_["clone"])(autocompleters_block));
-    }
+  if (blockName === Object(external_this_wp_blocks_["getDefaultBlockName"])()) {
+    completers.push(Object(external_lodash_["clone"])(autocompleters_block));
   }
 
   return completers;
@@ -14912,6 +14710,306 @@ Object(external_this_wp_hooks_["addFilter"])('editor.Autocomplete.completers', '
 
 /***/ }),
 
+/***/ 36:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var LEAF_KEY, hasWeakMap;
+
+/**
+ * Arbitrary value used as key for referencing cache object in WeakMap tree.
+ *
+ * @type {Object}
+ */
+LEAF_KEY = {};
+
+/**
+ * Whether environment supports WeakMap.
+ *
+ * @type {boolean}
+ */
+hasWeakMap = typeof WeakMap !== 'undefined';
+
+/**
+ * Returns the first argument as the sole entry in an array.
+ *
+ * @param {*} value Value to return.
+ *
+ * @return {Array} Value returned as entry in array.
+ */
+function arrayOf( value ) {
+	return [ value ];
+}
+
+/**
+ * Returns true if the value passed is object-like, or false otherwise. A value
+ * is object-like if it can support property assignment, e.g. object or array.
+ *
+ * @param {*} value Value to test.
+ *
+ * @return {boolean} Whether value is object-like.
+ */
+function isObjectLike( value ) {
+	return !! value && 'object' === typeof value;
+}
+
+/**
+ * Creates and returns a new cache object.
+ *
+ * @return {Object} Cache object.
+ */
+function createCache() {
+	var cache = {
+		clear: function() {
+			cache.head = null;
+		},
+	};
+
+	return cache;
+}
+
+/**
+ * Returns true if entries within the two arrays are strictly equal by
+ * reference from a starting index.
+ *
+ * @param {Array}  a         First array.
+ * @param {Array}  b         Second array.
+ * @param {number} fromIndex Index from which to start comparison.
+ *
+ * @return {boolean} Whether arrays are shallowly equal.
+ */
+function isShallowEqual( a, b, fromIndex ) {
+	var i;
+
+	if ( a.length !== b.length ) {
+		return false;
+	}
+
+	for ( i = fromIndex; i < a.length; i++ ) {
+		if ( a[ i ] !== b[ i ] ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Returns a memoized selector function. The getDependants function argument is
+ * called before the memoized selector and is expected to return an immutable
+ * reference or array of references on which the selector depends for computing
+ * its own return value. The memoize cache is preserved only as long as those
+ * dependant references remain the same. If getDependants returns a different
+ * reference(s), the cache is cleared and the selector value regenerated.
+ *
+ * @param {Function} selector      Selector function.
+ * @param {Function} getDependants Dependant getter returning an immutable
+ *                                 reference or array of reference used in
+ *                                 cache bust consideration.
+ *
+ * @return {Function} Memoized selector.
+ */
+/* harmony default export */ __webpack_exports__["a"] = (function( selector, getDependants ) {
+	var rootCache, getCache;
+
+	// Use object source as dependant if getter not provided
+	if ( ! getDependants ) {
+		getDependants = arrayOf;
+	}
+
+	/**
+	 * Returns the root cache. If WeakMap is supported, this is assigned to the
+	 * root WeakMap cache set, otherwise it is a shared instance of the default
+	 * cache object.
+	 *
+	 * @return {(WeakMap|Object)} Root cache object.
+	 */
+	function getRootCache() {
+		return rootCache;
+	}
+
+	/**
+	 * Returns the cache for a given dependants array. When possible, a WeakMap
+	 * will be used to create a unique cache for each set of dependants. This
+	 * is feasible due to the nature of WeakMap in allowing garbage collection
+	 * to occur on entries where the key object is no longer referenced. Since
+	 * WeakMap requires the key to be an object, this is only possible when the
+	 * dependant is object-like. The root cache is created as a hierarchy where
+	 * each top-level key is the first entry in a dependants set, the value a
+	 * WeakMap where each key is the next dependant, and so on. This continues
+	 * so long as the dependants are object-like. If no dependants are object-
+	 * like, then the cache is shared across all invocations.
+	 *
+	 * @see isObjectLike
+	 *
+	 * @param {Array} dependants Selector dependants.
+	 *
+	 * @return {Object} Cache object.
+	 */
+	function getWeakMapCache( dependants ) {
+		var caches = rootCache,
+			isUniqueByDependants = true,
+			i, dependant, map, cache;
+
+		for ( i = 0; i < dependants.length; i++ ) {
+			dependant = dependants[ i ];
+
+			// Can only compose WeakMap from object-like key.
+			if ( ! isObjectLike( dependant ) ) {
+				isUniqueByDependants = false;
+				break;
+			}
+
+			// Does current segment of cache already have a WeakMap?
+			if ( caches.has( dependant ) ) {
+				// Traverse into nested WeakMap.
+				caches = caches.get( dependant );
+			} else {
+				// Create, set, and traverse into a new one.
+				map = new WeakMap();
+				caches.set( dependant, map );
+				caches = map;
+			}
+		}
+
+		// We use an arbitrary (but consistent) object as key for the last item
+		// in the WeakMap to serve as our running cache.
+		if ( ! caches.has( LEAF_KEY ) ) {
+			cache = createCache();
+			cache.isUniqueByDependants = isUniqueByDependants;
+			caches.set( LEAF_KEY, cache );
+		}
+
+		return caches.get( LEAF_KEY );
+	}
+
+	// Assign cache handler by availability of WeakMap
+	getCache = hasWeakMap ? getWeakMapCache : getRootCache;
+
+	/**
+	 * Resets root memoization cache.
+	 */
+	function clear() {
+		rootCache = hasWeakMap ? new WeakMap() : createCache();
+	}
+
+	// eslint-disable-next-line jsdoc/check-param-names
+	/**
+	 * The augmented selector call, considering first whether dependants have
+	 * changed before passing it to underlying memoize function.
+	 *
+	 * @param {Object} source    Source object for derivation.
+	 * @param {...*}   extraArgs Additional arguments to pass to selector.
+	 *
+	 * @return {*} Selector result.
+	 */
+	function callSelector( /* source, ...extraArgs */ ) {
+		var len = arguments.length,
+			cache, node, i, args, dependants;
+
+		// Create copy of arguments (avoid leaking deoptimization).
+		args = new Array( len );
+		for ( i = 0; i < len; i++ ) {
+			args[ i ] = arguments[ i ];
+		}
+
+		dependants = getDependants.apply( null, args );
+		cache = getCache( dependants );
+
+		// If not guaranteed uniqueness by dependants (primitive type or lack
+		// of WeakMap support), shallow compare against last dependants and, if
+		// references have changed, destroy cache to recalculate result.
+		if ( ! cache.isUniqueByDependants ) {
+			if ( cache.lastDependants && ! isShallowEqual( dependants, cache.lastDependants, 0 ) ) {
+				cache.clear();
+			}
+
+			cache.lastDependants = dependants;
+		}
+
+		node = cache.head;
+		while ( node ) {
+			// Check whether node arguments match arguments
+			if ( ! isShallowEqual( node.args, args, 1 ) ) {
+				node = node.next;
+				continue;
+			}
+
+			// At this point we can assume we've found a match
+
+			// Surface matched node to head if not already
+			if ( node !== cache.head ) {
+				// Adjust siblings to point to each other.
+				node.prev.next = node.next;
+				if ( node.next ) {
+					node.next.prev = node.prev;
+				}
+
+				node.next = cache.head;
+				node.prev = null;
+				cache.head.prev = node;
+				cache.head = node;
+			}
+
+			// Return immediately
+			return node.val;
+		}
+
+		// No cached value found. Continue to insertion phase:
+
+		node = {
+			// Generate the result from original function
+			val: selector.apply( null, args ),
+		};
+
+		// Avoid including the source object in the cache.
+		args[ 0 ] = null;
+		node.args = args;
+
+		// Don't need to check whether node is already head, since it would
+		// have been returned above already if it was
+
+		// Shift existing head down list
+		if ( cache.head ) {
+			cache.head.prev = node;
+			node.next = cache.head;
+		}
+
+		cache.head = node;
+
+		return node.val;
+	}
+
+	callSelector.getDependants = getDependants;
+	callSelector.clear = clear;
+	clear();
+
+	return callSelector;
+});
+
+
+/***/ }),
+
+/***/ 37:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["deprecated"]; }());
+
+/***/ }),
+
+/***/ 38:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _arrayWithHoles; });
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+/***/ }),
+
 /***/ 39:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -14937,14 +15035,14 @@ function _nonIterableRest() {
 
 /***/ }),
 
-/***/ 43:
+/***/ 42:
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["viewport"]; }());
 
 /***/ }),
 
-/***/ 44:
+/***/ 43:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14987,7 +15085,7 @@ function _asyncToGenerator(fn) {
 
 /***/ }),
 
-/***/ 45:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function memize( fn, options ) {
@@ -15105,7 +15203,7 @@ module.exports = function memize( fn, options ) {
 
 /***/ }),
 
-/***/ 48:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -15853,24 +15951,24 @@ function _assertThisInitialized(self) {
 
 /***/ }),
 
-/***/ 54:
+/***/ 52:
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["htmlEntities"]; }());
 
 /***/ }),
 
-/***/ 55:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["serverSideRender"]; }());
-
-/***/ }),
-
-/***/ 56:
+/***/ 53:
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["date"]; }());
+
+/***/ }),
+
+/***/ 58:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["serverSideRender"]; }());
 
 /***/ }),
 
@@ -15881,22 +15979,29 @@ function _assertThisInitialized(self) {
 
 /***/ }),
 
-/***/ 63:
+/***/ 61:
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["nux"]; }());
 
 /***/ }),
 
-/***/ 64:
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 exports.__esModule = true;
-var TextareaAutosize_1 = __webpack_require__(132);
+var TextareaAutosize_1 = __webpack_require__(115);
 exports["default"] = TextareaAutosize_1["default"];
 
+
+/***/ }),
+
+/***/ 69:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["autop"]; }());
 
 /***/ }),
 
@@ -15929,13 +16034,6 @@ function _objectSpread(target) {
 /***/ }),
 
 /***/ 72:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["autop"]; }());
-
-/***/ }),
-
-/***/ 76:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15998,22 +16096,15 @@ module.exports = refx;
 
 /***/ }),
 
-/***/ 9:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["blocks"]; }());
-
-/***/ }),
-
-/***/ 90:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(365);
+module.exports = __webpack_require__(325);
 
 
 /***/ }),
 
-/***/ 94:
+/***/ 87:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16026,7 +16117,7 @@ module.exports = __webpack_require__(365);
 
 
 
-var ReactPropTypesSecret = __webpack_require__(95);
+var ReactPropTypesSecret = __webpack_require__(88);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -16085,7 +16176,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 95:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16105,10 +16196,31 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 97:
+/***/ 89:
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["coreData"]; }());
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["blocks"]; }());
+
+/***/ }),
+
+/***/ 97:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["wordcount"]; }());
+
+/***/ }),
+
+/***/ 99:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["mediaUtils"]; }());
 
 /***/ })
 

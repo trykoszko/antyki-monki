@@ -5,7 +5,7 @@ Plugin URI: http://fastvelocity.com
 Description: Improve your speed score on GTmetrix, Pingdom Tools and Google PageSpeed Insights by merging and minifying CSS and JavaScript files into groups, compressing HTML and other speed optimizations. 
 Author: Raul Peixoto
 Author URI: http://fastvelocity.com
-Version: 2.7.6
+Version: 2.8.1
 License: GPL2
 
 ------------------------------------------------------------------------
@@ -303,6 +303,12 @@ function fastvelocity_admintoolbar() {
 
 # function to list all cache files
 function fastvelocity_min_files_callback() {
+	
+	# must be able to cleanup cache
+	if (!current_user_can('manage_options')) {
+		wp_die( __('You do not have sufficient permissions to access this page.')); 
+	}
+		
 	global $cachedir;
 	
 	# default
@@ -311,9 +317,9 @@ function fastvelocity_min_files_callback() {
 	
 	# inspect directory with opendir, since glob might not be available in some systems
 	clearstatcache();
-	if ($handle = opendir($cachedir.'/')) {
+	if ($handle = opendir($cachedir.fastvelocity_get_os_slash())) {
 		while (false !== ($file = readdir($handle))) {
-			$file = $cachedir.'/'.$file;
+			$file = $cachedir.fastvelocity_get_os_slash().$file;
 			$ext = pathinfo($file, PATHINFO_EXTENSION);
 			if (in_array($ext, array('js', 'css'))) {
 				$log = ''; if (file_exists($file.'.txt')) { $log = file_get_contents($file.'.txt'); }
@@ -323,7 +329,7 @@ function fastvelocity_min_files_callback() {
 				if ($ext == 'css' && file_exists($mincss)) { $filename = basename($mincss); }
 				if ($ext == 'js' && file_exists($minjs)) { $filename = basename($minjs); }
 				$fsize = fastvelocity_format_filesize(filesize($file));
-				$uid = hash('adler32', $filename);
+				$uid = hash('sha1', $filename);
 				array_push($return[$ext], array('uid'=>$uid, 'filename' => $filename, 'log' => $log, 'fsize' => $fsize));
 			}
 		}
@@ -1293,10 +1299,10 @@ for($i=0,$l=count($header);$i<$l;$i++) {
 		
 		# static cache file info + done
 		$done = array_merge($done, $header[$i]['handles']);		
-		$hash = 'header-'.hash('adler32',implode('',$header[$i]['handles']));
+		$hash = 'header-'.hash('sha1',implode('',$header[$i]['handles']));
 
 		# create cache files and urls
-		$file = $cachedir.'/'.$hash.'.min.js';
+		$file = $cachedir.fastvelocity_get_os_slash().$hash.'.min.js';
 		$file_url = fvm_get_protocol($cachedirurl.'/'.$hash.'.min.js');
 		
 		# generate a new cache file
@@ -1323,7 +1329,7 @@ for($i=0,$l=count($header);$i<$l;$i++) {
 					$printurl = str_ireplace(array(site_url(), home_url(), 'http:', 'https:'), '', $hurl);
 					
 					# download, minify, cache
-					$tkey = 'js-'.hash('adler32', $handle.$hurl).'.js';
+					$tkey = 'js-'.hash('sha1', $handle.$hurl).'.js';
 					$json = false; $json = fvm_get_transient($tkey);
 					if ( $json === false) {
 						$json = fvm_download_and_minify($hurl, null, $disable_js_minification, 'js', $handle);
@@ -1343,18 +1349,18 @@ for($i=0,$l=count($header);$i<$l;$i++) {
 					# Add extra data from wp_add_inline_script before
 					if (!empty( $wp_scripts->registered[$handle]->extra)) {
 						if (!empty( $wp_scripts->registered[$handle]->extra['before'])){
-							$code.= PHP_EOL . implode(PHP_EOL, $wp_scripts->registered[$handle]->extra['before']);
+							$code.= PHP_EOL . fastvelocity_try_catch_wrap(implode(PHP_EOL, $wp_scripts->registered[$handle]->extra['before']));
 						}
 					}				
 					
 					# append code to merged file
-					$code.= $res['code'];
+					$code.= "/* $hurl */". PHP_EOL . fastvelocity_try_catch_wrap($res['code']);
 					$log.= $res['log'];
 					
 					# Add extra data from wp_add_inline_script after
 					if (!empty( $wp_scripts->registered[$handle]->extra)) {
 						if (!empty( $wp_scripts->registered[$handle]->extra['after'])){
-							$code.= PHP_EOL . implode(PHP_EOL, $wp_scripts->registered[$handle]->extra['after']);
+							$code.= PHP_EOL . fastvelocity_try_catch_wrap(implode(PHP_EOL, $wp_scripts->registered[$handle]->extra['after']));
 						}
 					}	
 
@@ -1494,10 +1500,10 @@ for($i=0,$l=count($footer);$i<$l;$i++) {
 		
 		# static cache file info + done
 		$done = array_merge($done, $footer[$i]['handles']);		
-		$hash = 'footer-'.hash('adler32',implode('',$footer[$i]['handles']));
+		$hash = 'footer-'.hash('sha1',implode('',$footer[$i]['handles']));
 		
 		# create cache files and urls
-		$file = $cachedir.'/'.$hash.'.min.js';
+		$file = $cachedir.fastvelocity_get_os_slash().$hash.'.min.js';
 		$file_url = fvm_get_protocol($cachedirurl.'/'.$hash.'.min.js');
 	
 		# generate a new cache file
@@ -1525,7 +1531,7 @@ for($i=0,$l=count($footer);$i<$l;$i++) {
 					
 					
 					# download, minify, cache
-					$tkey = 'js-'.hash('adler32', $handle.$hurl).'.js';
+					$tkey = 'js-'.hash('sha1', $handle.$hurl).'.js';
 					$json = false; $json = fvm_get_transient($tkey);
 					if ( $json === false) {
 						$json = fvm_download_and_minify($hurl, null, $disable_js_minification, 'js', $handle);
@@ -1545,18 +1551,18 @@ for($i=0,$l=count($footer);$i<$l;$i++) {
 					# Add extra data from wp_add_inline_script before
 					if (!empty($wp_scripts->registered[$handle]->extra)){
 						if (!empty($wp_scripts->registered[$handle]->extra['before'])){
-							$code.= PHP_EOL.implode(PHP_EOL, $wp_scripts->registered[$handle]->extra['before']);
+							$code.= PHP_EOL . fastvelocity_try_catch_wrap(implode(PHP_EOL, $wp_scripts->registered[$handle]->extra['before']));
 						}
 					}
 					
 					# append code to merged file
-					$code.= $res['code'];
+					$code.= "/* $hurl */". PHP_EOL . fastvelocity_try_catch_wrap($res['code']);
 					$log.= $res['log'];
 
 					# Add extra data from wp_add_inline_script after
 					if (!empty($wp_scripts->registered[$handle]->extra)){
 						if (!empty($wp_scripts->registered[$handle]->extra['after'])){
-							$code.= PHP_EOL.implode(PHP_EOL, $wp_scripts->registered[$handle]->extra['after']);
+							$code.= PHP_EOL . fastvelocity_try_catch_wrap(implode(PHP_EOL, $wp_scripts->registered[$handle]->extra['after']));
 						}
 					}
 			
@@ -1772,13 +1778,13 @@ foreach( $styles->to_do as $handle):
 	
 	# mark duplicates as done and remove from the queue
 	if(!empty($hurl)) {
-		$key = hash('adler32', $hurl); 
+		$key = hash('sha1', $hurl); 
 		if (isset($uniq[$key])) { $done = array_merge($done, array($handle)); continue; } else { $uniq[$key] = $handle; }
 	}
 	
 	# Exclude specific CSS files from PSI?
 	if($fvm_min_excludecsslist != false && is_array($fvm_min_excludecsslist) && fastvelocity_min_in_arrayi($hurl, $fvm_min_excludecsslist)) {
-		$cssguid = 'fvm'.hash('adler32', $hurl);
+		$cssguid = 'fvm'.hash('sha1', $hurl);
 		echo '<script type="text/javascript">if(fvmuag()){';
 		echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$hurl.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="'.$mediatype.'"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 		echo '}</script>';
@@ -1795,7 +1801,7 @@ foreach( $styles->to_do as $handle):
 	
 	# font awesome processing, async and exclude from PSI
 	if($fvm_fawesome_method == 3 && stripos($hurl, 'font-awesome') !== false) {
-		$cssguid = 'fvm'.hash('adler32', $hurl);
+		$cssguid = 'fvm'.hash('sha1', $hurl);
 		echo '<script type="text/javascript">if(fvmuag()){';
 		echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$hurl.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="'.$mediatype.'"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 		echo '}</script>';
@@ -1843,7 +1849,7 @@ if(!$skip_google_fonts && count($google_fonts) > 0 || ($force_inline_googlefonts
 			if($css_hide_googlefonts == true) {
 				
 				# make a stylesheet, hide from PSI
-				$cssguid = 'fvm'.hash('adler32', $gfurl);
+				$cssguid = 'fvm'.hash('sha1', $gfurl);
 				echo '<script type="text/javascript">if(fvmuag()){';
 				echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$gfurl.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="all"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 				echo '}</script>';	
@@ -1858,7 +1864,7 @@ if(!$skip_google_fonts && count($google_fonts) > 0 || ($force_inline_googlefonts
 			} elseif($force_inline_googlefonts == true) {
 				
 				# download, minify, cache
-				$tkey = 'css-'.hash('adler32', $gfurl).'.css';
+				$tkey = 'css-'.hash('sha1', $gfurl).'.css';
 				$json = false; $json = fvm_get_transient($tkey);
 				if ( $json === false) {
 					$json = fvm_download_and_minify($gfurl, null, $disable_css_minification, 'css', null);
@@ -1981,10 +1987,10 @@ for($i=0,$l=count($header);$i<$l;$i++) {
 		
 		# static cache file info + done
 		$done = array_merge($done, $header[$i]['handles']);		
-		$hash = 'header-'.hash('adler32',implode('',$header[$i]['handles']).$inline_css_hash);
+		$hash = 'header-'.hash('sha1',implode('',$header[$i]['handles']).$inline_css_hash);
 
 		# create cache files and urls
-		$file = $cachedir.'/'.$hash.'.min.css';
+		$file = $cachedir.fastvelocity_get_os_slash().$hash.'.min.css';
 		$file_url = fvm_get_protocol($cachedirurl.'/'.$hash.'.min.css'); 
 		
 		# generate a new cache file
@@ -2011,7 +2017,7 @@ for($i=0,$l=count($header);$i<$l;$i++) {
 					$printurl = str_ireplace(array(site_url(), home_url(), 'http:', 'https:'), '', $hurl);
 					
 					# download, minify, cache
-					$tkey = 'css-'.hash('adler32', $handle.$hurl).'.css';
+					$tkey = 'css-'.hash('sha1', $handle.$hurl).'.css';
 					$json = false; $json = fvm_get_transient($tkey);
 					if ( $json === false) {
 						$json = fvm_download_and_minify($hurl, null, $disable_css_minification, 'css', $handle);
@@ -2190,7 +2196,7 @@ if(!$skip_google_fonts && count($google_fonts) > 0 || ($force_inline_googlefonts
 			if($css_hide_googlefonts == true) {
 				
 				# make a stylesheet, hide from PSI
-				$cssguid = 'fvm'.hash('adler32', $gfurl);
+				$cssguid = 'fvm'.hash('sha1', $gfurl);
 				echo '<script type="text/javascript">if(fvmuag()){';
 				echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$gfurl.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="all"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 				echo '}</script>';	
@@ -2205,7 +2211,7 @@ if(!$skip_google_fonts && count($google_fonts) > 0 || ($force_inline_googlefonts
 			} elseif($force_inline_googlefonts == true) {
 				
 				# download, minify, cache
-				$tkey = 'css-'.hash('adler32', $gfurl).'.css';
+				$tkey = 'css-'.hash('sha1', $gfurl).'.css';
 				$json = false; $json = fvm_get_transient($tkey);
 				if ( $json === false) {
 					$json = fvm_download_and_minify($gfurl, null, $disable_css_minification, 'css', null);
@@ -2270,7 +2276,7 @@ foreach( $styles->to_do as $handle ) :
 	
 	# mark duplicates as done and remove from the queue
 	if(!empty($hurl)) {
-		$key = hash('adler32', $hurl); 
+		$key = hash('sha1', $hurl); 
 		if (isset($uniq[$key])) { $done = array_merge($done, array($handle)); continue; } else { $uniq[$key] = $handle; }
 	}
 	
@@ -2281,7 +2287,7 @@ foreach( $styles->to_do as $handle ) :
 	
 	# Exclude specific CSS files from PSI?
 	if($fvm_min_excludecsslist != false && is_array($fvm_min_excludecsslist) && fastvelocity_min_in_arrayi($hurl, $fvm_min_excludecsslist)) {
-		$cssguid = 'fvm'.hash('adler32', $hurl);
+		$cssguid = 'fvm'.hash('sha1', $hurl);
 		echo '<script type="text/javascript">if(fvmuag()){';
 		echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$hurl.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="'.$mediatype.'"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 		echo '}</script>';
@@ -2298,7 +2304,7 @@ foreach( $styles->to_do as $handle ) :
 	
 	# font awesome processing, async and exclude from PSI
 	if($fvm_fawesome_method == 3 && stripos($hurl, 'font-awesome') !== false) {
-		$cssguid = 'fvm'.hash('adler32', $hurl);
+		$cssguid = 'fvm'.hash('sha1', $hurl);
 		echo '<script type="text/javascript">if(fvmuag()){';
 		echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$hurl.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="'.$mediatype.'"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 		echo '}</script>';
@@ -2371,10 +2377,10 @@ for($i=0,$l=count($footer);$i<$l;$i++) {
 		
 		# static cache file info + done
 		$done = array_merge($done, $footer[$i]['handles']);		
-		$hash = 'footer-'.hash('adler32',implode('',$footer[$i]['handles']).$inline_css_hash);
+		$hash = 'footer-'.hash('sha1',implode('',$footer[$i]['handles']).$inline_css_hash);
 
 		# create cache files and urls
-		$file = $cachedir.'/'.$hash.'.min.css';
+		$file = $cachedir.fastvelocity_get_os_slash().$hash.'.min.css';
 		$file_url = fvm_get_protocol($cachedirurl.'/'.$hash.'.min.css');
 		
 		# generate a new cache file
@@ -2401,7 +2407,7 @@ for($i=0,$l=count($footer);$i<$l;$i++) {
 					$printurl = str_ireplace(array(site_url(), home_url(), 'http:', 'https:'), '', $hurl);
 					
 					# download, minify, cache
-					$tkey = 'css-'.hash('adler32', $handle.$hurl).'.css';
+					$tkey = 'css-'.hash('sha1', $handle.$hurl).'.css';
 					$json = false; $json = fvm_get_transient($tkey);
 					if ( $json === false) {
 						$json = fvm_download_and_minify($hurl, null, $disable_css_minification, 'css', $handle);
@@ -2637,7 +2643,7 @@ function fastvelocity_optimizecss($html, $handle, $href, $media){
 		
 		# Exclude specific CSS files from PSI?
 		if($fvm_min_excludecsslist != false && is_array($fvm_min_excludecsslist) && fastvelocity_min_in_arrayi($href, $fvm_min_excludecsslist)) {
-			$cssguid = 'fvm'.hash('adler32', $href);
+			$cssguid = 'fvm'.hash('sha1', $href);
 			echo '<script type="text/javascript">if(fvmuag()){';
 			echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$href.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="'.$media.'"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 			echo '}</script>';
@@ -2662,7 +2668,7 @@ function fastvelocity_optimizecss($html, $handle, $href, $media){
 			
 			# hide google fonts from PSI
 			if($css_hide_googlefonts == true) {
-				$cssguid = 'fvm'.hash('adler32', $href);
+				$cssguid = 'fvm'.hash('sha1', $href);
 				echo '<script type="text/javascript">if(fvmuag()){';
 				echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$href.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="all"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 				echo '}</script>';
@@ -2688,7 +2694,7 @@ function fastvelocity_optimizecss($html, $handle, $href, $media){
 		
 		# font awesome processing, async and exclude from PSI
 		if($fvm_fawesome_method == 3 && stripos($href, 'font-awesome') !== false) {
-			$cssguid = 'fvm'.hash('adler32', $href);
+			$cssguid = 'fvm'.hash('sha1', $href);
 			echo '<script type="text/javascript">if(fvmuag()){';
 			echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$href.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="'.$media.'"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 			echo '}</script>';
@@ -2699,7 +2705,7 @@ function fastvelocity_optimizecss($html, $handle, $href, $media){
 		if($fvm_fawesome_method == 1 && stripos($href, 'font-awesome') !== false) {
 			
 			# download, minify, cache
-			$tkey = 'css-'.hash('adler32', $handle.$href).'.css';
+			$tkey = 'css-'.hash('sha1', $handle.$href).'.css';
 			$json = false; $json = fvm_get_transient($tkey);
 			if ( $json === false) {
 				$json = fvm_download_and_minify($href, null, $disable_css_minification, 'css', $handle);
@@ -2728,7 +2734,7 @@ function fastvelocity_optimizecss($html, $handle, $href, $media){
 		if(stripos($href, 'fonts.googleapis.com') !== false && $force_inline_googlefonts != false && $css_hide_googlefonts != true && $min_async_googlefonts != true) {
 			
 			# download, minify, cache
-			$tkey = 'css-'.hash('adler32', $handle.$href).'.css';
+			$tkey = 'css-'.hash('sha1', $handle.$href).'.css';
 			$json = false; $json = fvm_get_transient($tkey);
 			if ( $json === false) {
 				$json = fvm_download_and_minify($href, null, $disable_css_minification, 'css', $handle);
@@ -2766,7 +2772,7 @@ function fastvelocity_optimizecss($html, $handle, $href, $media){
 		}
 		
 		# download, minify, cache
-		$tkey = 'css-'.hash('adler32', $handle.$href).'.css';
+		$tkey = 'css-'.hash('sha1', $handle.$href).'.css';
 		$json = false; $json = fvm_get_transient($tkey);
 		if ( $json === false) {
 			$json = fvm_download_and_minify($href, null, $disable_css_minification, 'css', $handle);
@@ -2843,7 +2849,7 @@ function fastvelocity_add_google_fonts_merged() {
 	if($css_hide_googlefonts == true) {
 		
 		# make a stylesheet, hide from PSI
-		$cssguid = 'fvm'.hash('adler32', $gfurl);
+		$cssguid = 'fvm'.hash('sha1', $gfurl);
 		echo '<script type="text/javascript">if(fvmuag()){';
 		echo 'var '.$cssguid.'=document.createElement("link");'.$cssguid.'.rel="stylesheet",'.$cssguid.'.type="text/css",'.$cssguid.'.media="async",'.$cssguid.'.href="'.$gfurl.'",'.$cssguid.'.onload=function(){'.$cssguid.'.media="all"},document.getElementsByTagName("head")[0].appendChild('.$cssguid.');';
 		echo '}</script>';

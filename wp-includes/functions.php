@@ -176,9 +176,9 @@ function date_i18n( $format, $timestamp_with_offset = false, $gmt = false ) {
 	 */
 	if ( 'U' === $format ) {
 		$date = $timestamp;
-	} elseif ( $gmt && ! $timestamp_with_offset ) { // Current time in UTC.
+	} elseif ( $gmt && false === $timestamp_with_offset ) { // Current time in UTC.
 		$date = wp_date( $format, null, new DateTimeZone( 'UTC' ) );
-	} elseif ( ! $timestamp_with_offset ) { // Current time in site's timezone.
+	} elseif ( false === $timestamp_with_offset ) { // Current time in site's timezone.
 		$date = wp_date( $format );
 	} else {
 		/*
@@ -254,22 +254,22 @@ function wp_date( $format, $timestamp = null, $timezone = null ) {
 		for ( $i = 0; $i < $format_length; $i ++ ) {
 			switch ( $format[ $i ] ) {
 				case 'D':
-					$new_format .= backslashit( $wp_locale->get_weekday_abbrev( $weekday ) );
+					$new_format .= addcslashes( $wp_locale->get_weekday_abbrev( $weekday ), '\\A..Za..z' );
 					break;
 				case 'F':
-					$new_format .= backslashit( $month );
+					$new_format .= addcslashes( $month, '\\A..Za..z' );
 					break;
 				case 'l':
-					$new_format .= backslashit( $weekday );
+					$new_format .= addcslashes( $weekday, '\\A..Za..z' );
 					break;
 				case 'M':
-					$new_format .= backslashit( $wp_locale->get_month_abbrev( $month ) );
+					$new_format .= addcslashes( $wp_locale->get_month_abbrev( $month ), '\\A..Za..z' );
 					break;
 				case 'a':
-					$new_format .= backslashit( $wp_locale->get_meridiem( $datetime->format( 'a' ) ) );
+					$new_format .= addcslashes( $wp_locale->get_meridiem( $datetime->format( 'a' ) ), '\\A..Za..z' );
 					break;
 				case 'A':
-					$new_format .= backslashit( $wp_locale->get_meridiem( $datetime->format( 'A' ) ) );
+					$new_format .= addcslashes( $wp_locale->get_meridiem( $datetime->format( 'A' ) ), '\\A..Za..z' );
 					break;
 				case '\\':
 					$new_format .= $format[ $i ];
@@ -335,24 +335,29 @@ function wp_maybe_decline_date( $date ) {
 		$months          = $wp_locale->month;
 		$months_genitive = $wp_locale->month_genitive;
 
-		// Match a format like 'j F Y' or 'j. F'
-		if ( preg_match( '#^\d{1,2}\.? [^\d ]+#u', $date ) ) {
-
+		/*
+		 * Match a format like 'j F Y' or 'j. F' (day of the month, followed by month name)
+		 * and decline the month.
+		 */
+		if ( preg_match( '#\b\d{1,2}\.? [^\d ]+\b#u', $date ) ) {
 			foreach ( $months as $key => $month ) {
-				$months[ $key ] = '# ' . $month . '( |$)#u';
+				$months[ $key ] = '# ' . preg_quote( $month, '#' ) . '\b#u';
 			}
 
 			foreach ( $months_genitive as $key => $month ) {
-				$months_genitive[ $key ] = ' ' . $month . '$1';
+				$months_genitive[ $key ] = ' ' . $month;
 			}
 
 			$date = preg_replace( $months, $months_genitive, $date );
 		}
 
-		// Match a format like 'F jS' or 'F j' and change it to 'j F'
-		if ( preg_match( '#^[^\d ]+ \d{1,2}(st|nd|rd|th)? #u', trim( $date ) ) ) {
+		/*
+		 * Match a format like 'F jS' or 'F j' (month name, followed by day with an optional ordinal suffix)
+		 * and change it to declined 'j F'.
+		 */
+		if ( preg_match( '#\b[^\d ]+ \d{1,2}(st|nd|rd|th)?\b#u', trim( $date ) ) ) {
 			foreach ( $months as $key => $month ) {
-				$months[ $key ] = '#' . $month . ' (\d{1,2})(st|nd|rd|th)?#u';
+				$months[ $key ] = '#\b' . preg_quote( $month, '#' ) . ' (\d{1,2})(st|nd|rd|th)?\b#u';
 			}
 
 			foreach ( $months_genitive as $key => $month ) {
@@ -1048,6 +1053,8 @@ function _http_build_query( $data, $prefix = null, $sep = null, $key = '', $urle
  * (XSS) attacks.
  *
  * @since 1.5.0
+ * @since 5.3.0 Formalized the existing and already documented parameters
+ *              by adding `...$args` to the function signature.
  *
  * @param string|array $key   Either a query variable key, or an associative array of query variables.
  * @param string       $value Optional. Either a query variable value, or a URL to act upon.
@@ -1921,6 +1928,11 @@ function wp_mkdir_p( $target ) {
 		return @is_dir( $target );
 	}
 
+	// Do not allow path traversals.
+	if ( false !== strpos( $target, '../' ) || false !== strpos( $target, '..' . DIRECTORY_SEPARATOR ) ) {
+		return false;
+	}
+
 	// We need to find the permissions of the parent folder that exists and inherit that.
 	$target_parent = dirname( $target );
 	while ( '.' != $target_parent && ! is_dir( $target_parent ) && dirname( $target_parent ) !== $target_parent ) {
@@ -2398,10 +2410,12 @@ function _wp_upload_dir( $time = null ) {
 function wp_unique_filename( $dir, $filename, $unique_filename_callback = null ) {
 	// Sanitize the file name before we begin processing.
 	$filename = sanitize_file_name( $filename );
+	$ext2     = null;
 
 	// Separate the filename into a name and extension.
 	$ext  = pathinfo( $filename, PATHINFO_EXTENSION );
 	$name = pathinfo( $filename, PATHINFO_BASENAME );
+
 	if ( $ext ) {
 		$ext = '.' . $ext;
 	}
@@ -2419,6 +2433,15 @@ function wp_unique_filename( $dir, $filename, $unique_filename_callback = null )
 		$filename = call_user_func( $unique_filename_callback, $dir, $name, $ext );
 	} else {
 		$number = '';
+		$fname  = pathinfo( $filename, PATHINFO_FILENAME );
+
+		// Always append a number to file names that can potentially match image sub-size file names.
+		if ( $fname && preg_match( '/-(?:\d+x\d+|scaled|rotated)$/', $fname ) ) {
+			$number = 1;
+
+			// At this point the file name may not be unique. This is tested below and the $number is incremented.
+			$filename = str_replace( "{$fname}{$ext}", "{$fname}-{$number}{$ext}", $filename );
+		}
 
 		// Change '.ext' to lower case.
 		if ( $ext && strtolower( $ext ) != $ext ) {
@@ -2426,39 +2449,106 @@ function wp_unique_filename( $dir, $filename, $unique_filename_callback = null )
 			$filename2 = preg_replace( '|' . preg_quote( $ext ) . '$|', $ext2, $filename );
 
 			// Check for both lower and upper case extension or image sub-sizes may be overwritten.
-			while ( file_exists( $dir . "/$filename" ) || file_exists( $dir . "/$filename2" ) ) {
+			while ( file_exists( $dir . "/{$filename}" ) || file_exists( $dir . "/{$filename2}" ) ) {
 				$new_number = (int) $number + 1;
-				$filename   = str_replace( array( "-$number$ext", "$number$ext" ), "-$new_number$ext", $filename );
-				$filename2  = str_replace( array( "-$number$ext2", "$number$ext2" ), "-$new_number$ext2", $filename2 );
+				$filename   = str_replace( array( "-{$number}{$ext}", "{$number}{$ext}" ), "-{$new_number}{$ext}", $filename );
+				$filename2  = str_replace( array( "-{$number}{$ext2}", "{$number}{$ext2}" ), "-{$new_number}{$ext2}", $filename2 );
 				$number     = $new_number;
 			}
 
-			/**
-			 * Filters the result when generating a unique file name.
-			 *
-			 * @since 4.5.0
-			 *
-			 * @param string        $filename                 Unique file name.
-			 * @param string        $ext                      File extension, eg. ".png".
-			 * @param string        $dir                      Directory path.
-			 * @param callable|null $unique_filename_callback Callback function that generates the unique file name.
-			 */
-			return apply_filters( 'wp_unique_filename', $filename2, $ext, $dir, $unique_filename_callback );
+			$filename = $filename2;
+		} else {
+			while ( file_exists( $dir . "/{$filename}" ) ) {
+				$new_number = (int) $number + 1;
+
+				if ( '' === "{$number}{$ext}" ) {
+					$filename = "{$filename}-{$new_number}";
+				} else {
+					$filename = str_replace( array( "-{$number}{$ext}", "{$number}{$ext}" ), "-{$new_number}{$ext}", $filename );
+				}
+
+				$number = $new_number;
+			}
 		}
 
-		while ( file_exists( $dir . "/$filename" ) ) {
-			$new_number = (int) $number + 1;
-			if ( '' == "$number$ext" ) {
-				$filename = "$filename-" . $new_number;
-			} else {
-				$filename = str_replace( array( "-$number$ext", "$number$ext" ), '-' . $new_number . $ext, $filename );
+		// Prevent collisions with existing file names that contain dimension-like strings
+		// (whether they are subsizes or originals uploaded prior to #42437).
+		$upload_dir = wp_get_upload_dir();
+
+		// The (resized) image files would have name and extension, and will be in the uploads dir.
+		if ( $name && $ext && @is_dir( $dir ) && false !== strpos( $dir, $upload_dir['basedir'] ) ) {
+			// List of all files and directories contained in $dir.
+			$files = @scandir( $dir );
+
+			if ( ! empty( $files ) ) {
+				// Remove "dot" dirs.
+				$files = array_diff( $files, array( '.', '..' ) );
 			}
-			$number = $new_number;
+
+			if ( ! empty( $files ) ) {
+				// The extension case may have changed above.
+				$new_ext = ! empty( $ext2 ) ? $ext2 : $ext;
+
+				// Ensure this never goes into infinite loop
+				// as it uses pathinfo() and regex in the check but string replacement for the changes.
+				$count = count( $files );
+				$i     = 0;
+
+				while ( $i <= $count && _wp_check_existing_file_names( $filename, $files ) ) {
+					$new_number = (int) $number + 1;
+					$filename   = str_replace( array( "-{$number}{$new_ext}", "{$number}{$new_ext}" ), "-{$new_number}{$new_ext}", $filename );
+					$number     = $new_number;
+					$i++;
+				}
+			}
 		}
 	}
 
-	/** This filter is documented in wp-includes/functions.php */
+	/**
+	 * Filters the result when generating a unique file name.
+	 *
+	 * @since 4.5.0
+	 *
+	 * @param string        $filename                 Unique file name.
+	 * @param string        $ext                      File extension, eg. ".png".
+	 * @param string        $dir                      Directory path.
+	 * @param callable|null $unique_filename_callback Callback function that generates the unique file name.
+	 */
 	return apply_filters( 'wp_unique_filename', $filename, $ext, $dir, $unique_filename_callback );
+}
+
+/**
+ * Helper function to check if a file name could match an existing image sub-size file name.
+ *
+ * @since 5.3.1
+ * @access private
+ *
+ * @param string $filename The file name to check.
+ * $param array  $files    An array of existing files in the directory.
+ * $return bool True if the tested file name could match an existing file, false otherwise.
+ */
+function _wp_check_existing_file_names( $filename, $files ) {
+	$fname = pathinfo( $filename, PATHINFO_FILENAME );
+	$ext   = pathinfo( $filename, PATHINFO_EXTENSION );
+
+	// Edge case, file names like `.ext`
+	if ( empty( $fname ) ) {
+		return false;
+	}
+
+	if ( $ext ) {
+		$ext = ".$ext";
+	}
+
+	$regex = '/^' . preg_quote( $fname ) . '-(?:\d+x\d+|scaled|rotated)' . preg_quote( $ext ) . '$/i';
+
+	foreach ( $files as $file ) {
+		if ( preg_match( $regex, $file ) ) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 /**
@@ -3379,9 +3469,6 @@ function _default_wp_die_handler( $message, $title = '', $args = array() ) {
 			border-color: #999;
 			-webkit-box-shadow: inset 0 2px 5px -3px rgba(0, 0, 0, 0.5);
 			box-shadow: inset 0 2px 5px -3px rgba(0, 0, 0, 0.5);
-			-webkit-transform: translateY(1px);
-			-ms-transform: translateY(1px);
-			transform: translateY(1px);
 		}
 
 		<?php
@@ -5743,7 +5830,7 @@ function get_file_data( $file, $default_headers, $context = '' ) {
  *
  * @return true True.
  */
-function __return_true() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore
+function __return_true() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore,PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.FunctionDoubleUnderscore
 	return true;
 }
 
@@ -5758,7 +5845,7 @@ function __return_true() { // phpcs:ignore WordPress.NamingConventions.ValidFunc
  *
  * @return false False.
  */
-function __return_false() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore
+function __return_false() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore,PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.FunctionDoubleUnderscore
 	return false;
 }
 
@@ -5771,7 +5858,7 @@ function __return_false() { // phpcs:ignore WordPress.NamingConventions.ValidFun
  *
  * @return int 0.
  */
-function __return_zero() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore
+function __return_zero() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore,PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.FunctionDoubleUnderscore
 	return 0;
 }
 
@@ -5784,7 +5871,7 @@ function __return_zero() { // phpcs:ignore WordPress.NamingConventions.ValidFunc
  *
  * @return array Empty array.
  */
-function __return_empty_array() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore
+function __return_empty_array() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore,PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.FunctionDoubleUnderscore
 	return array();
 }
 
@@ -5797,7 +5884,7 @@ function __return_empty_array() { // phpcs:ignore WordPress.NamingConventions.Va
  *
  * @return null Null value.
  */
-function __return_null() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore
+function __return_null() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore,PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.FunctionDoubleUnderscore
 	return null;
 }
 
@@ -5812,7 +5899,7 @@ function __return_null() { // phpcs:ignore WordPress.NamingConventions.ValidFunc
  *
  * @return string Empty string.
  */
-function __return_empty_string() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore
+function __return_empty_string() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore,PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.FunctionDoubleUnderscore
 	return '';
 }
 

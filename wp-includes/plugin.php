@@ -430,6 +430,8 @@ function add_action( $tag, $function_to_add, $priority = 10, $accepted_args = 1 
  *     $value = do_action( 'example_action', $arg1, $arg2 );
  *
  * @since 1.2.0
+ * @since 5.3.0 Formalized the existing and already documented `...$arg` parameter
+ *              by adding it to the function signature.
  *
  * @global array $wp_filter         Stores all of the filters
  * @global array $wp_actions        Increments the amount of times action was triggered.
@@ -439,7 +441,7 @@ function add_action( $tag, $function_to_add, $priority = 10, $accepted_args = 1 
  * @param mixed  ...$arg Optional. Additional arguments which are passed on to the
  *                       functions hooked to the action. Default empty.
  */
-function do_action( $tag, $arg = '' ) {
+function do_action( $tag, ...$arg ) {
 	global $wp_filter, $wp_actions, $wp_current_filter;
 
 	if ( ! isset( $wp_actions[ $tag ] ) ) {
@@ -448,11 +450,10 @@ function do_action( $tag, $arg = '' ) {
 		++$wp_actions[ $tag ];
 	}
 
-	$all_args = func_get_args();
-
 	// Do 'all' actions first
 	if ( isset( $wp_filter['all'] ) ) {
 		$wp_current_filter[] = $tag;
+		$all_args            = func_get_args();
 		_wp_call_all_hook( $all_args );
 	}
 
@@ -467,14 +468,14 @@ function do_action( $tag, $arg = '' ) {
 		$wp_current_filter[] = $tag;
 	}
 
-	$args = $all_args;
-	array_shift( $args );
-
-	if ( empty( $args ) ) {
-		$args = array( '' );
+	if ( empty( $arg ) ) {
+		$arg[] = '';
+	} elseif ( is_array( $arg[0] ) && 1 === count( $arg[0] ) && isset( $arg[0][0] ) && is_object( $arg[0][0] ) ) {
+		// Backward compatibility for PHP4-style passing of `array( &$this )` as action `$arg`.
+		$arg[0] = $arg[0][0];
 	}
 
-	$wp_filter[ $tag ]->do_action( $args );
+	$wp_filter[ $tag ]->do_action( $arg );
 
 	array_pop( $wp_current_filter );
 }
@@ -844,10 +845,12 @@ function register_uninstall_hook( $file, $callback ) {
 	 * cases. Emphasis should be put on using the 'uninstall.php' way of
 	 * uninstalling the plugin.
 	 */
-	$uninstallable_plugins                             = (array) get_option( 'uninstall_plugins' );
-	$uninstallable_plugins[ plugin_basename( $file ) ] = $callback;
-
-	update_option( 'uninstall_plugins', $uninstallable_plugins );
+	$uninstallable_plugins = (array) get_option( 'uninstall_plugins' );
+	$plugin_basename       = plugin_basename( $file );
+	if ( ! isset( $uninstallable_plugins[ $plugin_basename ] ) || $uninstallable_plugins[ $plugin_basename ] !== $callback ) {
+		$uninstallable_plugins[ $plugin_basename ] = $callback;
+		update_option( 'uninstall_plugins', $uninstallable_plugins );
+	}
 }
 
 /**

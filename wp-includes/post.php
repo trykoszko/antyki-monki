@@ -1829,6 +1829,8 @@ function _add_post_type_submenus() {
  *     ) );
  *
  * @since 3.0.0
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
  *
  * @global array $_wp_post_type_features
  *
@@ -2751,7 +2753,7 @@ function get_post_mime_types() {
 			),
 		),
 		'archive'     => array(
-			__( 'Archives' ),
+			_x( 'Archives', 'file type group' ),
 			__( 'Manage Archives' ),
 			/* translators: %s: Number of archives. */
 			_n_noop(
@@ -3745,13 +3747,14 @@ function wp_insert_post( $postarr, $wp_error = false ) {
 	}
 
 	if ( 'attachment' !== $post_type ) {
+		$now = gmdate( 'Y-m-d H:i:s' );
+
 		if ( 'publish' === $post_status ) {
-			// String comparison to work around far future dates (year 2038+) on 32-bit systems.
-			if ( $post_date_gmt > gmdate( 'Y-m-d H:i:59' ) ) {
+			if ( strtotime( $post_date_gmt ) - strtotime( $now ) >= MINUTE_IN_SECONDS ) {
 				$post_status = 'future';
 			}
 		} elseif ( 'future' === $post_status ) {
-			if ( $post_date_gmt <= gmdate( 'Y-m-d H:i:59' ) ) {
+			if ( strtotime( $post_date_gmt ) - strtotime( $now ) < MINUTE_IN_SECONDS ) {
 				$post_status = 'publish';
 			}
 		}
@@ -5113,7 +5116,7 @@ function _page_traverse_name( $page_id, &$children, &$result ) {
  * Sub pages will be in the "directory" under the parent page post name.
  *
  * @since 1.5.0
- * @since 4.6.0 Converted the `$page` parameter to optional.
+ * @since 4.6.0 The `$page` parameter was made optional.
  *
  * @param WP_Post|object|int $page Optional. Page ID or WP_Post object. Default is global $post.
  * @return string|false Page URI, false on error.
@@ -6383,7 +6386,7 @@ function get_posts_by_author_sql( $post_type, $full = true, $post_author = null,
  *                          'gmt' uses the `post_date_gmt` field.
  *                          Default 'server'.
  * @param string $post_type Optional. The post type to check. Default 'any'.
- * @return string The date of the last post.
+ * @return string The date of the last post, or false on failure.
  */
 function get_lastpostdate( $timezone = 'server', $post_type = 'any' ) {
 	/**
@@ -6391,9 +6394,9 @@ function get_lastpostdate( $timezone = 'server', $post_type = 'any' ) {
 	 *
 	 * @since 2.3.0
 	 *
-	 * @param string $date     Date the last post was published.
-	 * @param string $timezone Location to use for getting the post published date.
-	 *                         See get_lastpostdate() for accepted `$timezone` values.
+	 * @param string|false $date     Date the last post was published. False on failure.
+	 * @param string       $timezone Location to use for getting the post published date.
+	 *                               See get_lastpostdate() for accepted `$timezone` values.
 	 */
 	return apply_filters( 'get_lastpostdate', _get_last_post_time( $timezone, 'date', $post_type ), $timezone );
 }
@@ -6412,7 +6415,7 @@ function get_lastpostdate( $timezone = 'server', $post_type = 'any' ) {
  *                          for information on accepted values.
  *                          Default 'server'.
  * @param string $post_type Optional. The post type to check. Default 'any'.
- * @return string The timestamp in 'Y-m-d H:i:s' format.
+ * @return string The timestamp in 'Y-m-d H:i:s' format, or false on failure.
  */
 function get_lastpostmodified( $timezone = 'server', $post_type = 'any' ) {
 	/**
@@ -6443,9 +6446,10 @@ function get_lastpostmodified( $timezone = 'server', $post_type = 'any' ) {
 	 *
 	 * @since 2.3.0
 	 *
-	 * @param string $lastpostmodified The most recent time that a post was modified, in 'Y-m-d H:i:s' format.
-	 * @param string $timezone         Location to use for getting the post modified date.
-	 *                                 See get_lastpostdate() for accepted `$timezone` values.
+	 * @param string|false $lastpostmodified The most recent time that a post was modified, in 'Y-m-d H:i:s' format.
+	 *                                       False on failure.
+	 * @param string       $timezone         Location to use for getting the post modified date.
+	 *                                       See get_lastpostdate() for accepted `$timezone` values.
 	 */
 	return apply_filters( 'get_lastpostmodified', $lastpostmodified, $timezone );
 }
@@ -6463,7 +6467,7 @@ function get_lastpostmodified( $timezone = 'server', $post_type = 'any' ) {
  *                          for information on accepted values.
  * @param string $field     Post field to check. Accepts 'date' or 'modified'.
  * @param string $post_type Optional. The post type to check. Default 'any'.
- * @return string|false The timestamp in 'Y-m-d H:i:s' format, or false on error.
+ * @return string|false The timestamp in 'Y-m-d H:i:s' format, or false on failure.
  */
 function _get_last_post_time( $timezone, $field, $post_type = 'any' ) {
 	global $wpdb;
@@ -6800,9 +6804,9 @@ function _publish_post_hook( $post_id ) {
 	}
 
 	if ( get_option( 'default_pingback_flag' ) ) {
-		add_post_meta( $post_id, '_pingme', '1' );
+		add_post_meta( $post_id, '_pingme', '1', true );
 	}
-	add_post_meta( $post_id, '_encloseme', '1' );
+	add_post_meta( $post_id, '_encloseme', '1', true );
 
 	$to_ping = get_to_ping( $post_id );
 	if ( ! empty( $to_ping ) ) {
@@ -7139,4 +7143,84 @@ function get_available_post_mime_types( $type = 'attachment' ) {
 
 	$types = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT post_mime_type FROM $wpdb->posts WHERE post_type = %s", $type ) );
 	return $types;
+}
+
+/**
+ * Retrieves the path to an uploaded image file.
+ *
+ * Similar to `get_attached_file()` however some images may have been processed after uploading
+ * to make them suitable for web use. In this case the attached "full" size file is usually replaced
+ * with a scaled down version of the original image. This function always returns the path
+ * to the originally uploaded image file.
+ *
+ * @since 5.3.0
+ *
+ * @param int $attachment_id Attachment ID.
+ * @return string|false Path to the original image file or false if the attachment is not an image.
+ */
+function wp_get_original_image_path( $attachment_id ) {
+	if ( ! wp_attachment_is_image( $attachment_id ) ) {
+		return false;
+	}
+
+	$image_meta = wp_get_attachment_metadata( $attachment_id );
+	$image_file = get_attached_file( $attachment_id );
+
+	if ( empty( $image_meta['original_image'] ) ) {
+		$original_image = $image_file;
+	} else {
+		$original_image = path_join( dirname( $image_file ), $image_meta['original_image'] );
+	}
+
+	/**
+	 * Filters the path to the original image.
+	 *
+	 * @since 5.3.0
+	 *
+	 * @param string $original_image Path to original image file.
+	 * @param int    $attachment_id  Attachment ID.
+	 */
+	return apply_filters( 'wp_get_original_image_path', $original_image, $attachment_id );
+}
+
+/**
+ * Retrieve the URL to an original attachment image.
+ *
+ * Similar to `wp_get_attachment_url()` however some images may have been
+ * processed after uploading. In this case this function returns the URL
+ * to the originally uploaded image file.
+ *
+ * @since 5.3.0
+ *
+ * @param int $attachment_id Attachment post ID.
+ * @return string|false Attachment image URL, false on error or if the attachment is not an image.
+ */
+function wp_get_original_image_url( $attachment_id ) {
+	if ( ! wp_attachment_is_image( $attachment_id ) ) {
+		return false;
+	}
+
+	$image_url = wp_get_attachment_url( $attachment_id );
+
+	if ( empty( $image_url ) ) {
+		return false;
+	}
+
+	$image_meta = wp_get_attachment_metadata( $attachment_id );
+
+	if ( empty( $image_meta['original_image'] ) ) {
+		$original_image_url = $image_url;
+	} else {
+		$original_image_url = path_join( dirname( $image_url ), $image_meta['original_image'] );
+	}
+
+	/**
+	 * Filters the URL to the original attachment image.
+	 *
+	 * @since 5.3.0
+	 *
+	 * @param string $original_image_url URL to original image.
+	 * @param int    $attachment_id      Attachment ID.
+	 */
+	return apply_filters( 'wp_get_original_image_url', $original_image_url, $attachment_id );
 }

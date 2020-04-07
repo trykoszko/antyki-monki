@@ -1,6 +1,19 @@
 <?php
 
 
+# get windows or unix slashes
+function fastvelocity_get_os_slash() {
+	
+	if(fvm_server_is_windows() === false) {
+		$slash = '/'; # unix
+	} else {
+		$slash = '\\'; # windows
+	}
+	
+	return $slash;
+}	
+
+
 # Fix the permission bits on generated files
 function fastvelocity_fix_permission_bits($file){
 	if(function_exists('stat') && fvm_function_available('stat')) {
@@ -23,7 +36,7 @@ function fastvelocity_fix_permission_bits($file){
 		if ($perms != ($perms & ~umask())){
 			$folder_parts = explode( '/', substr( $file, strlen(dirname($file)) + 1 ) );
 				for ( $i = 1, $c = count( $folder_parts ); $i <= $c; $i++ ) {
-				@chmod(dirname($file) . '/' . implode( '/', array_slice( $folder_parts, 0, $i ) ), $perms );
+				@chmod(dirname($file) . fastvelocity_get_os_slash() . implode( fastvelocity_get_os_slash(), array_slice( $folder_parts, 0, $i ) ), $perms );
 			}
 		}
 	}
@@ -36,8 +49,8 @@ function fastvelocity_fix_permission_bits($file){
 function fvm_cachepath() {
 
 # custom directory
-$fvm_change_cache_path = trim(rtrim(get_option('fastvelocity_min_change_cache_path', ''), '/'));
-$fvm_change_cache_base = trim(rtrim(get_option('fastvelocity_min_change_cache_base_url', ''), '/'));
+$fvm_change_cache_path = trim(rtrim(get_option('fastvelocity_min_change_cache_path', ''), fastvelocity_get_os_slash()));
+$fvm_change_cache_base = trim(rtrim(get_option('fastvelocity_min_change_cache_base_url', ''), fastvelocity_get_os_slash()));
 $upload = array();
 
 if(strlen($fvm_change_cache_path) > 1 && strlen($fvm_change_cache_base) > 10 && is_dir($fvm_change_cache_path) && is_writable($fvm_change_cache_path)) {
@@ -53,13 +66,13 @@ if(strlen($fvm_change_cache_path) > 1 && strlen($fvm_change_cache_base) > 10 && 
 $ctime = get_option('fvm-last-cache-update', '0'); 
 
 # create
-$uploadsdir  = str_ireplace('cache/cache', 'cache', $upload['basedir'].'/cache');
+$uploadsdir  = str_ireplace('cache'.fastvelocity_get_os_slash().'cache', 'cache', $upload['basedir'].fastvelocity_get_os_slash().'cache');
 $uploadsurl  = str_ireplace('cache/cache', 'cache', $upload['baseurl'].'/cache');
-$cachebase   = $uploadsdir.'/fvm/'.$ctime;
+$cachebase   = $uploadsdir.fastvelocity_get_os_slash().'fvm'.fastvelocity_get_os_slash().$ctime;
 $cachebaseurl  = $uploadsurl.'/fvm/'.$ctime;
-$cachedir    = $cachebase.'/out';
-$tmpdir      = $cachebase.'/tmp';
-$headerdir   = $cachebase.'/header';
+$cachedir    = $cachebase.fastvelocity_get_os_slash().'out';
+$tmpdir      = $cachebase.fastvelocity_get_os_slash().'tmp';
+$headerdir   = $cachebase.fastvelocity_get_os_slash().'header';
 $cachedirurl = $cachebaseurl.'/out';
 
 # get permissions from uploads directory
@@ -74,9 +87,9 @@ foreach ($dirs as $target) {
 	if(!is_dir($target)) {
 		if (@mkdir($target, $dir_perms, true)){
 			if ($dir_perms != ($dir_perms & ~umask())){
-				$folder_parts = explode( '/', substr($target, strlen(dirname($target)) + 1 ));
+				$folder_parts = explode( fastvelocity_get_os_slash(), substr($target, strlen(dirname($target)) + 1 ));
 					for ($i = 1, $c = count($folder_parts ); $i <= $c; $i++){
-					@chmod(dirname($target) . '/' . implode( '/', array_slice( $folder_parts, 0, $i ) ), $dir_perms );
+					@chmod(dirname($target) . fastvelocity_get_os_slash() . implode( fastvelocity_get_os_slash(), array_slice( $folder_parts, 0, $i ) ), $dir_perms );
 				}
 			}
 		} else {
@@ -141,7 +154,7 @@ function fvm_purge_old() {
 			while (false !== ($d = readdir($handle))) {
 				if (strcmp($d, '.')==0 || strcmp($d, '..')==0) { continue; }
 				if($d != $ctime && (is_numeric($d) && $d <= $expires)) {
-					$dir = $cachebaseparent.'/'.$d;
+					$dir = $cachebaseparent.fastvelocity_get_os_slash().$d;
 					if(is_dir($dir)) { 
 						fastvelocity_rrmdir($dir); 
 						if(is_dir($dir)) { @rmdir($dir); }
@@ -177,7 +190,7 @@ function fastvelocity_purge_all_global() {
 function fvm_get_transient($key) {
 	$cachepath = fvm_cachepath();
 	$tmpdir = $cachepath['tmpdir'];
-	$f = $tmpdir.'/'.$key.'.transient';
+	$f = $tmpdir.fastvelocity_get_os_slash().$key.'.transient';
 	clearstatcache();
 	if(file_exists($f)) {
 		return file_get_contents($f);
@@ -191,7 +204,7 @@ function fvm_set_transient($key, $code) {
 	if(is_null($code) || empty($code)) { return false; }
 	$cachepath = fvm_cachepath();
 	$tmpdir = $cachepath['tmpdir'];
-	$f = $tmpdir.'/'.$key.'.transient';
+	$f = $tmpdir.fastvelocity_get_os_slash().$key.'.transient';
 	file_put_contents($f, $code);
 	fastvelocity_fix_permission_bits($f);
 	return true;

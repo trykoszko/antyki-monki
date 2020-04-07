@@ -158,7 +158,7 @@ class WP_Site_Health {
 			// phpcs:ignore WordPress.DB.RestrictedFunctions.mysql_mysqli_get_server_info
 			$mysql_server_type = mysqli_get_server_info( $wpdb->dbh );
 		} else {
-			// phpcs:ignore WordPress.DB.RestrictedFunctions.mysql_mysql_get_server_info
+			// phpcs:ignore WordPress.DB.RestrictedFunctions.mysql_mysql_get_server_info,PHPCompatibility.Extensions.RemovedExtensions.mysql_DeprecatedRemoved
 			$mysql_server_type = mysql_get_server_info( $wpdb->dbh );
 		}
 
@@ -1016,6 +1016,46 @@ class WP_Site_Health {
 	}
 
 	/**
+	 * Test if the PHP default timezone is set to UTC.
+	 *
+	 * @since 5.3.1
+	 *
+	 * @return array The test results.
+	 */
+	public function get_test_php_default_timezone() {
+		$result = array(
+			'label'       => __( 'PHP default timezone is valid' ),
+			'status'      => 'good',
+			'badge'       => array(
+				'label' => __( 'Performance' ),
+				'color' => 'blue',
+			),
+			'description' => sprintf(
+				'<p>%s</p>',
+				__( 'PHP default timezone was configured by WordPress on loading. This is necessary for correct calculations of dates and times.' )
+			),
+			'test'        => 'php_default_timezone',
+		);
+
+		if ( 'UTC' !== date_default_timezone_get() ) {
+			$result['status'] = 'critical';
+
+			$result['label'] = __( 'PHP default timezone is invalid' );
+
+			$result['description'] = sprintf(
+				'<p>%s</p>',
+				sprintf(
+					/* translators: %s: date_default_timezone_set() */
+					__( 'PHP default timezone was changed after WordPress loading by a %s function call. This interferes with correct calculations of dates and times.' ),
+					'<code>date_default_timezone_set()</code>'
+				)
+			);
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Test if the SQL server is up to date.
 	 *
 	 * @since 5.2.0
@@ -1119,7 +1159,7 @@ class WP_Site_Health {
 			),
 			'description' => sprintf(
 				'<p>%s</p>',
-				__( 'UTF8MB4 is a database storage attribute that makes sure your site can store non-English text and other strings (for instance emoticons) without unexpected problems.' )
+				__( 'UTF8MB4 is the character set WordPress prefers for database storage because it safely supports the widest set of characters and encodings, including Emoji, enabling better support for non-English languages.' )
 			),
 			'actions'     => '',
 			'test'        => 'utf8mb4_support',
@@ -1171,7 +1211,7 @@ class WP_Site_Health {
 			// phpcs:ignore WordPress.DB.RestrictedFunctions.mysql_mysqli_get_client_info
 			$mysql_client_version = mysqli_get_client_info();
 		} else {
-			// phpcs:ignore WordPress.DB.RestrictedFunctions.mysql_mysql_get_client_info
+			// phpcs:ignore WordPress.DB.RestrictedFunctions.mysql_mysql_get_client_info,PHPCompatibility.Extensions.RemovedExtensions.mysql_DeprecatedRemoved
 			$mysql_client_version = mysql_get_client_info();
 		}
 
@@ -1372,7 +1412,7 @@ class WP_Site_Health {
 			),
 			'description' => sprintf(
 				'<p>%s</p>',
-				__( 'An HTTPS connection is needed for many features on the web today, it also gains the trust of your visitors by helping to protecting their online privacy.' )
+				__( 'An HTTPS connection is a more secure way of browsing the web. Many services now have HTTPS as a requirement. HTTPS allows you to take advantage of new features that can increase site speed, improve search rankings, and gain the trust of your visitors by helping to protect their online privacy.' )
 			),
 			'actions'     => sprintf(
 				'<p><a href="%s" target="_blank" rel="noopener noreferrer">%s <span class="screen-reader-text">%s</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a></p>',
@@ -1842,51 +1882,55 @@ class WP_Site_Health {
 	public static function get_tests() {
 		$tests = array(
 			'direct' => array(
-				'wordpress_version' => array(
+				'wordpress_version'    => array(
 					'label' => __( 'WordPress Version' ),
 					'test'  => 'wordpress_version',
 				),
-				'plugin_version'    => array(
+				'plugin_version'       => array(
 					'label' => __( 'Plugin Versions' ),
 					'test'  => 'plugin_version',
 				),
-				'theme_version'     => array(
+				'theme_version'        => array(
 					'label' => __( 'Theme Versions' ),
 					'test'  => 'theme_version',
 				),
-				'php_version'       => array(
+				'php_version'          => array(
 					'label' => __( 'PHP Version' ),
 					'test'  => 'php_version',
 				),
-				'sql_server'        => array(
-					'label' => __( 'Database Server version' ),
-					'test'  => 'sql_server',
-				),
-				'php_extensions'    => array(
+				'php_extensions'       => array(
 					'label' => __( 'PHP Extensions' ),
 					'test'  => 'php_extensions',
 				),
-				'utf8mb4_support'   => array(
+				'php_default_timezone' => array(
+					'label' => __( 'PHP Default Timezone' ),
+					'test'  => 'php_default_timezone',
+				),
+				'sql_server'           => array(
+					'label' => __( 'Database Server version' ),
+					'test'  => 'sql_server',
+				),
+				'utf8mb4_support'      => array(
 					'label' => __( 'MySQL utf8mb4 support' ),
 					'test'  => 'utf8mb4_support',
 				),
-				'https_status'      => array(
+				'https_status'         => array(
 					'label' => __( 'HTTPS status' ),
 					'test'  => 'https_status',
 				),
-				'ssl_support'       => array(
+				'ssl_support'          => array(
 					'label' => __( 'Secure communication' ),
 					'test'  => 'ssl_support',
 				),
-				'scheduled_events'  => array(
+				'scheduled_events'     => array(
 					'label' => __( 'Scheduled events' ),
 					'test'  => 'scheduled_events',
 				),
-				'http_requests'     => array(
+				'http_requests'        => array(
 					'label' => __( 'HTTP Requests' ),
 					'test'  => 'http_requests',
 				),
-				'debug_enabled'     => array(
+				'debug_enabled'        => array(
 					'label' => __( 'Debugging enabled' ),
 					'test'  => 'is_in_debug_mode',
 				),

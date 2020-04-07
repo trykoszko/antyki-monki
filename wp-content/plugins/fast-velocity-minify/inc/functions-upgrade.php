@@ -1,37 +1,39 @@
 <?php
 
-function fastvelocity_version_check() {
+
+# run after updating
+add_action( 'upgrader_process_complete', 'fastvelocity_plugin_upgrade_completed', 10, 2 );
+function fastvelocity_plugin_upgrade_completed($upgrader_object, $options) {
+	
 	global $fastvelocity_plugin_version;
 	
 	# current FVM install date, create if it doesn't exist
 	$ver = get_option("fastvelocity_plugin_version");
-	if ($ver == false) { $ver = '0.0.0'; }
+	if ($ver == false) { $ver = '1'; }
 	
 	# save current version on upgrade
 	if ($ver != $fastvelocity_plugin_version) {
 		update_option( "fastvelocity_plugin_version", $fastvelocity_plugin_version);
 	}
 	
-	# compare versions (0.1.2)
-	$dots = explode('.', $ver);
-	if(!is_array($dots) || count($dots) != 3) { return false; }
-	
-	# changed options on 2.6.1 (elementor fixes)
-	if($dots[0] <= 2 && $dots[1] <= 6 && $dots[2] < 1) {
-		
-		# ignore list
-		$ignorelist = array_filter(array_map('trim', explode(PHP_EOL, get_option('fastvelocity_min_ignorelist', ''))));
-		$exc = array('/Avada/assets/js/main.min.js', '/woocommerce-product-search/js/product-search.js', '/includes/builder/scripts/frontend-builder-scripts.js', '/assets/js/jquery.themepunch.tools.min.js', '/js/TweenMax.min.js', '/jupiter/assets/js/min/full-scripts', '/Divi/core/admin/js/react-dom.production.min.js', '/LayerSlider/static/layerslider/js/greensock.js', '/kalium/assets/js/main.min.js', '/elementor/assets/js/common.min.js', '/elementor/assets/js/frontend.min.js', '/elementor-pro/assets/js/frontend.min.js');
-		$new = array_unique(array_merge($ignorelist, $exc));
-		update_option('fastvelocity_min_ignorelist', implode(PHP_EOL, $new));
-		
-		# default minimal settings
-		update_option('fastvelocity_preserve_settings_on_uninstall', 1);
-		update_option('fastvelocity_min_fvm_fix_editor', 1);
+	if( $options['action'] == 'update' && $options['type'] == 'plugin' && isset( $options['plugins'] ) ) {
+		# Iterate through the plugins being updated and check if ours is there
+		foreach( $options['plugins'] as $plugin ) {
+			if( $plugin == plugin_basename( __FILE__ )) {
+				
+				# run for any update lower than 2.8.0
+				if (version_compare($ver, '2.8.0', '<')) {
+
+					# default ignore list
+					$exc = array('/themes/Avada/assets/js/main.min.js', '/plugins/woocommerce-product-search/js/product-search.js', '/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js', '/js/TweenMax.min.js', '/themes/jupiter/assets/js/min/full-scripts', '/plugins/LayerSlider/static/layerslider/js/greensock.js', '/themes/kalium/assets/js/main.min.js', '/js/mediaelement/', '/plugins/elementor/assets/js/common.min.js', '/plugins/elementor/assets/js/frontend.min.js', '/plugins/elementor-pro/assets/js/frontend.min.js', '/themes/kalium/assets/js/main.min.js');
+					update_option('fastvelocity_min_ignorelist', implode(PHP_EOL, $exc));
+
+				}
+			}
+		}
 	}
-	
 }
-add_action( 'plugins_loaded', 'fastvelocity_version_check' );
+
 
 
 # upgrade notifications

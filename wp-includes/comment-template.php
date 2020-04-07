@@ -224,7 +224,7 @@ function get_comment_author_link( $comment_ID = 0 ) {
 	if ( empty( $url ) || 'http://' == $url ) {
 		$return = $author;
 	} else {
-		$return = "<a href='$url' rel='external nofollow' class='url'>$author</a>";
+		$return = "<a href='$url' rel='external nofollow ugc' class='url'>$author</a>";
 	}
 
 	/**
@@ -1307,7 +1307,7 @@ function wp_comment_form_unfiltered_html_nonce() {
  * @global WP_Post    $post             Global post object.
  * @global wpdb       $wpdb             WordPress database abstraction object.
  * @global int        $id
- * @global WP_Comment $comment
+ * @global WP_Comment $comment          Global comment object.
  * @global string     $user_login
  * @global int        $user_ID
  * @global string     $user_identity
@@ -1646,6 +1646,10 @@ function get_comment_reply_link( $args = array(), $comment = null, $post = null 
 
 	$comment = get_comment( $comment );
 
+	if ( empty( $comment ) ) {
+		return;
+	}
+
 	if ( empty( $post ) ) {
 		$post = $comment->comment_post_ID;
 	}
@@ -1918,7 +1922,7 @@ function comment_id_fields( $id = 0 ) {
  *
  * @since 2.7.0
  *
- * @global WP_Comment $comment Current comment.
+ * @global WP_Comment $comment Global comment object.
  *
  * @param string $noreplytext  Optional. Text to display when not replying to a comment.
  *                             Default false.
@@ -2429,7 +2433,7 @@ function comment_form( $args = array(), $post_id = null ) {
 	$args = array_merge( $defaults, $args );
 
 	// Remove aria-describedby from the email field if there's no associated description.
-	if ( false === strpos( $args['comment_notes_before'], 'id="email-notes"' ) ) {
+	if ( isset( $args['fields']['email'] ) && false === strpos( $args['comment_notes_before'], 'id="email-notes"' ) ) {
 		$args['fields']['email'] = str_replace(
 			' aria-describedby="email-notes"',
 			'',

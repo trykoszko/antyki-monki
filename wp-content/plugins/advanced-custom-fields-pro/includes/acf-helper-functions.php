@@ -303,7 +303,7 @@ function acf_maybe_idval( $value ) {
 }
 
 /**
- * acf_numericval
+ * acf_numval
  *
  * Casts the provided value as eiter an int or float using a simple hack.
  *
@@ -341,10 +341,11 @@ function acf_idify( $str = '' ) {
  * @since	5.6.5
  *
  * @param	string $str The string to convert.
+ * @param	string $glue The glue between each slug piece.
  * @return	string
  */
-function acf_slugify( $str = '' ) {
-	return str_replace(array('_', '/', ' '), '-', strtolower($str));
+function acf_slugify( $str = '', $glue = '-' ) {
+	return str_replace(array('_', '-', '/', ' '), $glue, strtolower($str));
 }
 
 /**
@@ -362,4 +363,26 @@ function acf_punctify( $str = '' ) {
 	return trim($str, '.') . '.';
 }
 
-
+/**
+ * acf_did
+ *
+ * Returns true if ACF already did an event.
+ *
+ * @date	30/8/19
+ * @since	5.8.1
+ *
+ * @param	string $name The name of the event.
+ * @return	bool
+ */
+function acf_did( $name ) {
+	
+	// Return true if already did the event (preventing event).
+	if( acf_get_data("acf_did_$name") ) {
+		return true;
+	
+	// Otherwise, update store and return false (alowing event).
+	} else {
+		acf_set_data("acf_did_$name", true);
+		return false;
+	}
+}

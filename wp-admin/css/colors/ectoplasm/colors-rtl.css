@@ -16,11 +16,12 @@ a:hover, a:active, a:focus {
   color: #0096dd;
 }
 
-#media-upload a.del-link:hover,
-div.dashboard-widget-submit input:hover,
-.subsubsub a:hover,
-.subsubsub a.current:hover {
-  color: #0096dd;
+#post-body .misc-pub-post-status:before,
+#post-body #visibility:before,
+.curtime #timestamp:before,
+#post-body .misc-pub-revisions:before,
+span.wp-media-buttons-icon:before {
+  color: currentColor;
 }
 
 /* Forms */
@@ -61,12 +62,42 @@ textarea:focus {
 }
 
 /* Core UI */
+.wp-core-ui .button {
+  border-color: #7e8993;
+  color: #32373c;
+}
+
+.wp-core-ui .button.hover,
+.wp-core-ui .button:hover,
 .wp-core-ui .button.focus,
-.wp-core-ui .button:focus,
-.wp-core-ui .button-secondary:focus {
+.wp-core-ui .button:focus {
+  border-color: #717c87;
+  color: #262a2e;
+}
+
+.wp-core-ui .button.focus,
+.wp-core-ui .button:focus {
+  border-color: #7e8993;
+  color: #262a2e;
+  box-shadow: 0 0 0 1px #32373c;
+}
+
+.wp-core-ui .button:active {
+  border-color: #7e8993;
+  color: #262a2e;
+  box-shadow: none;
+}
+
+.wp-core-ui .button.active,
+.wp-core-ui .button.active:focus,
+.wp-core-ui .button.active:hover {
   border-color: #a3b745;
-  color: #93a43e;
-  box-shadow: 0 0 0 1px #a3b745;
+  color: #262a2e;
+  box-shadow: inset 0 2px 5px -3px #a3b745;
+}
+
+.wp-core-ui .button.active:focus {
+  box-shadow: 0 0 0 1px #32373c;
 }
 
 .wp-core-ui .button-primary {
@@ -85,16 +116,28 @@ textarea:focus {
   box-shadow: 0 0 0 1px #fff, 0 0 0 3px #a3b745;
 }
 
-.wp-core-ui .button-primary:active, .wp-core-ui .button-primary.active, .wp-core-ui .button-primary.active:focus, .wp-core-ui .button-primary.active:hover {
+.wp-core-ui .button-primary:active {
   background: #93a43e;
   border-color: #93a43e;
+  color: #fff;
+}
+
+.wp-core-ui .button-primary.active, .wp-core-ui .button-primary.active:focus, .wp-core-ui .button-primary.active:hover {
+  background: #a3b745;
+  color: #fff;
+  border-color: #727f30;
+  box-shadow: inset 0 2px 5px -3px black;
 }
 
 .wp-core-ui .button-primary[disabled], .wp-core-ui .button-primary:disabled, .wp-core-ui .button-primary.button-primary-disabled, .wp-core-ui .button-primary.disabled {
   color: #cfd1c7 !important;
-  background: #bfcd7b !important;
-  border-color: #bfcd7b !important;
+  background: #89993a !important;
+  border-color: #89993a !important;
   text-shadow: none !important;
+}
+
+.wp-core-ui .button-group > .button.active {
+  border-color: #a3b745;
 }
 
 .wp-core-ui .wp-ui-primary {

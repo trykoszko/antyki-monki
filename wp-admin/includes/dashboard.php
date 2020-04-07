@@ -623,7 +623,7 @@ function wp_dashboard_recent_drafts( $drafts = false ) {
  * @access private
  * @since 2.7.0
  *
- * @global WP_Comment $comment
+ * @global WP_Comment $comment Global comment object.
  *
  * @param WP_Comment $comment   The current comment.
  * @param bool       $show_date Optional. Whether to display the date.
@@ -1055,6 +1055,8 @@ function wp_dashboard_rss_output( $widget_id ) {
  * which is later replaced by Ajax call (see top of /wp-admin/index.php)
  *
  * @since 2.5.0
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
  *
  * @param string   $widget_id  The widget ID.
  * @param callable $callback   The callback funtion used to display each feed.
@@ -1795,22 +1797,11 @@ function wp_welcome_panel() {
 	<div class="welcome-panel-column welcome-panel-last">
 		<h3><?php _e( 'More Actions' ); ?></h3>
 		<ul>
-		<?php
-		if ( current_theme_supports( 'widgets' ) || current_theme_supports( 'menus' ) ) :
-			if ( current_theme_supports( 'widgets' ) && current_theme_supports( 'menus' ) ) {
-				$widgets_menus_link = sprintf(
-					/* translators: 1: URL to Widgets screen, 2: URL to Menus screen. */
-					__( 'Manage <a href="%1$s">widgets</a> or <a href="%2$s">menus</a>' ),
-					admin_url( 'widgets.php' ),
-					admin_url( 'nav-menus.php' )
-				);
-			} elseif ( current_theme_supports( 'widgets' ) ) {
-				$widgets_menus_link = '<a href="' . admin_url( 'widgets.php' ) . '">' . __( 'Manage widgets' ) . '</a>';
-			} else {
-				$widgets_menus_link = '<a href="' . admin_url( 'nav-menus.php' ) . '">' . __( 'Manage menus' ) . '</a>';
-			}
-			?>
-			<li><div class="welcome-icon welcome-widgets-menus"><?php echo $widgets_menus_link; ?></div></li>
+		<?php if ( current_theme_supports( 'widgets' ) ) : ?>
+			<li><?php printf( '<a href="%s" class="welcome-icon welcome-widgets">' . __( 'Manage widgets' ) . '</a>', admin_url( 'widgets.php' ) ); ?></li>
+		<?php endif; ?>
+		<?php if ( current_theme_supports( 'menus' ) ) : ?>
+			<li><?php printf( '<a href="%s" class="welcome-icon welcome-menus">' . __( 'Manage menus' ) . '</a>', admin_url( 'nav-menus.php' ) ); ?></li>
 		<?php endif; ?>
 		<?php if ( current_user_can( 'manage_options' ) ) : ?>
 			<li><?php printf( '<a href="%s" class="welcome-icon welcome-comments">' . __( 'Turn comments on or off' ) . '</a>', admin_url( 'options-discussion.php' ) ); ?></li>

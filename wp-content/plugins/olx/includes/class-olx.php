@@ -1,42 +1,30 @@
 <?php
 
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-auth.php';
+
 class Olx {
 
     public $textdomain = 'olx';
-
-    private $client_id;
-    private $client_secret;
-    private $scope;
-    private $code;
-    private $olx_url = 'https://www.olx.pl';
-    private $refresh_token;
-    private $access_token;
+    private $api_token;
 
     public function __construct() {
 
-        $this->get_credentials();
-        $this->get_token();
-        $this->refresh_token();
+        $this->get_api_token();
 
-        register_activation_hook( __FILE__, array( $this, 'on_activate' ) );
+        // register_activation_hook( __FILE__, array( $this, 'on_activate' ) );
 
-        add_action( 'admin_init', array( $this, 'on_admin_init' ) );
-        add_action( 'admin_menu', array( $this, 'add_to_admin_menu' ) );
+        // add_action( 'admin_init', array( $this, 'on_admin_init' ) );
+        // add_action( 'admin_menu', array( $this, 'add_to_admin_menu' ) );
 
     }
 
-    private function get_credentials() {
-        require 'olx-credentials.php';
-        $this->client_id = $credentials['client_id'];
-        $this->client_secret = $credentials['client_secret'];
-        $this->scope = $credentials['scope'];
-        $this->code = $credentials['code'];
-        $this->refresh_token = $credentials['refresh_token'];
-    }
+    private function get_api_token() {
 
-    private function get_token() {
-        require 'olx-token.php';
-        $this->access_token = $access_token;
+        $auth = new Auth;
+        $auth->authorize();
+        // $this->api_token = $auth->get_api_token();
+        // echo $this->api_token;
+
     }
 
     public function add_to_admin_menu() {

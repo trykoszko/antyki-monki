@@ -314,7 +314,6 @@ function media_handle_upload( $file_id, $post_id, $post_data = array(), $overrid
 	$title   = sanitize_text_field( $name );
 	$content = '';
 	$excerpt = '';
-	$_ref    = false;
 
 	if ( preg_match( '#^audio#', $type ) ) {
 		$meta = wp_read_audio_metadata( $file );
@@ -409,20 +408,15 @@ function media_handle_upload( $file_id, $post_id, $post_data = array(), $overrid
 	$attachment_id = wp_insert_attachment( $attachment, $file, $post_id, true );
 
 	if ( ! is_wp_error( $attachment_id ) ) {
-		// If an image, keep the upload reference until all image sub-sizes are created.
-		if ( ! empty( $_POST['_wp_temp_upload_ref'] ) && wp_attachment_is_image( $attachment_id ) ) {
-			$_ref = _wp_set_upload_ref( $_POST['_wp_temp_upload_ref'], $attachment_id );
+		// Set a custom header with the attachment_id.
+		// Used by the browser/client to resume creating image sub-sizes after a PHP fatal error.
+		if ( ! headers_sent() ) {
+			header( 'X-WP-Upload-Attachment-ID: ' . $attachment_id );
 		}
 
 		// The image sub-sizes are created during wp_generate_attachment_metadata().
 		// This is generally slow and may cause timeouts or out of memory errors.
 		wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $file ) );
-
-		// At this point the image is uploaded successfully even if there were specific errors or some sub-sizes were not created.
-		// The transient is not needed any more.
-		if ( $_ref ) {
-			_wp_clear_upload_ref( $_POST['_wp_temp_upload_ref'] );
-		}
 	}
 
 	return $attachment_id;
@@ -432,7 +426,7 @@ function media_handle_upload( $file_id, $post_id, $post_data = array(), $overrid
  * Handles a side-loaded file in the same way as an uploaded file is handled by media_handle_upload().
  *
  * @since 2.6.0
- * @since 5.3.0 Made `$post_id` parameter optional.
+ * @since 5.3.0 The `$post_id` parameter was made optional.
  *
  * @param array  $file_array Array similar to a `$_FILES` upload array.
  * @param int    $post_id    Optional. The post ID the media is associated with.
@@ -510,6 +504,8 @@ function media_handle_sideload( $file_array, $post_id = 0, $desc = null, $post_d
  * Outputs the iframe to display the media upload page.
  *
  * @since 2.5.0
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
  *
  * @global int $body_id
  *
@@ -970,7 +966,7 @@ function wp_media_upload_handler() {
  * @since 2.6.0
  * @since 4.2.0 Introduced the `$return` parameter.
  * @since 4.8.0 Introduced the 'id' option within the `$return` parameter.
- * @since 5.3.0 Made the `$post_id` parameter optional
+ * @since 5.3.0 The `$post_id` parameter was made optional.
  *
  * @param string $file    The URL of the image to download.
  * @param int    $post_id Optional. The post ID the media is to be associated with.
@@ -3207,7 +3203,7 @@ function edit_form_image_editor( $post ) {
 
 	?>
 
-	<label for="attachment_content"><strong><?php _e( 'Description' ); ?></strong>
+	<label for="attachment_content" class="attachment-content-description"><strong><?php _e( 'Description' ); ?></strong>
 	<?php
 
 	if ( preg_match( '#^(audio|video)/#', $post->post_mime_type ) ) {

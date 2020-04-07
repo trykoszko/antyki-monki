@@ -42,7 +42,6 @@ function fvm_function_available($func) {
 	return true;
 }
 
-
 # run during activation
 function fastvelocity_plugin_activate() {
 	
@@ -69,7 +68,7 @@ function fastvelocity_plugin_activate() {
 		update_option('fastvelocity_min_blacklist', implode(PHP_EOL, $exc)); 
 		
 		# default ignore list
-		$exc = array('/Avada/assets/js/main.min.js', '/woocommerce-product-search/js/product-search.js', '/includes/builder/scripts/frontend-builder-scripts.js', '/assets/js/jquery.themepunch.tools.min.js', '/js/TweenMax.min.js', '/jupiter/assets/js/min/full-scripts', '/wp-content/themes/Divi/core/admin/js/react-dom.production.min.js', '/LayerSlider/static/layerslider/js/greensock.js', '/themes/kalium/assets/js/main.min.js', '/elementor/assets/js/common.min.js', '/elementor/assets/js/frontend.min.js', '/elementor-pro/assets/js/frontend.min.js');
+		$exc = array('/themes/Avada/assets/js/main.min.js', '/plugins/woocommerce-product-search/js/product-search.js', '/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js', '/js/TweenMax.min.js', '/themes/jupiter/assets/js/min/full-scripts', '/plugins/LayerSlider/static/layerslider/js/greensock.js', '/themes/kalium/assets/js/main.min.js', '/js/mediaelement/', '/plugins/elementor/assets/js/common.min.js', '/plugins/elementor/assets/js/frontend.min.js', '/plugins/elementor-pro/assets/js/frontend.min.js', '/themes/kalium/assets/js/main.min.js');
 		update_option('fastvelocity_min_ignorelist', implode(PHP_EOL, $exc));
 		
 	}
@@ -111,6 +110,13 @@ function fastvelocity_plugin_uninstall() {
 
 
 
+
+# try catch wrapper for merged javascript
+function fastvelocity_try_catch_wrap($js) {
+	return 'try{'.PHP_EOL . $js . PHP_EOL . '}' . PHP_EOL . 'catch(e){console.error("An error has occurred: "+e.stack);}'.PHP_EOL;
+}
+
+
 # detect external or internal scripts
 function fvm_is_local_domain($src) {
 $locations = array(home_url(), site_url(), network_home_url(), network_site_url());
@@ -148,7 +154,8 @@ return $ret;
 function fastvelocity_min_get_hurl($src, $wp_domain, $wp_home) {
 	
 # preserve empty source handles
-$hurl = trim($src); if(empty($hurl)) { return $hurl; }      
+$hurl = trim($src); 
+if(empty($hurl)) { return $hurl; }      
 
 # some fixes
 $hurl = str_ireplace(array('&#038;', '&amp;'), '&', $hurl);
@@ -190,6 +197,9 @@ if (stripos($hurl, '.css?v') !== false) { $hurl = stristr($hurl, '.css?v', true)
 
 # make sure there is a protocol prefix as required
 $hurl = fvm_compat_urls($hurl); # enforce protocol
+
+# add filter for developers
+$hurl = apply_filters('fvm_get_url', $hurl);
 
 return $hurl;	
 }
@@ -351,9 +361,14 @@ global $wp_domain, $fvm_debug;
 $css = fastvelocity_min_remove_utf8_bom($css); 
 
 # fix url paths
-if(!empty($url)) { 
+if(!empty($url)) {
+	$matches = array(); preg_match_all("/url\(\s*['\"]?(?!data:)(?!http)(?![\/'\"])(.+?)['\"]?\s*\)/ui", $css, $matches);
+    foreach($matches[1] as $a) { $b = trim($a); if($b != $a) { $css = str_replace($a, $b, $css); } }
 	$css = preg_replace("/url\(\s*['\"]?(?!data:)(?!http)(?![\/'\"])(.+?)['\"]?\s*\)/ui", "url(".dirname($url)."/$1)", $css); 
-} 
+}
+
+# no utf8 garbage
+$css = str_ireplace('@charset "UTF-8";', '', $css);
 
 # remove query strings from fonts (for better seo, but add a small cache buster based on most recent updates)
 $ctime = get_option('fvm-last-cache-update', '0'); # last update or zero
@@ -748,7 +763,7 @@ function fvm_safename($str, $noname=NULL) {
 	}
 	
 	# fallback
-	return 'noname-'.hash('adler32', $str); 
+	return 'noname-'.hash('sha1', $str); 
 }
 
 
@@ -774,6 +789,9 @@ function fastvelocity_load_fvuag() {
 	# Thrive plugins and other post_types
 	$arr = array('tve_form_type', 'tve_lead_shortcode', 'tqb_splash');
 	foreach ($arr as $a) { if(isset($_GET['post_type']) && $_GET['post_type'] == $a) { return true; } }
+	
+	# thrive architect
+	if(isset($_GET['tve']) && $_GET['tve'] == 'true') { return true; }
 	
 	# elementor
 	if(isset($_GET['elementor-preview'])) { return true; }
@@ -814,22 +832,36 @@ function fastvelocity_exclude_contents() {
 		return true;
 	}
 	
-	# customizer preview, visual composer
-	$arr = array('customize_theme', 'preview_id', 'preview');
-	foreach ($arr as $a) { if(isset($_GET[$a])) { return true; } }
-
-	# Thrive plugins and other post_types
-	$arr = array('tve_form_type', 'tve_lead_shortcode', 'tqb_splash');
-	foreach ($arr as $a) { if(isset($_GET['post_type']) && $_GET['post_type'] == $a) { return true; } }
-	
-	# elementor
-	if(isset($_GET['elementor-preview'])) { return true; }
+	# get params exclusions
 	if(is_array($_GET)) {
 		foreach ($_GET as $k=>$v) {
 			if(is_string($v) && is_string($k)) {
+				
+				# elementor
 				if(stripos($k, 'elementor') !== false || stripos($v, 'elementor') !== false) {
 					return true;
 				}
+				
+				# customizer preview, visual composer
+				if(stripos($k, 'customize_theme') !== false || stripos($k, 'preview_id') !== false || stripos($k, 'preview') !== false) {
+					return true;
+				}
+				
+				# thrive plugins post_types
+				if(stripos($k, 'post_type') !== false && (stripos($v, 'tve_') !== false || stripos($v, 'tqb_') !== false)) {
+					return true;
+				}
+				
+				# thrive architect
+				if($k == 'tve' && $v == 'true') {
+					return true;
+				}
+				
+				# Divi Builder
+				if($k == 'et_fb' || $k == 'PageSpeed') {
+					return true;
+				}
+								
 			}
 		}
 	}
@@ -854,16 +886,15 @@ if(is_array($ignore)) {
 	
 	# should we exclude jquery when defer is enabled?
 	$exclude_defer_jquery = get_option('fastvelocity_min_exclude_defer_jquery');
-	$enable_defer_js = get_option('fastvelocity_min_enable_defer_js');
-	if($enable_defer_js == true && $exclude_defer_jquery == true) {
+	if($exclude_defer_jquery == true) {
 		$exc[] = '/jquery.js';
 		$exc[] = '/jquery.min.js';
 	}
 
 	# make sure it's unique and not empty
 	$uniq = array();
-	foreach ($ignore as $i) { $k = hash('adler32', $i); if(!empty($i)) { $uniq[$k] = $i; } }
-	foreach ($exc as $e) { $k = hash('adler32', $e); if(!empty($e)) { $uniq[$k] = $e; } }
+	foreach ($ignore as $i) { $k = hash('sha1', $i); if(!empty($i)) { $uniq[$k] = $i; } }
+	foreach ($exc as $e) { $k = hash('sha1', $e); if(!empty($e)) { $uniq[$k] = $e; } }
 
 	# merge and return
 	return $uniq;

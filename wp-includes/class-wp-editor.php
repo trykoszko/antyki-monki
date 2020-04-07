@@ -1294,7 +1294,7 @@ final class _WP_Editors {
 				'Link options'                         => __( 'Link options' ), // Tooltip for the 'link options' button in the inline link dialog
 				'Visual'                               => _x( 'Visual', 'Name for the Visual editor tab' ), // Editor switch tab label
 				'Text'                                 => _x( 'Text', 'Name for the Text editor tab (formerly HTML)' ), // Editor switch tab label
-				'Add Media'                            => array( __( 'Add Media' ), 'accessM' ), // Tooltip for the 'Add Media' button in the Block Editor Classic block
+				'Add Media'                            => array( __( 'Add Media' ), 'accessM' ), // Tooltip for the 'Add Media' button in the block editor Classic block
 
 				// Shortcuts help modal
 				'Keyboard Shortcuts'                   => array( __( 'Keyboard Shortcuts' ), 'accessH' ),
@@ -1330,13 +1330,13 @@ final class _WP_Editors {
 			'Image options' => __( 'Image options' ),
 			'Back' => __( 'Back' ),
 			'Invert' => __( 'Invert' ),
-			'Flip horizontally' => __( 'Flip horizontally' ),
-			'Flip vertically' => __( 'Flip vertically' ),
+			'Flip horizontally' => __( 'Flip horizontal' ),
+			'Flip vertically' => __( 'Flip vertical' ),
 			'Crop' => __( 'Crop' ),
 			'Orientation' => __( 'Orientation' ),
 			'Resize' => __( 'Resize' ),
-			'Rotate clockwise' => __( 'Rotate clockwise' ),
-			'Rotate counterclockwise' => __( 'Rotate counterclockwise' ),
+			'Rotate clockwise' => __( 'Rotate right' ),
+			'Rotate counterclockwise' => __( 'Rotate left' ),
 			'Sharpen' => __( 'Sharpen' ),
 			'Brightness' => __( 'Brightness' ),
 			'Color levels' => __( 'Color levels' ),

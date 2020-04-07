@@ -82,7 +82,7 @@ this["wp"] = this["wp"] || {}; this["wp"]["coreData"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 387);
+/******/ 	return __webpack_require__(__webpack_require__.s = 349);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -152,7 +152,7 @@ function _toConsumableArray(arr) {
 /***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(48);
+module.exports = __webpack_require__(47);
 
 
 /***/ }),
@@ -223,314 +223,14 @@ function _iterableToArray(iter) {
 
 /***/ }),
 
-/***/ 32:
+/***/ 34:
 /***/ (function(module, exports) {
 
 (function() { module.exports = this["wp"]["apiFetch"]; }());
 
 /***/ }),
 
-/***/ 35:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-var LEAF_KEY, hasWeakMap;
-
-/**
- * Arbitrary value used as key for referencing cache object in WeakMap tree.
- *
- * @type {Object}
- */
-LEAF_KEY = {};
-
-/**
- * Whether environment supports WeakMap.
- *
- * @type {boolean}
- */
-hasWeakMap = typeof WeakMap !== 'undefined';
-
-/**
- * Returns the first argument as the sole entry in an array.
- *
- * @param {*} value Value to return.
- *
- * @return {Array} Value returned as entry in array.
- */
-function arrayOf( value ) {
-	return [ value ];
-}
-
-/**
- * Returns true if the value passed is object-like, or false otherwise. A value
- * is object-like if it can support property assignment, e.g. object or array.
- *
- * @param {*} value Value to test.
- *
- * @return {boolean} Whether value is object-like.
- */
-function isObjectLike( value ) {
-	return !! value && 'object' === typeof value;
-}
-
-/**
- * Creates and returns a new cache object.
- *
- * @return {Object} Cache object.
- */
-function createCache() {
-	var cache = {
-		clear: function() {
-			cache.head = null;
-		},
-	};
-
-	return cache;
-}
-
-/**
- * Returns true if entries within the two arrays are strictly equal by
- * reference from a starting index.
- *
- * @param {Array}  a         First array.
- * @param {Array}  b         Second array.
- * @param {number} fromIndex Index from which to start comparison.
- *
- * @return {boolean} Whether arrays are shallowly equal.
- */
-function isShallowEqual( a, b, fromIndex ) {
-	var i;
-
-	if ( a.length !== b.length ) {
-		return false;
-	}
-
-	for ( i = fromIndex; i < a.length; i++ ) {
-		if ( a[ i ] !== b[ i ] ) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
-/**
- * Returns a memoized selector function. The getDependants function argument is
- * called before the memoized selector and is expected to return an immutable
- * reference or array of references on which the selector depends for computing
- * its own return value. The memoize cache is preserved only as long as those
- * dependant references remain the same. If getDependants returns a different
- * reference(s), the cache is cleared and the selector value regenerated.
- *
- * @param {Function} selector      Selector function.
- * @param {Function} getDependants Dependant getter returning an immutable
- *                                 reference or array of reference used in
- *                                 cache bust consideration.
- *
- * @return {Function} Memoized selector.
- */
-/* harmony default export */ __webpack_exports__["a"] = (function( selector, getDependants ) {
-	var rootCache, getCache;
-
-	// Use object source as dependant if getter not provided
-	if ( ! getDependants ) {
-		getDependants = arrayOf;
-	}
-
-	/**
-	 * Returns the root cache. If WeakMap is supported, this is assigned to the
-	 * root WeakMap cache set, otherwise it is a shared instance of the default
-	 * cache object.
-	 *
-	 * @return {(WeakMap|Object)} Root cache object.
-	 */
-	function getRootCache() {
-		return rootCache;
-	}
-
-	/**
-	 * Returns the cache for a given dependants array. When possible, a WeakMap
-	 * will be used to create a unique cache for each set of dependants. This
-	 * is feasible due to the nature of WeakMap in allowing garbage collection
-	 * to occur on entries where the key object is no longer referenced. Since
-	 * WeakMap requires the key to be an object, this is only possible when the
-	 * dependant is object-like. The root cache is created as a hierarchy where
-	 * each top-level key is the first entry in a dependants set, the value a
-	 * WeakMap where each key is the next dependant, and so on. This continues
-	 * so long as the dependants are object-like. If no dependants are object-
-	 * like, then the cache is shared across all invocations.
-	 *
-	 * @see isObjectLike
-	 *
-	 * @param {Array} dependants Selector dependants.
-	 *
-	 * @return {Object} Cache object.
-	 */
-	function getWeakMapCache( dependants ) {
-		var caches = rootCache,
-			isUniqueByDependants = true,
-			i, dependant, map, cache;
-
-		for ( i = 0; i < dependants.length; i++ ) {
-			dependant = dependants[ i ];
-
-			// Can only compose WeakMap from object-like key.
-			if ( ! isObjectLike( dependant ) ) {
-				isUniqueByDependants = false;
-				break;
-			}
-
-			// Does current segment of cache already have a WeakMap?
-			if ( caches.has( dependant ) ) {
-				// Traverse into nested WeakMap.
-				caches = caches.get( dependant );
-			} else {
-				// Create, set, and traverse into a new one.
-				map = new WeakMap();
-				caches.set( dependant, map );
-				caches = map;
-			}
-		}
-
-		// We use an arbitrary (but consistent) object as key for the last item
-		// in the WeakMap to serve as our running cache.
-		if ( ! caches.has( LEAF_KEY ) ) {
-			cache = createCache();
-			cache.isUniqueByDependants = isUniqueByDependants;
-			caches.set( LEAF_KEY, cache );
-		}
-
-		return caches.get( LEAF_KEY );
-	}
-
-	// Assign cache handler by availability of WeakMap
-	getCache = hasWeakMap ? getWeakMapCache : getRootCache;
-
-	/**
-	 * Resets root memoization cache.
-	 */
-	function clear() {
-		rootCache = hasWeakMap ? new WeakMap() : createCache();
-	}
-
-	// eslint-disable-next-line jsdoc/check-param-names
-	/**
-	 * The augmented selector call, considering first whether dependants have
-	 * changed before passing it to underlying memoize function.
-	 *
-	 * @param {Object} source    Source object for derivation.
-	 * @param {...*}   extraArgs Additional arguments to pass to selector.
-	 *
-	 * @return {*} Selector result.
-	 */
-	function callSelector( /* source, ...extraArgs */ ) {
-		var len = arguments.length,
-			cache, node, i, args, dependants;
-
-		// Create copy of arguments (avoid leaking deoptimization).
-		args = new Array( len );
-		for ( i = 0; i < len; i++ ) {
-			args[ i ] = arguments[ i ];
-		}
-
-		dependants = getDependants.apply( null, args );
-		cache = getCache( dependants );
-
-		// If not guaranteed uniqueness by dependants (primitive type or lack
-		// of WeakMap support), shallow compare against last dependants and, if
-		// references have changed, destroy cache to recalculate result.
-		if ( ! cache.isUniqueByDependants ) {
-			if ( cache.lastDependants && ! isShallowEqual( dependants, cache.lastDependants, 0 ) ) {
-				cache.clear();
-			}
-
-			cache.lastDependants = dependants;
-		}
-
-		node = cache.head;
-		while ( node ) {
-			// Check whether node arguments match arguments
-			if ( ! isShallowEqual( node.args, args, 1 ) ) {
-				node = node.next;
-				continue;
-			}
-
-			// At this point we can assume we've found a match
-
-			// Surface matched node to head if not already
-			if ( node !== cache.head ) {
-				// Adjust siblings to point to each other.
-				node.prev.next = node.next;
-				if ( node.next ) {
-					node.next.prev = node.prev;
-				}
-
-				node.next = cache.head;
-				node.prev = null;
-				cache.head.prev = node;
-				cache.head = node;
-			}
-
-			// Return immediately
-			return node.val;
-		}
-
-		// No cached value found. Continue to insertion phase:
-
-		node = {
-			// Generate the result from original function
-			val: selector.apply( null, args ),
-		};
-
-		// Avoid including the source object in the cache.
-		args[ 0 ] = null;
-		node.args = args;
-
-		// Don't need to check whether node is already head, since it would
-		// have been returned above already if it was
-
-		// Shift existing head down list
-		if ( cache.head ) {
-			cache.head.prev = node;
-			node.next = cache.head;
-		}
-
-		cache.head = node;
-
-		return node.val;
-	}
-
-	callSelector.getDependants = getDependants;
-	callSelector.clear = clear;
-	clear();
-
-	return callSelector;
-});
-
-
-/***/ }),
-
-/***/ 37:
-/***/ (function(module, exports) {
-
-(function() { module.exports = this["wp"]["deprecated"]; }());
-
-/***/ }),
-
-/***/ 38:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _arrayWithHoles; });
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-/***/ }),
-
-/***/ 387:
+/***/ 349:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -546,6 +246,7 @@ __webpack_require__.d(build_module_actions_namespaceObject, "receiveEmbedPreview
 __webpack_require__.d(build_module_actions_namespaceObject, "editEntityRecord", function() { return editEntityRecord; });
 __webpack_require__.d(build_module_actions_namespaceObject, "undo", function() { return undo; });
 __webpack_require__.d(build_module_actions_namespaceObject, "redo", function() { return redo; });
+__webpack_require__.d(build_module_actions_namespaceObject, "__unstableCreateUndoLevel", function() { return __unstableCreateUndoLevel; });
 __webpack_require__.d(build_module_actions_namespaceObject, "saveEntityRecord", function() { return saveEntityRecord; });
 __webpack_require__.d(build_module_actions_namespaceObject, "saveEditedEntityRecord", function() { return saveEditedEntityRecord; });
 __webpack_require__.d(build_module_actions_namespaceObject, "receiveUploadPermissions", function() { return receiveUploadPermissions; });
@@ -824,10 +525,10 @@ function receiveQueriedItems(items) {
 }
 
 // EXTERNAL MODULE: ./node_modules/rememo/es/rememo.js
-var rememo = __webpack_require__(35);
+var rememo = __webpack_require__(36);
 
 // EXTERNAL MODULE: ./node_modules/equivalent-key-map/equivalent-key-map.js
-var equivalent_key_map = __webpack_require__(79);
+var equivalent_key_map = __webpack_require__(74);
 var equivalent_key_map_default = /*#__PURE__*/__webpack_require__.n(equivalent_key_map);
 
 // EXTERNAL MODULE: external {"this":["wp","url"]}
@@ -1003,7 +704,7 @@ var regenerator = __webpack_require__(20);
 var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 
 // EXTERNAL MODULE: external {"this":["wp","apiFetch"]}
-var external_this_wp_apiFetch_ = __webpack_require__(32);
+var external_this_wp_apiFetch_ = __webpack_require__(34);
 var external_this_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_this_wp_apiFetch_);
 
 // CONCATENATED MODULE: ./node_modules/@wordpress/core-data/build-module/controls.js
@@ -1275,10 +976,10 @@ function receiveEmbedPreview(url, preview) {
 
 function editEntityRecord(kind, name, recordId, edits) {
   var options,
-      _ref,
-      _ref$transientEdits,
+      entity,
+      _entity$transientEdit,
       transientEdits,
-      _ref$mergedEdits,
+      _entity$mergedEdits,
       mergedEdits,
       record,
       editedRecord,
@@ -1294,20 +995,26 @@ function editEntityRecord(kind, name, recordId, edits) {
           return controls_select('getEntity', kind, name);
 
         case 3:
-          _ref = _context.sent;
-          _ref$transientEdits = _ref.transientEdits;
-          transientEdits = _ref$transientEdits === void 0 ? {} : _ref$transientEdits;
-          _ref$mergedEdits = _ref.mergedEdits;
-          mergedEdits = _ref$mergedEdits === void 0 ? {} : _ref$mergedEdits;
-          _context.next = 10;
+          entity = _context.sent;
+
+          if (entity) {
+            _context.next = 6;
+            break;
+          }
+
+          throw new Error("The entity being edited (".concat(kind, ", ").concat(name, ") does not have a loaded config."));
+
+        case 6:
+          _entity$transientEdit = entity.transientEdits, transientEdits = _entity$transientEdit === void 0 ? {} : _entity$transientEdit, _entity$mergedEdits = entity.mergedEdits, mergedEdits = _entity$mergedEdits === void 0 ? {} : _entity$mergedEdits;
+          _context.next = 9;
           return controls_select('getRawEntityRecord', kind, name, recordId);
 
-        case 10:
+        case 9:
           record = _context.sent;
-          _context.next = 13;
+          _context.next = 12;
           return controls_select('getEditedEntityRecord', kind, name, recordId);
 
-        case 13:
+        case 12:
           editedRecord = _context.sent;
           edit = {
             kind: kind,
@@ -1318,7 +1025,7 @@ function editEntityRecord(kind, name, recordId, edits) {
             edits: Object.keys(edits).reduce(function (acc, key) {
               var recordValue = record[key];
               var editedRecordValue = editedRecord[key];
-              var value = mergedEdits[key] ? Object(external_lodash_["merge"])({}, editedRecordValue, edits[key]) : edits[key];
+              var value = mergedEdits[key] ? Object(objectSpread["a" /* default */])({}, editedRecordValue, edits[key]) : edits[key];
               acc[key] = Object(external_lodash_["isEqual"])(recordValue, value) ? undefined : value;
               return acc;
             }, {}),
@@ -1338,7 +1045,7 @@ function editEntityRecord(kind, name, recordId, edits) {
             }
           }));
 
-        case 16:
+        case 15:
         case "end":
           return _context.stop();
       }
@@ -1428,6 +1135,17 @@ function redo() {
   }, _marked3);
 }
 /**
+ * Forces the creation of a new undo level.
+ *
+ * @return {Object} Action object.
+ */
+
+function __unstableCreateUndoLevel() {
+  return {
+    type: 'CREATE_UNDO_LEVEL'
+  };
+}
+/**
  * Action triggered to save an entity record.
  *
  * @param {string} kind    Kind of the received entity.
@@ -1437,8 +1155,8 @@ function redo() {
  */
 
 function saveEntityRecord(kind, name, record) {
-  var _ref2,
-      _ref2$isAutosave,
+  var _ref,
+      _ref$isAutosave,
       isAutosave,
       entities,
       entity,
@@ -1446,6 +1164,8 @@ function saveEntityRecord(kind, name, record) {
       recordId,
       updatedRecord,
       error,
+      persistedEntity,
+      currentEdits,
       path,
       persistedRecord,
       currentUser,
@@ -1460,9 +1180,9 @@ function saveEntityRecord(kind, name, record) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          _ref2 = _args4.length > 3 && _args4[3] !== undefined ? _args4[3] : {
+          _ref = _args4.length > 3 && _args4[3] !== undefined ? _args4[3] : {
             isAutosave: false
-          }, _ref2$isAutosave = _ref2.isAutosave, isAutosave = _ref2$isAutosave === void 0 ? false : _ref2$isAutosave;
+          }, _ref$isAutosave = _ref.isAutosave, isAutosave = _ref$isAutosave === void 0 ? false : _ref$isAutosave;
           _context4.next = 3;
           return getKindEntities(kind);
 
@@ -1576,43 +1296,97 @@ function saveEntityRecord(kind, name, record) {
           return receiveAutosaves(persistedRecord.id, updatedRecord);
 
         case 38:
-          _context4.next = 47;
+          _context4.next = 55;
           break;
 
         case 40:
-          // Auto drafts should be converted to drafts on explicit saves,
+          // Auto drafts should be converted to drafts on explicit saves and we should not respect their default title,
           // but some plugins break with this behavior so we can't filter it on the server.
           _data = record;
 
-          if (kind === 'postType' && persistedRecord.status === 'auto-draft' && !_data.status) {
-            _data = Object(objectSpread["a" /* default */])({}, _data, {
-              status: 'draft'
-            });
-          }
+          if (kind === 'postType' && persistedRecord && persistedRecord.status === 'auto-draft') {
+            if (!_data.status) {
+              _data = Object(objectSpread["a" /* default */])({}, _data, {
+                status: 'draft'
+              });
+            }
+
+            if (!_data.title || _data.title === 'Auto Draft') {
+              _data = Object(objectSpread["a" /* default */])({}, _data, {
+                title: ''
+              });
+            }
+          } // We perform an optimistic update here to clear all the edits that
+          // will be persisted so that if the server filters them, the new
+          // filtered values are always accepted.
+
 
           _context4.next = 44;
+          return controls_select('getEntityRecord', kind, name, recordId);
+
+        case 44:
+          persistedEntity = _context4.sent;
+          _context4.next = 47;
+          return controls_select('getEntityRecordEdits', kind, name, recordId);
+
+        case 47:
+          currentEdits = _context4.sent;
+          _context4.next = 50;
+          return receiveEntityRecords(kind, name, Object(objectSpread["a" /* default */])({}, persistedEntity, _data), undefined, true);
+
+        case 50:
+          _context4.next = 52;
           return apiFetch({
             path: path,
             method: recordId ? 'PUT' : 'POST',
             data: _data
           });
 
-        case 44:
+        case 52:
           updatedRecord = _context4.sent;
-          _context4.next = 47;
+          _context4.next = 55;
           return receiveEntityRecords(kind, name, updatedRecord, undefined, true);
 
-        case 47:
-          _context4.next = 52;
+        case 55:
+          _context4.next = 77;
           break;
 
-        case 49:
-          _context4.prev = 49;
+        case 57:
+          _context4.prev = 57;
           _context4.t0 = _context4["catch"](11);
-          error = _context4.t0;
+          error = _context4.t0; // If we got to the point in the try block where we made an optimistic update,
+          // we need to roll it back here.
 
-        case 52:
-          _context4.next = 54;
+          if (!(persistedEntity && currentEdits)) {
+            _context4.next = 77;
+            break;
+          }
+
+          _context4.next = 63;
+          return receiveEntityRecords(kind, name, persistedEntity, undefined, true);
+
+        case 63:
+          _context4.t1 = editEntityRecord;
+          _context4.t2 = kind;
+          _context4.t3 = name;
+          _context4.t4 = recordId;
+          _context4.t5 = objectSpread["a" /* default */];
+          _context4.t6 = {};
+          _context4.t7 = currentEdits;
+          _context4.next = 72;
+          return controls_select('getEntityRecordEdits', kind, name, recordId);
+
+        case 72:
+          _context4.t8 = _context4.sent;
+          _context4.t9 = (0, _context4.t5)(_context4.t6, _context4.t7, _context4.t8);
+          _context4.t10 = {
+            undoIgnore: true
+          };
+          _context4.next = 77;
+          return (0, _context4.t1)(_context4.t2, _context4.t3, _context4.t4, _context4.t9, _context4.t10);
+
+        case 77:
+          _context4.next = 79;
           return {
             type: 'SAVE_ENTITY_RECORD_FINISH',
             kind: kind,
@@ -1622,15 +1396,15 @@ function saveEntityRecord(kind, name, record) {
             isAutosave: isAutosave
           };
 
-        case 54:
+        case 79:
           return _context4.abrupt("return", updatedRecord);
 
-        case 55:
+        case 80:
         case "end":
           return _context4.stop();
       }
     }
-  }, _marked4, null, [[11, 49]]);
+  }, _marked4, null, [[11, 57]]);
 }
 /**
  * Action triggered to save an entity record's edits.
@@ -2392,17 +2166,40 @@ var reducer_entities = function entities() {
 
 var UNDO_INITIAL_STATE = [];
 UNDO_INITIAL_STATE.offset = 0;
+var lastEditAction;
 function reducer_undo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : UNDO_INITIAL_STATE;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case 'EDIT_ENTITY_RECORD':
-      if (action.meta.isUndo || action.meta.isRedo) {
-        var _nextState = Object(toConsumableArray["a" /* default */])(state);
+    case 'CREATE_UNDO_LEVEL':
+      var isCreateUndoLevel = action.type === 'CREATE_UNDO_LEVEL';
+      var isUndoOrRedo = !isCreateUndoLevel && (action.meta.isUndo || action.meta.isRedo);
 
-        _nextState.offset = state.offset + (action.meta.isUndo ? -1 : 1);
-        return _nextState;
+      if (isCreateUndoLevel) {
+        action = lastEditAction;
+      } else if (!isUndoOrRedo) {
+        lastEditAction = action;
+      }
+
+      var nextState;
+
+      if (isUndoOrRedo) {
+        nextState = Object(toConsumableArray["a" /* default */])(state);
+        nextState.offset = state.offset + (action.meta.isUndo ? -1 : 1);
+
+        if (state.flattenedUndo) {
+          // The first undo in a sequence of undos might happen while we have
+          // flattened undos in state. If this is the case, we want execution
+          // to continue as if we were creating an explicit undo level. This
+          // will result in an extra undo level being appended with the flattened
+          // undo values.
+          isCreateUndoLevel = true;
+          action = lastEditAction;
+        } else {
+          return nextState;
+        }
       }
 
       if (!action.meta.undo) {
@@ -2412,27 +2209,30 @@ function reducer_undo() {
       // are merged. They are defined in the entity's config.
 
 
-      if (!Object.keys(action.edits).some(function (key) {
+      if (!isCreateUndoLevel && !Object.keys(action.edits).some(function (key) {
         return !action.transientEdits[key];
       })) {
-        var _nextState2 = Object(toConsumableArray["a" /* default */])(state);
-
-        _nextState2.flattenedUndo = Object(objectSpread["a" /* default */])({}, state.flattenedUndo, action.edits);
-        _nextState2.offset = state.offset;
-        return _nextState2;
+        nextState = Object(toConsumableArray["a" /* default */])(state);
+        nextState.flattenedUndo = Object(objectSpread["a" /* default */])({}, state.flattenedUndo, action.edits);
+        nextState.offset = state.offset;
+        return nextState;
       } // Clear potential redos, because this only supports linear history.
 
 
-      var nextState = state.slice(0, state.offset || undefined);
-      nextState.offset = 0;
+      nextState = nextState || state.slice(0, state.offset || undefined);
+      nextState.offset = nextState.offset || 0;
       nextState.pop();
-      nextState.push({
-        kind: action.meta.undo.kind,
-        name: action.meta.undo.name,
-        recordId: action.meta.undo.recordId,
-        edits: Object(objectSpread["a" /* default */])({}, state.flattenedUndo, action.meta.undo.edits)
-      }); // When an edit is a function it's an optimization to avoid running some expensive operation.
+
+      if (!isCreateUndoLevel) {
+        nextState.push({
+          kind: action.meta.undo.kind,
+          name: action.meta.undo.name,
+          recordId: action.meta.undo.recordId,
+          edits: Object(objectSpread["a" /* default */])({}, state.flattenedUndo, action.meta.undo.edits)
+        });
+      } // When an edit is a function it's an optimization to avoid running some expensive operation.
       // We can't rely on the function references being the same so we opt out of comparing them here.
+
 
       var comparisonUndoEdits = Object.values(action.meta.undo.edits).filter(function (edit) {
         return typeof edit !== 'function';
@@ -2446,7 +2246,7 @@ function reducer_undo() {
           kind: action.kind,
           name: action.name,
           recordId: action.recordId,
-          edits: action.edits
+          edits: isCreateUndoLevel ? Object(objectSpread["a" /* default */])({}, state.flattenedUndo, action.edits) : action.edits
         });
       }
 
@@ -2738,11 +2538,15 @@ function getEntityRecordEdits(state, kind, name, recordId) {
  */
 
 var getEntityRecordNonTransientEdits = Object(rememo["a" /* default */])(function (state, kind, name, recordId) {
-  var _getEntity = getEntity(state, kind, name),
-      _getEntity$transientE = _getEntity.transientEdits,
-      transientEdits = _getEntity$transientE === void 0 ? {} : _getEntity$transientE;
+  var _ref = getEntity(state, kind, name) || {},
+      transientEdits = _ref.transientEdits;
 
-  var edits = getEntityRecordEdits(state, kind, name, recordId) || [];
+  var edits = getEntityRecordEdits(state, kind, name, recordId) || {};
+
+  if (!transientEdits) {
+    return edits;
+  }
+
   return Object.keys(edits).reduce(function (acc, key) {
     if (!transientEdits[key]) {
       acc[key] = edits[key];
@@ -2766,7 +2570,7 @@ var getEntityRecordNonTransientEdits = Object(rememo["a" /* default */])(functio
  */
 
 function hasEditsForEntityRecord(state, kind, name, recordId) {
-  return Object.keys(getEntityRecordNonTransientEdits(state, kind, name, recordId)).length > 0;
+  return isSavingEntityRecord(state, kind, name, recordId) || Object.keys(getEntityRecordNonTransientEdits(state, kind, name, recordId)).length > 0;
 }
 /**
  * Returns the specified entity record, merged with its edits.
@@ -3611,6 +3415,306 @@ Object(external_this_wp_data_["registerStore"])(REDUCER_KEY, {
 
 /***/ }),
 
+/***/ 36:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+var LEAF_KEY, hasWeakMap;
+
+/**
+ * Arbitrary value used as key for referencing cache object in WeakMap tree.
+ *
+ * @type {Object}
+ */
+LEAF_KEY = {};
+
+/**
+ * Whether environment supports WeakMap.
+ *
+ * @type {boolean}
+ */
+hasWeakMap = typeof WeakMap !== 'undefined';
+
+/**
+ * Returns the first argument as the sole entry in an array.
+ *
+ * @param {*} value Value to return.
+ *
+ * @return {Array} Value returned as entry in array.
+ */
+function arrayOf( value ) {
+	return [ value ];
+}
+
+/**
+ * Returns true if the value passed is object-like, or false otherwise. A value
+ * is object-like if it can support property assignment, e.g. object or array.
+ *
+ * @param {*} value Value to test.
+ *
+ * @return {boolean} Whether value is object-like.
+ */
+function isObjectLike( value ) {
+	return !! value && 'object' === typeof value;
+}
+
+/**
+ * Creates and returns a new cache object.
+ *
+ * @return {Object} Cache object.
+ */
+function createCache() {
+	var cache = {
+		clear: function() {
+			cache.head = null;
+		},
+	};
+
+	return cache;
+}
+
+/**
+ * Returns true if entries within the two arrays are strictly equal by
+ * reference from a starting index.
+ *
+ * @param {Array}  a         First array.
+ * @param {Array}  b         Second array.
+ * @param {number} fromIndex Index from which to start comparison.
+ *
+ * @return {boolean} Whether arrays are shallowly equal.
+ */
+function isShallowEqual( a, b, fromIndex ) {
+	var i;
+
+	if ( a.length !== b.length ) {
+		return false;
+	}
+
+	for ( i = fromIndex; i < a.length; i++ ) {
+		if ( a[ i ] !== b[ i ] ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Returns a memoized selector function. The getDependants function argument is
+ * called before the memoized selector and is expected to return an immutable
+ * reference or array of references on which the selector depends for computing
+ * its own return value. The memoize cache is preserved only as long as those
+ * dependant references remain the same. If getDependants returns a different
+ * reference(s), the cache is cleared and the selector value regenerated.
+ *
+ * @param {Function} selector      Selector function.
+ * @param {Function} getDependants Dependant getter returning an immutable
+ *                                 reference or array of reference used in
+ *                                 cache bust consideration.
+ *
+ * @return {Function} Memoized selector.
+ */
+/* harmony default export */ __webpack_exports__["a"] = (function( selector, getDependants ) {
+	var rootCache, getCache;
+
+	// Use object source as dependant if getter not provided
+	if ( ! getDependants ) {
+		getDependants = arrayOf;
+	}
+
+	/**
+	 * Returns the root cache. If WeakMap is supported, this is assigned to the
+	 * root WeakMap cache set, otherwise it is a shared instance of the default
+	 * cache object.
+	 *
+	 * @return {(WeakMap|Object)} Root cache object.
+	 */
+	function getRootCache() {
+		return rootCache;
+	}
+
+	/**
+	 * Returns the cache for a given dependants array. When possible, a WeakMap
+	 * will be used to create a unique cache for each set of dependants. This
+	 * is feasible due to the nature of WeakMap in allowing garbage collection
+	 * to occur on entries where the key object is no longer referenced. Since
+	 * WeakMap requires the key to be an object, this is only possible when the
+	 * dependant is object-like. The root cache is created as a hierarchy where
+	 * each top-level key is the first entry in a dependants set, the value a
+	 * WeakMap where each key is the next dependant, and so on. This continues
+	 * so long as the dependants are object-like. If no dependants are object-
+	 * like, then the cache is shared across all invocations.
+	 *
+	 * @see isObjectLike
+	 *
+	 * @param {Array} dependants Selector dependants.
+	 *
+	 * @return {Object} Cache object.
+	 */
+	function getWeakMapCache( dependants ) {
+		var caches = rootCache,
+			isUniqueByDependants = true,
+			i, dependant, map, cache;
+
+		for ( i = 0; i < dependants.length; i++ ) {
+			dependant = dependants[ i ];
+
+			// Can only compose WeakMap from object-like key.
+			if ( ! isObjectLike( dependant ) ) {
+				isUniqueByDependants = false;
+				break;
+			}
+
+			// Does current segment of cache already have a WeakMap?
+			if ( caches.has( dependant ) ) {
+				// Traverse into nested WeakMap.
+				caches = caches.get( dependant );
+			} else {
+				// Create, set, and traverse into a new one.
+				map = new WeakMap();
+				caches.set( dependant, map );
+				caches = map;
+			}
+		}
+
+		// We use an arbitrary (but consistent) object as key for the last item
+		// in the WeakMap to serve as our running cache.
+		if ( ! caches.has( LEAF_KEY ) ) {
+			cache = createCache();
+			cache.isUniqueByDependants = isUniqueByDependants;
+			caches.set( LEAF_KEY, cache );
+		}
+
+		return caches.get( LEAF_KEY );
+	}
+
+	// Assign cache handler by availability of WeakMap
+	getCache = hasWeakMap ? getWeakMapCache : getRootCache;
+
+	/**
+	 * Resets root memoization cache.
+	 */
+	function clear() {
+		rootCache = hasWeakMap ? new WeakMap() : createCache();
+	}
+
+	// eslint-disable-next-line jsdoc/check-param-names
+	/**
+	 * The augmented selector call, considering first whether dependants have
+	 * changed before passing it to underlying memoize function.
+	 *
+	 * @param {Object} source    Source object for derivation.
+	 * @param {...*}   extraArgs Additional arguments to pass to selector.
+	 *
+	 * @return {*} Selector result.
+	 */
+	function callSelector( /* source, ...extraArgs */ ) {
+		var len = arguments.length,
+			cache, node, i, args, dependants;
+
+		// Create copy of arguments (avoid leaking deoptimization).
+		args = new Array( len );
+		for ( i = 0; i < len; i++ ) {
+			args[ i ] = arguments[ i ];
+		}
+
+		dependants = getDependants.apply( null, args );
+		cache = getCache( dependants );
+
+		// If not guaranteed uniqueness by dependants (primitive type or lack
+		// of WeakMap support), shallow compare against last dependants and, if
+		// references have changed, destroy cache to recalculate result.
+		if ( ! cache.isUniqueByDependants ) {
+			if ( cache.lastDependants && ! isShallowEqual( dependants, cache.lastDependants, 0 ) ) {
+				cache.clear();
+			}
+
+			cache.lastDependants = dependants;
+		}
+
+		node = cache.head;
+		while ( node ) {
+			// Check whether node arguments match arguments
+			if ( ! isShallowEqual( node.args, args, 1 ) ) {
+				node = node.next;
+				continue;
+			}
+
+			// At this point we can assume we've found a match
+
+			// Surface matched node to head if not already
+			if ( node !== cache.head ) {
+				// Adjust siblings to point to each other.
+				node.prev.next = node.next;
+				if ( node.next ) {
+					node.next.prev = node.prev;
+				}
+
+				node.next = cache.head;
+				node.prev = null;
+				cache.head.prev = node;
+				cache.head = node;
+			}
+
+			// Return immediately
+			return node.val;
+		}
+
+		// No cached value found. Continue to insertion phase:
+
+		node = {
+			// Generate the result from original function
+			val: selector.apply( null, args ),
+		};
+
+		// Avoid including the source object in the cache.
+		args[ 0 ] = null;
+		node.args = args;
+
+		// Don't need to check whether node is already head, since it would
+		// have been returned above already if it was
+
+		// Shift existing head down list
+		if ( cache.head ) {
+			cache.head.prev = node;
+			node.next = cache.head;
+		}
+
+		cache.head = node;
+
+		return node.val;
+	}
+
+	callSelector.getDependants = getDependants;
+	callSelector.clear = clear;
+	clear();
+
+	return callSelector;
+});
+
+
+/***/ }),
+
+/***/ 37:
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["deprecated"]; }());
+
+/***/ }),
+
+/***/ 38:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _arrayWithHoles; });
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+/***/ }),
+
 /***/ 39:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3636,7 +3740,7 @@ function _nonIterableRest() {
 
 /***/ }),
 
-/***/ 48:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -4397,7 +4501,7 @@ function _objectSpread(target) {
 
 /***/ }),
 
-/***/ 79:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

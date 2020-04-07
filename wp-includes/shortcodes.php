@@ -516,7 +516,7 @@ function shortcode_parse_atts( $text ) {
 			}
 		}
 
-		// Reject any unclosed HTML elements
+		// Reject any unclosed HTML elements.
 		foreach ( $atts as &$value ) {
 			if ( false !== strpos( $value, '<' ) ) {
 				if ( 1 !== preg_match( '/^[^<]*+(?:<[^>]*+>[^<]*+)*+$/', $value ) ) {
@@ -527,6 +527,7 @@ function shortcode_parse_atts( $text ) {
 	} else {
 		$atts = ltrim( $text );
 	}
+
 	return $atts;
 }
 

@@ -151,6 +151,11 @@ class WP_Themes_List_Table extends WP_List_Table {
 	}
 
 	/**
+	 * Displays the themes table.
+	 *
+	 * Overrides the parent display() method to provide a different container.
+	 *
+	 * @since 3.1.0
 	 */
 	public function display() {
 		wp_nonce_field( 'fetch-list-' . get_class( $this ), '_ajax_fetch_list_nonce' );
@@ -276,7 +281,7 @@ class WP_Themes_List_Table extends WP_List_Table {
 				<?php
 				if ( $theme->parent() ) {
 					printf(
-						/* translators: %s: Link to documentation on child themes. */
+						/* translators: 1: Link to documentation on child themes, 2: Name of parent theme. */
 						' <p class="howto">' . __( 'This <a href="%1$s">child theme</a> requires its parent theme, %2$s.' ) . '</p>',
 						__( 'https://developer.wordpress.org/themes/advanced-topics/child-themes/' ),
 						$theme->parent()->display( 'Name' )

@@ -3,25 +3,6 @@
     "title": "Produkt: Obraz",
     "fields": [
         {
-            "key": "field_5c8bfce81a4b5",
-            "label": "ID",
-            "name": "olx_id",
-            "type": "text",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_5c6fd4f94ebe9",
             "label": "Atrybuty",
             "name": "product_attributes",
@@ -36,51 +17,6 @@
             },
             "layout": "row",
             "sub_fields": [
-                {
-                    "key": "field_5c780a9788bd1",
-                    "label": "Stan",
-                    "name": "state",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "verygood": "bardzo dobry",
-                        "good": "dobry",
-                        "medium": "nosi ślady użytkowania",
-                        "bad": "do renowacji"
-                    },
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "default_value": "",
-                    "layout": "horizontal",
-                    "return_format": "array",
-                    "save_other_choice": 0
-                },
-                {
-                    "key": "field_5c6fd54056cd1",
-                    "label": "Opis",
-                    "name": "desc",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "maxlength": "",
-                    "rows": 8,
-                    "new_lines": "br"
-                },
                 {
                     "key": "field_5c6fd5184ebea",
                     "label": "Szerokość (cm)",
@@ -124,30 +60,23 @@
                     "step": ""
                 },
                 {
-                    "key": "field_5c780b9c88bd3",
-                    "label": "Rodzaj wykończenia",
-                    "name": "paint_type",
-                    "type": "radio",
+                    "key": "field_5c6fd54056cd1",
+                    "label": "Opis",
+                    "name": "desc",
+                    "type": "textarea",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "oil": "farba olejna",
-                        "aqua": "farba akwarela",
-                        "sewing": "haftowany",
-                        "carved": "rzeźbiony"
-                    },
-                    "allow_null": 0,
-                    "other_choice": 0,
                     "default_value": "",
-                    "layout": "horizontal",
-                    "return_format": "array",
-                    "save_other_choice": 0
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 8,
+                    "new_lines": "br"
                 },
                 {
                     "key": "field_5c6fd55956cd2",
@@ -203,8 +132,87 @@
                     "toggle": 0,
                     "return_format": "array",
                     "save_custom": 0
+                },
+                {
+                    "key": "field_5c780b9c88bd3",
+                    "label": "Rodzaj wykończenia",
+                    "name": "paint_type",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "oil": "farba olejna",
+                        "aqua": "farba akwarela",
+                        "sewing": "haftowany",
+                        "carved": "rzeźbiony"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "array",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_5c780a9788bd1",
+                    "label": "Stan",
+                    "name": "state",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "verygood": "bardzo dobry",
+                        "good": "dobry",
+                        "medium": "nosi ślady użytkowania",
+                        "bad": "do renowacji"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "array",
+                    "save_other_choice": 0
                 }
             ]
+        },
+        {
+            "key": "field_5c6fd7643a377",
+            "label": "Galeria",
+            "name": "product_gallery",
+            "type": "gallery",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": "",
+            "max": "",
+            "insert": "append",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "return_format": "array",
+            "preview_size": "medium"
         },
         {
             "key": "field_5c780d868268d",
@@ -221,25 +229,6 @@
             },
             "layout": "row",
             "sub_fields": [
-                {
-                    "key": "field_5d6294677cbeb",
-                    "label": "Tytuł w OLX",
-                    "name": "olx_title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
                 {
                     "key": "field_5c77d840a39a1",
                     "label": "Kategoria w OLX",
@@ -273,6 +262,25 @@
                     "layout": "vertical",
                     "return_format": "array",
                     "save_other_choice": 0
+                },
+                {
+                    "key": "field_5d6294677cbeb",
+                    "label": "Tytuł w OLX",
+                    "name": "olx_title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_5c7801cdb1f14",
@@ -343,11 +351,11 @@
             ]
         },
         {
-            "key": "field_5c6fd7643a377",
-            "label": "Galeria",
-            "name": "product_gallery",
-            "type": "gallery",
-            "instructions": "",
+            "key": "field_5c8bfce81a4b5",
+            "label": "OLX ID",
+            "name": "olx_id",
+            "type": "text",
+            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -355,17 +363,68 @@
                 "class": "",
                 "id": ""
             },
-            "min": "",
-            "max": "",
-            "insert": "append",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": ""
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e88970e2b0f8",
+            "label": "OLX - Ogłoszenie od",
+            "name": "olx_created_at",
+            "type": "text",
+            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e88972f2b0f9",
+            "label": "OLX - Ogłoszenie do",
+            "name": "olx_valid_to",
+            "type": "text",
+            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5e8898ca2b0fa",
+            "label": "OLX - response",
+            "name": "olx_olx_data",
+            "type": "textarea",
+            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -390,5 +449,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1567010863
+    "modified": 1586010845
 }

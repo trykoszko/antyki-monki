@@ -23,11 +23,12 @@ a {
 	}
 }
 
-#media-upload a.del-link:hover,
-div.dashboard-widget-submit input:hover,
-.subsubsub a:hover,
-.subsubsub a.current:hover {
-	color: $link-focus;
+#post-body .misc-pub-post-status:before,
+#post-body #visibility:before,
+.curtime #timestamp:before,
+#post-body .misc-pub-revisions:before,
+span.wp-media-buttons-icon:before {
+	color: currentColor;
 }
 
 
@@ -73,16 +74,51 @@ textarea:focus {
 /* Core UI */
 
 .wp-core-ui {
+
+	.button {
+		border-color: #7e8993;
+		color: #32373c;
+	}
+
+	.button.hover,
+	.button:hover,
 	.button.focus,
-	.button:focus,
-	.button-secondary:focus {
+	.button:focus {
+		border-color: darken( #7e8993, 5% );
+		color: darken( #32373c, 5% );
+	}
+
+	.button.focus,
+	.button:focus {
+		border-color: #7e8993;
+		color: darken( #32373c, 5% );
+		box-shadow: 0 0 0 1px #32373c;
+	}
+
+	.button:active {
+		border-color: #7e8993;
+		color: darken( #32373c, 5% );
+		box-shadow: none;
+	}
+
+	.button.active,
+	.button.active:focus,
+	.button.active:hover {
 		border-color: $button-color;
-		color: darken( $button-color, 5% );
-		box-shadow: 0 0 0 1px $button-color;
+		color: darken( #32373c, 5% );
+		box-shadow: inset 0 2px 5px -3px $button-color;
+	}
+
+	.button.active:focus {
+		box-shadow: 0 0 0 1px #32373c;
 	}
 
 	.button-primary {
 		@include button( $button-color );
+	}
+
+	.button-group > .button.active {
+		border-color: $button-color;
 	}
 
 	.wp-ui-primary {

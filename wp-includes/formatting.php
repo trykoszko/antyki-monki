@@ -2835,7 +2835,24 @@ function _make_url_clickable_cb( $matches ) {
 		return $matches[0];
 	}
 
-	return $matches[1] . "<a href=\"$url\" rel=\"nofollow\">$url</a>" . $suffix;
+	if ( 'comment_text' === current_filter() ) {
+		$rel = 'nofollow ugc';
+	} else {
+		$rel = 'nofollow';
+	}
+
+	/**
+	 * Filters the rel value that is added to URL matches converted to links.
+	 *
+	 * @since 5.3.0
+	 *
+	 * @param string $rel The rel value.
+	 * @param string $url The matched URL being converted to a link tag.
+	 */
+	$rel = apply_filters( 'make_clickable_rel', $rel, $url );
+	$rel = esc_attr( $rel );
+
+	return $matches[1] . "<a href=\"$url\" rel=\"$rel\">$url</a>" . $suffix;
 }
 
 /**
@@ -2865,7 +2882,17 @@ function _make_web_ftp_clickable_cb( $matches ) {
 		return $matches[0];
 	}
 
-	return $matches[1] . "<a href=\"$dest\" rel=\"nofollow\">$dest</a>$ret";
+	if ( 'comment_text' === current_filter() ) {
+		$rel = 'nofollow ugc';
+	} else {
+		$rel = 'nofollow';
+	}
+
+	/** This filter is documented in wp-includes/formatting.php */
+	$rel = apply_filters( 'make_clickable_rel', $rel, $dest );
+	$rel = esc_attr( $rel );
+
+	return $matches[1] . "<a href=\"$dest\" rel=\"$rel\">$dest</a>$ret";
 }
 
 /**
@@ -3012,35 +3039,19 @@ function _split_str_by_whitespace( $string, $goal ) {
 }
 
 /**
- * Adds rel nofollow string to all HTML A elements in content.
+ * Callback to add a rel attribute to HTML A element.
  *
- * @since 1.5.0
+ * Will remove already existing string before adding to prevent invalidating (X)HTML.
  *
- * @param string $text Content that may contain HTML A elements.
- * @return string Converted content.
+ * @since 5.3.0
+ *
+ * @param array  $matches Single match.
+ * @param string $rel     The rel attribute to add.
+ * @return string HTML A element with the added rel attribute.
  */
-function wp_rel_nofollow( $text ) {
-	// This is a pre save filter, so text is already escaped.
-	$text = stripslashes( $text );
-	$text = preg_replace_callback( '|<a (.+?)>|i', 'wp_rel_nofollow_callback', $text );
-	return wp_slash( $text );
-}
-
-/**
- * Callback to add rel=nofollow string to HTML A element.
- *
- * Will remove already existing rel="nofollow" and rel='nofollow' from the
- * string to prevent from invalidating (X)HTML.
- *
- * @since 2.3.0
- *
- * @param array $matches Single Match
- * @return string HTML A Element with rel nofollow.
- */
-function wp_rel_nofollow_callback( $matches ) {
+function wp_rel_callback( $matches, $rel ) {
 	$text = $matches[1];
 	$atts = wp_kses_hair( $matches[1], wp_allowed_protocols() );
-	$rel  = 'nofollow';
 
 	if ( ! empty( $atts['href'] ) ) {
 		if ( in_array( strtolower( wp_parse_url( $atts['href']['value'], PHP_URL_SCHEME ) ), array( 'http', 'https' ), true ) ) {
@@ -3051,11 +3062,10 @@ function wp_rel_nofollow_callback( $matches ) {
 	}
 
 	if ( ! empty( $atts['rel'] ) ) {
-		$parts = array_map( 'trim', explode( ' ', $atts['rel']['value'] ) );
-		if ( false === array_search( 'nofollow', $parts ) ) {
-			$parts[] = 'nofollow';
-		}
-		$rel = implode( ' ', $parts );
+		$parts     = array_map( 'trim', explode( ' ', $atts['rel']['value'] ) );
+		$rel_array = array_map( 'trim', explode( ' ', $rel ) );
+		$parts     = array_unique( array_merge( $parts, $rel_array ) );
+		$rel       = implode( ' ', $parts );
 		unset( $atts['rel'] );
 
 		$html = '';
@@ -3072,6 +3082,61 @@ function wp_rel_nofollow_callback( $matches ) {
 }
 
 /**
+ * Adds `rel="nofollow"` string to all HTML A elements in content.
+ *
+ * @since 1.5.0
+ *
+ * @param string $text Content that may contain HTML A elements.
+ * @return string Converted content.
+ */
+function wp_rel_nofollow( $text ) {
+	// This is a pre-save filter, so text is already escaped.
+	$text = stripslashes( $text );
+	$text = preg_replace_callback(
+		'|<a (.+?)>|i',
+		function( $matches ) {
+			return wp_rel_callback( $matches, 'nofollow' );
+		},
+		$text
+	);
+	return wp_slash( $text );
+}
+
+/**
+ * Callback to add `rel="nofollow"` string to HTML A element.
+ *
+ * @since 2.3.0
+ * @deprecated 5.3.0 Use wp_rel_callback()
+ *
+ * @param array $matches Single match.
+ * @return string HTML A Element with `rel="nofollow"`.
+ */
+function wp_rel_nofollow_callback( $matches ) {
+	return wp_rel_callback( $matches, 'nofollow' );
+}
+
+/**
+ * Adds `rel="nofollow ugc"` string to all HTML A elements in content.
+ *
+ * @since 5.3.0
+ *
+ * @param string $text Content that may contain HTML A elements.
+ * @return string Converted content.
+ */
+function wp_rel_ugc( $text ) {
+	// This is a pre-save filter, so text is already escaped.
+	$text = stripslashes( $text );
+	$text = preg_replace_callback(
+		'|<a (.+?)>|i',
+		function( $matches ) {
+			return wp_rel_callback( $matches, 'nofollow ugc' );
+		},
+		$text
+	);
+	return wp_slash( $text );
+}
+
+/**
  * Adds rel noreferrer and noopener to all HTML A elements that have a target.
  *
  * @since 5.1.0
@@ -3081,9 +3146,25 @@ function wp_rel_nofollow_callback( $matches ) {
  */
 function wp_targeted_link_rel( $text ) {
 	// Don't run (more expensive) regex if no links with targets.
-	if ( stripos( $text, 'target' ) !== false && stripos( $text, '<a ' ) !== false ) {
-		if ( ! is_serialized( $text ) ) {
-			$text = preg_replace_callback( '|<a\s([^>]*target\s*=[^>]*)>|i', 'wp_targeted_link_rel_callback', $text );
+	if ( stripos( $text, 'target' ) === false || stripos( $text, '<a ' ) === false || is_serialized( $text ) ) {
+		return $text;
+	}
+
+	$script_and_style_regex = '/<(script|style).*?<\/\\1>/si';
+
+	preg_match_all( $script_and_style_regex, $text, $matches );
+	$extra_parts = $matches[0];
+	$html_parts  = preg_split( $script_and_style_regex, $text );
+
+	foreach ( $html_parts as &$part ) {
+		$part = preg_replace_callback( '|<a\s([^>]*target\s*=[^>]*)>|i', 'wp_targeted_link_rel_callback', $part );
+	}
+
+	$text = '';
+	for ( $i = 0; $i < count( $html_parts ); $i++ ) {
+		$text .= $html_parts[ $i ];
+		if ( isset( $extra_parts[ $i ] ) ) {
+			$text .= $extra_parts[ $i ];
 		}
 	}
 
@@ -3102,48 +3183,43 @@ function wp_targeted_link_rel( $text ) {
  * @return string HTML A Element with rel noreferrer noopener in addition to any existing values
  */
 function wp_targeted_link_rel_callback( $matches ) {
-	$link_html = $matches[1];
-	$rel_match = array();
+	$link_html          = $matches[1];
+	$original_link_html = $link_html;
+
+	// Consider the html escaped if there are no unescaped quotes
+	$is_escaped = ! preg_match( '/(^|[^\\\\])[\'"]/', $link_html );
+	if ( $is_escaped ) {
+		// Replace only the quotes so that they are parsable by wp_kses_hair, leave the rest as is
+		$link_html = preg_replace( '/\\\\([\'"])/', '$1', $link_html );
+	}
+
+	$atts = wp_kses_hair( $link_html, wp_allowed_protocols() );
 
 	/**
 	 * Filters the rel values that are added to links with `target` attribute.
 	 *
 	 * @since 5.1.0
 	 *
-	 * @param string The rel values.
+	 * @param string $rel       The rel values.
 	 * @param string $link_html The matched content of the link tag including all HTML attributes.
 	 */
 	$rel = apply_filters( 'wp_targeted_link_rel', 'noopener noreferrer', $link_html );
 
-	// Avoid additional regex if the filter removes rel values.
-	if ( ! $rel ) {
-		return "<a $link_html>";
+	// Return early if no rel values to be added or if no actual target attribute
+	if ( ! $rel || ! isset( $atts['target'] ) ) {
+		return "<a $original_link_html>";
 	}
 
-	// Value with delimiters, spaces around are optional.
-	$attr_regex = '|rel\s*=\s*?(\\\\{0,1}["\'])(.*?)\\1|i';
-	preg_match( $attr_regex, $link_html, $rel_match );
-
-	if ( empty( $rel_match[0] ) ) {
-		// No delimiters, try with a single value and spaces, because `rel =  va"lue` is totally fine...
-		$attr_regex = '|rel\s*=(\s*)([^\s]*)|i';
-		preg_match( $attr_regex, $link_html, $rel_match );
+	if ( isset( $atts['rel'] ) ) {
+		$all_parts = preg_split( '/\s/', "{$atts['rel']['value']} $rel", -1, PREG_SPLIT_NO_EMPTY );
+		$rel       = implode( ' ', array_unique( $all_parts ) );
 	}
 
-	if ( ! empty( $rel_match[0] ) ) {
-		$parts     = preg_split( '|\s+|', strtolower( $rel_match[2] ) );
-		$parts     = array_map( 'esc_attr', $parts );
-		$needed    = explode( ' ', $rel );
-		$parts     = array_unique( array_merge( $parts, $needed ) );
-		$delimiter = trim( $rel_match[1] ) ? $rel_match[1] : '"';
-		$rel       = 'rel=' . $delimiter . trim( implode( ' ', $parts ) ) . $delimiter;
-		$link_html = str_replace( $rel_match[0], $rel, $link_html );
-	} elseif ( preg_match( '|target\s*=\s*?\\\\"|', $link_html ) ) {
-		$link_html .= " rel=\\\"$rel\\\"";
-	} elseif ( preg_match( '#(target|href)\s*=\s*?\'#', $link_html ) ) {
-		$link_html .= " rel='$rel'";
-	} else {
-		$link_html .= " rel=\"$rel\"";
+	$atts['rel']['whole'] = 'rel="' . esc_attr( $rel ) . '"';
+	$link_html            = join( ' ', array_column( $atts, 'whole' ) );
+
+	if ( $is_escaped ) {
+		$link_html = preg_replace( '/[\'"]/', '\\\\$0', $link_html );
 	}
 
 	return "<a $link_html>";
@@ -4827,9 +4903,37 @@ function wp_pre_kses_less_than_callback( $matches ) {
 }
 
 /**
+ * Remove non-allowable HTML from parsed block attribute values when filtering
+ * in the post context.
+ *
+ * @since 5.3.1
+ *
+ * @param string         $string            Content to be run through KSES.
+ * @param array[]|string $allowed_html      An array of allowed HTML elements
+ *                                          and attributes, or a context name
+ *                                          such as 'post'.
+ * @param string[]       $allowed_protocols Array of allowed URL protocols.
+ * @return string Filtered text to run through KSES.
+ */
+function wp_pre_kses_block_attributes( $string, $allowed_html, $allowed_protocols ) {
+	/*
+	 * `filter_block_content` is expected to call `wp_kses`. Temporarily remove
+	 * the filter to avoid recursion.
+	 */
+	remove_filter( 'pre_kses', 'wp_pre_kses_block_attributes', 10 );
+	$string = filter_block_content( $string, $allowed_html, $allowed_protocols );
+	add_filter( 'pre_kses', 'wp_pre_kses_block_attributes', 10, 3 );
+
+	return $string;
+}
+
+/**
  * WordPress implementation of PHP sprintf() with filters.
  *
  * @since 2.5.0
+ * @since 5.3.0 Formalized the existing and already documented `...$args` parameter
+ *              by adding it to the function signature.
+ *
  * @link https://secure.php.net/sprintf
  *
  * @param string $pattern The string which formatted args are inserted.
@@ -5366,6 +5470,33 @@ function wp_unslash( $value ) {
 }
 
 /**
+ * Adds slashes to only string values in an array of values.
+ *
+ * This should be used when preparing data for core APIs that expect slashed data.
+ * This should not be used to escape data going directly into an SQL query.
+ *
+ * @since 5.3.0
+ *
+ * @param mixed $value Scalar or array of scalars.
+ * @return mixed Slashes $value
+ */
+function wp_slash_strings_only( $value ) {
+	return map_deep( $value, 'addslashes_strings_only' );
+}
+
+/**
+ * Adds slashes only if the provided value is a string.
+ *
+ * @since 5.3.0
+ *
+ * @param mixed $value
+ * @return mixed
+ */
+function addslashes_strings_only( $value ) {
+	return is_string( $value ) ? addslashes( $value ) : $value;
+}
+
+/**
  * Extract and return the first URL from passed content.
  *
  * @since 3.6.0
@@ -5474,7 +5605,7 @@ function print_emoji_detection_script() {
 }
 
 /**
- * Prints inline Emoji dection script
+ * Prints inline Emoji detection script.
  *
  * @ignore
  * @since 4.6.0
@@ -5555,7 +5686,7 @@ function _print_emoji_detection_script() {
 		?>
 		<script<?php echo $type_attr; ?>>
 			window._wpemojiSettings = <?php echo wp_json_encode( $settings ); ?>;
-			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039]))&&(!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b));case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
 		</script>
 		<?php
 	}
