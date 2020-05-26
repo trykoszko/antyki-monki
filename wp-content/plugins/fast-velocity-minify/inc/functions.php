@@ -84,6 +84,28 @@ function fastvelocity_plugin_deactivate() {
 	# old cache purge event cron
 	wp_clear_scheduled_hook( 'fastvelocity_purge_old_cron_event' );
 	
+	# delete leftovers from older versions
+	if(function_exists('_get_cron_array') && function_exists('_set_cron_array')) {
+		$cron = _get_cron_array();
+		if (is_array($cron)) {
+			
+			# count
+			$a = count($cron);
+			
+			# keep only the ones that don't match the cron name
+			$updated = array_filter($cron, function($v){return !array_key_exists("fastvelocity_purge_old_cron_event",$v);});
+			
+			# count
+			$b = count($updated);
+			
+			# update
+			if ($a != $b && is_array($updated) && count($updated) > 0) {
+				_set_cron_array($updated);
+			}
+			
+		}		
+	}
+	
 }
 
 # run during uninstall
@@ -364,7 +386,7 @@ $css = fastvelocity_min_remove_utf8_bom($css);
 if(!empty($url)) {
 	$matches = array(); preg_match_all("/url\(\s*['\"]?(?!data:)(?!http)(?![\/'\"])(.+?)['\"]?\s*\)/ui", $css, $matches);
     foreach($matches[1] as $a) { $b = trim($a); if($b != $a) { $css = str_replace($a, $b, $css); } }
-	$css = preg_replace("/url\(\s*['\"]?(?!data:)(?!http)(?![\/'\"])(.+?)['\"]?\s*\)/ui", "url(".dirname($url)."/$1)", $css); 
+	$css = preg_replace("/url\(\s*['\"]?(?!data:)(?!http)(?![\/'\"#])(.+?)['\"]?\s*\)/ui", "url(".dirname($url)."/$1)", $css);
 }
 
 # no utf8 garbage

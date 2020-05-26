@@ -5,7 +5,9 @@ include 'inc/widgets.php';
 include 'inc/cpt.php';
 include 'inc/menus.php';
 include 'inc/enqueues.php';
-include 'inc/acf.php';
+if ( function_exists('acf_add_options_page') ) {
+    include 'inc/acf.php';
+}
 include 'inc/walker.php';
 
 function antyki_modify_category_query( $query ) {

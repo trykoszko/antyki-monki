@@ -27,11 +27,11 @@ $orientations: (
 $colors: (
     main: #000,
     white: #fff,
-    light: #FAFAFA,
-    lgrey: #EDEDED,
+    light: #fafafa,
+    lgrey: #ededed,
     accent: #d4213d,
-    blue: #09A6E4,
-    grey: #AAAAAA
+    blue: #09a6e4,
+    grey: #aaaaaa,
 );
 
 $sizes: (
@@ -41,7 +41,7 @@ $sizes: (
         desktop: 1180px,
         tablet: 760px,
         mobile: 320px,
-        narrow: 800px
+        narrow: 800px,
     ),
 );
 
@@ -55,24 +55,26 @@ $font-sizes: (
     h4: 1.25rem,
     h5: 1.1rem,
     small: 0.8rem,
-    quote: 9px
+    quote: 9px,
 );
 
 $offsets: (
     default: 16px,
     large: 24px,
-    small: 8px
+    small: 8px,
 );
 
 $s: 10px;
 
 $fonts: (
-    main: #{'IBM Plex Sans', 'Arial', sans-serif}
+    main: #{"IBM Plex Sans",
+    "Arial",
+    sans-serif},
 );
 
 $defaults: (
     border-radius: 4px,
-    line-height: 1.2
+    line-height: 1.2,
 );
 
 /* Standalone variables
@@ -82,7 +84,7 @@ $form-control-height: 2rem;
 
 $border-radius-default: 5px;
 
-$transition-default: all .3s;
+$transition-default: all 0.3s;
 
 $m-header-height: 160px;
 $m-header-height-scrolled: 90px;
@@ -98,7 +100,11 @@ $card-gallery-height-d: 320px;
 $product-gallery-height-m: 400px;
 $product-gallery-height-d: 600px;
 
-$related-product-thumb-height-m: 120px;
+$related-product-thumb-height-m: 180px;
 $related-product-thumb-height-d: 280px;
 
-$img-background-gradient: linear-gradient(135deg, rgba(202,210,223,.3) 0%,rgba(178,166,152,.3) 100%);
+$img-background-gradient: linear-gradient(
+    135deg,
+    rgba(202, 210, 223, 0.3) 0%,
+    rgba(178, 166, 152, 0.3) 100%
+);

@@ -1,176 +1,282 @@
-[05-Apr-2020 16:08:08 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 206
-[05-Apr-2020 16:08:52 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 206
-[05-Apr-2020 16:09:21 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 207
-[05-Apr-2020 16:09:32 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 206
-[05-Apr-2020 16:09:38 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 207
-[05-Apr-2020 16:09:42 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 207
-[05-Apr-2020 16:09:49 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 207
-[05-Apr-2020 16:10:32 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 206
-[05-Apr-2020 16:36:13 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_advert_by_post_id() in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php:364
+[26-May-2020 18:38:31 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
 Stack trace:
-#0 /var/www/html/wp-includes/class-wp-hook.php(288): Wp_Olx_Admin->product_custom_column('olx_status', 441)
-#1 /var/www/html/wp-includes/class-wp-hook.php(312): WP_Hook->apply_filters('', Array)
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:38:32 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:38:32 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:42:43 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:42:43 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:42:43 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
 #2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
-#3 /var/www/html/wp-admin/includes/class-wp-posts-list-table.php(1265): do_action('manage_product_...', 'olx_status', 441)
-#4 /var/www/html/wp-admin/includes/class-wp-list-table.php(1361): WP_Posts_List_Table->column_default(Object(WP_Post), 'olx_status')
-#5 /var/www/html/wp-admin/includes/class-wp-posts-list-table.php(1298): WP_List_Table->single_row_columns(Object(WP_Post))
-#6 /var/www/html/wp-admin/includes/class-wp-posts-list-table.php(741): WP_Posts_List_Table->single_row(Object(WP_Post), 0)
-#7 /var/www/html/wp-admin/includes/class-wp-posts-list-table.php(718): WP_Posts_List_Table->_displa in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 364
-[05-Apr-2020 16:36:30 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/adverts/59603246` resulted in a `404 Not Found` response:
-{"error":{"status":404,"title":"Not Found","detail":"Advert not found"}}
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+#3 /var/www/html/wp-settings.php(540): do_action('init')
+#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-cron.php(44): require_once('/var/www/html/w...')
+#7 {main}
+  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
+[26-May-2020 18:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
 Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\Promise\Promise::Guz in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[05-Apr-2020 16:40:20 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/adverts/59603246` resulted in a `404 Not Found` response:
-{"error":{"status":404,"title":"Not Found","detail":"Advert not found"}}
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\Promise\Promise::Guz in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[05-Apr-2020 16:40:39 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 206
-[05-Apr-2020 16:40:57 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 206
-[05-Apr-2020 16:41:10 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/adverts/59603246` resulted in a `404 Not Found` response:
-{"error":{"status":404,"title":"Not Found","detail":"Advert not found"}}
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\Promise\Promise::Guz in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[05-Apr-2020 16:43:52 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/adverts/59603246` resulted in a `404 Not Found` response:
-{"error":{"status":404,"title":"Not Found","detail":"Advert not found"}}
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\Promise\Promise::Guz in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[05-Apr-2020 16:45:21 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/adverts/59603246` resulted in a `404 Not Found` response:
-{"error":{"status":404,"title":"Not Found","detail":"Advert not found"}}
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\Promise\Promise::Guz in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[05-Apr-2020 16:47:22 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/adverts/59603246` resulted in a `404 Not Found` response:
-{"error":{"status":404,"title":"Not Found","detail":"Advert not found"}}
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\Promise\Promise::Guz in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[05-Apr-2020 16:49:27 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:27 UTC] PHP Notice:  Trying to get property 'status' of non-object in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:28 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:28 UTC] PHP Notice:  Trying to get property 'status' of non-object in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:38 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:38 UTC] PHP Notice:  Trying to get property 'status' of non-object in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:39 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:39 UTC] PHP Notice:  Trying to get property 'status' of non-object in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:48 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:48 UTC] PHP Notice:  Trying to get property 'status' of non-object in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:48 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:49:48 UTC] PHP Notice:  Trying to get property 'status' of non-object in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 368
-[05-Apr-2020 16:54:03 UTC] PHP Notice:  Undefined variable: is_active in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 385
-[05-Apr-2020 17:07:04 UTC] PHP Warning:  json_decode() expects parameter 1 to be string, object given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 469
-[05-Apr-2020 17:07:04 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 472
-[05-Apr-2020 17:07:04 UTC] PHP Notice:  Trying to get property 'data' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 476
-[05-Apr-2020 17:07:04 UTC] PHP Notice:  Trying to get property 'id' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 479
-[05-Apr-2020 17:07:04 UTC] PHP Notice:  Trying to get property 'created_at' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 480
-[05-Apr-2020 17:07:04 UTC] PHP Notice:  Trying to get property 'valid_to' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 481
-[05-Apr-2020 17:42:08 UTC] PHP Warning:  json_decode() expects parameter 1 to be string, object given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 469
-[05-Apr-2020 17:42:08 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 472
-[05-Apr-2020 17:42:08 UTC] PHP Notice:  Trying to get property 'data' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 476
-[05-Apr-2020 17:42:08 UTC] PHP Notice:  Trying to get property 'id' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 479
-[05-Apr-2020 17:42:08 UTC] PHP Notice:  Trying to get property 'created_at' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 480
-[05-Apr-2020 17:42:08 UTC] PHP Notice:  Trying to get property 'valid_to' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 481
-[05-Apr-2020 17:43:34 UTC] PHP Warning:  json_decode() expects parameter 1 to be string, object given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 484
-[05-Apr-2020 17:43:34 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 487
-[05-Apr-2020 17:43:34 UTC] PHP Notice:  Trying to get property 'data' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 491
-[05-Apr-2020 17:43:34 UTC] PHP Notice:  Trying to get property 'id' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 494
-[05-Apr-2020 17:43:34 UTC] PHP Notice:  Trying to get property 'created_at' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 495
-[05-Apr-2020 17:43:34 UTC] PHP Notice:  Trying to get property 'valid_to' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 496
-[05-Apr-2020 17:44:44 UTC] PHP Warning:  json_decode() expects parameter 1 to be string, object given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 484
-[05-Apr-2020 17:44:44 UTC] PHP Warning:  First parameter must either be an object or the name of an existing class in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 487
-[05-Apr-2020 17:44:44 UTC] PHP Notice:  Trying to get property 'data' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 491
-[05-Apr-2020 17:44:44 UTC] PHP Notice:  Trying to get property 'id' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 494
-[05-Apr-2020 17:44:44 UTC] PHP Notice:  Trying to get property 'created_at' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 495
-[05-Apr-2020 17:44:44 UTC] PHP Notice:  Trying to get property 'valid_to' of non-object in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 496
-[07-Apr-2020 17:48:54 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 208
-[07-Apr-2020 18:00:23 UTC] PHP Notice:  Trying to get property 'status' of non-object in /var/www/html/wp-content/plugins/wp-olx/admin/class-wp-olx-admin.php on line 423
-[07-Apr-2020 18:12:42 UTC] PHP Warning:  array_slice() expects parameter 1 to be array, bool given in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 208
-[07-Apr-2020 18:33:08 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_client","error_description":"The client credentials are invalid","error_human_title":"Nie mo\u017cna z (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[07-Apr-2020 18:33:12 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_client","error_description":"The client credentials are invalid","error_human_title":"Nie mo\u017cna z (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[07-Apr-2020 18:34:52 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_client","error_description":"The client credentials are invalid","error_human_title":"Nie mo\u017cna z (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[07-Apr-2020 18:35:15 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_client","error_description":"The client credentials are invalid","error_human_title":"Nie mo\u017cna z (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[07-Apr-2020 18:35:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Olx::is_authorized() in /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php:193
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(79): Wp_Olx->define_admin_hooks()
-#1 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(85): Wp_Olx->__construct()
-#2 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(89): run_wp_olx()
-#3 /var/www/html/wp-settings.php(360): include_once('/var/www/html/w...')
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-settings.php(540): do_action('init')
 #4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
 #5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
 #6 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
-#7 {main}
-  thrown in /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php on line 193
-[07-Apr-2020 18:35:57 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_client","error_description":"The client credentials are invalid","error_human_title":"Nie mo\u017cna z (truncated...)
+#7 /var/www/html/wp-admin/index.php(10): require_once('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
+[26-May-2020 18:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-settings.php(540): do_action('init')
+#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-admin/index.php(10): require_once('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
+[26-May-2020 18:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-settings.php(540): do_action('init')
+#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(13): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
+[26-May-2020 18:43:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-settings.php(540): do_action('init')
+#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-admin/index.php(10): require_once('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
+[26-May-2020 18:43:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-settings.php(540): do_action('init')
+#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-admin/index.php(10): require_once('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
+[26-May-2020 18:43:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
+#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-settings.php(540): do_action('init')
+#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-blog-header.php(13): require_once('/var/www/html/w...')
+#7 /var/www/html/index.php(17): require('/var/www/html/w...')
+#8 {main}
+  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
+[26-May-2020 18:45:35 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
  in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
 Stack trace:
 #0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
 #1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
 #2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
 #3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[07-Apr-2020 18:36:49 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_client","error_description":"The client credentials are invalid","error_human_title":"Nie mo\u017cna z (truncated...)
+[26-May-2020 18:45:37 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
  in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
 Stack trace:
 #0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
 #1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
 #2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
 #3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[07-Apr-2020 18:36:58 UTC] PHP Parse error:  syntax error, unexpected '}', expecting ';' in /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php on line 91
-[07-Apr-2020 18:37:05 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_client","error_description":"The client credentials are invalid","error_human_title":"Nie mo\u017cna z (truncated...)
+[26-May-2020 18:45:37 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
  in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
 Stack trace:
 #0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
 #1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
 #2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
 #3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:45:50 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:45:51 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:45:51 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:51:28 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Authorization code doesn't exist or is invalid for the client","error_huma (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:51:29 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Authorization code doesn't exist or is invalid for the client","error_huma (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:51:29 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
+{"error":"invalid_grant","error_description":"Authorization code doesn't exist or is invalid for the client","error_huma (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:56:19 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 18:56:19 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 18:56:19 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
+[26-May-2020 18:56:21 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 18:56:21 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 18:56:21 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
+[26-May-2020 18:57:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 18:57:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 18:57:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
+[26-May-2020 18:57:06 UTC] PHP Notice:  Undefined variable: products_with_adverts in /var/www/html/wp-content/plugins/wp-olx/includes/helper-functions.php on line 31
+[26-May-2020 18:57:06 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /var/www/html/wp-content/plugins/wp-olx/includes/helper-functions.php on line 38
+[26-May-2020 18:57:06 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/users/me/packets` resulted in a `401 Unauthorized` response:
+{"error":"invalid_token","error_description":"The access token provided is invalid","error_human_title":"Nieprawid\u0142 (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzleht in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:57:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 18:57:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 18:57:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
+[26-May-2020 18:57:08 UTC] PHP Notice:  Undefined variable: products_with_adverts in /var/www/html/wp-content/plugins/wp-olx/includes/helper-functions.php on line 31
+[26-May-2020 18:57:08 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /var/www/html/wp-content/plugins/wp-olx/includes/helper-functions.php on line 38
+[26-May-2020 18:57:08 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/users/me/packets` resulted in a `401 Unauthorized` response:
+{"error":"invalid_token","error_description":"The access token provided is invalid","error_human_title":"Nieprawid\u0142 (truncated...)
+ in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+Stack trace:
+#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
+#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
+#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
+#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzleht in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
+[26-May-2020 18:57:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 18:57:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 18:57:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
+[26-May-2020 18:57:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 18:57:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 18:57:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
+[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/http.php on line 494
+[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/http.php on line 495
+[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6107
+[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/http.php on line 494
+[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/http.php on line 495
+[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6107
+[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 19:00:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 19:00:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 19:00:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-header.php on line 9
+[26-May-2020 19:00:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 494
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 495
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6107
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-header.php on line 9
+[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 494
+[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 495
+[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6107
+[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
+[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 494
+[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 495
+[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 27
+[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 28
+[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6107
+[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
+[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259

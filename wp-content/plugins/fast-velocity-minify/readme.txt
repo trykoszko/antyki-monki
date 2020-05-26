@@ -3,7 +3,7 @@ Contributors: Alignak
 Tags: PHP Minify, Lighthouse, GTmetrix, Pingdom, Pagespeed, CSS Merging, JS Merging, CSS Minification, JS Minification, Speed Optimization, HTML Minification, Performance, Optimization, FVM
 Requires at least: 4.7
 Requires PHP: 5.6
-Stable tag: 2.8.1
+Stable tag: 2.8.2
 Tested up to: 5.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -197,6 +197,10 @@ Please backup your site before updating. Version 3.0 will have a major code rewr
 
 
 == Changelog ==
+
+= 2.8.2 [2020.04.13] =
+* Skip changing clip-path: url(#some-svg); to absolute urls during css minification
+* Added a better cronjob duplicate cleanup task, when uninstalling the plugin
 
 = 2.8.1 [2020.03.15] =
 * added filter for the fvm_get_url function

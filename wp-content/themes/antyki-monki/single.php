@@ -49,10 +49,26 @@ $is_painting = isset(get_field('product_attributes')['canvas_type']);
             <div class="c-product-info">
                 <?php
                     $attrs = get_field('product_attributes');
+                    $olx_advert = get_field( 'olx_olx_data' );
+                    $olx_is_advert_valid = null;
+                    if ( $olx_advert ) {
+                        $olx_data = json_decode( $olx_advert );
+                        $olx_date_valid_to = $olx_data->valid_to;
+                        $date_today = date( "Y-m-d H:i:s" );
+                        $olx_is_advert_valid = $date_today < $olx_date_valid_to;
+                    }
                 ?>
                 <h1 class="c-product-info__title">
                     <?php the_title(); ?>
                 </h1>
+                <?php if ( $olx_is_advert_valid ) : ?>
+                    <a href="#" class="c-btn" style="padding: 6px 12px;">
+                        <span class="c-label">
+                            Zobacz produkt na OLX &raquo;
+                        </span>
+                    </a>
+                    <br><br>
+                <?php endif; ?>
                 <p class="c-product-info__desc">
                     <?php echo $attrs['desc']; ?>
                 </p>
