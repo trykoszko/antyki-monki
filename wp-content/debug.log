@@ -1,282 +1,291 @@
-[26-May-2020 18:38:31 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
+[06-Dec-2020 18:28:16 UTC] PHP Notice:  Undefined property: WP_Post_Type::$taxonomy in /var/www/html/wp-content/themes/antyki-monki/index.php on line 7
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:51 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:52 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:53 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:54 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:55 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:56 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:57 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:35:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:36:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:39:48 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Wp_Olx_Public::__construct(), 0 passed in /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php on line 161 and exactly 2 expected in /var/www/html/wp-content/plugins/wp-olx/public/class-wp-olx-public.php:51
 Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:38:32 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:38:32 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:42:43 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:42:43 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:42:43 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
-Stack trace:
-#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
-#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
-#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
-#3 /var/www/html/wp-settings.php(540): do_action('init')
-#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
-#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
-#6 /var/www/html/wp-cron.php(44): require_once('/var/www/html/w...')
-#7 {main}
-  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
-[26-May-2020 18:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
-Stack trace:
-#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
-#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
-#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
-#3 /var/www/html/wp-settings.php(540): do_action('init')
-#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
-#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
-#6 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
-#7 /var/www/html/wp-admin/index.php(10): require_once('/var/www/html/w...')
+#0 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(161): Wp_Olx_Public->__construct()
+#1 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(78): Wp_Olx->set_locale()
+#2 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(85): Wp_Olx->__construct()
+#3 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(89): run_wp_olx()
+#4 /var/www/html/wp-settings.php(377): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-admin/admin-ajax.php(22): require_once('/var/www/html/w...')
 #8 {main}
-  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
-[26-May-2020 18:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+  thrown in /var/www/html/wp-content/plugins/wp-olx/public/class-wp-olx-public.php on line 51
+[06-Dec-2020 18:40:01 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Wp_Olx_Public::__construct(), 0 passed in /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php on line 161 and exactly 2 expected in /var/www/html/wp-content/plugins/wp-olx/public/class-wp-olx-public.php:51
 Stack trace:
-#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
-#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
-#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
-#3 /var/www/html/wp-settings.php(540): do_action('init')
-#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
-#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
-#6 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
-#7 /var/www/html/wp-admin/index.php(10): require_once('/var/www/html/w...')
+#0 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(161): Wp_Olx_Public->__construct()
+#1 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(78): Wp_Olx->set_locale()
+#2 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(85): Wp_Olx->__construct()
+#3 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(89): run_wp_olx()
+#4 /var/www/html/wp-settings.php(377): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-admin/admin-ajax.php(22): require_once('/var/www/html/w...')
 #8 {main}
-  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
-[26-May-2020 18:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+  thrown in /var/www/html/wp-content/plugins/wp-olx/public/class-wp-olx-public.php on line 51
+[06-Dec-2020 18:40:15 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Wp_Olx_Public::__construct(), 0 passed in /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php on line 161 and exactly 2 expected in /var/www/html/wp-content/plugins/wp-olx/public/class-wp-olx-public.php:51
 Stack trace:
-#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
-#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
-#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
-#3 /var/www/html/wp-settings.php(540): do_action('init')
-#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
-#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
-#6 /var/www/html/wp-blog-header.php(13): require_once('/var/www/html/w...')
-#7 /var/www/html/index.php(17): require('/var/www/html/w...')
-#8 {main}
-  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
-[26-May-2020 18:43:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
+#0 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(161): Wp_Olx_Public->__construct()
+#1 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(78): Wp_Olx->set_locale()
+#2 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(85): Wp_Olx->__construct()
+#3 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(89): run_wp_olx()
+#4 /var/www/html/wp-settings.php(377): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
+#8 /var/www/html/wp-admin/edit.php(10): require_once('/var/www/html/w...')
+#9 {main}
+  thr in /var/www/html/wp-content/plugins/wp-olx/public/class-wp-olx-public.php on line 51
+[06-Dec-2020 18:40:15 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Wp_Olx_Public::__construct(), 0 passed in /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php on line 161 and exactly 2 expected in /var/www/html/wp-content/plugins/wp-olx/public/class-wp-olx-public.php:51
 Stack trace:
-#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
-#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
-#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
-#3 /var/www/html/wp-settings.php(540): do_action('init')
-#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
-#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
-#6 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
-#7 /var/www/html/wp-admin/index.php(10): require_once('/var/www/html/w...')
-#8 {main}
-  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
-[26-May-2020 18:43:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
-Stack trace:
-#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
-#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
-#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
-#3 /var/www/html/wp-settings.php(540): do_action('init')
-#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
-#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
-#6 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
-#7 /var/www/html/wp-admin/index.php(10): require_once('/var/www/html/w...')
-#8 {main}
-  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
-[26-May-2020 18:43:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function acf_add_options_page() in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php:3
-Stack trace:
-#0 /var/www/html/wp-includes/class-wp-hook.php(287): init_acf_options_page('')
-#1 /var/www/html/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
-#2 /var/www/html/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
-#3 /var/www/html/wp-settings.php(540): do_action('init')
-#4 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
-#5 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
-#6 /var/www/html/wp-blog-header.php(13): require_once('/var/www/html/w...')
-#7 /var/www/html/index.php(17): require('/var/www/html/w...')
-#8 {main}
-  thrown in /var/www/html/wp-content/themes/antyki-monki/inc/acf.php on line 3
-[26-May-2020 18:45:35 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:45:37 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:45:37 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:45:50 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:45:51 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:45:51 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Refresh token has expired","error_human_title":"Wprowadzone dane autoryzac (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:51:28 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Authorization code doesn't exist or is invalid for the client","error_huma (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:51:29 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Authorization code doesn't exist or is invalid for the client","error_huma (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:51:29 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `POST https://www.olx.pl/api/open/oauth/token` resulted in a `400 Bad Request` response:
-{"error":"invalid_grant","error_description":"Authorization code doesn't exist or is invalid for the client","error_huma (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promi in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:56:19 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 18:56:19 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 18:56:19 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
-[26-May-2020 18:56:21 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 18:56:21 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 18:56:21 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
-[26-May-2020 18:57:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 18:57:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 18:57:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
-[26-May-2020 18:57:06 UTC] PHP Notice:  Undefined variable: products_with_adverts in /var/www/html/wp-content/plugins/wp-olx/includes/helper-functions.php on line 31
-[26-May-2020 18:57:06 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /var/www/html/wp-content/plugins/wp-olx/includes/helper-functions.php on line 38
-[26-May-2020 18:57:06 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/users/me/packets` resulted in a `401 Unauthorized` response:
-{"error":"invalid_token","error_description":"The access token provided is invalid","error_human_title":"Nieprawid\u0142 (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzleht in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:57:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 18:57:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 18:57:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
-[26-May-2020 18:57:08 UTC] PHP Notice:  Undefined variable: products_with_adverts in /var/www/html/wp-content/plugins/wp-olx/includes/helper-functions.php on line 31
-[26-May-2020 18:57:08 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /var/www/html/wp-content/plugins/wp-olx/includes/helper-functions.php on line 38
-[26-May-2020 18:57:08 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\ClientException: Client error: `GET https://www.olx.pl/api/partner/users/me/packets` resulted in a `401 Unauthorized` response:
-{"error":"invalid_token","error_description":"The access token provided is invalid","error_human_title":"Nieprawid\u0142 (truncated...)
- in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:113
-Stack trace:
-#0 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Middleware.php(65): GuzzleHttp\Exception\RequestException::create(Object(GuzzleHttp\Psr7\Request), Object(GuzzleHttp\Psr7\Response))
-#1 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(203): GuzzleHttp\Middleware::GuzzleHttp\{closure}(Object(GuzzleHttp\Psr7\Response))
-#2 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/promises/src/Promise.php(156): GuzzleHttp\Promise\Promise::callHandler(1, Object(GuzzleHttp\Psr7\Response), Array)
-#3 /var/www/html/wp-content/plugins/wp-olx/vendor/guzzleht in /var/www/html/wp-content/plugins/wp-olx/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php on line 113
-[26-May-2020 18:57:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 18:57:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 18:57:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
-[26-May-2020 18:57:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 18:57:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 18:57:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-header.php on line 9
-[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/http.php on line 494
-[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/http.php on line 495
-[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-ajax.php on line 27
-[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-ajax.php on line 28
-[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6107
-[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 18:58:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/http.php on line 494
-[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/http.php on line 495
-[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-ajax.php on line 27
-[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/admin-ajax.php on line 28
-[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6107
-[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 18:59:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:83) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 19:00:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 19:00:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 19:00:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-header.php on line 9
-[26-May-2020 19:00:11 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 494
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 495
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 27
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 28
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6107
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 19:00:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-header.php on line 9
-[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 494
-[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 495
-[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 27
-[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 28
-[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6107
-[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 19:01:12 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
-[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 494
-[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/http.php on line 495
-[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 27
-[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/admin-ajax.php on line 28
-[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6107
-[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-includes/functions.php on line 6221
-[26-May-2020 19:02:13 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-content/plugins/wp-olx/includes/class-olx.php:85) in /var/www/html/wp-admin/includes/misc.php on line 1259
+#0 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(161): Wp_Olx_Public->__construct()
+#1 /var/www/html/wp-content/plugins/wp-olx/includes/class-wp-olx.php(78): Wp_Olx->set_locale()
+#2 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(85): Wp_Olx->__construct()
+#3 /var/www/html/wp-content/plugins/wp-olx/wp-olx.php(89): run_wp_olx()
+#4 /var/www/html/wp-settings.php(377): include_once('/var/www/html/w...')
+#5 /var/www/html/wp-config.php(84): require_once('/var/www/html/w...')
+#6 /var/www/html/wp-load.php(37): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-blog-header.php(13): require_once('/var/www/html/w...')
+#8 /var/www/html/index.php(17): require('/var/www/html/w...')
+#9 {main}
+  thrown in /var/www/html/wp-content/plugins/wp-olx/public/class-wp-olx-public.php on line 51
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:58 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:40:59 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:00 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:01 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:02 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:03 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:04 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:05 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[06-Dec-2020 18:41:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
+[06-Dec-2020 18:41:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299

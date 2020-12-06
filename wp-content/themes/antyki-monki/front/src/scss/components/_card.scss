@@ -9,29 +9,12 @@
 
     transition: $transition-default;
 
-    @include shadow-default;
-
-    margin-left: $s * 2;
-    &:nth-child(2n+1) {
-        margin-left: 0;
-    }
+    // @include shadow-default;
 
     @include media(desktop) {
-        width: calc((100% / 3) - #{$s});
+        width: calc((100% / 4) - #{$s * 2});
 
-        margin-left: $s;
-        &:nth-child(2n+1) {
-            margin-left: $s;
-        }
-        &:nth-child(3n+1) {
-            margin-left: 0;
-        }
-    }
-
-    &:hover {
-        transition: $transition-default;
-
-        @include shadow-small;
+        margin-bottom: $s;
     }
 }
 
@@ -44,10 +27,11 @@
 }
 
 .c-card__body {
-    padding: $s;
+    padding: $s 0;
 
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .c-card__title {
@@ -55,19 +39,39 @@
     margin: 0;
     margin-bottom: $s;
 
-    font-size: font-size(h4);
+    font-size: font-size(h35);
+}
 
-    @include media(tablet) {
-        font-size: font-size(h3);
-    }
+.c-card__price {
+    display: inline;
+
+    padding: $s / 2;
+
+    background-color: color(golden);
+    color: white;
 }
 
 .c-card__categories {
     margin: 0 0 $s;
+    margin-bottom: 0;
 
-    font-size: font-size(h5);
+    font-size: font-size(med);
 
-    @include media(tablet) {
-        font-size: font-size(h4);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    .c-decor {
+        display: inline-block;
+
+        width: 3px;
+        height: 3px;
+
+        margin-left: 5px;
+        margin-right: 5px;
+
+        background-color: color(golden);
     }
 }

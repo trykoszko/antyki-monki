@@ -51,7 +51,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </nav>
                 <a href="/">
                     <figure class="c-header__logo">
-                        <img src="<?php echo $theme_url; ?>/static/img/antyki-logo.png" alt="<?php echo get_bloginfo('title'); ?> Logo" />
+                        <img src="<?php echo $theme_url; ?>/static/img/antyki-logo.png" alt="Logo <?php echo get_bloginfo('title'); ?>" />
                     </figure>
                 </a>
                 <button class="c-header__search js-toggle-search">
@@ -69,3 +69,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </header>
 
     <main class="l-main">
+
+        <?php if (is_home()) : ?>
+            <?php get_template_part('components/home-hero'); ?>
+        <?php endif; ?>

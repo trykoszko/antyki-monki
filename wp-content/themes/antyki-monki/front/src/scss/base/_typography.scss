@@ -1,7 +1,7 @@
 /* ==========================================================================
    Typography
    ========================================================================== */
-   @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Work+Sans&display=swap');
 
 /* Global texts
 ========================================================================== */
@@ -23,8 +23,9 @@ a {
     text-decoration: none;
 
     color: currentColor;
+
     &:hover {
-        text-decoration: none;
+        text-decoration: underline;
     }
 }
 
@@ -34,4 +35,9 @@ a {
     @include media(tablet) {
         font-size: font-size(h1);
     }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: font(serif);
+    font-weight: 400;
 }

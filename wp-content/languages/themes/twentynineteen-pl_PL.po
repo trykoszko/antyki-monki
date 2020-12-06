@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Themes - Twenty Nineteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-11-05 08:17:24+0000\n"
+"PO-Revision-Date: 2020-05-25 18:26:19+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: pl\n"
 "Project-Id-Version: Themes - Twenty Nineteen\n"
 
@@ -19,6 +19,18 @@ msgstr "Nasz domyślny motyw na rok 2019 stworzony został z myślą o pokazaniu
 msgid "Twenty Nineteen"
 msgstr "Twenty Nineteen"
 
+#: classes/class-twentynineteen-walker-comment.php:96
+msgid "Your comment is awaiting moderation. This is a preview, your comment will be visible after it has been approved."
+msgstr "Komentarz czeka na zatwierdzenie. To jest podgląd komentarza, który będzie widoczny po jego zatwierdzeniu."
+
+#: functions.php:153
+msgid "Dark Blue"
+msgstr "Ciemny niebieski"
+
+#: functions.php:148
+msgid "Blue"
+msgstr "Niebieski"
+
 #. translators: %s: Parent post link.
 #: single.php:31
 msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
@@ -29,8 +41,8 @@ msgctxt "Parent post link"
 msgid "<span class=\"meta-nav\">Published in</span><br><span class=\"post-title\">%title</span>"
 msgstr "<span class=\"meta-nav\">Opublikowano w</span><br><span class=\"post-title\">%title</span>"
 
-#: template-parts/content/content-excerpt.php:18
 #: template-parts/content/content.php:18
+#: template-parts/content/content-excerpt.php:18
 msgctxt "post"
 msgid "Featured"
 msgstr "Wyróżniony"
@@ -102,15 +114,15 @@ msgstr "M"
 msgid "Normal"
 msgstr "Normalny"
 
-#: functions.php:117
-msgid "Small"
-msgstr "Mały"
-
 #: functions.php:118
 msgid "S"
 msgstr "S"
 
-#: footer.php:37 functions.php:60
+#: functions.php:117
+msgid "Small"
+msgstr "Mały"
+
+#: functions.php:60 footer.php:37
 msgid "Footer Menu"
 msgstr "Menu stopki"
 
@@ -127,7 +139,7 @@ msgstr "strona"
 msgid "Add widgets here to appear in your footer."
 msgstr "Tutaj dodaj widgety, które zostaną wyświetlone w stopce."
 
-#: template-parts/footer/footer-widgets.php:12 functions.php:190
+#: functions.php:190 template-parts/footer/footer-widgets.php:12
 msgid "Footer"
 msgstr "Stopka"
 
@@ -161,14 +173,14 @@ msgid "Top Menu"
 msgstr "Górne menu"
 
 #. translators: %s: Post title. Only visible to screen readers.
-#: template-parts/content/content-single.php:27
 #: template-parts/content/content.php:36
+#: template-parts/content/content-single.php:27
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "Czytaj dalej<span class=\"screen-reader-text\"> %s</span>"
 
-#: template-parts/content/content-single.php:40
+#: image.php:52 template-parts/content/content-page.php:27
 #: template-parts/content/content.php:49
-#: template-parts/content/content-page.php:27 image.php:52
+#: template-parts/content/content-single.php:40
 msgid "Pages:"
 msgstr "Strony:"
 
@@ -204,6 +216,10 @@ msgstr "Następny wpis:"
 #: single.php:38
 msgid "Next Post"
 msgstr "Następny wpis"
+
+#: search.php:22
+msgid "Search results for: "
+msgstr "Wyniki wyszukiwania dla:"
 
 #: inc/template-tags.php:234
 msgid "Older posts"
@@ -283,8 +299,8 @@ msgid "Category Archives: "
 msgstr "Archiwum kategorii:"
 
 #. translators: %s: Post title. Only visible to screen readers.
-#: template-parts/header/entry-header.php:32
-#: template-parts/content/content-page.php:41 inc/template-tags.php:120
+#: template-parts/content/content-page.php:41
+#: template-parts/header/entry-header.php:32 inc/template-tags.php:120
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Edycja <span class=\"screen-reader-text\">%s</span>"
 
@@ -292,7 +308,7 @@ msgstr "Edycja <span class=\"screen-reader-text\">%s</span>"
 msgid "Skip to content"
 msgstr "Przeskocz do treści"
 
-#: template-parts/header/site-branding.php:46 functions.php:61
+#: functions.php:61 template-parts/header/site-branding.php:46
 msgid "Social Links Menu"
 msgstr "Menu odnośników serwisów społecznościowych"
 
