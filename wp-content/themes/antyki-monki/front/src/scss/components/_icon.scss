@@ -37,24 +37,3 @@
         }
     }
 }
-
-.l-header.is-scrolled {
-    .c-icon {
-        @include anim-default;
-
-        &--search {
-            font-size: 1.5em;
-
-            @include media(desktop) {
-                font-size: 2em;
-            }
-        }
-        &--burger {
-            font-size: 1.5em;
-
-            @include media(desktop) {
-                font-size: 2em;
-            }
-        }
-    }
-}

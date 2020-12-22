@@ -6,9 +6,9 @@
 }
 
 .l-main {
-    margin-top: $m-header-height-scrolled;
+    margin-top: #{$m-header-logo-height + ($s * 4)};
 
     @include media(desktop) {
-        margin-top: $d-header-height-scrolled;
+        margin-top: #{$d-header-logo-height + ($s * 4)};
     }
 }

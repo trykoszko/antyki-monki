@@ -289,3 +289,364 @@ Stack trace:
 [06-Dec-2020 18:41:06 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
 [06-Dec-2020 18:41:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1296
 [06-Dec-2020 18:41:07 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/wp-admin/includes/template.php:2488) in /var/www/html/wp-includes/pluggable.php on line 1299
+[22-Dec-2020 19:50:26 UTC] PHP Warning:  mysqli_real_connect(): (HY000/2002): No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/wp-db.php on line 1635
+[22-Dec-2020 21:37:28 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 51
+[22-Dec-2020 21:37:28 UTC] PHP Stack trace:
+[22-Dec-2020 21:37:28 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:37:28 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:37:28 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:37:28 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:37:28 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:37:28 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:37:28 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:37:28 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:37:28 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 51
+[22-Dec-2020 21:37:28 UTC] PHP Stack trace:
+[22-Dec-2020 21:37:28 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:37:28 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:37:28 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:37:28 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:37:28 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:37:28 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:37:28 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:37:28 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:40:50 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 63
+[22-Dec-2020 21:40:50 UTC] PHP Stack trace:
+[22-Dec-2020 21:40:50 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:40:50 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:40:50 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:40:50 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:40:50 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:40:50 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:40:50 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:40:50 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:40:50 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 63
+[22-Dec-2020 21:40:50 UTC] PHP Stack trace:
+[22-Dec-2020 21:40:50 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:40:50 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:40:50 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:40:50 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:40:50 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:40:50 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:40:50 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:40:50 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:41:28 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 65
+[22-Dec-2020 21:41:28 UTC] PHP Stack trace:
+[22-Dec-2020 21:41:28 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:41:28 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:41:28 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:41:28 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:41:28 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:41:28 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:41:28 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:41:28 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:41:28 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 65
+[22-Dec-2020 21:41:28 UTC] PHP Stack trace:
+[22-Dec-2020 21:41:28 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:41:28 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:41:28 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:41:28 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:41:28 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:41:28 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:41:28 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:41:28 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:42:03 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 67
+[22-Dec-2020 21:42:03 UTC] PHP Stack trace:
+[22-Dec-2020 21:42:03 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:42:03 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:42:03 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:42:03 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:42:03 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:42:03 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:42:03 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:42:03 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:42:03 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 67
+[22-Dec-2020 21:42:03 UTC] PHP Stack trace:
+[22-Dec-2020 21:42:03 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:42:03 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:42:03 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:42:03 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:42:03 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:42:03 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:42:03 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:42:03 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:42:43 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 67
+[22-Dec-2020 21:42:43 UTC] PHP Stack trace:
+[22-Dec-2020 21:42:43 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:42:43 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:42:43 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:42:43 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:42:43 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:42:43 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:42:43 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:42:43 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:42:43 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 67
+[22-Dec-2020 21:42:43 UTC] PHP Stack trace:
+[22-Dec-2020 21:42:43 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:42:43 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:42:43 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:42:43 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:42:43 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:42:43 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:42:43 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:42:43 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:44:07 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 73
+[22-Dec-2020 21:44:07 UTC] PHP Stack trace:
+[22-Dec-2020 21:44:07 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:44:07 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:44:07 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:44:07 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:44:07 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:44:07 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:44:07 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:44:07 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:44:07 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 73
+[22-Dec-2020 21:44:07 UTC] PHP Stack trace:
+[22-Dec-2020 21:44:07 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:44:07 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:44:07 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:44:07 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:44:07 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:44:07 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:44:07 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:44:07 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:50:26 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 75
+[22-Dec-2020 21:50:26 UTC] PHP Stack trace:
+[22-Dec-2020 21:50:26 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:50:26 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:50:26 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:50:26 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:50:26 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:50:26 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:50:26 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:50:26 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:50:26 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 75
+[22-Dec-2020 21:50:26 UTC] PHP Stack trace:
+[22-Dec-2020 21:50:26 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:50:26 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:50:26 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:50:26 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:50:26 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:50:26 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:50:26 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:50:26 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:50:29 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 75
+[22-Dec-2020 21:50:29 UTC] PHP Stack trace:
+[22-Dec-2020 21:50:29 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:50:29 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:50:29 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:50:29 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:50:29 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:50:29 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:50:29 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:50:29 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:50:29 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 75
+[22-Dec-2020 21:50:29 UTC] PHP Stack trace:
+[22-Dec-2020 21:50:29 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:50:29 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:50:29 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:50:29 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:50:29 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:50:29 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:50:29 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:50:29 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:50:31 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 75
+[22-Dec-2020 21:50:31 UTC] PHP Stack trace:
+[22-Dec-2020 21:50:31 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:50:31 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:50:31 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:50:31 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:50:31 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:50:31 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:50:31 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:50:31 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:50:31 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 75
+[22-Dec-2020 21:50:31 UTC] PHP Stack trace:
+[22-Dec-2020 21:50:31 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:50:31 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:50:31 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:50:31 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:50:31 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:50:31 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:50:31 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:50:31 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:56:42 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 75
+[22-Dec-2020 21:56:42 UTC] PHP Stack trace:
+[22-Dec-2020 21:56:42 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:56:42 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:56:42 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:56:42 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:56:42 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:56:42 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:56:42 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:56:42 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 21:56:42 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 75
+[22-Dec-2020 21:56:42 UTC] PHP Stack trace:
+[22-Dec-2020 21:56:42 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 21:56:42 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 21:56:42 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 21:56:42 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 21:56:42 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 21:56:42 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 21:56:42 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 21:56:42 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:00:12 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 76
+[22-Dec-2020 22:00:12 UTC] PHP Stack trace:
+[22-Dec-2020 22:00:12 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:00:12 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:00:12 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:00:12 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:00:12 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:00:12 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:00:12 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:00:12 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:00:12 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 76
+[22-Dec-2020 22:00:12 UTC] PHP Stack trace:
+[22-Dec-2020 22:00:12 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:00:12 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:00:12 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:00:12 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:00:12 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:00:12 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:00:12 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:00:12 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:03:08 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 76
+[22-Dec-2020 22:03:08 UTC] PHP Stack trace:
+[22-Dec-2020 22:03:08 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:03:08 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:03:08 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:03:08 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:03:08 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:03:08 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:03:08 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:03:08 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:03:08 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 76
+[22-Dec-2020 22:03:08 UTC] PHP Stack trace:
+[22-Dec-2020 22:03:08 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:03:08 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:03:08 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:03:08 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:03:08 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:03:08 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:03:08 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:03:08 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:09:28 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 76
+[22-Dec-2020 22:09:28 UTC] PHP Stack trace:
+[22-Dec-2020 22:09:28 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:09:28 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:09:28 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:09:28 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:09:28 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:09:28 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:09:28 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:09:28 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:09:28 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 76
+[22-Dec-2020 22:09:28 UTC] PHP Stack trace:
+[22-Dec-2020 22:09:28 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:09:28 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:09:28 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:09:28 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:09:28 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:09:28 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:09:28 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:09:28 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:14:09 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 78
+[22-Dec-2020 22:14:09 UTC] PHP Stack trace:
+[22-Dec-2020 22:14:09 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:14:09 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:14:09 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:14:09 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:14:09 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:14:09 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:14:09 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:14:09 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:14:09 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 78
+[22-Dec-2020 22:14:09 UTC] PHP Stack trace:
+[22-Dec-2020 22:14:09 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:14:09 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:14:09 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:14:09 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:14:09 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:14:09 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:14:09 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:14:09 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:22:15 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 78
+[22-Dec-2020 22:22:15 UTC] PHP Stack trace:
+[22-Dec-2020 22:22:15 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:22:15 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:22:15 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:22:15 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:22:15 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:22:15 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:22:15 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:22:15 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:22:15 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 78
+[22-Dec-2020 22:22:15 UTC] PHP Stack trace:
+[22-Dec-2020 22:22:15 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:22:15 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:22:15 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:22:15 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:22:15 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:22:15 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:22:15 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:22:15 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:25:37 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 78
+[22-Dec-2020 22:25:37 UTC] PHP Stack trace:
+[22-Dec-2020 22:25:37 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:25:37 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:25:37 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:25:37 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:25:37 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:25:37 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:25:37 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:25:37 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:25:37 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 78
+[22-Dec-2020 22:25:37 UTC] PHP Stack trace:
+[22-Dec-2020 22:25:37 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:25:37 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:25:37 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:25:37 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:25:37 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:25:37 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:25:37 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:25:37 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:29:42 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 81
+[22-Dec-2020 22:29:42 UTC] PHP Stack trace:
+[22-Dec-2020 22:29:42 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:29:42 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:29:42 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:29:42 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:29:42 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:29:42 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:29:42 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:29:42 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:29:42 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 81
+[22-Dec-2020 22:29:42 UTC] PHP Stack trace:
+[22-Dec-2020 22:29:42 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:29:42 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:29:42 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:29:42 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:29:42 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:29:42 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:29:42 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:29:42 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:39:08 UTC] PHP Notice:  Undefined index: choices in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 86
+[22-Dec-2020 22:39:08 UTC] PHP Stack trace:
+[22-Dec-2020 22:39:08 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:39:08 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:39:08 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:39:08 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:39:08 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:39:08 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:39:08 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:39:08 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732
+[22-Dec-2020 22:39:08 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/components/main-grid-filters.php on line 86
+[22-Dec-2020 22:39:08 UTC] PHP Stack trace:
+[22-Dec-2020 22:39:08 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[22-Dec-2020 22:39:08 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[22-Dec-2020 22:39:08 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:19
+[22-Dec-2020 22:39:08 UTC] PHP   4. include() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template-loader.php:106
+[22-Dec-2020 22:39:08 UTC] PHP   5. get_template_part($slug = *uninitialized*, $name = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/themes/antyki-monki/index.php:64
+[22-Dec-2020 22:39:08 UTC] PHP   6. locate_template($template_names = *uninitialized*, $load = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/general-template.php:204
+[22-Dec-2020 22:39:08 UTC] PHP   7. load_template($_template_file = *uninitialized*, $require_once = *uninitialized*, $args = *uninitialized*) /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:676
+[22-Dec-2020 22:39:08 UTC] PHP   8. require() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-includes/template.php:732

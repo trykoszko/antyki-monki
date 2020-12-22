@@ -40,42 +40,47 @@ $found_posts = $query->found_posts;
 
 <div class="l-inner">
     <?php if ($query->have_posts()) : ?>
-        <?php // if (!$current_cat_name && !$is_search) : ?>
-            <!-- <h2 class="c-section-title">
-                <?php // _e('Wszystkie produkty', 'antyki'); ?> (<?php // echo $found_posts; ?>)
-            </h2> -->
-        <?php // endif; ?>
-        <?php if ($current_cat_name) : ?>
+        <?php // if (!$current_cat_name && !$is_search) :
+        ?>
+        <?php if (is_home()) : ?>
+            <h2 class="c-section-title">
+                <?php _e('Nasze produkty', 'antyki'); ?>
+            </h2>
+        <?php endif; ?>
+        <?php // endif;
+        ?>
+        <!-- <?php if ($current_cat_name) : ?>
             <a href="/" class="c-section-link">
                 <span class="c-label">
                     <?php _e('&laquo; Powrót do wszystkich produktów', 'antyki'); ?>
                 </span>
             </a>
-        <?php endif; ?>
+        <?php endif; ?> -->
         <?php if ($is_search) : ?>
             <h2 class="c-section-title">
                 <?php _e('Wyniki wyszukiwania frazy: ', 'antyki'); ?> <i><?php echo get_search_query(); ?></i> (<?php echo $found_posts; ?>)
             </h2>
         <?php endif; ?>
+        <?php get_template_part('components/main-grid-filters'); ?>
         <div class="c-main-grid">
             <?php while ($query->have_posts()) : $query->the_post(); ?>
                 <div class="c-card">
                     <div class="c-card__inside">
                         <?php
                         $gallery = get_field('product_gallery');
-                        $first_img = $gallery[0]['sizes']['large'];
-                        $second_img = $gallery[1]['sizes']['large'];
+                        $first_img = $gallery[0]['sizes']['medium'];
+                        $second_img = $gallery[1]['sizes']['medium'];
                         $first_img_exists = false;
                         $second_img_exists = false;
                         if ($first_img) {
                             $first_img_exists = true;
-                            $first_img_aspect_ratio = round($gallery[0]['sizes']['large-width'] / $gallery[0]['sizes']['large-height'], 2);
+                            $first_img_aspect_ratio = round($gallery[0]['sizes']['medium-width'] / $gallery[0]['sizes']['medium-height'], 2);
                             $first_img_object_fit = $first_img_aspect_ratio === 1.78 || $first_img_aspect_ratio === 0.56 ? 'contain' : 'cover';
                             $first_img_orientation = $first_img_aspect_ratio > 1 ? 'landscape' : 'portrait';
                         }
                         if ($second_img) {
                             $second_img_exists = true;
-                            $second_img_aspect_ratio = round($gallery[1]['sizes']['large-width'] / $gallery[1]['sizes']['large-height'], 2);
+                            $second_img_aspect_ratio = round($gallery[1]['sizes']['medium-width'] / $gallery[1]['sizes']['medium-height'], 2);
                             $second_img_object_fit = $second_img_aspect_ratio === 1.78 || $second_img_aspect_ratio === 0.56 ? 'contain' : 'cover';
                             $second_img_orientation = $second_img_aspect_ratio > 1 ? 'landscape' : 'portrait';
                         }
@@ -109,12 +114,14 @@ $found_posts = $query->found_posts;
                             ?>
                             <p class="c-card__categories">
                                 <?php foreach ($cats as $cat) : ?>
-                                    <a class="c-link" href="<?php echo get_category_link($cat); ?>"><span class="c-label"><?php echo $cat->name; ?></span></a><?php if ($i < $cat_count) { echo '<span class="c-decor"></span>'; } ?>
+                                    <a class="c-link" href="<?php echo get_category_link($cat); ?>"><span class="c-label"><?php echo $cat->name; ?></span></a><?php if ($i < $cat_count) {
+                                                                                                                                                                    echo '<span class="c-decor"></span>';
+                                                                                                                                                                } ?>
                                     <?php $i++; ?>
                                 <?php endforeach; ?>
                             </p>
                             <?php
-                            $attrs = get_field( 'olx_attributes', $post );
+                            $attrs = get_field('olx_attributes', $post);
                             $price = $attrs['price'] ?? null;
                             ?>
                             <?php if ($price) : ?>
@@ -139,9 +146,10 @@ $found_posts = $query->found_posts;
             </a>
         <?php endif; ?>
         <?php if (!$is_search) : ?>
-            <?php // get_template_part('components/pagination'); ?>
+            <?php // get_template_part('components/pagination');
+            ?>
             <a href="#" class="c-btn c-btn--golden">
-                <?php _e( 'Zobacz wszystkie', 'antyki' ); ?>
+                <?php _e('Zobacz wszystkie', 'antyki'); ?>
             </a>
         <?php endif; ?>
     <?php else : ?>

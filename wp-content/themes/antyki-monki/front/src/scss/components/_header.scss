@@ -9,17 +9,43 @@
     position: relative;
 
     padding: $s * 2 0;
+
+    @include media(desktop) {
+        justify-content: space-between;
+    }
+}
+
+.c-header__logo {
+    justify-self: center;
+
+    margin: 0;
+    padding: 0;
+
+    height: $m-header-logo-height;
+    width: auto;
+
+    @include anim-default;
+
+    img {
+        height: $m-header-logo-height;
+        width: auto;
+
+        @include anim-default;
+    }
+    &:hover {
+        transform: scale(1.05);
+    }
+    @include media(desktop) {
+        height: $d-header-logo-height;
+
+        img {
+            height: $d-header-logo-height;
+        }
+    }
 }
 
 .c-header__nav {
     height: $m-header-menu-height;
-
-    position: fixed;
-    top: 0;
-    left: -100%;
-
-    width: 100%;
-    height: 100%;
 
     background-color: color(white);
 
@@ -32,17 +58,28 @@
 
         @include anim-default;
     }
+    @include media(0, desktop) {
+        position: fixed;
+        top: 0;
+        left: -100%;
+
+        width: 100%;
+        height: 100%;
+    }
     @include media(desktop) {
         width: auto;
         height: $d-header-menu-height;
 
-        position: absolute;
-        left: 0;
-        top: 35%;
+        background-color: white;
 
-        background: transparent;
+        order: 2;
+    }
+}
 
-        opacity: 0;
+.c-header__logo-wrapper {
+
+    @include media(desktop) {
+        order: 1;
     }
 }
 
@@ -119,39 +156,7 @@
     }
 }
 
-.c-header__logo {
-    justify-self: center;
-
-    margin: 0;
-    padding: 0;
-
-    height: #{$m-header-height - $s * 6};
-    width: auto;
-
-    @include anim-default;
-
-    img {
-        height: #{$m-header-height - $s * 6};
-        width: auto;
-
-        @include anim-default;
-    }
-    &:hover {
-        transform: scale(1.05);
-    }
-    @include media(desktop) {
-        height: #{$d-header-height - $s * 4};
-
-        img {
-            height: #{$d-header-height - $s * 4};
-        }
-    }
-}
-
 .c-header__search {
-    position: absolute;
-    right: 0;
-
     outline: none;
 
     border: none;
@@ -163,6 +168,14 @@
 
     &:hover {
         background-color: color(lgrey);
+    }
+
+    @include media(0, desktop) {
+        position: absolute;
+        right: 0;
+    }
+    @include media(desktop) {
+        order: 3;
     }
 }
 
@@ -187,37 +200,19 @@
     padding: $s * 1.25;
     cursor: pointer;
 
-    opacity: 0;
-
     @include anim-default;
 }
 
-// .is-scrolled,
-// .l-header:hover {
+.is-scrolled {
+    .c-header {
+        &__logo {
+            @include media(desktop) {
+                height: $d-header-logo-height-scrolled;
 
-    .c-header__logo {
-        height: #{$m-header-height-scrolled - $s * 4};
-
-        img {
-            height: #{$m-header-height-scrolled - $s * 4};
-        }
-    }
-    .c-header__search,
-    .c-header__toggle {
-        opacity: 1;
-
-        @include anim-default;
-    }
-    @include media(desktop) {
-        .c-header__logo {
-            height: #{$d-header-height-scrolled - $s * 4};
-
-            img {
-                height: #{$d-header-height-scrolled - $s * 4};
+                img {
+                    height: $d-header-logo-height-scrolled;
+                }
             }
         }
-        .c-header__nav {
-            opacity: 1;
-        }
     }
-// }
+}

@@ -33,6 +33,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="l-header js-header">
         <div class="l-inner l-inner--wide">
             <div class="c-header">
+                <a class="c-header__logo-wrapper" href="/">
+                    <figure class="c-header__logo">
+                        <img src="<?php echo $theme_url; ?>/static/img/antyki-logo.png" alt="Logo <?php echo get_bloginfo('title'); ?>" />
+                    </figure>
+                </a>
                 <nav class="c-header__nav js-header-nav">
                     <button class="c-header__nav-close js-close-nav">
                         <svg class="ui-icon c-icon c-icon--close">
@@ -49,11 +54,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         ) );
                     ?>
                 </nav>
-                <a href="/">
-                    <figure class="c-header__logo">
-                        <img src="<?php echo $theme_url; ?>/static/img/antyki-logo.png" alt="Logo <?php echo get_bloginfo('title'); ?>" />
-                    </figure>
-                </a>
                 <button class="c-header__search js-toggle-search">
                     <svg class="ui-icon c-icon c-icon--search">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="<?php echo $theme_url; ?>/static/symbol/svg/sprite.symbol.svg#search"></use>

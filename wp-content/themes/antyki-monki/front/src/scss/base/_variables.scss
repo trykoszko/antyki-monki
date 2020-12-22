@@ -89,12 +89,15 @@ $border-radius-default: 5px;
 $transition-default: all 0.3s;
 
 $m-header-height: 160px;
-$m-header-height-scrolled: 90px;
+$m-header-height-scrolled: $m-header-height;
 $m-header-menu-height: auto;
+$m-header-logo-height: $s * 6;
 
-$d-header-height: 200px;
-$d-header-height-scrolled: 120px;
-$d-header-menu-height: 40px;
+$d-header-height: auto;
+$d-header-height-scrolled: $d-header-height;
+$d-header-menu-height: auto;
+$d-header-logo-height: $s * 10;
+$d-header-logo-height-scrolled: $s * 8;
 
 $card-gallery-height-m: 140px;
 $card-gallery-height-d: 280px;
