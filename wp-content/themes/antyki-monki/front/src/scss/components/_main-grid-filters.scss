@@ -15,7 +15,32 @@
         justify-content: flex-start;
 
         li {
+            width: 100%;
+
+            @include media(desktop) {
+                width: 25%;
+            }
+        }
+    }
+    .c-form-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: $s * 3 auto;
+
+        & > input {
             width: 25%;
+
+            padding: $s;
+
+            text-align: right;
+
+            border: 1px solid color(golden);
+            color: color(golden);
+        }
+        & > p {
+            margin: $s;
         }
     }
 }

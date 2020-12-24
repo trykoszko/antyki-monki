@@ -3,7 +3,7 @@
    ========================================================================== */
 .c-section-title {
     margin: 0;
-    padding: $s * 3 0;
+    padding: $s * 4 0 $s * 2;
 
     width: 100%;
 
@@ -14,4 +14,9 @@
 
 .c-accordion .c-section-title {
     padding: $s * 1.5 $s;
+}
+
+.c-section-desc {
+    margin: 0;
+    padding: 0 0 $s * 4 0;
 }

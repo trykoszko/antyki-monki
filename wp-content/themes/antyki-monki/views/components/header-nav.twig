@@ -1,0 +1,13 @@
+{% if headerNav %}
+    <ul class="c-header__menu">
+        {% for item in headerNav.items %}
+            <li class='c-header__menu-item{% if item.current %} is-active{% endif %}{{ item.classes|join(' ') }}'>
+                <a href="{{ item.link }}" class="c-link">
+                    <span class="c-label">
+                        {{ item.title }}
+                    </span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

@@ -34,7 +34,7 @@
                     'depth'	          => 1,
                     'container'       => false,
                     'menu_class'      => 'c-footer__nav',
-                    'walker'          => new Antyki_Footer_Walker
+                    'walker'          => new Footer_Walker
                 ) );
             ?>
             <p class="c-footer__info">

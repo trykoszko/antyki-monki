@@ -2,12 +2,14 @@
    Main grid filter
    ========================================================================== */
 .c-main-grid-filter {
+
     padding: {
         top: 0;
         left: 0;
         right: $s * 2;
         bottom: $s * 4;
     };
+    margin-right: 5px;
 
     &__label {
         display: flex;
@@ -15,18 +17,22 @@
         align-items: center;
         justify-content: space-between;
 
-        padding: $s * 2 0;
+        padding: $s 0;
 
         position: relative;
 
         cursor: pointer;
 
-        border-bottom: 1px solid color(golden);
+        border: 1px solid color(golden);
 
-        h4 {
+        & > h4 {
             font-size: 1.5rem;
 
             margin: 0;
+            margin-left: 0;
+
+            transition: $transition-default;
+            transform: translateX($s);
         }
         & > div {
             width: $s * 2;
@@ -35,6 +41,7 @@
             position: relative;
 
             transition: $transition-default;
+            transform: translateX(-$s);
 
             & > span {
                 position: absolute;
@@ -147,6 +154,15 @@
         }
     }
 
+    &--range {
+        .c-main-grid-filter__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
     &__wrapper {
 
         &.is-active {
@@ -154,10 +170,14 @@
             .c-main-grid-filter {
 
                 &__label {
-                    border-top: 1px solid color(golden);
+                    background-color: rgba(color(golden), .02);
+                    border-bottom: 1px solid color(golden);
 
+                    & > h4 {
+                        transform: translateX($s);
+                    }
                     & > div {
-                        transform: rotate(180deg);
+                        transform: translateX(-$s) rotate(180deg);
 
                         transform-origin: 40% 50%;
                     }
