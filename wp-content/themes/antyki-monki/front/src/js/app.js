@@ -8,6 +8,7 @@ import './modules/search-modal'
 import './modules/accordion'
 import './modules/sliders'
 import './modules/range-sliders'
+import './modules/product-list'
 
 svg4everybody()
 objectFitImages()

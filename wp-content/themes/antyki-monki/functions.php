@@ -1,8 +1,10 @@
 <?php
+namespace Trykoszko\Antyki;
+
 $composer_autoload = __DIR__ . '/vendor/autoload.php';
 if ( file_exists( $composer_autoload ) ) {
     require_once $composer_autoload;
-    $timber = new Timber\Timber();
+    $timber = new \Timber\Timber();
 }
 
 if ( ! class_exists( 'Timber' ) ) {
@@ -21,8 +23,8 @@ if ( ! class_exists( 'Timber' ) ) {
     return;
 }
 
-Timber::$dirname = array( 'views' );
-Timber::$autoescape = false;
+\Timber::$dirname = array( 'views' );
+\Timber::$autoescape = false;
 
 class Antyki extends \Timber\Site {
 
@@ -56,11 +58,18 @@ class Antyki extends \Timber\Site {
         add_action( 'admin_menu', [ $this, 'hide_menu_for_editor' ] );
         add_action( 'admin_footer', [ $this, 'hide_admin_bar_for_editor' ] );
 
+        // AJAX
+        // ajax_get_all_posts
+        add_action( 'wp_ajax_nopriv_get_all_posts', [ $this, 'ajax_get_all_posts' ] );
+        add_action( 'wp_ajax_get_all_posts', [ $this, 'ajax_get_all_posts' ] );
+        add_action( 'wp_ajax_nopriv_get_card_images', [ $this, 'ajax_get_card_images' ] );
+        add_action( 'wp_ajax_get_card_images', [ $this, 'ajax_get_card_images' ] );
+
     }
 
     public function add_to_twig( $twig ) {
 
-        $twig->addExtension( new Twig\Extension\StringLoaderExtension() );
+        $twig->addExtension( new \Twig\Extension\StringLoaderExtension() );
         // $twig->addFilter( new Twig\TwigFilter( 'myfoo', array( $this, 'myfoo' ) ) );
         return $twig;
 
@@ -70,9 +79,9 @@ class Antyki extends \Timber\Site {
         $context = array_merge( $context, [
             'assetUrl' => get_stylesheet_directory_uri() . '/front/static',
             'isHome' => is_home() ? get_bloginfo('title') : get_the_title() . ' - ' . get_bloginfo('title'),
-            'headerNav' => new Timber\Menu( 'header-menu' ),
+            'headerNav' => new \Timber\Menu( 'header-menu' ),
             'options' => get_fields('options'),
-            'footerNav' => new Timber\Menu( 'footer-menu' )
+            'footerNav' => new \Timber\Menu( 'footer-menu' )
         ] );
 
         return $context;
@@ -117,7 +126,12 @@ class Antyki extends \Timber\Site {
     public function enqueues_init() {
 
         wp_enqueue_style( 'antyki-style', get_template_directory_uri() . '/front/static/css/main.css' );
-        wp_enqueue_script( 'antyki-script', get_template_directory_uri() . '/front/static/js/app.js', array(), rand(0, 9999), true );
+
+        wp_register_script( 'antyki-script', get_template_directory_uri() . '/front/static/js/app.js', [], true );
+        wp_localize_script( 'antyki-script', 'wpData', [
+            'apiUrl' => admin_url('admin-ajax.php')
+        ] );
+        wp_enqueue_script( 'antyki-script' );
 
     }
 
@@ -126,28 +140,28 @@ class Antyki extends \Timber\Site {
         register_post_type(
             'product',
             array(
-                'description' => __( 'Antyki.', 'antyki' ),
+                'description' => __( 'Antyki.', TEXTDOMAIN ),
                 'public' => true,
                 'supports' => array( 'title' ),
                 'taxonomies'  => array( 'category' ),
                 'labels' => array(
-                    'name' => _x( 'Antyki', 'post type general name', 'antyki' ),
-                    'singular_name' => _x( 'Antyk', 'post type singular name', 'antyki' ),
-                    'menu_name' => _x( 'Antyki', 'admin menu', 'antyki' ),
-                    'name_admin_bar' => _x( 'Antyk', 'add new on admin bar', 'antyki' ),
-                    'add_new' => _x( 'Dodaj nowy', 'product', 'antyki' ),
-                    'add_new_item' => __( 'Dodaj nowy', 'antyki' ),
-                    'new_item' => __( 'Nowy', 'antyki' ),
-                    'edit_item' => __( 'Edytuj', 'antyki' ),
-                    'view_item' => __( 'Zobacz', 'antyki' ),
-                    'all_items' => __( 'Zobacz wszystkie', 'antyki' ),
-                    'search_items' => __( 'Szukaj', 'antyki' ),
-                    'parent_item_colon' => __( 'Rodzic', 'antyki' ),
-                    'not_found' => __( 'Brak.', 'antyki' ),
-                    'not_found_in_trash' => __( 'Nie znaleziono w koszu.', 'antyki' ),
+                    'name' => _x( 'Antyki', 'post type general name', TEXTDOMAIN ),
+                    'singular_name' => _x( 'Antyk', 'post type singular name', TEXTDOMAIN ),
+                    'menu_name' => _x( 'Antyki', 'admin menu', TEXTDOMAIN ),
+                    'name_admin_bar' => _x( 'Antyk', 'add new on admin bar', TEXTDOMAIN ),
+                    'add_new' => _x( 'Dodaj nowy', 'product', TEXTDOMAIN ),
+                    'add_new_item' => __( 'Dodaj nowy', TEXTDOMAIN ),
+                    'new_item' => __( 'Nowy', TEXTDOMAIN ),
+                    'edit_item' => __( 'Edytuj', TEXTDOMAIN ),
+                    'view_item' => __( 'Zobacz', TEXTDOMAIN ),
+                    'all_items' => __( 'Zobacz wszystkie', TEXTDOMAIN ),
+                    'search_items' => __( 'Szukaj', TEXTDOMAIN ),
+                    'parent_item_colon' => __( 'Rodzic', TEXTDOMAIN ),
+                    'not_found' => __( 'Brak.', TEXTDOMAIN ),
+                    'not_found_in_trash' => __( 'Nie znaleziono w koszu.', TEXTDOMAIN ),
                 ),
                 'rewrite' => array(
-                    'slug' => 'antyki'
+                    'slug' => TEXTDOMAIN
                 ),
                 'has_archive' => true,
                 'menu_icon' => 'dashicons-admin-customizer',
@@ -161,8 +175,8 @@ class Antyki extends \Timber\Site {
 
         acf_add_options_page(
             array(
-            'page_title'  => __( 'Opcje OLX', 'antyki' ),
-            'menu_title'  => __( 'Opcje OLX', 'antyki' ),
+            'page_title'  => __( 'Opcje OLX', TEXTDOMAIN ),
+            'menu_title'  => __( 'Opcje OLX', TEXTDOMAIN ),
             'menu_slug'   => 'theme-options',
             'capability'  => 'edit_posts',
             'redirect'    => false
@@ -170,8 +184,8 @@ class Antyki extends \Timber\Site {
         );
         acf_add_options_page(
             array(
-            'page_title'  => __( 'Opcje Motywu', 'antyki' ),
-            'menu_title'  => __( 'Opcje Motywu', 'antyki' ),
+            'page_title'  => __( 'Opcje Motywu', TEXTDOMAIN ),
+            'menu_title'  => __( 'Opcje Motywu', TEXTDOMAIN ),
             'menu_slug'   => 'theme-settings',
             'capability'  => 'edit_posts',
             'redirect'    => false
@@ -236,6 +250,83 @@ class Antyki extends \Timber\Site {
         $query = $wpdb->prepare( $sql, $key );
 
         return $wpdb->get_var( $query );
+
+    }
+
+    public static function getSingleCardImageHtml($img) {
+        echo '<figure class="c-card-gallery__img c-card-gallery__img--' . $img['orientation'] . ' c-card-gallery__img--' . $img['name'] . '">
+            <img class="c-img o-object-fit-' . $img['object_fit'] . '" src="' . $img['src'] . '" alt="' . $img['alt'] . '" />
+        </figure>';
+    }
+
+    public function generate_product_images_html( $post_id ) {
+
+        $gallery = get_field('product_gallery', $post_id);
+        $first_img = $gallery[0]['sizes']['thumbnail'];
+        $second_img = $gallery[1]['sizes']['thumbnail'];
+
+        $html = '';
+
+        if ($first_img) {
+            $first_img_aspect_ratio = round($gallery[0]['sizes']['medium-width'] / $gallery[0]['sizes']['medium-height'], 2);
+            $first_img_array = [
+                'exists' => true,
+                'name' => 'first',
+                'aspect_ratio' => $first_img_aspect_ratio,
+                'object_fit' => $first_img_aspect_ratio === 1.78 || $first_img_aspect_ratio === 0.56 ? 'contain' : 'cover',
+                'orientation' => $first_img_aspect_ratio > 1 ? 'landscape' : 'portrait',
+                'src' => $first_img,
+                'alt' => $gallery[0]['alt']
+            ];
+            $html .= self::getSingleCardImageHtml($first_img_array);
+        }
+
+        if ($second_img) {
+            $second_img_aspect_ratio = round($gallery[0]['sizes']['medium-width'] / $gallery[0]['sizes']['medium-height'], 2);
+            $second_img_array = [
+                'exists' => true,
+                'name' => 'second',
+                'aspect_ratio' => $second_img_aspect_ratio,
+                'object_fit' => $second_img_aspect_ratio === 1.78 || $second_img_aspect_ratio === 0.56 ? 'contain' : 'cover',
+                'orientation' => $second_img_aspect_ratio > 1 ? 'landscape' : 'portrait',
+                'src' => $second_img,
+                'alt' => $gallery[1]['alt']
+            ];
+            $html .= self::getSingleCardImageHtml($second_img_array);
+        }
+
+        return $html;
+
+    }
+
+    public function ajax_get_card_images() {
+
+        $data = $_REQUEST;
+
+        $post_id = $data['post_id'];
+
+        $html = $this->generate_product_images_html( $post_id );
+
+        return $html;
+
+    }
+
+    public function ajax_get_all_posts() {
+
+        $data = $_REQUEST;
+
+        $query = [
+            'post_type' => 'product',
+            'posts_per_page' => 4
+        ];
+
+        if ( isset( $data['page'] ) && $data['page'] !== 0 ) {
+            $query['paged'] = $page;
+        }
+
+        $posts = \Timber::get_posts( $query, '\Trykoszko\Antyki\ProductPost' );
+
+        wp_send_json_success( $posts );
 
     }
 
