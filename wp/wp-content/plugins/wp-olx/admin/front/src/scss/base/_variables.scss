@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+/* Maps
+========================================================================== */
+/*
+    The names and values of variables in maps are just suggestions/random values.
+    Feel free to add new values, modify both the values and/or keys of the items depending on the project and your prefferences.
+    For each map, a functions is defined (in base/_functions.scss).
+    By default, function names are single a singular form of the map's variable name.
+    Eg. To use the "main" color, a getter function "color" is defined.
+    To use it, simply call: color(main).
+*/
+
+$breakpoints: (
+    mobile: 768px,
+    tablet: 1025px,
+    desktop: 1400px,
+);
+
+$orientations: (
+    portrait: portrait,
+    landscape: landscape,
+);
+
+$colors: (
+    main: #000,
+    white: #fff,
+    accent: #d4213d,
+    blue: #09A6E4
+);
+
+$sizes: (
+    media: 400px,
+    inner: (
+        desktop: 960px,
+        tablet: 760px,
+        mobile: 320px
+    ),
+);
+
+// Set main font size to body (eg. 12px), then refer to it using rem, eg. secondary: 2rem -> 24px
+$font-sizes: (
+    main: 14px,
+    h1: 3rem,
+    h2: 2rem,
+    h3: 1.5rem,
+    small: 0.8rem,
+    quote: 9px
+);
+
+$offsets: (
+    default: 16px,
+    large: 24px,
+    small: 8px
+);
+
+$fonts: (
+    main: #{'Arial', sans-serif}
+    // secondary: 'Helvetica'
+);
+
+$defaults: (
+    border-radius: 4px,
+    line-height: 1.2
+);
+
+/* Standalone variables
+========================================================================== */
+$white-space: 1em;
+$form-control-height: 2rem;

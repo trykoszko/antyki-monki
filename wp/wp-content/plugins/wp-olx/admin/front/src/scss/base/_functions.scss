@@ -1,0 +1,67 @@
+// This is as WET as it can get, but unfortunately you can't nest SASS functions so the alternative is to make complex map definitions.
+
+@function get-map-value($map, $keys...) {
+    @each $key in $keys {
+        $isValidKey: map-has-key($map, $key);
+
+        @if ($isValidKey == false) {
+            @warn "There is no element with key: '#{$key}'.";
+
+            @return null;
+        }
+
+        $map: map-get($map, $key);
+    }
+
+    @return $map;
+}
+
+@function breakpoint($key) {
+    @return get-map-value($breakpoints, $key);
+}
+
+@function orientation($key) {
+    @return get-map-value($orientations, $key);
+}
+
+@function color($key) {
+    @return get-map-value($colors, $key);
+}
+
+@function font-size($key) {
+    @return get-map-value($font-sizes, $key);
+}
+
+@function offset($key) {
+    @return get-map-value($offsets, $key);
+}
+
+@function font($key) {
+    @return get-map-value($fonts, $key);
+}
+
+@function default($key) {
+    @return get-map-value($defaults, $key);
+}
+
+// This function check 2 levels deep.
+@function size($key, $secondKey: '') {
+    @if map-has-key($sizes, $key) {
+        $temp-size: map-get($sizes, $key);
+
+        @if type-of($temp-size) != 'number' {
+            @if map-has-key($temp-size, $secondKey) {
+                @return map-get($temp-size, $secondKey);
+            }
+            @else {
+                @warn "Size `#{$secondKey}` not defined within `#{$key}`.";
+                @return null;
+            }
+        }
+        @else {
+            @return $temp-size;
+        }
+    }
+    @warn "Unknown `#{$key}` in $sizes.";
+    @return null;
+}

@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Card gallery
+   ========================================================================== */
+.c-card-gallery {
+    width: 100%;
+    height: $card-gallery-height-m;
+
+    position: relative;
+
+    @include media(tablet) {
+        height: $card-gallery-height-d;
+
+    }
+}
+
+.c-card-gallery__img {
+    padding: 0;
+    margin: 0;
+
+    position: absolute;
+
+    overflow: hidden;
+
+    height: $card-gallery-height-m;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: $img-background-gradient;
+
+    @include anim-default;
+
+    // &--portrait {
+    //     img {
+    //         height: 100%;
+    //         width: auto;
+    //     }
+    // }
+    &--landscape {
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    &--first {
+        opacity: 1;
+    }
+    &--second {
+        opacity: 0;
+    }
+
+    @include media(tablet) {
+        height: $card-gallery-height-d;
+    }
+}
+
+.c-card-gallery:hover {
+    .c-card-gallery__img {
+        @include anim-default;
+
+        &--first {
+            opacity: 0;
+        }
+        &--second {
+            opacity: 1;
+        }
+    }
+}
