@@ -1,24 +1,42 @@
 import React from 'react'
+import {graphql, useStaticQuery} from 'gatsby'
+import get from 'lodash/get'
+
 import SEO from '../components/SEO'
 import Layout from '../components/Layout'
+import Container from '../components/Container'
+import Content from '../components/Content'
 
-const Onas = ({location}) => (
-  <Layout location={location}>
-    <SEO title="O nas" />
-    <h1>O nas</h1>
-    <p>
-      Lorem ipsizzle dolizzle sit amizzle, fo shizzle my nizzle adipiscing
-      elizzle. Pizzle mah nizzle velizzle, owned volutpizzle, mammasay mammasa
-      mamma oo sa quizzle, my shizz uhuh ... yih!, shit. Pellentesque nizzle for
-      sure. erizzle. Cool shiznit dolizzle dapibizzle turpis tempizzle tempor.
-      Get down get down bow wow wow nibh the bizzle turpizzle. Fo shizzle mah
-      nizzle fo rizzle, mah home g-dizzle izzle go to hizzle. Pellentesque for
-      sure rhoncizzle sure. In yippiyo habitasse platea dictumst. Shizzle my
-      nizzle crocodizzle dapibizzle. Curabitur tellus ass, pretizzle away,
-      gangsta ac, eleifend vitae, shizzlin dizzle. Mammasay mammasa mamma oo sa
-      suscipizzle. Shizzle my nizzle crocodizzle semper velit sed purizzle.
-    </p>
-  </Layout>
-)
+const Onas = ({location}) => {
+  const data = useStaticQuery(graphql`
+    query AboutusQuery {
+      allWordpressPage(filter: {slug: {eq: "o-nas"}}) {
+        edges {
+          node {
+            title
+            content
+          }
+        }
+      }
+    }
+  `)
+
+  console.log('data', data)
+
+  const title = get(data, 'allWordpressPage.edges[0].node.title')
+  const content = get(data, 'allWordpressPage.edges[0].node.content')
+
+  return (
+    <Layout location={location}>
+      <SEO title={title} />
+      <Container narrow withBottomOffset>
+        <Content>
+          <h1>{title}</h1>
+          <div dangerouslySetInnerHTML={{__html: content}} />
+        </Content>
+      </Container>
+    </Layout>
+  )
+}
 
 export default Onas

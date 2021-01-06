@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
     lgrey: '#ededed',
+    lgrey2: '#FAFAFA',
     accent: '#d4213d',
     blue: '#09a6e4',
     grey: '#aaaaaa',
@@ -15,6 +16,13 @@ export const theme = {
   },
   rwd: (breakpoint, isMax = false) =>
     `(${isMax ? 'max' : 'min'}-width: ${theme.breakpoints[breakpoint]})`,
+  fonts: {
+    serif: `'Playfair Display', serif`,
+    main: `'Work Sans', Roboto, Arial, sans-serif`,
+  },
+  fontSizes: {
+    main: '14px',
+  },
 }
 
 export default theme

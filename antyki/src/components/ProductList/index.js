@@ -6,6 +6,15 @@ import {theme} from '../GlobalStyle/variables'
 
 import Card from './Card'
 
+const StyledProductListWrapper = styled.div`
+  margin: 0 auto;
+
+  padding: 0 20px;
+
+  width: 100%;
+  max-width: 960px;
+`
+
 const StyledProductList = styled.ul`
   display: flex;
   flex-direction: row;
@@ -15,8 +24,10 @@ const StyledProductList = styled.ul`
 
   list-style: none;
 
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+
+  width: 100%;
 
   & > li {
     width: 100%;
@@ -32,13 +43,20 @@ const StyledProductList = styled.ul`
   }
 `
 
+const StyledTitle = styled.h2`
+  margin-bottom: 20px;
+`
+
 const ProductList = ({products}) => {
   return (
-    <StyledProductList>
-      {products.map(product => (
-        <Card key={product.slug} product={product} />
-      ))}
-    </StyledProductList>
+    <StyledProductListWrapper>
+      <StyledTitle>Nasze produkty</StyledTitle>
+      <StyledProductList>
+        {products.map(product => (
+          <Card key={`${product.slug}`} product={product} />
+        ))}
+      </StyledProductList>
+    </StyledProductListWrapper>
   )
 }
 

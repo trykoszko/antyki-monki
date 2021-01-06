@@ -4,10 +4,10 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby starter ecommerce',
-    author: 'Parminder Sanghera',
-    description: 'A starter e-commerce site made using Gatsby.',
-    siteUrl: 'https://parmsang.github.io/gatsby-starter-ecommerce/',
+    title: 'Antyki Mońki',
+    author: 'Michał Trykoszko',
+    description: 'Antyki Mońki',
+    siteUrl: 'https://antyki-monki.pl',
   },
   pathPrefix: '/',
   plugins: [
@@ -15,7 +15,10 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         minimizeDeprecationNotice: true,
-        baseUrl: 'wp.antyki-monki.pl.devlocal',
+        baseUrl:
+          process.env.NODE_ENV === 'development'
+            ? 'wp.antyki-monki.pl.devlocal'
+            : 'wp.antyki-monki.pl',
         protocol: 'https',
         hostingWPCOM: false,
         useACF: true,

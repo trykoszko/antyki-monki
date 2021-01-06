@@ -77,3 +77,5 @@ $context = array_merge( $context, [
 ] );
 
 Timber::render( 'index.twig', $context );
+
+// Timber::render( 'blank.twig' );

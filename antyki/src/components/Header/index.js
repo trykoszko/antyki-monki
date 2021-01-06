@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import styled, {css} from 'styled-components'
+import {Link} from 'gatsby'
 
 import {Responsive} from 'semantic-ui-react'
 
@@ -9,15 +10,17 @@ import Row from '../Row'
 import Logo from './Logo'
 import Nav from './Nav'
 
-import {SearchButton} from './Styles'
+// import {SearchButton} from './Styles'
 
 import ScrollContext from '../Context/ScrollContext'
+
+import {theme} from '../GlobalStyle/variables'
 
 const StyledHeader = styled.div`
   background: white;
 
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 
   ${props =>
     props.scrolled
@@ -25,9 +28,13 @@ const StyledHeader = styled.div`
           box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.16);
         `
       : ''}
+
+  @media ${theme.rwd('desktop')} {
+    padding-bottom: 20px;
+  }
 `
 
-const Header = () => {
+const Header = ({location}) => {
   const {isHeaderScrolled} = useContext(ScrollContext)
 
   return (
@@ -35,21 +42,25 @@ const Header = () => {
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Container>
           <Row>
-            <Logo />
+            <Link to="/">
+              <Logo />
+            </Link>
           </Row>
           <Row>
-            <Nav />
+            <Nav location={location} />
           </Row>
-          <Row>
+          {/* <Row>
             <SearchButton />
-          </Row>
+          </Row> */}
         </Container>
       </Responsive>
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Container>
           <Row>
-            <Logo />
-            <Nav />
+            <Link to="/">
+              <Logo />
+            </Link>
+            <Nav location={location} />
           </Row>
         </Container>
       </Responsive>

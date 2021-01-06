@@ -8,18 +8,30 @@ const StyledCard = styled.li``
 
 const StyledCardContainer = styled.div`
   margin: 0;
-  padding: 10px;
+  margin-bottom: ${theme.s(2)};
+
+  padding: ${theme.s()};
+
+  @media ${theme.rwd('desktop')} {
+    margin-bottom: ${theme.s(4)};
+  }
 `
 
-const StyledCardGallery = styled.div``
+const StyledCardGallery = styled.div`
+  width: 100%;
+`
 
-const StyledCardTitle = styled.h2``
+const StyledCardTitle = styled.h4`
+  font-family: ${theme.fonts.serif};
+
+  margin-top: ${theme.s()};
+
+  color: ${theme.colors.brown};
+`
 
 const StyledCardCategories = styled.ul`
-  margin: 0 0 ${theme.s()};
-  margin-bottom: 0;
-
-  font-size: font-size(med);
+  margin: 0;
+  margin-top: ${theme.s(2)};
 
   display: flex;
   flex-direction: row;
@@ -27,26 +39,59 @@ const StyledCardCategories = styled.ul`
   justify-content: flex-start;
   flex-wrap: wrap;
 
+  font-size: 1.1em;
+
+  @media ${theme.rwd('desktop')} {
+    margin-top: ${theme.s(1.2)};
+  }
+
   &:after {
     display: inline-block;
 
-    width: ${theme.s};
-    height: ${theme.s};
+    width: ${theme.s()};
+    height: ${theme.s()};
 
     margin-left: ${theme.s(0.5)};
     margin-right: ${theme.s(0.5)};
 
     background-color: ${theme.colors.golden};
   }
+
+  li:not(:last-child) {
+    margin-right: ${theme.s()};
+    padding-right: ${theme.s()};
+
+    position: relative;
+
+    &:after {
+      content: '';
+      width: ${theme.s(0.3)};
+      height: ${theme.s(0.3)};
+
+      background: ${theme.colors.golden};
+
+      position: absolute;
+
+      top: calc(50% - 1.5px);
+      right: -1.5px;
+    }
+  }
 `
 
 const StyledCardPrice = styled.p`
-  display: inline;
+  display: inline-block;
+
+  margin: 0;
+  margin-top: ${theme.s(2)};
 
   padding: ${theme.s(0.5)};
 
   background-color: ${theme.colors.golden};
   color: white;
+
+  @media ${theme.rwd('desktop')} {
+    margin-top: ${theme.s(1.2)};
+  }
 `
 
 const Card = ({product}) => {
@@ -63,12 +108,12 @@ const Card = ({product}) => {
       product_gallery,
     },
   } = product.node
-  console.log(product.node)
+  // console.log(product.node)
   return (
     <StyledCard>
       <StyledCardContainer>
-        <Link to={`/${slug}`}>
-          <StyledCardGallery>
+        <StyledCardGallery>
+          <Link to={`/${slug}`}>
             {/* eslint-disable-next-line */
             product_gallery &&
             product_gallery[0] &&
@@ -80,10 +125,14 @@ const Card = ({product}) => {
             ) : (
               ''
             )}
-          </StyledCardGallery>
-        </Link>
+          </Link>
+        </StyledCardGallery>
         <Link to={`/${slug}`}>
-          <StyledCardTitle>{title}</StyledCardTitle>
+          <StyledCardTitle
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
+          />
         </Link>
         {categories ? (
           <StyledCardCategories>

@@ -1,16 +1,48 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import {graphql, useStaticQuery, Link} from 'gatsby'
 import get from 'lodash/get'
 
+import {theme} from '../GlobalStyle/variables'
+
 const StyledNav = styled.ul`
   margin: 0;
+  margin-top: 40px;
+
   padding: 0;
 
   list-style: none;
+
+  font-family: ${theme.fonts.serif};
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  font-size: 1.1rem;
+
+  li {
+    &:not(:first-child) {
+      margin-left: ${theme.s(2)};
+    }
+  }
+
+  @media ${theme.rwd('desktop')} {
+    margin-top: 0;
+  }
 `
 
-const Nav = () => {
+const StyledMenuLink = styled(Link)`
+  ${props =>
+    props.isCurrent
+      ? css`
+          text-decoration: underline;
+        `
+      : ''}
+`
+
+const Nav = ({location}) => {
   const data = useStaticQuery(graphql`
     query MyQuery {
       allWordpressPage {
@@ -21,19 +53,36 @@ const Nav = () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
     }
   `)
   const items = get(data, 'allWordpressPage.edges')
+
   return (
     <StyledNav>
       <li>
-        <Link to="/">Strona główna</Link>
+        <StyledMenuLink
+          to="/"
+          isCurrent={location && location.pathname === '/'}
+        >
+          Strona główna
+        </StyledMenuLink>
       </li>
       {items.map(item => (
         <li key={get(item, 'node.slug')}>
-          <Link to={`/${get(item, 'node.slug')}`}>
+          <StyledMenuLink
+            to={`/${get(item, 'node.slug')}`}
+            isCurrent={
+              location &&
+              location.pathname.indexOf(get(item, 'node.slug')) !== -1
+            }
+          >
             {get(item, 'node.title')}
-          </Link>
+          </StyledMenuLink>
         </li>
       ))}
     </StyledNav>
