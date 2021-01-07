@@ -1,4 +1,5 @@
 wp-config.php
+wp-config.production.php
 wp-content/uploads
 wp-content/cache
 
