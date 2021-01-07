@@ -1,0 +1,25 @@
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.l-header {
+    width: 100%;
+    height: $m-header-height;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background: white;
+
+    z-index: 500;
+
+    transition: $transition-default;
+
+    @include media(desktop) {
+        height: $d-header-height-scrolled;
+    }
+
+    &.is-scrolled {
+        @include shadow-default();
+    }
+}

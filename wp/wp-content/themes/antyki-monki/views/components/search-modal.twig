@@ -1,0 +1,32 @@
+<section class="l-search-modal js-search-modal">
+    <div class="l-inner">
+        <div class="c-search-modal">
+            <button class="c-search-modal__close js-close-search">
+                <svg class="ui-icon c-icon c-icon--search">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{{ assetUrl }}/symbol/svg/sprite.symbol.svg#close"></use>
+                </svg>
+            </button>
+            <form role="search" method="get" id="searchform" class="c-search-form" action="{{site.link}}">
+                <div class="c-search-form__group">
+                    <h2 class="t-h1">{{ __('Szukaj...', textdomain) }}</h2>
+                </div>
+                <div class="c-search-form__group">
+                    <input
+                        class="c-search-form__input"
+                        type="text"
+                        name="s"
+                        id="search"
+                        placeholder="{{ __('Szukaj...', textdomain) }}"
+                        value="{{ function('get_search_query') }}"
+                        />
+                    <button
+                        class="c-search-form__submit c-btn"
+                        type="submit"
+                        >
+                            {{ __('Szukaj', textdomain) }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

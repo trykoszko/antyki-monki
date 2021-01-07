@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Main content
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+}
+
+.l-main {
+    margin-top: #{$m-header-logo-height + ($s * 4)};
+
+    @include media(desktop) {
+        margin-top: #{$d-header-logo-height + ($s * 4)};
+    }
+}

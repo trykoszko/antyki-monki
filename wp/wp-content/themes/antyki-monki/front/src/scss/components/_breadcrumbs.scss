@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Breadcrumbs
+   ========================================================================== */
+.c-breadcrumbs {
+    list-style: none;
+
+    margin: 0 0 $s;
+    padding: $s;
+
+    line-height: 1.4em;
+
+    background-color: color(light);
+
+    font-family: font(serif);
+
+    @include media(desktop) {
+        font-size: font-size(h4);
+
+        margin-top: $s * 2;
+    }
+}
+
+.c-breadcrumbs__item {
+    display: inline-block;
+
+    font-weight: 700;
+    line-height: 1.4em;
+}

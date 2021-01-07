@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Product gallery
+   ========================================================================== */
+.c-product-gallery {
+    width: 100%;
+    height: $product-gallery-height-m;
+
+    background: $img-background-gradient;
+
+    position: relative;
+
+    @include shadow-default;
+
+    @include media(desktop) {
+        width: 48%;
+        height: $product-gallery-height-d;
+
+        margin-left: 0;
+    }
+}
+
+.c-product-gallery__img {
+    margin: 0;
+    padding: 0;
+
+    height: $product-gallery-height-m;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        height: $product-gallery-height-m;
+
+        cursor: pointer;
+
+        object-fit: contain;
+        font-family: 'object-fit: contain; object-position: 50%;';
+    }
+
+    @include media(desktop) {
+        height: $product-gallery-height-d;
+
+        img {
+            height: $product-gallery-height-d;
+
+            object-fit: contain;
+            font-family: 'object-fit: contain; object-position: 50%;';
+        }
+    }
+}
+
+.c-product-gallery__btn {
+    z-index: 1;
+
+    position: absolute;
+    top: calc(50% - #{$s * 2});
+
+    width: $s * 4;
+    height: $s * 4;
+
+    border: none;
+    border-radius: 100%;
+
+    background: rgba(color(white), .3);
+
+    @include shadow-small;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        margin-left: 2px;
+        opacity: .5;
+
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+    &--prev {
+        left: $s;
+
+        transform: rotate(180deg);
+    }
+    &--next {
+        right: $s;
+    }
+}
+
+.c-product-gallery__nav {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+
+    list-style: none;
+    margin: 0;
+    padding: $s * 2 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1;
+}
+
+.c-product-gallery__nav-item {
+    width: $s;
+    height: $s;
+
+    margin: 0 $s / 2;
+
+    .c-dot {
+        display: block;
+
+        width: $s;
+        height: $s;
+
+        border-radius: 100%;
+
+        background-color: color(white);
+
+        @include shadow-small;
+
+        opacity: .4;
+    }
+    &.is-current {
+
+        .c-dot {
+            opacity: 1;
+        }
+    }
+}
