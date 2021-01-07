@@ -44,7 +44,7 @@ const StyledImageWrapper = styled.div`
 `
 
 const StyledBackground = styled.div`
-  background: ${theme.colors.golden};
+  background: rgb(240, 213, 182);
 
   position: absolute;
   top: 0;

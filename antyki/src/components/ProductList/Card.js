@@ -23,6 +23,8 @@ const StyledCardGallery = styled.div`
 
 const StyledCardTitle = styled.h4`
   font-family: ${theme.fonts.serif};
+  font-size: 1.6em;
+  line-height: 1.1;
 
   margin-top: ${theme.s()};
 
@@ -39,7 +41,7 @@ const StyledCardCategories = styled.ul`
   justify-content: flex-start;
   flex-wrap: wrap;
 
-  font-size: 1.1em;
+  font-size: 1em;
 
   @media ${theme.rwd('desktop')} {
     margin-top: ${theme.s(1.2)};

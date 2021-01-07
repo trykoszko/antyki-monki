@@ -21,7 +21,7 @@ const Onas = ({location}) => {
     }
   `)
 
-  console.log('data', data)
+  // console.log('data', data)
 
   const title = get(data, 'allWordpressPage.edges[0].node.title')
   const content = get(data, 'allWordpressPage.edges[0].node.content')
@@ -29,7 +29,7 @@ const Onas = ({location}) => {
   return (
     <Layout location={location}>
       <SEO title={title} />
-      <Container narrow withBottomOffset>
+      <Container narrow withBottomOffset withTopOffset>
         <Content>
           <h1>{title}</h1>
           <div dangerouslySetInnerHTML={{__html: content}} />

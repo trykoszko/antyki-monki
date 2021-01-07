@@ -6,7 +6,7 @@ import SEO from '../components/SEO'
 import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 
-const StoreIndex = props => {
+const PageIndex = props => {
   const data = useStaticQuery(graphql`
     query IndexQuery {
       site {
@@ -47,6 +47,17 @@ const StoreIndex = props => {
           }
         }
       }
+      allWordpressCategory {
+        edges {
+          node {
+            wordpress_id
+            wordpress_parent
+            name
+            slug
+            count
+          }
+        }
+      }
     }
   `)
 
@@ -54,13 +65,14 @@ const StoreIndex = props => {
 
   const siteTitle = get(data, 'site.siteMetadata.title')
   const products = get(data, 'allWordpressWpAntyki.edges')
+  const categories = get(data, 'allWordpressCategory.edges')
   return (
     <Layout location={location}>
       <SEO title={siteTitle} />
       <Hero />
-      <ProductList products={products} />
+      <ProductList products={products} categories={categories} />
     </Layout>
   )
 }
 
-export default StoreIndex
+export default PageIndex

@@ -78,15 +78,15 @@ const Footer = () => (
           <StyledFooterTitle>Kontakt</StyledFooterTitle>
           <StyledList>
             <StyledListItem>
-              <Link to="mailto:kontakt@antyki-monki.pl">
-                mailto:kontakt@antyki-monki.pl
-              </Link>
+              <a href="mailto:kontakt@antyki-monki.pl">
+                kontakt@antyki-monki.pl
+              </a>
             </StyledListItem>
             <StyledListItem>
-              <Link to="tel:+48575347131">+48 575 347 121</Link>
+              <a href="tel:+48575347131">tel, WhatsApp: +48 575 347 121</a>
             </StyledListItem>
             <StyledListItem>
-              <Link to="tel:+48537224218">+48 537 224 218</Link>
+              <a href="tel:+48537224218">tel, WhatsApp: +48 537 224 218</a>
             </StyledListItem>
           </StyledList>
         </StyledFooterColumn>

@@ -72,19 +72,22 @@ const Nav = ({location}) => {
           Strona główna
         </StyledMenuLink>
       </li>
-      {items.map(item => (
-        <li key={get(item, 'node.slug')}>
-          <StyledMenuLink
-            to={`/${get(item, 'node.slug')}`}
-            isCurrent={
-              location &&
-              location.pathname.indexOf(get(item, 'node.slug')) !== -1
-            }
-          >
-            {get(item, 'node.title')}
-          </StyledMenuLink>
-        </li>
-      ))}
+      {items.map(item => {
+        // console.log('item', item)
+        return (
+          <li key={get(item, 'node.slug')}>
+            <StyledMenuLink
+              to={`/${get(item, 'node.slug')}`}
+              isCurrent={
+                location &&
+                location.pathname.indexOf(get(item, 'node.slug')) !== -1
+              }
+            >
+              {get(item, 'node.title')}
+            </StyledMenuLink>
+          </li>
+        )
+      })}
     </StyledNav>
   )
 }

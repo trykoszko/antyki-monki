@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import styled, {css} from 'styled-components'
 import {Link} from 'gatsby'
 
@@ -12,8 +12,6 @@ import Nav from './Nav'
 
 // import {SearchButton} from './Styles'
 
-import ScrollContext from '../Context/ScrollContext'
-
 import {theme} from '../GlobalStyle/variables'
 
 const StyledHeader = styled.div`
@@ -22,12 +20,12 @@ const StyledHeader = styled.div`
   padding-top: 20px;
   padding-bottom: 40px;
 
-  ${props =>
+  /* ${props =>
     props.scrolled
       ? css`
           box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.16);
         `
-      : ''}
+      : ''} */
 
   @media ${theme.rwd('desktop')} {
     padding-bottom: 20px;
@@ -35,10 +33,8 @@ const StyledHeader = styled.div`
 `
 
 const Header = ({location}) => {
-  const {isHeaderScrolled} = useContext(ScrollContext)
-
   return (
-    <StyledHeader scrolled={isHeaderScrolled}>
+    <StyledHeader>
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Container>
           <Row>

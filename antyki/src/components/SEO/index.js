@@ -27,7 +27,12 @@ function SEO({description, lang, meta, keywords, title}) {
       htmlAttributes={{
         lang,
       }}
-      title={title}
+      title={
+        title &&
+        title.replace(/(&#(\d+);)/g, (match, capture, charCode) =>
+          String.fromCharCode(charCode),
+        )
+      }
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {

@@ -5,6 +5,7 @@ const ScrollProvider = ({children}) => {
   // determined if page has scrolled and if the view is on mobile
   const [isHeaderScrolled, toggleIsHeaderScrolled] = useState(false)
   const [isSearchOpen, toggleIsSearchOpen] = useState(false)
+  const [scrollTop, setScrollTop] = useState(0)
 
   // change state on scroll
   useEffect(() => {
@@ -13,6 +14,7 @@ const ScrollProvider = ({children}) => {
       if (isScrolled !== isHeaderScrolled) {
         toggleIsHeaderScrolled(!isHeaderScrolled)
       }
+      setScrollTop(window.scrollY)
     }
 
     document.addEventListener('scroll', handleScroll, {passive: true})
@@ -30,6 +32,7 @@ const ScrollProvider = ({children}) => {
         toggleIsHeaderScrolled,
         isSearchOpen,
         toggleIsSearchOpen,
+        scrollTop,
       }}
     >
       {children}

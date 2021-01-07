@@ -6,14 +6,31 @@ exports.createPages = ({graphql, actions}) => {
 
   return new Promise((resolve, reject) => {
     const productPageTemplate = path.resolve('src/templates/ProductPage.js')
+    const categoryPageTemplate = path.resolve('src/templates/CategoryPage.js')
     resolve(
       graphql(
         `
           {
-            allWordpressWpAntyki {
+            products: allWordpressWpAntyki {
               edges {
                 node {
                   wordpress_id
+                  slug
+                }
+                next {
+                  wordpress_id
+                }
+                previous {
+                  wordpress_id
+                }
+              }
+            }
+            categories: allWordpressCategory {
+              edges {
+                node {
+                  wordpress_id
+                  wordpress_parent
+                  name
                   slug
                 }
               }
@@ -25,10 +42,22 @@ exports.createPages = ({graphql, actions}) => {
           console.log(result.errors)
           reject(result.errors)
         }
-        result.data.allWordpressWpAntyki.edges.forEach(edge => {
+        const {products, categories} = result.data
+        products.edges.forEach(edge => {
           createPage({
             path: `/${edge.node.slug}/`,
             component: productPageTemplate,
+            context: {
+              id: edge.node.wordpress_id,
+              previousId: edge.previous && edge.previous.wordpress_id,
+              nextId: edge.next && edge.next.wordpress_id,
+            },
+          })
+        })
+        categories.edges.forEach(edge => {
+          createPage({
+            path: `/kategoria/${edge.node.slug}/`,
+            component: categoryPageTemplate,
             context: {
               id: edge.node.wordpress_id,
             },

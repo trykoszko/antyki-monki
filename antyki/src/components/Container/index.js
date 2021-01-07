@@ -11,7 +11,14 @@ const StyledContainer = styled.div`
   margin: 0 auto;
   padding: 0 20px;
 
-  max-width: ${props => (props.narrow ? '960px' : '1200px')};
+  ${props =>
+    props.narrow
+      ? css`
+          max-width: 1100px;
+        `
+      : css`
+          max-width: 1400px;
+        `}
 
   ${props =>
     props.withBottomOffset
@@ -19,10 +26,20 @@ const StyledContainer = styled.div`
           margin-bottom: 100px;
         `
       : ''}
+  ${props =>
+    props.withTopOffset
+      ? css`
+          margin-top: 60px;
+        `
+      : ''}
 `
 
-const Container = ({children, narrow, withBottomOffset}) => (
-  <StyledContainer narrow={narrow} withBottomOffset={withBottomOffset}>
+const Container = ({children, narrow, withBottomOffset, withTopOffset}) => (
+  <StyledContainer
+    narrow={narrow}
+    withBottomOffset={withBottomOffset}
+    withTopOffset={withTopOffset}
+  >
     {children}
   </StyledContainer>
 )
