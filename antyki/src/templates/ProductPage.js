@@ -167,7 +167,7 @@ const StyledAttribute = styled.li`
 const ProductPageTemplate = ({data, pageContext}) => {
   const {id} = pageContext
 
-  console.log('data', data)
+  // console.log('data', data)
 
   const {post, nextPost, previousPost} = data
 
