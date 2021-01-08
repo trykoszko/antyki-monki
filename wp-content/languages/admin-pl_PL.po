@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 5.6.x - Development - Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-11 14:41:34+0000\n"
+"PO-Revision-Date: 2021-01-04 07:24:53+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11516,7 +11516,7 @@ msgstr "Szukaj wśród zainstalowanych wtyczek"
 
 #: wp-admin/nav-menus.php:721
 msgid "Your theme supports one menu. Select which menu you would like to use."
-msgstr "Twój motyw obsługuje %s menu. Wybierz menu, które chcesz umieścić na witrynie."
+msgstr "Używany motyw obsługuje jedno menu. Wybierz menu, które chcesz używać."
 
 #: wp-admin/nav-menus.php:19
 msgid "Your theme does not support navigation menus or widgets."
