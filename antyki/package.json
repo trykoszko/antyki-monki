@@ -7,7 +7,7 @@
     "url": "https://github.com/parmsang/gatsby-starter-ecommerce"
   },
   "dependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.4.5",
     "@moltin/gatsby-source-moltin": "^1.6.1",
     "@moltin/sdk": "^3.23.0",
     "babel-jest": "^24.9.0",
