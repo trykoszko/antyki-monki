@@ -50,6 +50,7 @@ class Antyki extends Timber\Site {
         add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ] );
         add_action( 'init', [ $this, 'menus_init' ] );
         add_action( 'init', [ $this, 'cpts_init' ] );
+        add_action( 'init', [ $this, 'post_statuses_init' ] );
 
         add_action( 'init', [ $this, 'acf_init_options_page' ] );
         add_filter( 'acf/settings/save_json', [ $this, 'acf_set_save_point' ] );
@@ -57,7 +58,41 @@ class Antyki extends Timber\Site {
 
         add_action( 'admin_menu', [ $this, 'hide_menu_for_editor' ] );
         add_action( 'admin_footer', [ $this, 'hide_admin_bar_for_editor' ] );
+        add_action( 'admin_footer-post.php', [ $this, 'jc_append_post_status_list' ] );
 
+    }
+
+    public function post_statuses_init() {
+
+        register_post_status( 'sold', array(
+            'label'                     => _x( 'Sprzedane', 'product' ),
+            'label_count'               => _n_noop( 'Sprzedane <span class="count">(%s)</span>', 'Sprzedane <span class="count">(%s)</span>' ),
+            'public'                    => true,
+            'exclude_from_search'       => false,
+            'show_in_admin_all_list'    => true,
+            'show_in_admin_status_list' => true,
+        ) );
+
+    }
+
+    function jc_append_post_status_list(){
+        global $post;
+        $complete = '';
+        $label = '';
+        if($post->post_type == 'product'){
+            if($post->post_status == 'sold'){
+                $complete = ' selected=\"selected\"';
+                $label = '<span id=\"post-status-display\"> Sprzedany</span>';
+            }
+            echo '
+                <script>
+                    jQuery(document).ready(function($){
+                        $("select#post_status").append("<option value=\"sold\" '.$complete.'>Sprzedany</option>");
+                        $(".misc-pub-section label").append("'.$label.'");
+                    });
+                </script>
+            ';
+        }
     }
 
     public function after_setup_theme() {
