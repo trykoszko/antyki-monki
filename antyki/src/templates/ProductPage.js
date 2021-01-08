@@ -142,7 +142,7 @@ const StyledAttribute = styled.li`
   align-items: center;
   justify-content: space-between;
 
-  ${props =>
+  ${(props) =>
     props.empty &&
     css`
       height: 1px;
@@ -154,7 +154,7 @@ const StyledAttribute = styled.li`
   span:nth-child(2) {
     text-align: right;
 
-    ${props =>
+    ${(props) =>
       props.golden &&
       css`
         padding: 5px;
@@ -167,7 +167,7 @@ const StyledAttribute = styled.li`
 const ProductPageTemplate = ({data, pageContext}) => {
   const {id} = pageContext
 
-  // console.log('data', data)
+  console.log('data', data)
 
   const {post, nextPost, previousPost} = data
 
@@ -191,7 +191,7 @@ const ProductPageTemplate = ({data, pageContext}) => {
           <StyledProductDesc>
             <StyledProductDescWrapper>
               <StyledGoBack
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault()
                   history.back()
                 }}
@@ -262,7 +262,7 @@ const ProductPageTemplate = ({data, pageContext}) => {
                           <span>Inne</span>{' '}
                           <span>
                             {product_attributes.additional
-                              .map(item => item.label)
+                              .map((item) => item.label)
                               .join(',<br />')}
                           </span>
                         </StyledAttribute>
@@ -280,7 +280,7 @@ const ProductPageTemplate = ({data, pageContext}) => {
           </StyledProductDesc>
           <StyledProductGallery>
             {acf.product_gallery &&
-              acf.product_gallery.map(item => (
+              acf.product_gallery.map((item) => (
                 <StyledProductGalleryImage
                   fluid={item.localFile.childImageSharp.fluid}
                 />
