@@ -1,0 +1,20 @@
+{
+    "name": "mtrykoszko/wp-antyki-olx",
+    "type": "wordpress-plugin",
+    "description": "Antyki-Monki OLX",
+    "authors": [
+        {
+            "name": "Michal Trykoszko",
+            "email": "trykoszkom@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.5",
+        "twig/twig": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Antyki\\": "src/"
+        }
+    }
+}

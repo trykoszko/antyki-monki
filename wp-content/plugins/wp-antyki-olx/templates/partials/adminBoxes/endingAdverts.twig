@@ -1,0 +1,35 @@
+<div id="widget_ending_adverts" class="postbox">
+  <h2 class="hndle ui-sortable-handle">
+    <span>{{ __('Aukcje które niedługo się skończą') }}</span>
+  </h2>
+  <div class="inside">
+    <table>
+      {% if endingAdverts %}
+        <tr>
+          <td>
+            {{ __('Ogłoszenie') }}
+          </td>
+          <td>
+            {{ __('Produkt') }}
+          </td>
+          <td>
+            {{ __('Ważne do') }}
+          </td>
+        </tr>
+        {% for advert in endingAdverts %}
+          <tr>
+            <td>
+              <a href="{{ advert.url }}">{{ advert.title }}</a>
+            </td>
+            <td>
+              <a href="{{ advert.productUrl }}">{{ advert.productTitle }}</a>
+            </td>
+            <td>
+              <strong>{{ advert.validTo }}</strong>
+            </td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </table>
+  </div>
+</div>

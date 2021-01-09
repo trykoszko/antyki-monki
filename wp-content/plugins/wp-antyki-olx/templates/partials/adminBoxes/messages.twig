@@ -1,0 +1,23 @@
+<div id="widget_messages" class="postbox">
+    <h2 class="hndle ui-sortable-handle">
+        <span>{{ __('Wiadomości') }}</span>
+    </h2>
+    <div class="inside">
+        {% if messages %}
+            <table>
+                <tr>
+                    <td>{{ __('#') }}</td>
+                    <td>{{ __('Wiadomość do ogłoszenia') }}</td>
+                </tr>
+                {% for message in messages %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        {# <td>{{ olx_get_product_id_by_advert_id( $message->advert_id ) }}</td> #}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            {{ __('Brak wiadomości') }}
+        {% endif %}
+    </div>
+</div>
