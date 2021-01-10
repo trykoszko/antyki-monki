@@ -14,6 +14,7 @@ class Twig
 
         $twig->addGlobal('wpData', [
             'textDomain' => TEXTDOMAIN,
+            'mainAdminUrl' => admin_url('/admin.php?page=wp-antyki-olx'),
             'testonejeden' => 'testonedwa'
         ]);
 
@@ -26,6 +27,21 @@ class Twig
             var_dump($var);
         });
         $twig->addFunction($twigDump);
+
+        $twigSettingsErrors = new \Twig\TwigFunction('settingsErrors', function () {
+            return \settings_errors();
+        });
+        $twig->addFunction($twigSettingsErrors);
+
+        $twigSettingsFields = new \Twig\Twigfunction('settingsFields', function ($var) {
+            return \settings_fields($var);
+        });
+        $twig->addFunction($twigSettingsFields);
+
+        $twigSubmitButton = new \Twig\Twigfunction('submitButton', function () {
+            return \submit_button();
+        });
+        $twig->addFunction($twigSubmitButton);
 
         $this->twig = $twig;
     }

@@ -1,0 +1,85 @@
+<div id="widget_auth_box" class="postbox">
+  <h2 class="hndle ui-sortable-handle">
+    <span>{{ __('Autoryzacja') }}</span>
+  </h2>
+  <div class="inside">
+    {{ settingsErrors() }}
+    <form method="post" action="options.php">
+      {{ settingsFields('olx_settings') }}
+      <table class="form-table" role="presentation">
+        <tbody>
+          <tr>
+            <th scope="row">
+              <label for="_olx_client_id">{{ __('Client ID') }}</label>
+            </th>
+            <td>
+              <input name="_olx_client_id"
+                type="text"
+                id="_olx_client_id"
+                value="{{ _olx_client_id }}"
+                class="regular-text" />
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              <label for="_olx_client_secret">{{ __('Client secret') }}</label>
+            </th>
+            <td>
+              <input name="_olx_client_secret"
+                type="text"
+                id="_olx_client_secret"
+                value="{{ _olx_client_secret }}"
+                class="regular-text" />
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              <label for="_olx_state">{{ __('State') }}</label>
+            </th>
+            <td>
+              <input name="_olx_state"
+                type="text"
+                id="_olx_state"
+                value="{{ _olx_state }}"
+                class="regular-text" />
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              <label for="_olx_access_token">{{ __('Access token') }}</label>
+            </th>
+            <td>
+              <input disabled
+                name="_olx_access_token"
+                type="text"
+                id="_olx_access_token"
+                value="{{ _olx_access_token }}"
+                class="regular-text" />
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">
+              <label for="_olx_refresh_token">{{ __('Refresh token') }}</label>
+            </th>
+            <td>
+              <input disabled
+                name="_olx_refresh_token"
+                type="text"
+                id="_olx_refresh_token"
+                value="{{ _olx_refresh_token }}"
+                class="regular-text" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br />
+
+      {{ submitButton() }}
+    </form>
+  </div>
+</div>

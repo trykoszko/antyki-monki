@@ -49,7 +49,7 @@ function antyki_run_plugin()
     $plugin->run();
 }
 
-register_activation_hook(__FILE__, 'antyki_activate_plugin');
-register_deactivation_hook(__FILE__, 'antyki_deactivate_plugin');
+register_activation_hook(__FILE__, 'Antyki\\antyki_activate_plugin');
+register_deactivation_hook(__FILE__, 'Antyki\\antyki_deactivate_plugin');
 
 antyki_run_plugin();

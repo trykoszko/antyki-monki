@@ -19,91 +19,105 @@ use Antyki\Olx\Main as Olx;
  */
 class Main
 {
+    // private $access_token;
+    // private $refresh_token;
+    // private $client_id;
+    // private $client_secret;
 
-    private $access_token;
-    private $refresh_token;
-    private $client_id;
-    private $client_secret;
+    public $_olx_client_id;
+    public $_olx_client_secret;
+    public $_olx_state;
+    public $_olx_access_token;
+    public $_olx_refresh_token;
 
-    /**
-     * Constructor
-     *
-     * @since 1.0.0
-     */
+    public $auth;
+
     public function __construct()
     {
+        $auth = $this->tryToAuthorize();
 
-        if (self::has_tokens()) {
+        if ($auth) {
+            $this->auth = $auth;
+        }
 
-            // get credentials from options
-            $this->get_credentials();
+        // if (self::isAuthenticated()) {
 
-            // new Guzzle client
-            $client = new Client();
+        // get credentials from options
+        // $this->getCredentials();
 
-            try {
+        // // new Guzzle client
+        // $client = new Client();
 
-                $response = $client->request(
-                    'POST',
-                    'https://www.olx.pl/api/open/oauth/token',
-                    array(
-                        'headers' => array(
-                            'Authorization' => "Bearer $this->access_token",
-                            'Version' => '2.0'
-                        ),
-                        'form_params' => array(
-                            'grant_type' => 'refresh_token',
-                            'client_id' => $this->client_id,
-                            'client_secret' => $this->client_secret,
-                            'refresh_token' => $this->refresh_token
-                        )
-                    )
-                );
+        // try {
 
-                // request body
-                $body = json_decode($response->getBody());
+        //     $response = $client->request(
+        //         'POST',
+        //         'https://www.olx.pl/api/open/oauth/token',
+        //         array(
+        //             'headers' => array(
+        //                 'Authorization' => "Bearer $this->access_token",
+        //                 'Version' => '2.0'
+        //             ),
+        //             'form_params' => array(
+        //                 'grant_type' => 'refresh_token',
+        //                 'client_id' => $this->client_id,
+        //                 'client_secret' => $this->client_secret,
+        //                 'refresh_token' => $this->refresh_token
+        //             )
+        //         )
+        //     );
 
-                $access_token = $body->access_token;
-                $refresh_token = $body->refresh_token;
+        //     // request body
+        //     $body = json_decode($response->getBody());
 
-                // update WordPress options
-                update_option('_olx_access_token', $access_token);
-                update_option('_olx_refresh_token', $refresh_token);
+        //     $access_token = $body->access_token;
+        //     $refresh_token = $body->refresh_token;
 
-                // update options for last refresh
-                update_option('_olx_tokens_last_refresh', date('Y-m-d H:i:s'));
-            } catch (RequestException $e) {
+        //     // update WordPress options
+        //     \update_option('_olx_access_token', $access_token);
+        //     \update_option('_olx_refresh_token', $refresh_token);
 
-                if (is_admin()) {
+        //     // update options for last refresh
+        //     \update_option('_olx_tokens_last_refresh', date('Y-m-d H:i:s'));
+        // } catch (RequestException $e) {
 
-                    echo Psr7\str($e->getRequest());
+        //     if (\is_admin()) {
 
-                    if ($e->hasResponse()) {
+        //         echo Psr7\str($e->getRequest());
 
-                        echo Psr7\str($e->getResponse());
-                    }
-                }
+        //         if ($e->hasResponse()) {
 
-                // first time authorize if refreshing token failed
-                self::first_time_auth();
-            }
-        } else {
+        //             echo Psr7\str($e->getResponse());
+        //         }
+        //     }
 
-            if (defined('ANTYKI_OLX_CLIENT_ID') && defined('ANTYKI_OLX_CLIENT_SECRET')) {
-                self::first_time_auth();
-            } else {
-            }
+        //     // first time authorize if refreshing token failed
+        //     self::first_time_auth();
+        // }
+        // } else {
+
+        //     if (defined('ANTYKI_OLX_CLIENT_ID') && defined('ANTYKI_OLX_CLIENT_SECRET')) {
+        //         self::first_time_auth();
+        //     } else {
+        //         echo 'Olx authorization error';
+        //         wp_die();
+        //     }
+        // }
+    }
+
+    public function tryToAuthorize()
+    {
+        $credentials = $this->getCredentials();
+        if ($credentials) {
+            // @TODO: try to auth
         }
     }
 
-    /**
-     * Check if Access token and Refresh tokens are available
-     *
-     * @since 1.0.0
-     *
-     * @return {Boolean} $is_authorized Authorization status
-     */
-    public static function has_tokens()
+    public static function isAuthenticated()
+    {
+    }
+
+    public static function hasAccessToken()
     {
 
         if (!defined(ANTYKI_OLX_CLIENT_ID)) {
@@ -111,32 +125,22 @@ class Main
         }
 
         // check if is authorized
-        $is_authorized = strlen(get_option('_olx_access_token')) > 10;
+        $accessToken = \get_option('_olx_access_token');
 
-        return $is_authorized;
+        return strlen($accessToken) > 10;
     }
 
-    /**
-     * Get credentials from WP Options table
-     *
-     * @since 1.0.0
-     */
-    private function get_credentials()
+    private function getCredentials()
     {
-
-        $this->access_token = get_option('_olx_access_token');
-        $this->refresh_token = get_option('_olx_refresh_token');
-        $this->client_id = ANTYKI_OLX_CLIENT_ID;
-        $this->client_secret = ANTYKI_OLX_CLIENT_SECRET;
+        // $this->_olx_client_id = defined('ANTYKI_OLX_CLIENT_ID') ? ANTYKI_OLX_CLIENT_ID : ;
+        // @TODO: add flag for if below
+        $this->_olx_client_secret = ANTYKI_OLX_CLIENT_SECRET;
+        $this->_olx_state = ANTYKI_OLX_STATE;
+        $this->_olx_access_token = \get_option('_olx_access_token');
+        $this->_olx_refresh_token = \get_option('_olx_refresh_token');
+        // @TODO: return true if all credentials are set
     }
 
-    /**
-     * Authorize for the first time
-     * Get Access token
-     * Get Refresh token
-     *
-     * @since 1.0.0
-     */
     public static function first_time_auth()
     {
 
@@ -155,7 +159,7 @@ class Main
                         'client_id' => ANTYKI_OLX_CLIENT_ID,
                         'client_secret' => ANTYKI_OLX_CLIENT_SECRET,
                         'scope' => 'v2 read write',
-                        'code' => get_option('_olx_authorization_token')
+                        'code' => \get_option('_olx_authorization_token')
                     )
                 )
             );
@@ -167,46 +171,32 @@ class Main
             $refresh_token = $body->refresh_token;
 
             // update WordPress options
-            if (update_option('_olx_access_token', $access_token) && update_option('_olx_refresh_token', $refresh_token)) {
+            if (\update_option('_olx_access_token', $access_token) && \update_option('_olx_refresh_token', $refresh_token)) {
                 return true;
             } else {
                 return false;
             }
         } catch (RequestException $e) {
 
+            global $wp;
+
             update_option('_olx_client_id', '');
 
             if (is_admin()) {
 
-                wp_redirect(admin_url('/admin.php?page=wp-olx-settings'));
+                // wp_redirect(admin_url('/admin.php?page=wp-olx-settings'));
+                // exit();
             }
         }
     }
 
-    /**
-     * Method that checks authorization and redirects to auth page if needed
-     *
-     * @since 1.0.0
-     */
-    public static function check_auth()
-    {
-        if (!Olx::has_tokens()) {
-            wp_redirect(admin_url('admin.php?page=wp-olx-auth'));
-        }
-    }
-
-    /**
-     * Method that gets adverts
-     *
-     * @since 1.0.0
-     */
     public function get_adverts()
     {
 
         $data = false;
 
         // authorize
-        if (Olx::has_tokens()) {
+        if (self::isAuthenticated()) {
 
             $transient = 'olx_api/partner/adverts';
             $endpoint = 'https://www.olx.pl/api/partner/adverts';
@@ -240,18 +230,13 @@ class Main
         return $data;
     }
 
-    /**
-     * Method that returns Olx user data
-     *
-     * @since 1.0.0
-     */
     public function get_user_data()
     {
 
         $data = false;
 
         // authorize
-        if (Olx::has_tokens()) {
+        if (self::isAuthenticated()) {
 
             $transient = 'olx_api/partner/users/me';
             $endpoint = 'https://www.olx.pl/api/partner/users/me';
@@ -285,18 +270,13 @@ class Main
         return $data;
     }
 
-    /**
-     * Method that returns Olx advert packets data
-     *
-     * @since 1.0.0
-     */
     public function get_packets()
     {
 
         $data = false;
 
         // authorize
-        if (Olx::has_tokens()) {
+        if (self::isAuthenticated()) {
 
             $transient = 'olx_api/partner/packets';
             $endpoint = 'https://www.olx.pl/api/partner/users/me/packets';
@@ -329,18 +309,13 @@ class Main
         return $data;
     }
 
-    /**
-     * Method that returns Olx messages
-     *
-     * @since 1.0.0
-     */
     public function get_messages()
     {
 
         $data = false;
 
         // authorize
-        if (Olx::has_tokens()) {
+        if (self::isAuthenticated()) {
 
             $transient = 'olx_api/partner/threads';
             $endpoint = 'https://www.olx.pl/api/partner/threads';
@@ -373,13 +348,6 @@ class Main
         return $data;
     }
 
-    /**
-     * Method that adds a product as an advert to OLX
-     *
-     * @since 1.0.0
-     *
-     * @param int $product_id Post ID of local product
-     */
     public function add_advert($product_id)
     {
 
@@ -522,15 +490,6 @@ class Main
         );
     }
 
-    /**
-     * Method that gets advert from OLX by product/post id
-     *
-     * @since 1.0.0
-     *
-     * @param int $post_id Post ID
-     *
-     * @return array $advert OLX Advert
-     */
     public function get_advert_data_by_post_id($post_id)
     {
 
@@ -541,7 +500,7 @@ class Main
         }
 
         // authorize
-        if (Olx::has_tokens()) {
+        if (self::isAuthenticated()) {
 
             $transient = "olx_api/partner/advert/$olx_id";
             $endpoint = "https://www.olx.pl/api/partner/adverts/$olx_id";
@@ -602,15 +561,6 @@ class Main
         }
     }
 
-    /**
-     * Method that gets advert from database by product id
-     *
-     * @since 1.0.0
-     *
-     * @param int $post_id Post ID
-     *
-     * @return array $advert OLX Advert
-     */
     public function get_advert_by_post_id($post_id)
     {
 
@@ -626,15 +576,6 @@ class Main
         return $advert;
     }
 
-    /**
-     * Method that refreshes the products data from OLX
-     *
-     * @since 1.0.0
-     *
-     * @return void
-     *
-     * Hooked to 'wp_olx_cron_hook' action
-     */
     public function refresh_adverts_data()
     {
 
