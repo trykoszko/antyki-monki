@@ -4,16 +4,15 @@ namespace Antyki\Plugin\Admin;
 
 class Views
 {
+    public $twigInstance;
     public $twig;
     public $olxClient;
     public $isAuthenticated;
 
-    public function __construct($twigInstance, $olxClient)
+    public function __construct(\Antyki\Plugin\Twig $twigInstance, \Antyki\Olx\Main $olxClient)
     {
         $this->twig = $twigInstance;
         $this->olxClient = $olxClient;
-
-        $this->isAuthenticated = $this->olxClient->isAuthenticated();
     }
 
     public function renderUnauthorized()
@@ -23,7 +22,7 @@ class Views
 
     public function dashboardPage()
     {
-        if ($this->isAuthenticated) {
+        if ($this->olxClient->isAuthenticated()) {
             $this->twig->render('dashboard', [
                 'endingAdverts' => [
                     [
@@ -57,6 +56,8 @@ class Views
 
     public function authPage()
     {
+        var_dump($this->olxClient->isAuthenticated());
+
         $this->twig->render('auth', [
             'userInfo' => [
                 'name' => 'Michal',
@@ -68,14 +69,17 @@ class Views
 
     public function settingsPage()
     {
-        if ($this->isAuthenticated) {
-            $this->twig->render('settings', [
-                '_olx_client_id' => $this->olxClient->_olx_client_id,
-                '_olx_client_secret' => $this->olxClient->_olx_client_secret,
-                '_olx_state' => $this->olxClient->_olx_state,
-                '_olx_access_token' => $this->olxClient->_olx_access_token,
-                '_olx_refresh_token' => $this->olxClient->_olx_refresh_token
-            ]);
+        if ($this->olxClient->isAuthenticated()) {
+            $data = [
+                'olxAuth' => [
+                    'olxClientId' => $this->olxClient->getOption('olxClientId'),
+                    'olxClientSecret' => $this->olxClient->olxClientSecret,
+                    'olxState' => $this->olxClient->olxState,
+                    'olxAccessToken' => $this->olxClient->olxAccessToken,
+                    'olxRefreshToken' => $this->olxClient->olxRefreshToken
+                ]
+            ];
+            $this->twig->render('settings', $data);
         } else {
             $this->renderUnauthorized();
         }

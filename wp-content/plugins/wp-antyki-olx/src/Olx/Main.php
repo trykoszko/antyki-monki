@@ -2,43 +2,47 @@
 
 namespace Antyki\Olx;
 
-/**
- * OLX Class
- */
+use \Exception as Exception;
 
-use \GuzzleHttp\Client as Client;
 use \GuzzleHttp\Psr7 as Psr7;
 use \GuzzleHttp\Exception\RequestException as RequestException;
 
-use Antyki\Olx\Main as Olx;
-
-/**
- * Auth, pushing, pulling adverts etc
- *
- * @since 1.0.0
- */
 class Main
 {
-    // private $access_token;
-    // private $refresh_token;
-    // private $client_id;
-    // private $client_secret;
+    protected $guzzleClient;
 
-    public $_olx_client_id;
-    public $_olx_client_secret;
-    public $_olx_state;
-    public $_olx_access_token;
-    public $_olx_refresh_token;
+    protected $isConfigured; // if client_id, client_secret, state is filled in
+    public $isAuthenticated; // if OLX gives a response
 
-    public $auth;
+    protected $olxClientId;
+    protected $olxClientSecret;
+    protected $olxState;
+    protected $olxAccessToken;
+    protected $olxRefreshToken;
 
-    public function __construct()
+    public function __construct(\GuzzleHttp\Client $guzzleClient)
     {
-        $auth = $this->tryToAuthorize();
+        $this->guzzleClient = $guzzleClient;
 
-        if ($auth) {
-            $this->auth = $auth;
+        $isConfigured = $this->configure();
+        $isAuthenticated = false;
+        if ($isConfigured) {
+            $isAuthenticated = $this->authorize();
         }
+
+        $this->isConfigured = $isConfigured;
+        $this->isAuthenticated = $isAuthenticated;
+
+        // try {
+        //     $auth = $this->tryToAuthorize();
+        //     if (!$auth) {
+        //         throw new Exception('Authentication error');
+        //     }
+        // } catch (Exception $e) {
+        //     error_log(json_encode([
+        //         'error' => $e
+        //     ]));
+        // }
 
         // if (self::isAuthenticated()) {
 
@@ -74,8 +78,8 @@ class Main
         //     $refresh_token = $body->refresh_token;
 
         //     // update WordPress options
-        //     \update_option('_olx_access_token', $access_token);
-        //     \update_option('_olx_refresh_token', $refresh_token);
+        //     \update_option('olxAccessToken', $access_token);
+        //     \update_option('olxRefreshToken', $refresh_token);
 
         //     // update options for last refresh
         //     \update_option('_olx_tokens_last_refresh', date('Y-m-d H:i:s'));
@@ -92,12 +96,12 @@ class Main
         //     }
 
         //     // first time authorize if refreshing token failed
-        //     self::first_time_auth();
+        //     self::firstTimeAuth();
         // }
         // } else {
 
         //     if (defined('ANTYKI_OLX_CLIENT_ID') && defined('ANTYKI_OLX_CLIENT_SECRET')) {
-        //         self::first_time_auth();
+        //         self::firstTimeAuth();
         //     } else {
         //         echo 'Olx authorization error';
         //         wp_die();
@@ -105,61 +109,78 @@ class Main
         // }
     }
 
-    public function tryToAuthorize()
+    public function getOption($optionName)
     {
-        $credentials = $this->getCredentials();
-        if ($credentials) {
-            // @TODO: try to auth
-        }
-    }
+        error_log(json_encode([
+            'getOption' => $optionName
+        ]));
 
-    public static function isAuthenticated()
-    {
-    }
-
-    public static function hasAccessToken()
-    {
-
-        if (!defined(ANTYKI_OLX_CLIENT_ID)) {
-            return false;
+        if (defined($optionName)) {
+            return constant($optionName);
         }
 
-        // check if is authorized
-        $accessToken = \get_option('_olx_access_token');
+        if (\get_option($optionName)) {
+            return \get_option($optionName);
+        }
 
-        return strlen($accessToken) > 10;
+        return false;
     }
 
-    private function getCredentials()
+    protected function configure()
     {
-        // $this->_olx_client_id = defined('ANTYKI_OLX_CLIENT_ID') ? ANTYKI_OLX_CLIENT_ID : ;
-        // @TODO: add flag for if below
-        $this->_olx_client_secret = ANTYKI_OLX_CLIENT_SECRET;
-        $this->_olx_state = ANTYKI_OLX_STATE;
-        $this->_olx_access_token = \get_option('_olx_access_token');
-        $this->_olx_refresh_token = \get_option('_olx_refresh_token');
-        // @TODO: return true if all credentials are set
-    }
-
-    public static function first_time_auth()
-    {
-
-        // new Guzzle client
-        $client = new Client();
-
         try {
 
-            // request for getting tokens
-            $response = $client->request(
+            if (!$this->getOption('olxClientId')) {
+                throw new Exception('olxClientId not defined');
+            }
+            if (!$this->getOption('olxClientSecret')) {
+                throw new Exception('olxClientSecret not defined');
+            }
+            if (!$this->getOption('olxState')) {
+                throw new Exception('olxState not defined');
+            }
+            if (!$this->getOption('olxAccessToken')) {
+                throw new Exception('olxAccessToken not defined');
+            }
+            if (!$this->getOption('olxRefreshToken')) {
+                throw new Exception('olxRefreshToken not defined');
+            }
+            if (!$this->getOption('olxCode')) {
+                throw new Exception('olxCode not defined');
+            }
+
+            $this->olxClientId = $this->getOption('olxClientId');
+            $this->olxClientSecret = $this->getOption('olxClientSecret');
+            $this->olxState = $this->getOption('olxState');
+            $this->olxAccessToken = $this->getOption('olxAccessToken');
+            $this->olxRefreshToken = $this->getOption('olxRefreshToken');
+            $this->olxCode = $this->getOption('olxCode');
+
+            var_dump($this->olxCode);
+
+            return true;
+        } catch (Exception $e) {
+
+            error_log('[ANTYKI-OLX]');
+            error_log($e->getMessage());
+
+            return false;
+        }
+    }
+
+    public function authorize()
+    {
+        try {
+            $response = $this->guzzleClient->request(
                 'POST',
-                'https://www.olx.pl/api/open/oauth/token',
+                '/open/oauth/token',
                 array(
                     'form_params' => array(
                         'grant_type' => 'authorization_code',
-                        'client_id' => ANTYKI_OLX_CLIENT_ID,
-                        'client_secret' => ANTYKI_OLX_CLIENT_SECRET,
+                        'client_id' => $this->olxClientId,
+                        'client_secret' => $this->olxClientSecret,
                         'scope' => 'v2 read write',
-                        'code' => \get_option('_olx_authorization_token')
+                        'code' => $this->olxCode
                     )
                 )
             );
@@ -167,28 +188,32 @@ class Main
             // request body
             $body = json_decode($response->getBody());
 
-            $access_token = $body->access_token;
-            $refresh_token = $body->refresh_token;
+            $accessToken = $body->access_token;
+            $refreshToken = $body->refresh_token;
 
-            // update WordPress options
-            if (\update_option('_olx_access_token', $access_token) && \update_option('_olx_refresh_token', $refresh_token)) {
-                return true;
-            } else {
-                return false;
-            }
+            $options_updated = \update_option('olxAccessToken', $accessToken) && \update_option('olxRefreshToken', $refreshToken);
+
+            return $options_updated;
         } catch (RequestException $e) {
-
-            global $wp;
-
-            update_option('_olx_client_id', '');
-
-            if (is_admin()) {
-
-                // wp_redirect(admin_url('/admin.php?page=wp-olx-settings'));
-                // exit();
-            }
+            return false;
         }
     }
+
+    public function isAuthenticated()
+    {
+        return $this->isConfigured && $this->isAuthenticated;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     public function get_adverts()
     {
@@ -230,7 +255,7 @@ class Main
         return $data;
     }
 
-    public function get_user_data()
+    public function getUserData()
     {
 
         $data = false;

@@ -1,0 +1,6 @@
+@media only screen and (min-width: 1500px) and (max-width: 1800px) {
+    #wpbody-content #dashboard-widgets #postbox-container-1,
+    #wpbody-content #dashboard-widgets #postbox-container-2 {
+        width: 50%;
+    }
+}

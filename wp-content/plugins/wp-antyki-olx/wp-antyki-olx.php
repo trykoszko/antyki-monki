@@ -20,16 +20,20 @@ use Antyki\Plugin\Main as Plugin;
 use Antyki\Plugin\Activator as Activator;
 use Antyki\Plugin\Deactivator as Deactivator;
 
+use Antyki\Container\Main as DIContainer;
+
 // If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
 
-define('ANTYKI_VERSION', '0.0.1');
+define('ANTYKI_VERSION', '1.0.0');
 if (!defined('TEXTDOMAIN')) {
     define('TEXTDOMAIN', 'antyki');
 }
+
 define('ANTYKI_ROOT_DIR', plugin_dir_path(__FILE__));
+define('ANTYKI_ROOT_URL', plugin_dir_url(__FILE__));
 
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
@@ -45,7 +49,8 @@ function antyki_deactivate_plugin()
 
 function antyki_run_plugin()
 {
-    $plugin = new Plugin();
+    $diContainer = new DIContainer();
+    $plugin = new Plugin($diContainer);
     $plugin->run();
 }
 

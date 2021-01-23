@@ -1,15 +1,22 @@
 <h1>
-  {{ __('Autoryzacja OLX') }}
+	{{ __('Autoryzacja OLX') }}
 </h1>
 
+{{dump(olxAuth)}}
+
 <div class="wrap wp-olx-wrap">
-  <div id="dashboard-widgets-wrap">
-    <div id="dashboard-widgets" class="metabox-holder">
-      <div id="postbox-container-1" class="postbox-container">
-        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
-          {{ include('partials/adminBoxes/authBox.twig') }}
-        </div>
-      </div>
-    </div>
-  </div>
+	<div id="dashboard-widgets-wrap">
+		<div id="dashboard-widgets" class="metabox-holder">
+			<div id="postbox-container-1" class="postbox-container">
+				<div id="normal-sortables" class="meta-box-sortables ui-sortable">
+					{{ include('partials/adminBoxes/authCodeBox.twig') }}
+				</div>
+			</div>
+			<div id="postbox-container-2" class="postbox-container">
+				<div id="normal-sortables" class="meta-box-sortables ui-sortable">
+					{{ include('partials/adminBoxes/authBox.twig') }}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -2,24 +2,27 @@
 
 namespace Antyki\Plugin;
 
-use Antyki\Olx\Main as Olx;
-
-use Antyki\Olx\Ajax as Ajax;
-use Antyki\Olx\Cache as Cache;
-use Antyki\Plugin\Admin\Views as AdminViews;
+use Antyki\Container\Main as DIContainer;
 
 /**
  * Main plugin class
  */
 class Main
 {
-
-    public $twig;
-    public $ajax;
-    public $cache;
-    public $adminViews;
-    public $olx;
+    public $container;
     public $isAuthenticated;
+    public $adminViews;
+
+    public function __construct(DIContainer $container)
+    {
+        $this->container = $container->getInstance();
+        $this->isAuthenticated = $this->container->call(function ($olxInstance) {
+            return $olxInstance->isAuthenticated;
+        }, [
+            'olxInstance' => $this->container->get('Olx')
+        ]);
+        $this->adminViews = $this->container->get('AdminViews');
+    }
 
     public function run()
     {
@@ -27,43 +30,74 @@ class Main
             define('ANTYKI_ADMIN_MENU_SLUG', 'wp-antyki-olx');
         }
 
-        $this->ajax = new Ajax();
-        $this->cache = new Cache();
-        $this->twig = new Twig();
-        $this->olx = new Olx();
+        define('ANTYKI_NONCE_NAME', 'wp-antyki-nonce');
 
-        $this->isAuthenticated = $this->olx->isAuthenticated();
-
-        $this->adminViews = new AdminViews($this->twig, $this->olx);
-
-        $this->init_hooks();
+        $this->initHooks();
     }
 
 
-    public function init_hooks()
+    public function initHooks()
     {
-        \add_action('plugins_loaded', [$this, 'load_plugin_textdomain']);
+        \add_action('plugins_loaded', [$this, 'loadTextdomain']);
 
-        \add_action('admin_menu', [$this, 'add_to_admin_menu']);
+        \add_action('admin_menu', [$this, 'addToAdminMenu']);
 
-        \add_action('antyki_cron_hook', [$this, 'bind_cron_actions']);
+        \add_action('antyki_cron_hook', [$this, 'bindCronActions']);
+
+        \add_action('admin_bar_menu', [$this, 'addOlxStatusToAdminBar'], 100);
+
+        \add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
+
+        \add_action('admin_init', [$this, 'registerCustomSettings']);
     }
 
-    public function bind_cron_actions()
+    public function enqueueAdminAssets()
+    {
+        wp_register_script(
+            'olxAdmin',
+            ANTYKI_ROOT_URL . 'scripts/admin.js',
+            ['jquery'],
+            '1.0.0',
+            true
+        );
+        wp_localize_script('olxAdmin', 'olxData', [
+            'ajaxUrl' => admin_url('/admin-ajax.php'),
+            'security' => \wp_create_nonce(ANTYKI_NONCE_NAME)
+        ]);
+        wp_enqueue_script('olxAdmin');
+
+        wp_enqueue_style(
+            'olxAdmin',
+            ANTYKI_ROOT_URL . 'style/style.css',
+            [],
+            '1.0.0'
+        );
+    }
+
+    public function bindCronActions()
     {
         // handle all cron actions here
     }
 
-    public function load_plugin_textdomain()
+    function addOlxStatusToAdminBar($admin_bar)
     {
-        \load_plugin_textdomain(
+        $admin_bar->add_node([
+            'id'    => 'olx-status',
+            'title' => 'Status OLX',
+            'href'  => '#'
+        ]);
+    }
+
+    public function loadTextdomain()
+    {
+        \load_textdomain(
             TEXTDOMAIN,
             false,
             dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
         );
     }
 
-    public function add_to_admin_menu()
+    public function addToAdminMenu()
     {
         global $menu;
 
@@ -90,8 +124,8 @@ class Main
         } else {
 
             add_menu_page(
-                __('Antyki - OLX', TEXTDOMAIN),
-                __('Antyki - OLX', TEXTDOMAIN),
+                __('Antyki - OLX - x', TEXTDOMAIN),
+                __('Antyki - OLX - x', TEXTDOMAIN),
                 'manage_options',
                 ANTYKI_ADMIN_MENU_SLUG,
                 [$this->adminViews, 'authPage'],
@@ -108,5 +142,23 @@ class Main
             '',
             'wp-menu-separator'
         ];
+    }
+
+    public function registerCustomSettings()
+    {
+        add_option('olxClientId');
+        register_setting('olxSettings', 'olxClientId');
+
+        add_option('olxClientSecret');
+        register_setting('olxSettings', 'olxClientSecret');
+
+        add_option('olxState');
+        register_setting('olxSettings', 'olxState');
+
+        add_option('olxAccessToken');
+        register_setting('olxAuthSettings', 'olxAccessToken');
+
+        add_option('oldRefreshToken');
+        register_setting('olxAuthSettings', 'oldRefreshToken');
     }
 }
