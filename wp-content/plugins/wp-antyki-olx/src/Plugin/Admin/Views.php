@@ -9,8 +9,10 @@ class Views
     public $olxClient;
     public $isAuthenticated;
 
-    public function __construct(\Antyki\Plugin\Twig $twig, \Antyki\Olx\Main $olxClient)
-    {
+    public function __construct(
+        \Antyki\Plugin\Twig $twig,
+        \Antyki\Olx\Main $olxClient
+    ) {
         $this->twig = $twig;
         $this->olxClient = $olxClient;
     }
@@ -30,16 +32,16 @@ class Views
                         'title' => 'adv1',
                         'productUrl' => '#',
                         'productTitle' => 'Sample title',
-                        'validTo' => '12-01-2020'
-                    ]
+                        'validTo' => '12-01-2020',
+                    ],
                 ],
                 'packets' => [],
                 'messages' => [],
                 'userInfo' => [
                     'name' => 'Michal',
                     'email' => 'email@email.co',
-                    'last_login_at' => '12-10-2021'
-                ]
+                    'last_login_at' => '12-10-2021',
+                ],
             ]);
         } else {
             $this->renderUnauthorized();
@@ -48,17 +50,24 @@ class Views
 
     public function authPage()
     {
-        var_dump($this->olxClient->isAuthenticated);
-
         $this->twig->render('auth', [
             'olxAuth' => [
                 'olxCode' => $this->olxClient->getOption('olxCode'),
                 'olxClientId' => $this->olxClient->getOption('olxClientId'),
-                'olxClientSecret' => $this->olxClient->getOption('olxClientSecret'),
+                'olxClientSecret' => $this->olxClient->getOption(
+                    'olxClientSecret'
+                ),
                 'olxState' => $this->olxClient->getOption('olxState'),
-                'olxAccessToken' => $this->olxClient->getOption('olxAccessToken'),
-                'olxRefreshToken' => $this->olxClient->getOption('olxRefreshToken')
-            ]
+                'olxAccessToken' => $this->olxClient->getOption(
+                    'olxAccessToken'
+                ),
+                'olxRefreshToken' => $this->olxClient->getOption(
+                    'olxRefreshToken'
+                ),
+                'isAuthorized' =>
+                    $this->olxClient->getOption('olxTokensValidUntil') >
+                    date('Y-m-d H:i:s'),
+            ],
         ]);
     }
 

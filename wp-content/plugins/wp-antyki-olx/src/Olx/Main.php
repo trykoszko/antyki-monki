@@ -4,8 +4,8 @@ namespace Antyki\Olx;
 
 use \Exception as Exception;
 
-use \GuzzleHttp\Psr7 as Psr7;
-use \GuzzleHttp\Exception\RequestException as RequestException;
+use GuzzleHttp\Psr7 as Psr7;
+use GuzzleHttp\Exception\RequestException as RequestException;
 
 class Main
 {
@@ -19,10 +19,16 @@ class Main
     protected $olxState;
     protected $olxAccessToken;
     protected $olxRefreshToken;
+    protected $olxCode;
 
     public function __construct(\GuzzleHttp\Client $guzzleClient)
     {
         $this->guzzleClient = $guzzleClient;
+
+        $tokensValid = $this->getTokenValidity();
+        if ($tokensValid) {
+            $this->isAuthenticated = $tokensValid;
+        }
 
         $this->getCredentials();
         $this->authenticate();
@@ -39,6 +45,19 @@ class Main
         }
 
         return false;
+    }
+
+    protected function isAuthenticated()
+    {
+        return $this->isAuthenticated;
+    }
+
+    protected function getTokenValidity()
+    {
+        $validity = $this->getOption('olxTokensValidUntil');
+        if ($validity > date('Y-m-d H:i:s')) {
+            $this->isAuthenticated = true;
+        }
     }
 
     protected function getCredentials()
@@ -96,27 +115,29 @@ class Main
         $response = $this->guzzleClient->request(
             'POST',
             '/api/open/oauth/token',
-            array(
-                'headers' => array(
-                    'Authorization' => "Bearer " . $this->olxAccessToken,
-                    'Version' => '2.0'
-                ),
-                'form_params' => array(
+            [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->olxAccessToken,
+                    'Version' => '2.0',
+                ],
+                'form_params' => [
                     'grant_type' => 'refresh_token',
                     'client_id' => $this->olxClientId,
                     'client_secret' => $this->olxClientSecret,
-                    'refresh_token' => $this->olxRefreshToken
-                )
-            )
+                    'refresh_token' => $this->olxRefreshToken,
+                ],
+            ]
         );
 
         // request body
-        $body = json_decode( $response->getBody() );
+        $body = json_decode($response->getBody());
 
         $accessToken = $body->access_token;
         $refreshToken = $body->refresh_token;
 
-        $optionsUpdated = \update_option('olxAccessToken', $accessToken) && \update_option('olxRefreshToken', $refreshToken);
+        $optionsUpdated =
+            \update_option('olxAccessToken', $accessToken) &&
+            \update_option('olxRefreshToken', $refreshToken);
 
         $this->olxAccessToken = $accessToken;
         $this->olxRefreshToken = $refreshToken;
@@ -127,8 +148,8 @@ class Main
         $validUntilDate = $validUntil->format('Y-m-d H:i:s');
 
         // update options for last refresh
-        update_option( 'olxTokensLastRefresh', date( 'Y-m-d H:i:s' ) );
-        update_option( 'olxTokensValidUntil', $validUntilDate );
+        update_option('olxTokensLastRefresh', date('Y-m-d H:i:s'));
+        update_option('olxTokensValidUntil', $validUntilDate);
 
         return $optionsUpdated;
     }
@@ -144,8 +165,8 @@ class Main
                     'client_id' => $this->olxClientId,
                     'client_secret' => $this->olxClientSecret,
                     'scope' => 'v2 read write',
-                    'code' => $this->olxCode
-                ]
+                    'code' => $this->olxCode,
+                ],
             ]
         );
 
@@ -155,7 +176,9 @@ class Main
         $accessToken = $body->access_token;
         $refreshToken = $body->refresh_token;
 
-        $optionsUpdated = \update_option('olxAccessToken', $accessToken) && \update_option('olxRefreshToken', $refreshToken);
+        $optionsUpdated =
+            \update_option('olxAccessToken', $accessToken) &&
+            \update_option('olxRefreshToken', $refreshToken);
 
         return $optionsUpdated;
     }
@@ -167,119 +190,62 @@ class Main
             $tokensValidUntil = $this->getOption('olxTokensValidUntil');
             if (date('Y-m-d H:i:s') > $tokensValidUntil) {
                 error_log('[OLX] Renewing tokens');
-                $this->renewTokens();
+                $this->isAuthenticated = $this->renewTokens();
             } else {
                 // Tokens still valid
             }
         } else {
-            $this->getNewTokens();
+            $this->isAuthenticated = $this->getNewTokens();
         }
+        return $this->isAuthenticated;
     }
 
-    public function isAuthenticated()
+    public function test()
     {
-        return $this->credentials && $this->isAuthenticated;
+        return $this->isAuthenticated();
     }
-
-
-
-
-
-
-
-
-
-
-
 
     public function get_adverts()
     {
-
         $data = false;
 
         // authorize
-        if (self::isAuthenticated()) {
-
-            $transient = 'olx_api/partner/adverts';
-            $endpoint = 'https://www.olx.pl/api/partner/adverts';
-
-            if (Cache::get($transient)) {
-                return Cache::get($transient);
-            }
-
-            // new Guzzle client
-            $client = new Client();
-
-            // request for getting tokens
-            $response = $client->request(
-                'GET',
-                $endpoint,
-                array(
-                    'headers' => array(
-                        'Authorization' => "Bearer $this->access_token",
-                        'Version' => '2.0'
-                    )
-                )
-            );
-
-            // response
-            $data = json_decode($response->getBody())->data;
-
-            // save to cache
-            Cache::set($transient, $data);
+        if ($this->isAuthenticated()) {
         }
 
-        return $data;
-    }
+        $transient = 'olx_api/partner/adverts';
+        $endpoint = 'https://www.olx.pl/api/partner/adverts';
 
-    public function getUserData()
-    {
-
-        $data = false;
-
-        // authorize
-        if (self::isAuthenticated()) {
-
-            $transient = 'olx_api/partner/users/me';
-            $endpoint = 'https://www.olx.pl/api/partner/users/me';
-
-            if (Cache::get($transient)) {
-                return Cache::get($transient);
-            }
-
-            // new Guzzle client
-            $client = new Client();
-
-            // request
-            $response = $client->request(
-                'GET',
-                $endpoint,
-                array(
-                    'headers' => array(
-                        'Authorization' => "Bearer $this->access_token",
-                        'Version' => '2.0'
-                    )
-                )
-            );
-
-            // request body
-            $data = json_decode($response->getBody())->data;
-
-            // save to cache
-            Cache::set($transient, $data);
+        if (Cache::get($transient)) {
+            return Cache::get($transient);
         }
+
+        // new Guzzle client
+        $client = new Client();
+
+        // request for getting tokens
+        $response = $client->request('GET', $endpoint, [
+            'headers' => [
+                'Authorization' => "Bearer $this->access_token",
+                'Version' => '2.0',
+            ],
+        ]);
+
+        // response
+        $data = json_decode($response->getBody())->data;
+
+        // save to cache
+        Cache::set($transient, $data);
 
         return $data;
     }
 
     public function get_packets()
     {
-
         $data = false;
 
         // authorize
         if (self::isAuthenticated()) {
-
             $transient = 'olx_api/partner/packets';
             $endpoint = 'https://www.olx.pl/api/partner/users/me/packets';
 
@@ -291,16 +257,12 @@ class Main
             $client = new Client();
 
             // request
-            $response = $client->request(
-                'GET',
-                $endpoint,
-                array(
-                    'headers' => array(
-                        'Authorization' => "Bearer $this->access_token",
-                        'Version' => '2.0'
-                    )
-                )
-            );
+            $response = $client->request('GET', $endpoint, [
+                'headers' => [
+                    'Authorization' => "Bearer $this->access_token",
+                    'Version' => '2.0',
+                ],
+            ]);
 
             $data = json_decode($response->getBody())->data;
 
@@ -313,12 +275,10 @@ class Main
 
     public function get_messages()
     {
-
         $data = false;
 
         // authorize
         if (self::isAuthenticated()) {
-
             $transient = 'olx_api/partner/threads';
             $endpoint = 'https://www.olx.pl/api/partner/threads';
 
@@ -330,16 +290,12 @@ class Main
             $client = new Client();
 
             // request
-            $response = $client->request(
-                'GET',
-                $endpoint,
-                array(
-                    'headers' => array(
-                        'Authorization' => "Bearer $this->access_token",
-                        'Version' => '2.0'
-                    )
-                )
-            );
+            $response = $client->request('GET', $endpoint, [
+                'headers' => [
+                    'Authorization' => "Bearer $this->access_token",
+                    'Version' => '2.0',
+                ],
+            ]);
 
             $data = json_decode($response->getBody())->data;
 
@@ -352,7 +308,6 @@ class Main
 
     public function add_advert($product_id)
     {
-
         // set endpoint
         $endpoint = 'https://www.olx.pl/api/partner/adverts';
 
@@ -367,7 +322,7 @@ class Main
         // additional info field
         $additional_info = null;
         if (isset($product_attrs['additional'])) {
-            $add_info = array();
+            $add_info = [];
             foreach ($product_attrs['additional'] as $attr) {
                 $add_info[] = $attr['label'];
             }
@@ -377,7 +332,7 @@ class Main
         // material
         $material_info = null;
         if (isset($product_attrs['material'])) {
-            $mat_info = array();
+            $mat_info = [];
             foreach ($product_attrs['material'] as $attr) {
                 $mat_info[] = $attr['label'];
             }
@@ -388,81 +343,113 @@ class Main
         $desc = 'Dzień dobry.
 
         ';
-        $desc .= isset($product_attrs['desc']) ? $product_attrs['desc'] . '
+        $desc .= isset($product_attrs['desc'])
+            ? $product_attrs['desc'] .
+                '
 
-        ' : '';
+        '
+            : '';
         $desc .= 'Atrybuty przedmiotu:
         ';
-        $desc .= isset($product_attrs['width']) ? 'Szerokość: ' . $product_attrs['width'] . 'cm
-        ' : '';
-        $desc .= isset($product_attrs['height']) ? 'Wysokość: ' . $product_attrs['height'] . 'cm
-        ' : '';
-        $desc .= isset($product_attrs['depth']) ? 'Głębokość: ' . $product_attrs['depth'] . 'cm
-        ' : '';
-        $desc .= $material_info ? 'Materiał wykonania: ' . $material_info . '
-        ' : '';
-        $desc .= isset($product_attrs['canvas_type']) ? 'Rodzaj podobrazia: ' . $product_attrs['canvas_type']['label'] . '
-        ' : '';
-        $desc .= isset($product_attrs['paint_type']) ? 'Rodzaj wykończenia: ' . $product_attrs['paint_type']['label'] . '
-        ' : '';
-        $desc .= isset($product_attrs['state']) ? 'Stan: ' . $product_attrs['state']['label'] . '
-        ' : '';
-        $desc .= $additional_info ? 'Dodatkowe informacje: ' . $additional_info . '
-        ' : '';
+        $desc .= isset($product_attrs['width'])
+            ? 'Szerokość: ' .
+                $product_attrs['width'] .
+                'cm
+        '
+            : '';
+        $desc .= isset($product_attrs['height'])
+            ? 'Wysokość: ' .
+                $product_attrs['height'] .
+                'cm
+        '
+            : '';
+        $desc .= isset($product_attrs['depth'])
+            ? 'Głębokość: ' .
+                $product_attrs['depth'] .
+                'cm
+        '
+            : '';
+        $desc .= $material_info
+            ? 'Materiał wykonania: ' .
+                $material_info .
+                '
+        '
+            : '';
+        $desc .= isset($product_attrs['canvas_type'])
+            ? 'Rodzaj podobrazia: ' .
+                $product_attrs['canvas_type']['label'] .
+                '
+        '
+            : '';
+        $desc .= isset($product_attrs['paint_type'])
+            ? 'Rodzaj wykończenia: ' .
+                $product_attrs['paint_type']['label'] .
+                '
+        '
+            : '';
+        $desc .= isset($product_attrs['state'])
+            ? 'Stan: ' .
+                $product_attrs['state']['label'] .
+                '
+        '
+            : '';
+        $desc .= $additional_info
+            ? 'Dodatkowe informacje: ' .
+                $additional_info .
+                '
+        '
+            : '';
         $desc .= '
 
         ';
-        $desc .= 'Po więcej antyków i staroci zapraszamy na naszą stronę internetową: antyki-monki.pl';
+        $desc .=
+            'Po więcej antyków i staroci zapraszamy na naszą stronę internetową: antyki-monki.pl';
 
         // images
-        $images = array();
+        $images = [];
         foreach ($product_images as $image) {
-            $images[] = array(
-                'url' => $image['url']
-            );
+            $images[] = [
+                'url' => $image['url'],
+            ];
         }
 
         // product params
-        $params = array(
+        $params = [
             'title' => $product_olx_attrs['olx_title'],
             'description' => str_replace('↵', '', $desc),
             'category_id' => $product_olx_attrs['cat']['value'],
             'advertiser_type' => 'business',
-            'contact' => array(
+            'contact' => [
                 'name' => get_field('olx_settings_person_name', 'option'),
-                'phone' => get_field('olx_settings_person_phone', 'option')
-            ),
-            'location' => array(
-                'city_id' => get_field('olx_settings_place', 'option')['value']
-            ),
+                'phone' => get_field('olx_settings_person_phone', 'option'),
+            ],
+            'location' => [
+                'city_id' => get_field('olx_settings_place', 'option')['value'],
+            ],
             'images' => $images,
-            'price' => array(
+            'price' => [
                 'value' => $product_olx_attrs['price'],
                 'currency' => 'PLN',
                 'negotiable' => !empty($product_olx_attrs['price_min']),
-                'trade' => false
-            ),
-            'attributes' => array(
-                array(
+                'trade' => false,
+            ],
+            'attributes' => [
+                [
                     'code' => 'state',
-                    'value' => $product_olx_attrs['state']
-                )
-            )
-        );
+                    'value' => $product_olx_attrs['state'],
+                ],
+            ],
+        ];
 
         // request
-        $response = $client->request(
-            'POST',
-            $endpoint,
-            array(
-                'headers' => array(
-                    'Authorization' => "Bearer $this->access_token",
-                    'Version' => '2.0',
-                    'Content-Type' => 'application/json'
-                ),
-                'body' => json_encode($params)
-            )
-        );
+        $response = $client->request('POST', $endpoint, [
+            'headers' => [
+                'Authorization' => "Bearer $this->access_token",
+                'Version' => '2.0',
+                'Content-Type' => 'application/json',
+            ],
+            'body' => json_encode($params),
+        ]);
 
         // parse response
         $res = json_decode($response->getBody());
@@ -481,20 +468,23 @@ class Main
             update_field('olx_id', $olx_id, $product_id);
             update_field('olx_created_at', $olx_created_at, $product_id);
             update_field('olx_valid_to', $olx_valid_to, $product_id);
-            update_field('olx_olx_data', json_encode($response_data), $product_id);
+            update_field(
+                'olx_olx_data',
+                json_encode($response_data),
+                $product_id
+            );
 
             $success = true;
         }
 
-        return array(
+        return [
             'success' => $success,
-            'data' => $response->getBody()
-        );
+            'data' => $response->getBody(),
+        ];
     }
 
     public function get_advert_data_by_post_id($post_id)
     {
-
         if (empty(get_field('olx_id', $post_id))) {
             return false;
         } else {
@@ -503,7 +493,6 @@ class Main
 
         // authorize
         if (self::isAuthenticated()) {
-
             $transient = "olx_api/partner/advert/$olx_id";
             $endpoint = "https://www.olx.pl/api/partner/adverts/$olx_id";
 
@@ -516,24 +505,17 @@ class Main
 
             try {
                 // request for getting tokens
-                $response = $client->request(
-                    'GET',
-                    $endpoint,
-                    array(
-                        'headers' => array(
-                            'Authorization' => "Bearer $this->access_token",
-                            'Version' => '2.0'
-                        )
-                    )
-                );
+                $response = $client->request('GET', $endpoint, [
+                    'headers' => [
+                        'Authorization' => "Bearer $this->access_token",
+                        'Version' => '2.0',
+                    ],
+                ]);
             } catch (RequestException $e) {
-
                 if (is_admin()) {
-
                     echo Psr7\str($e->getRequest());
 
                     if ($e->hasResponse()) {
-
                         echo Psr7\str($e->getResponse());
                     }
                 }
@@ -558,14 +540,12 @@ class Main
 
             return $advert;
         } else {
-
             return false;
         }
     }
 
     public function get_advert_by_post_id($post_id)
     {
-
         if (empty(get_field('olx_id', $post_id))) {
             return false;
         } else {
@@ -580,12 +560,11 @@ class Main
 
     public function refresh_adverts_data()
     {
-
-        $adverts = get_posts(array(
+        $adverts = get_posts([
             'post_type' => 'product',
             'posts_per_page' => -1,
-            'fields' => 'ids'
-        ));
+            'fields' => 'ids',
+        ]);
 
         if ($adverts) {
             foreach ($adverts as $advert_id) {

@@ -15,8 +15,7 @@ use \Exception as Exception;
  */
 class Ajax
 {
-
-    public $olxClient;
+    protected $olxClient;
 
     public function __construct(\Antyki\Olx\Main $olxClient)
     {
@@ -27,9 +26,7 @@ class Ajax
 
     public function loadAjaxHooks()
     {
-        $hooks = [
-            'checkStatus'
-        ];
+        $hooks = ['checkStatus'];
 
         foreach ($hooks as $hook) {
             add_action('wp_ajax_' . $hook, [$this, $hook]);
@@ -46,20 +43,14 @@ class Ajax
                 throw new Exception('AJAX: Nonce validation error');
             }
 
-            $isAuthenticated = $this->olxClient->isAuthenticated;
+            $test = $this->olxClient->test();
+            $isAuth = $this->olxClient->isAuthenticated;
 
-            error_log(json_encode([
-                'isAuthenticated' => $isAuthenticated
-            ]));
-
-            wp_send_json_success([
-                'response' => 'OLX Status',
-                'status' => $isAuthenticated
-            ]);
+            wp_send_json_success($test || $isAuth);
             wp_die();
         } catch (Exception $e) {
             wp_send_json_error([
-                'response' => $e->getMessage()
+                'response' => $e->getMessage(),
             ]);
             wp_die();
         }
@@ -226,5 +217,4 @@ class Ajax
     //         wp_die();
     //     }
     // }
-
 }

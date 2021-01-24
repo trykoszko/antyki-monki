@@ -9,13 +9,14 @@ use Psr\Container\ContainerInterface;
 class Main
 {
     public $container;
+
     public function __construct()
     {
         $containerBuilder = new ContainerBuilder();
         $containerBuilder->addDefinitions([
             'GuzzleClient' => factory(function () {
                 return new \GuzzleHttp\Client([
-                    'base_uri' => 'https://www.olx.pl/'
+                    'base_uri' => 'https://www.olx.pl/',
                 ]);
             }),
             'Twig' => factory(function () {
@@ -26,9 +27,11 @@ class Main
                 try {
                     $olx = new \Antyki\Olx\Main($c->get('GuzzleClient'));
                 } catch (\Exception $e) {
-                    error_log(json_encode([
-                        'OLX error' => $e->getMessage()
-                    ]));
+                    error_log(
+                        json_encode([
+                            'OLX error' => $e->getMessage(),
+                        ])
+                    );
                 }
                 return $olx;
             }),
@@ -39,8 +42,11 @@ class Main
                 return new \Antyki\Olx\Cache();
             }),
             'AdminViews' => factory(function (ContainerInterface $c) {
-                return new \Antyki\Plugin\Admin\Views($c->get('Twig'), $c->get('Olx'));
-            })
+                return new \Antyki\Plugin\Admin\Views(
+                    $c->get('Twig'),
+                    $c->get('Olx')
+                );
+            }),
         ]);
         $this->container = $containerBuilder->build();
     }
