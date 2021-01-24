@@ -108,7 +108,7 @@ class Main
         if ($this->isAuthenticated) {
             add_menu_page(
                 __('Antyki - OLX', TEXTDOMAIN),
-                __('Dashboard', TEXTDOMAIN),
+                __('Antyki - OLX', TEXTDOMAIN),
                 'manage_options',
                 ANTYKI_ADMIN_MENU_SLUG,
                 [$this->adminViews, 'dashboardPage'],
@@ -124,7 +124,7 @@ class Main
                 __('Antyki - Ustawienia', TEXTDOMAIN),
                 __('Ustawienia', TEXTDOMAIN),
                 'manage_options',
-                ANTYKI_ADMIN_MENU_SLUG . '_settings',
+                ANTYKI_ADMIN_MENU_SLUG . '-settings',
                 [$this->adminViews, 'settingsPage']
             );
         } else {

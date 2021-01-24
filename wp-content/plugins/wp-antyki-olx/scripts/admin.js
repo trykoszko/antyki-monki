@@ -1,8 +1,8 @@
 (function ($) {
     $(document).ready(function () {
 
-        var $statusBar = $('#wp-admin-bar-olx-status')
-        if ($statusBar.length) {
+        function checkStatus() {
+            $statusBar.css({ backgroundColor: 'black' })
             $.ajax({
                 url: olxData.ajaxUrl,
                 data: {
@@ -23,6 +23,14 @@
                     console.log('error', error)
                     return false
                 });
+        }
+
+        var $statusBar = $('#wp-admin-bar-olx-status')
+        if ($statusBar.length) {
+            checkStatus()
+            setInterval(function () {
+                checkStatus()
+            }, 60000)
         }
 
     })
