@@ -15,14 +15,22 @@ class Main
         $containerBuilder->addDefinitions([
             'GuzzleClient' => factory(function () {
                 return new \GuzzleHttp\Client([
-                    'base_uri' => 'https://www.olx.pl/api'
+                    'base_uri' => 'https://www.olx.pl/'
                 ]);
             }),
-            'TwigInstance' => factory(function () {
+            'Twig' => factory(function () {
                 return new \Antyki\Plugin\Twig();
             }),
             'Olx' => factory(function (ContainerInterface $c) {
-                return new \Antyki\Olx\Main($c->get('GuzzleClient'));
+                $olx = null;
+                try {
+                    $olx = new \Antyki\Olx\Main($c->get('GuzzleClient'));
+                } catch (\Exception $e) {
+                    error_log(json_encode([
+                        'OLX error' => $e->getMessage()
+                    ]));
+                }
+                return $olx;
             }),
             'Ajax' => factory(function (ContainerInterface $c) {
                 return new \Antyki\Olx\Ajax($c->get('Olx'));
@@ -31,7 +39,7 @@ class Main
                 return new \Antyki\Olx\Cache();
             }),
             'AdminViews' => factory(function (ContainerInterface $c) {
-                return new \Antyki\Plugin\Admin\Views($c->get('TwigInstance'), $c->get('Olx'));
+                return new \Antyki\Plugin\Admin\Views($c->get('Twig'), $c->get('Olx'));
             })
         ]);
         $this->container = $containerBuilder->build();

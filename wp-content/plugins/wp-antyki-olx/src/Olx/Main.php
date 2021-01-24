@@ -11,7 +11,7 @@ class Main
 {
     protected $guzzleClient;
 
-    protected $isConfigured; // if client_id, client_secret, state is filled in
+    protected $credentials; // if client_id, client_secret, state is filled in
     public $isAuthenticated; // if OLX gives a response
 
     protected $olxClientId;
@@ -24,97 +24,12 @@ class Main
     {
         $this->guzzleClient = $guzzleClient;
 
-        $isConfigured = $this->configure();
-        $isAuthenticated = false;
-        if ($isConfigured) {
-            $isAuthenticated = $this->authorize();
-        }
-
-        $this->isConfigured = $isConfigured;
-        $this->isAuthenticated = $isAuthenticated;
-
-        // try {
-        //     $auth = $this->tryToAuthorize();
-        //     if (!$auth) {
-        //         throw new Exception('Authentication error');
-        //     }
-        // } catch (Exception $e) {
-        //     error_log(json_encode([
-        //         'error' => $e
-        //     ]));
-        // }
-
-        // if (self::isAuthenticated()) {
-
-        // get credentials from options
-        // $this->getCredentials();
-
-        // // new Guzzle client
-        // $client = new Client();
-
-        // try {
-
-        //     $response = $client->request(
-        //         'POST',
-        //         'https://www.olx.pl/api/open/oauth/token',
-        //         array(
-        //             'headers' => array(
-        //                 'Authorization' => "Bearer $this->access_token",
-        //                 'Version' => '2.0'
-        //             ),
-        //             'form_params' => array(
-        //                 'grant_type' => 'refresh_token',
-        //                 'client_id' => $this->client_id,
-        //                 'client_secret' => $this->client_secret,
-        //                 'refresh_token' => $this->refresh_token
-        //             )
-        //         )
-        //     );
-
-        //     // request body
-        //     $body = json_decode($response->getBody());
-
-        //     $access_token = $body->access_token;
-        //     $refresh_token = $body->refresh_token;
-
-        //     // update WordPress options
-        //     \update_option('olxAccessToken', $access_token);
-        //     \update_option('olxRefreshToken', $refresh_token);
-
-        //     // update options for last refresh
-        //     \update_option('_olx_tokens_last_refresh', date('Y-m-d H:i:s'));
-        // } catch (RequestException $e) {
-
-        //     if (\is_admin()) {
-
-        //         echo Psr7\str($e->getRequest());
-
-        //         if ($e->hasResponse()) {
-
-        //             echo Psr7\str($e->getResponse());
-        //         }
-        //     }
-
-        //     // first time authorize if refreshing token failed
-        //     self::firstTimeAuth();
-        // }
-        // } else {
-
-        //     if (defined('ANTYKI_OLX_CLIENT_ID') && defined('ANTYKI_OLX_CLIENT_SECRET')) {
-        //         self::firstTimeAuth();
-        //     } else {
-        //         echo 'Olx authorization error';
-        //         wp_die();
-        //     }
-        // }
+        $this->getCredentials();
+        $this->authenticate();
     }
 
     public function getOption($optionName)
     {
-        error_log(json_encode([
-            'getOption' => $optionName
-        ]));
-
         if (defined($optionName)) {
             return constant($optionName);
         }
@@ -126,10 +41,9 @@ class Main
         return false;
     }
 
-    protected function configure()
+    protected function getCredentials()
     {
         try {
-
             if (!$this->getOption('olxClientId')) {
                 throw new Exception('olxClientId not defined');
             }
@@ -139,12 +53,6 @@ class Main
             if (!$this->getOption('olxState')) {
                 throw new Exception('olxState not defined');
             }
-            if (!$this->getOption('olxAccessToken')) {
-                throw new Exception('olxAccessToken not defined');
-            }
-            if (!$this->getOption('olxRefreshToken')) {
-                throw new Exception('olxRefreshToken not defined');
-            }
             if (!$this->getOption('olxCode')) {
                 throw new Exception('olxCode not defined');
             }
@@ -152,56 +60,125 @@ class Main
             $this->olxClientId = $this->getOption('olxClientId');
             $this->olxClientSecret = $this->getOption('olxClientSecret');
             $this->olxState = $this->getOption('olxState');
-            $this->olxAccessToken = $this->getOption('olxAccessToken');
-            $this->olxRefreshToken = $this->getOption('olxRefreshToken');
             $this->olxCode = $this->getOption('olxCode');
-
-            var_dump($this->olxCode);
 
             return true;
         } catch (Exception $e) {
-
-            error_log('[ANTYKI-OLX]');
             error_log($e->getMessage());
 
             return false;
         }
     }
 
-    public function authorize()
+    protected function getTokens()
     {
         try {
-            $response = $this->guzzleClient->request(
-                'POST',
-                '/open/oauth/token',
-                array(
-                    'form_params' => array(
-                        'grant_type' => 'authorization_code',
-                        'client_id' => $this->olxClientId,
-                        'client_secret' => $this->olxClientSecret,
-                        'scope' => 'v2 read write',
-                        'code' => $this->olxCode
-                    )
-                )
-            );
+            if (!$this->getOption('olxAccessToken')) {
+                throw new Exception('olxAccessToken not defined');
+            }
+            if (!$this->getOption('olxRefreshToken')) {
+                throw new Exception('olxRefreshToken not defined');
+            }
 
-            // request body
-            $body = json_decode($response->getBody());
+            $this->olxAccessToken = $this->getOption('olxAccessToken');
+            $this->olxRefreshToken = $this->getOption('olxRefreshToken');
 
-            $accessToken = $body->access_token;
-            $refreshToken = $body->refresh_token;
+            return true;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
 
-            $options_updated = \update_option('olxAccessToken', $accessToken) && \update_option('olxRefreshToken', $refreshToken);
-
-            return $options_updated;
-        } catch (RequestException $e) {
             return false;
+        }
+    }
+
+    protected function renewTokens()
+    {
+        $response = $this->guzzleClient->request(
+            'POST',
+            '/api/open/oauth/token',
+            array(
+                'headers' => array(
+                    'Authorization' => "Bearer " . $this->olxAccessToken,
+                    'Version' => '2.0'
+                ),
+                'form_params' => array(
+                    'grant_type' => 'refresh_token',
+                    'client_id' => $this->olxClientId,
+                    'client_secret' => $this->olxClientSecret,
+                    'refresh_token' => $this->olxRefreshToken
+                )
+            )
+        );
+
+        // request body
+        $body = json_decode( $response->getBody() );
+
+        $accessToken = $body->access_token;
+        $refreshToken = $body->refresh_token;
+
+        $optionsUpdated = \update_option('olxAccessToken', $accessToken) && \update_option('olxRefreshToken', $refreshToken);
+
+        $this->olxAccessToken = $accessToken;
+        $this->olxRefreshToken = $refreshToken;
+
+        $expiresIn = $body->expires_in;
+        $validUntil = new \DateTime(date('Y-m-d H:i:s'));
+        $validUntil->modify('+ ' . $expiresIn . ' sec');
+        $validUntilDate = $validUntil->format('Y-m-d H:i:s');
+
+        // update options for last refresh
+        update_option( 'olxTokensLastRefresh', date( 'Y-m-d H:i:s' ) );
+        update_option( 'olxTokensValidUntil', $validUntilDate );
+
+        return $optionsUpdated;
+    }
+
+    protected function getNewTokens()
+    {
+        $response = $this->guzzleClient->request(
+            'POST',
+            '/api/open/oauth/token',
+            [
+                'form_params' => [
+                    'grant_type' => 'authorization_code',
+                    'client_id' => $this->olxClientId,
+                    'client_secret' => $this->olxClientSecret,
+                    'scope' => 'v2 read write',
+                    'code' => $this->olxCode
+                ]
+            ]
+        );
+
+        // request body
+        $body = json_decode($response->getBody());
+
+        $accessToken = $body->access_token;
+        $refreshToken = $body->refresh_token;
+
+        $optionsUpdated = \update_option('olxAccessToken', $accessToken) && \update_option('olxRefreshToken', $refreshToken);
+
+        return $optionsUpdated;
+    }
+
+    public function authenticate()
+    {
+        $tokens = $this->getTokens();
+        if ($tokens) {
+            $tokensValidUntil = $this->getOption('olxTokensValidUntil');
+            if (date('Y-m-d H:i:s') > $tokensValidUntil) {
+                error_log('[OLX] Renewing tokens');
+                $this->renewTokens();
+            } else {
+                // Tokens still valid
+            }
+        } else {
+            $this->getNewTokens();
         }
     }
 
     public function isAuthenticated()
     {
-        return $this->isConfigured && $this->isAuthenticated;
+        return $this->credentials && $this->isAuthenticated;
     }
 
 

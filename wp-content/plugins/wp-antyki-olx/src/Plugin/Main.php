@@ -158,7 +158,13 @@ class Main
         add_option('olxAccessToken');
         register_setting('olxAuthSettings', 'olxAccessToken');
 
-        add_option('oldRefreshToken');
-        register_setting('olxAuthSettings', 'oldRefreshToken');
+        add_option('olxRefreshToken');
+        register_setting('olxAuthSettings', 'olxRefreshToken');
+
+        add_option('olxCode');
+        register_setting('olxAuthSettings', 'olxCode');
+
+        add_option('olxTokensLastRefresh');
+        register_setting('olxAuthSettings', 'olxTokensLastRefresh');
     }
 }

@@ -46,7 +46,7 @@ class Ajax
                 throw new Exception('AJAX: Nonce validation error');
             }
 
-            $isAuthenticated = $this->olxClient->isAuthenticated();
+            $isAuthenticated = $this->olxClient->isAuthenticated;
 
             error_log(json_encode([
                 'isAuthenticated' => $isAuthenticated

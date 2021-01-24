@@ -9,9 +9,9 @@ class Views
     public $olxClient;
     public $isAuthenticated;
 
-    public function __construct(\Antyki\Plugin\Twig $twigInstance, \Antyki\Olx\Main $olxClient)
+    public function __construct(\Antyki\Plugin\Twig $twig, \Antyki\Olx\Main $olxClient)
     {
-        $this->twig = $twigInstance;
+        $this->twig = $twig;
         $this->olxClient = $olxClient;
     }
 
@@ -22,7 +22,7 @@ class Views
 
     public function dashboardPage()
     {
-        if ($this->olxClient->isAuthenticated()) {
+        if ($this->olxClient->isAuthenticated) {
             $this->twig->render('dashboard', [
                 'endingAdverts' => [
                     [
@@ -33,16 +33,8 @@ class Views
                         'validTo' => '12-01-2020'
                     ]
                 ],
-                'packets' => [
-                    [
-                        '' => ''
-                    ]
-                ],
-                'messages' => [
-                    [
-                        '' => ''
-                    ]
-                ],
+                'packets' => [],
+                'messages' => [],
                 'userInfo' => [
                     'name' => 'Michal',
                     'email' => 'email@email.co',
@@ -56,30 +48,24 @@ class Views
 
     public function authPage()
     {
-        var_dump($this->olxClient->isAuthenticated());
+        var_dump($this->olxClient->isAuthenticated);
 
         $this->twig->render('auth', [
-            'userInfo' => [
-                'name' => 'Michal',
-                'email' => 'email@email.co',
-                'last_login_at' => '12-10-2021'
+            'olxAuth' => [
+                'olxCode' => $this->olxClient->getOption('olxCode'),
+                'olxClientId' => $this->olxClient->getOption('olxClientId'),
+                'olxClientSecret' => $this->olxClient->getOption('olxClientSecret'),
+                'olxState' => $this->olxClient->getOption('olxState'),
+                'olxAccessToken' => $this->olxClient->getOption('olxAccessToken'),
+                'olxRefreshToken' => $this->olxClient->getOption('olxRefreshToken')
             ]
         ]);
     }
 
     public function settingsPage()
     {
-        if ($this->olxClient->isAuthenticated()) {
-            $data = [
-                'olxAuth' => [
-                    'olxClientId' => $this->olxClient->getOption('olxClientId'),
-                    'olxClientSecret' => $this->olxClient->olxClientSecret,
-                    'olxState' => $this->olxClient->olxState,
-                    'olxAccessToken' => $this->olxClient->olxAccessToken,
-                    'olxRefreshToken' => $this->olxClient->olxRefreshToken
-                ]
-            ];
-            $this->twig->render('settings', $data);
+        if ($this->olxClient->isAuthenticated) {
+            $this->twig->render('settings', []);
         } else {
             $this->renderUnauthorized();
         }
