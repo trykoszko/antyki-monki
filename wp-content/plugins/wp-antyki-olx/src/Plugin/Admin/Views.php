@@ -24,7 +24,7 @@ class Views
 
     public function dashboardPage()
     {
-        if ($this->olxClient->isAuthenticated) {
+        if ($this->olxClient->auth->isAuthenticated) {
             $this->twig->render('dashboard', [
                 'endingAdverts' => [
                     [
@@ -73,7 +73,7 @@ class Views
 
     public function settingsPage()
     {
-        if ($this->olxClient->isAuthenticated) {
+        if ($this->olxClient->auth->isAuthenticated) {
             $this->twig->render('settings', []);
         } else {
             $this->renderUnauthorized();

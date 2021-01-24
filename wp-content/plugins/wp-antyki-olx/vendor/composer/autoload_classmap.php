@@ -9,6 +9,7 @@ return array(
     'Antyki\\Container\\Main' => $baseDir . '/src/Container/Main.php',
     'Antyki\\Olx\\Ajax' => $baseDir . '/src/Olx/Ajax.php',
     'Antyki\\Olx\\Cache' => $baseDir . '/src/Olx/Cache.php',
+    'Antyki\\Olx\\Client\\Auth' => $baseDir . '/src/Olx/Client/Auth.php',
     'Antyki\\Olx\\Main' => $baseDir . '/src/Olx/Main.php',
     'Antyki\\Plugin\\Activator' => $baseDir . '/src/Plugin/Activator.php',
     'Antyki\\Plugin\\Admin\\Views' => $baseDir . '/src/Plugin/Admin/Views.php',

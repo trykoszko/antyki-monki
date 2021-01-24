@@ -43,10 +43,10 @@ class Ajax
                 throw new Exception('AJAX: Nonce validation error');
             }
 
-            $test = $this->olxClient->test();
-            $isAuth = $this->olxClient->isAuthenticated;
+            $authTest = $this->olxClient->authTest();
+            $isAuth = $this->olxClient->auth->isAuthenticated;
 
-            wp_send_json_success($test || $isAuth);
+            wp_send_json_success($authTest || $isAuth);
             wp_die();
         } catch (Exception $e) {
             wp_send_json_error([

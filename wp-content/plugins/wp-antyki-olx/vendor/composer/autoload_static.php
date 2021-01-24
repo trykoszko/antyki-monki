@@ -134,6 +134,7 @@ class ComposerStaticInit8bad7fd3801aa9b2a95825d89844d476
         'Antyki\\Container\\Main' => __DIR__ . '/../..' . '/src/Container/Main.php',
         'Antyki\\Olx\\Ajax' => __DIR__ . '/../..' . '/src/Olx/Ajax.php',
         'Antyki\\Olx\\Cache' => __DIR__ . '/../..' . '/src/Olx/Cache.php',
+        'Antyki\\Olx\\Client\\Auth' => __DIR__ . '/../..' . '/src/Olx/Client/Auth.php',
         'Antyki\\Olx\\Main' => __DIR__ . '/../..' . '/src/Olx/Main.php',
         'Antyki\\Plugin\\Activator' => __DIR__ . '/../..' . '/src/Plugin/Activator.php',
         'Antyki\\Plugin\\Admin\\Views' => __DIR__ . '/../..' . '/src/Plugin/Admin/Views.php',
