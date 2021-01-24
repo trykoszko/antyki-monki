@@ -1,0 +1,53 @@
+{% if isSold %}
+	<div class="olx-status-row olx-status-row--fullwidth">
+		<div class="olx-status-dot olx-status-dot--blue"></div>
+		{{__('Sprzedane')}}
+	</div>
+	{% if validTo %}
+		{% if isStillValid %}
+			<div class="olx-status-row olx-status-row--fullwidth olx-status-row--error">
+				<div class="olx-status-dot olx-status-dot--green"></div>
+				{{__('Aukcja nadal aktywna')}}
+			</div>
+			<br/>
+			<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
+				{{__('Dezaktywuj')}}
+			</button>
+		{% endif %}
+	{% endif %}
+{% else %}
+	{% if validTo %}
+		{% if isStillValid %}
+			<div class="olx-status-row olx-status-row--fullwidth">
+				<div class="olx-status-dot olx-status-dot--green"></div>
+				{{__('Aukcja aktywna')}}
+			</div>
+			<br/>
+			<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
+				{{__('Dezaktywuj')}}
+			</button>
+			&nbsp;
+			<button data-product-id="{{postId}}" class="button js-olx-advert-view">
+				{{__('Zobacz')}}
+			</button>
+		{% else %}
+			<div class="olx-status-row olx-status-row--fullwidth">
+				<div class="olx-status-dot olx-status-dot--red"></div>
+				{{__('Aukcja istnieje, ale nie jest aktywna')}}
+			</div>
+			<br/>
+			<button data-product-id="{{postId}}" class="button js-olx-advert-refresh">
+				{{__('Odśwież')}}
+			</button>
+		{% endif %}
+	{% else %}
+		<div class="olx-status-row olx-status-row--fullwidth">
+			<div class="olx-status-dot"></div>
+			{{__('Aukcja nie istnieje')}}
+		</div>
+		<br/>
+		<button data-product-id="{{postId}}" class="button js-olx-advert-publish">
+			{{__('Aktywuj')}}
+		</button>
+	{% endif %}
+{% endif %}

@@ -6,6 +6,9 @@ use \Exception as Exception;
 
 class Auth
 {
+    public $guzzleClient;
+    public $olx;
+
     protected $credentials; // if client_id, client_secret, state is filled in
     public $isAuthenticated; // if OLX gives a response
 
@@ -16,8 +19,13 @@ class Auth
     protected $olxRefreshToken;
     protected $olxCode;
 
-    public function __construct()
-    {
+    public function __construct(
+        \GuzzleHttp\Client $guzzleClient,
+        \Antyki\Olx\Main $olx
+    ) {
+        $this->guzzleClient = $guzzleClient;
+        $this->olx = $olx;
+
         $tokensValid = $this->getTokenValidity();
         if ($tokensValid) {
             $this->isAuthenticated = $tokensValid;
@@ -27,19 +35,6 @@ class Auth
         $this->authenticate();
     }
 
-    public function getOption($optionName)
-    {
-        if (defined($optionName)) {
-            return constant($optionName);
-        }
-
-        if (\get_option($optionName)) {
-            return \get_option($optionName);
-        }
-
-        return false;
-    }
-
     public function isAuthenticated()
     {
         return $this->isAuthenticated;
@@ -47,7 +42,7 @@ class Auth
 
     protected function getTokenValidity()
     {
-        $validity = $this->getOption('olxTokensValidUntil');
+        $validity = $this->olx->getOption('olxTokensValidUntil');
         if ($validity > date('Y-m-d H:i:s')) {
             $this->isAuthenticated = true;
         }
@@ -56,23 +51,23 @@ class Auth
     protected function getCredentials()
     {
         try {
-            if (!$this->getOption('olxClientId')) {
+            if (!$this->olx->getOption('olxClientId')) {
                 throw new Exception('olxClientId not defined');
             }
-            if (!$this->getOption('olxClientSecret')) {
+            if (!$this->olx->getOption('olxClientSecret')) {
                 throw new Exception('olxClientSecret not defined');
             }
-            if (!$this->getOption('olxState')) {
+            if (!$this->olx->getOption('olxState')) {
                 throw new Exception('olxState not defined');
             }
-            if (!$this->getOption('olxCode')) {
+            if (!$this->olx->getOption('olxCode')) {
                 throw new Exception('olxCode not defined');
             }
 
-            $this->olxClientId = $this->getOption('olxClientId');
-            $this->olxClientSecret = $this->getOption('olxClientSecret');
-            $this->olxState = $this->getOption('olxState');
-            $this->olxCode = $this->getOption('olxCode');
+            $this->olxClientId = $this->olx->getOption('olxClientId');
+            $this->olxClientSecret = $this->olx->getOption('olxClientSecret');
+            $this->olxState = $this->olx->getOption('olxState');
+            $this->olxCode = $this->olx->getOption('olxCode');
 
             return true;
         } catch (Exception $e) {
@@ -85,15 +80,15 @@ class Auth
     protected function getTokens()
     {
         try {
-            if (!$this->getOption('olxAccessToken')) {
+            if (!$this->olx->getOption('olxAccessToken')) {
                 throw new Exception('olxAccessToken not defined');
             }
-            if (!$this->getOption('olxRefreshToken')) {
+            if (!$this->olx->getOption('olxRefreshToken')) {
                 throw new Exception('olxRefreshToken not defined');
             }
 
-            $this->olxAccessToken = $this->getOption('olxAccessToken');
-            $this->olxRefreshToken = $this->getOption('olxRefreshToken');
+            $this->olxAccessToken = $this->olx->getOption('olxAccessToken');
+            $this->olxRefreshToken = $this->olx->getOption('olxRefreshToken');
 
             return true;
         } catch (Exception $e) {
@@ -180,7 +175,7 @@ class Auth
     {
         $tokens = $this->getTokens();
         if ($tokens) {
-            $tokensValidUntil = $this->getOption('olxTokensValidUntil');
+            $tokensValidUntil = $this->olx->getOption('olxTokensValidUntil');
             if (date('Y-m-d H:i:s') > $tokensValidUntil) {
                 error_log('[OLX] Renewing tokens');
                 $this->isAuthenticated = $this->renewTokens();
