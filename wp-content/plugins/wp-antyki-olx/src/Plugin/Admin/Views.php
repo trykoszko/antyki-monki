@@ -26,22 +26,10 @@ class Views
     {
         if ($this->olxClient->auth->isAuthenticated) {
             $this->twig->render('dashboard', [
-                'endingAdverts' => [
-                    [
-                        'url' => '#',
-                        'title' => 'adv1',
-                        'productUrl' => '#',
-                        'productTitle' => 'Sample title',
-                        'validTo' => '12-01-2020',
-                    ],
-                ],
-                'packets' => [],
-                'messages' => [],
-                'userInfo' => [
-                    'name' => 'Michal',
-                    'email' => 'email@email.co',
-                    'last_login_at' => '12-10-2021',
-                ],
+                'endingAdverts' => $this->olxClient->requests->getEndingAdverts(),
+                'packets' => $this->olxClient->requests->getPackets(),
+                'messages' => $this->olxClient->requests->getMessages(),
+                'userInfo' => $this->olxClient->requests->getUserData(),
             ]);
         } else {
             $this->renderUnauthorized();

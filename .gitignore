@@ -9,3 +9,5 @@ wp-admin/php_errorlog
 wp-content/debug.log
 
 .env
+
+/vendor/

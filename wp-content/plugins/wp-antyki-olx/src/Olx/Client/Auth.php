@@ -15,7 +15,7 @@ class Auth
     protected $olxClientId;
     protected $olxClientSecret;
     protected $olxState;
-    protected $olxAccessToken;
+    public $olxAccessToken;
     protected $olxRefreshToken;
     protected $olxCode;
 

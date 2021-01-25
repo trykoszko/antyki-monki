@@ -19,7 +19,8 @@ class Main
         $this->cache = new Cache();
         $this->requests = new OlxClientRequests(
             $this->guzzleClient,
-            $this->cache
+            $this->cache,
+            $this
         );
     }
 

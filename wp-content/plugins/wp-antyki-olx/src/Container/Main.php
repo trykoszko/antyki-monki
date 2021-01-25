@@ -55,4 +55,9 @@ class Main
     {
         return $this->container;
     }
+
+    public function test()
+    {
+        return true;
+    }
 }
