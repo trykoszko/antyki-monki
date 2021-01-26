@@ -1,11 +1,20 @@
-<phpunit bootstrap="vendor/autoload.php">
-  <testsuites>
-    <testsuite name="wp-content/plugins/wp-antyki-olx">
-      <directory suffix="Test.php">wp-content/plugins/wp-antyki-olx/test/Container</directory>
-    </testsuite>
-  </testsuites>
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+  bootstrap="./vendor/autoload.php"
+  colors="true"
+  backupGlobals="false"
+  convertErrorsToExceptions="true"
+  convertNoticesToExceptions="true"
+  convertWarningsToExceptions="true"
+>
+
+<testsuite name="wpAntykiOlx">
+    <file phpVersion="7.4.0" phpVersionOperator=">=">wp-content/plugins/wp-antyki-olx/test/Container/MainTest.php</file>
+    <!-- <directory suffix=".php">./</directory> -->
+</testsuite>
 
   <php>
     <const name="OLX_API_URL" value="https://www.olx.pl/" />
   </php>
+
 </phpunit>

@@ -11,3 +11,4 @@ wp-content/debug.log
 .env
 
 /vendor/
+.phpunit.result.cache
