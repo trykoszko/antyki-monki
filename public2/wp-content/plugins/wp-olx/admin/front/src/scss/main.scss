@@ -1,0 +1,17 @@
+/* External
+   ========================================================================== */
+@import "../../node_modules/normalize.css/normalize.css";
+
+/* Setup
+   ========================================================================== */
+@import "base/variables";
+@import "base/functions";
+@import "base/media-config";
+@import "base/mixins";
+@import "base/typography";
+@import "base/ui";
+
+/* Bulk load other styles
+    ========================================================================== */
+@import "layout/**/*.scss";
+@import "components/**/*.scss";

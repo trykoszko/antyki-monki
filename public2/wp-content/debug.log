@@ -1,0 +1,125 @@
+[25-Jan-2021 19:47:37 UTC] PHP Warning:  require_once(/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/vendor/autoload.php): failed to open stream: No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:47:37 UTC] PHP Stack trace:
+[25-Jan-2021 19:47:37 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin-ajax.php:0
+[25-Jan-2021 19:47:37 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin-ajax.php:22
+[25-Jan-2021 19:47:37 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:47:37 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:47:37 UTC] PHP   5. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:47:37 UTC] PHP Fatal error:  require_once(): Failed opening required '/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/vendor/autoload.php' (include_path='.:/Applications/MAMP/bin/php/php7.3.24/lib/php') in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:47:37 UTC] PHP Stack trace:
+[25-Jan-2021 19:47:37 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin-ajax.php:0
+[25-Jan-2021 19:47:37 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin-ajax.php:22
+[25-Jan-2021 19:47:37 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:47:37 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:47:37 UTC] PHP   5. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:07 UTC] PHP Warning:  require_once(/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/vendor/autoload.php): failed to open stream: No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:07 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:07 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin-ajax.php:0
+[25-Jan-2021 19:48:07 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin-ajax.php:22
+[25-Jan-2021 19:48:07 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:07 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:07 UTC] PHP   5. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:07 UTC] PHP Fatal error:  require_once(): Failed opening required '/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/vendor/autoload.php' (include_path='.:/Applications/MAMP/bin/php/php7.3.24/lib/php') in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:07 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:07 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin-ajax.php:0
+[25-Jan-2021 19:48:07 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin-ajax.php:22
+[25-Jan-2021 19:48:07 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:07 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:07 UTC] PHP   5. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:13 UTC] PHP Warning:  require_once(/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/vendor/autoload.php): failed to open stream: No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:13 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:13 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:0
+[25-Jan-2021 19:48:13 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:10
+[25-Jan-2021 19:48:13 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin.php:34
+[25-Jan-2021 19:48:13 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:13 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:13 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:13 UTC] PHP Fatal error:  require_once(): Failed opening required '/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/vendor/autoload.php' (include_path='.:/Applications/MAMP/bin/php/php7.3.24/lib/php') in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:13 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:13 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:0
+[25-Jan-2021 19:48:13 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:10
+[25-Jan-2021 19:48:13 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin.php:34
+[25-Jan-2021 19:48:13 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:13 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:13 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:15 UTC] PHP Warning:  require_once(/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/vendor/autoload.php): failed to open stream: No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:15 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:15 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[25-Jan-2021 19:48:15 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[25-Jan-2021 19:48:15 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:13
+[25-Jan-2021 19:48:15 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:15 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:15 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:15 UTC] PHP Fatal error:  require_once(): Failed opening required '/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/vendor/autoload.php' (include_path='.:/Applications/MAMP/bin/php/php7.3.24/lib/php') in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:15 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:15 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[25-Jan-2021 19:48:15 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[25-Jan-2021 19:48:15 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:13
+[25-Jan-2021 19:48:15 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:15 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:15 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:39 UTC] PHP Warning:  require_once(/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/vendor/autoload.php): failed to open stream: No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:39 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:39 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:0
+[25-Jan-2021 19:48:39 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:10
+[25-Jan-2021 19:48:39 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin.php:34
+[25-Jan-2021 19:48:39 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:39 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:39 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:39 UTC] PHP Fatal error:  require_once(): Failed opening required '/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/vendor/autoload.php' (include_path='.:/Applications/MAMP/bin/php/php7.3.24/lib/php') in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:39 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:39 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:0
+[25-Jan-2021 19:48:39 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:10
+[25-Jan-2021 19:48:39 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin.php:34
+[25-Jan-2021 19:48:39 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:39 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:39 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:41 UTC] PHP Warning:  require_once(/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/vendor/autoload.php): failed to open stream: No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:41 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:41 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[25-Jan-2021 19:48:41 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[25-Jan-2021 19:48:41 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:13
+[25-Jan-2021 19:48:41 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:41 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:41 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:41 UTC] PHP Fatal error:  require_once(): Failed opening required '/Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/vendor/autoload.php' (include_path='.:/Applications/MAMP/bin/php/php7.3.24/lib/php') in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:41 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:41 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[25-Jan-2021 19:48:41 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[25-Jan-2021 19:48:41 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:13
+[25-Jan-2021 19:48:41 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:41 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:41 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:58 UTC] PHP Warning:  require_once(/Users/mtrykoszko/Sites/antyki-monki/vendor/autoload.php): failed to open stream: No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:58 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:58 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:0
+[25-Jan-2021 19:48:58 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:10
+[25-Jan-2021 19:48:58 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin.php:34
+[25-Jan-2021 19:48:58 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:58 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:58 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:48:58 UTC] PHP Fatal error:  require_once(): Failed opening required '/Users/mtrykoszko/Sites/antyki-monki/vendor/autoload.php' (include_path='.:/Applications/MAMP/bin/php/php7.3.24/lib/php') in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:48:58 UTC] PHP Stack trace:
+[25-Jan-2021 19:48:58 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:0
+[25-Jan-2021 19:48:58 UTC] PHP   2. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/edit.php:10
+[25-Jan-2021 19:48:58 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-admin/admin.php:34
+[25-Jan-2021 19:48:58 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:48:58 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:48:58 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:49:00 UTC] PHP Warning:  require_once(/Users/mtrykoszko/Sites/antyki-monki/vendor/autoload.php): failed to open stream: No such file or directory in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:49:00 UTC] PHP Stack trace:
+[25-Jan-2021 19:49:00 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[25-Jan-2021 19:49:00 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[25-Jan-2021 19:49:00 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:13
+[25-Jan-2021 19:49:00 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:49:00 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:49:00 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[25-Jan-2021 19:49:00 UTC] PHP Fatal error:  require_once(): Failed opening required '/Users/mtrykoszko/Sites/antyki-monki/vendor/autoload.php' (include_path='.:/Applications/MAMP/bin/php/php7.3.24/lib/php') in /Users/mtrykoszko/Sites/antyki-monki/wp/wp-content/plugins/wp-antyki-olx/wp-antyki-olx.php on line 38
+[25-Jan-2021 19:49:00 UTC] PHP Stack trace:
+[25-Jan-2021 19:49:00 UTC] PHP   1. {main}() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:0
+[25-Jan-2021 19:49:00 UTC] PHP   2. require() /Users/mtrykoszko/Sites/antyki-monki/wp/index.php:17
+[25-Jan-2021 19:49:00 UTC] PHP   3. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-blog-header.php:13
+[25-Jan-2021 19:49:00 UTC] PHP   4. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-load.php:37
+[25-Jan-2021 19:49:00 UTC] PHP   5. require_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-config.php:70
+[25-Jan-2021 19:49:00 UTC] PHP   6. include_once() /Users/mtrykoszko/Sites/antyki-monki/wp/wp-settings.php:388
+[26-Jan-2021 18:09:33 UTC] [OLX] Renewing tokens

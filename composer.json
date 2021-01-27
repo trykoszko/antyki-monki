@@ -9,9 +9,14 @@
         }
     ],
     "require": {
+        "php": ">=7.2",
+        "composer/installers": "1.*",
+        "johnpbloch/wordpress": "^5",
         "guzzlehttp/guzzle": "^6.5",
         "twig/twig": "^3.2",
-        "php-di/php-di": "^6.3"
+        "php-di/php-di": "^6.3",
+        "advanced-custom-fields/advanced-custom-fields-pro": "^5.0",
+        "wpackagist-plugin/acf-to-rest-api": "^3.3"
     },
     "autoload": {
         "psr-4": {
@@ -23,5 +28,41 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit --configuration phpunit.xml --verbose"
-    }
+    },
+    "extra": {
+        "wordpress-install-dir": "public/wp",
+        "installer-paths": {
+            "public/wp-content/mu-plugins/{$name}/": [
+                "type:wordpress-muplugin"
+            ],
+            "public/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "public/wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type": "path",
+            "url": "public/wp-content-local"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "advanced-custom-fields/advanced-custom-fields-pro",
+                "version": "5.0",
+                "type": "wordpress-plugin",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODc0NTZ8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE2LTA4LTExIDE4OjMwOjU0&t=5.9.3"
+                }
+            }
+        }
+    ]
 }
