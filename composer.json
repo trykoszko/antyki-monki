@@ -16,11 +16,18 @@
         "twig/twig": "^3.2",
         "php-di/php-di": "^6.3",
         "advanced-custom-fields/advanced-custom-fields-pro": "^5.0",
-        "wpackagist-plugin/acf-to-rest-api": "^3.3"
+        "wpackagist-plugin/acf-to-rest-api": "^3.3",
+        "vlucas/phpdotenv": "^5.3",
+        "wpackagist-plugin/imsanity": "^2.7",
+        "wpackagist-plugin/regenerate-thumbnails-advanced": "^2.4",
+        "wpackagist-plugin/wordfence": "^7.4",
+        "wpackagist-plugin/wp-crontrol": "^1.9",
+        "wpackagist-plugin/wp-graphql": "^1.1",
+        "wpackagist-plugin/wp-jamstack-deployments": "^1.1"
     },
     "autoload": {
         "psr-4": {
-            "Antyki\\": "wp-content/plugins/wp-antyki-olx/src/"
+            "Antyki\\": "public/wp-content/plugins/wp-antyki-olx/src/"
         }
     },
     "require-dev": {
@@ -47,10 +54,6 @@
         {
             "type": "composer",
             "url": "https://wpackagist.org"
-        },
-        {
-            "type": "path",
-            "url": "public/wp-content-local"
         },
         {
             "type": "package",
