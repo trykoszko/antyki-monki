@@ -27,7 +27,7 @@ class Main
     public function getOption($optionName)
     {
         if (defined($optionName)) {
-            return constant($optionName);
+            return $_ENV[$optionName];
         }
 
         if (\get_option($optionName)) {

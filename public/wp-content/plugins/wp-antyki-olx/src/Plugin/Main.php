@@ -24,7 +24,7 @@ class Main
                 return $olxInstance->auth->isAuthenticated;
             },
             [
-                'olxInstance' => $this->container->get('Olx'),
+                'olxInstance' => $this->olx,
             ]
         );
         $this->adminViews = $this->container->get('AdminViews');
