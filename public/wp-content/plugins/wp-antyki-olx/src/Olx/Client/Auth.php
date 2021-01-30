@@ -59,20 +59,23 @@ class Auth
     protected function getCredentials()
     {
         try {
-            if (!defined('ANTYKI_OLX_CLIENT_ID')) {
-                throw new Exception('ANTYKI_OLX_CLIENT_ID not defined');
-            }
-            if (!defined('ANTYKI_OLX_CLIENT_SECRET')) {
-                throw new Exception('ANTYKI_OLX_CLIENT_SECRET not defined');
-            }
-            if (!defined('ANTYKI_OLX_STATE')) {
-                throw new Exception('ANTYKI_OLX_STATE not defined');
-            }
-
-            $this->olxClientId = ANTYKI_OLX_CLIENT_ID;
-            $this->olxClientSecret = ANTYKI_OLX_CLIENT_SECRET;
-            $this->olxState = ANTYKI_OLX_STATE;
+            $this->olxClientId = $this->olx->getOption('olxClientId');
+            $this->olxClientSecret = $this->olx->getOption('olxClientSecret');
+            $this->olxState = $this->olx->getOption('olxState');
             $this->olxCode = $this->olx->getOption('olxCode');
+
+            if (!$this->olxClientId) {
+                throw new Exception('olxClientId not defined');
+            }
+            if (!$this->olxClientSecret) {
+                throw new Exception('olxClientSecret not defined');
+            }
+            if (!$this->olxState) {
+                throw new Exception('olxState not defined');
+            }
+            if (!$this->olxCode) {
+                throw new Exception('olxCode not defined');
+            }
 
             return true;
         } catch (Exception $e) {
