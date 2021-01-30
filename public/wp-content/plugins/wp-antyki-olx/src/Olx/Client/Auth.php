@@ -31,8 +31,16 @@ class Auth
             $this->isAuthenticated = $tokensValid;
         }
 
-        $this->getCredentials();
-        $this->authenticate();
+        $hasOlxCode = $this->hasOlxCode();
+        if ($hasOlxCode) {
+            $this->getCredentials();
+            $this->authenticate();
+        }
+    }
+
+    protected function hasOlxCode()
+    {
+        return $this->olx->getOption('olxCode');
     }
 
     public function isAuthenticated()
@@ -51,44 +59,20 @@ class Auth
     protected function getCredentials()
     {
         try {
-            if (!$this->olx->getOption('olxClientId')) {
-                throw new Exception('olxClientId not defined');
+            if (!defined('ANTYKI_OLX_CLIENT_ID')) {
+                throw new Exception('ANTYKI_OLX_CLIENT_ID not defined');
             }
-            if (!$this->olx->getOption('olxClientSecret')) {
-                throw new Exception('olxClientSecret not defined');
+            if (!defined('ANTYKI_OLX_CLIENT_SECRET')) {
+                throw new Exception('ANTYKI_OLX_CLIENT_SECRET not defined');
             }
-            if (!$this->olx->getOption('olxState')) {
-                throw new Exception('olxState not defined');
-            }
-            if (!$this->olx->getOption('olxCode')) {
-                throw new Exception('olxCode not defined');
+            if (!defined('ANTYKI_OLX_STATE')) {
+                throw new Exception('ANTYKI_OLX_STATE not defined');
             }
 
-            $this->olxClientId = $this->olx->getOption('olxClientId');
-            $this->olxClientSecret = $this->olx->getOption('olxClientSecret');
-            $this->olxState = $this->olx->getOption('olxState');
+            $this->olxClientId = ANTYKI_OLX_CLIENT_ID;
+            $this->olxClientSecret = ANTYKI_OLX_CLIENT_SECRET;
+            $this->olxState = ANTYKI_OLX_STATE;
             $this->olxCode = $this->olx->getOption('olxCode');
-
-            return true;
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-
-            return false;
-        }
-    }
-
-    protected function getTokens()
-    {
-        try {
-            if (!$this->olx->getOption('olxAccessToken')) {
-                throw new Exception('olxAccessToken not defined');
-            }
-            if (!$this->olx->getOption('olxRefreshToken')) {
-                throw new Exception('olxRefreshToken not defined');
-            }
-
-            $this->olxAccessToken = $this->olx->getOption('olxAccessToken');
-            $this->olxRefreshToken = $this->olx->getOption('olxRefreshToken');
 
             return true;
         } catch (Exception $e) {
@@ -186,5 +170,26 @@ class Auth
             $this->isAuthenticated = $this->getNewTokens();
         }
         return $this->isAuthenticated;
+    }
+
+    protected function getTokens()
+    {
+        try {
+            if (!$this->olx->getOption('olxAccessToken')) {
+                throw new Exception('olxAccessToken not defined');
+            }
+            if (!$this->olx->getOption('olxRefreshToken')) {
+                throw new Exception('olxRefreshToken not defined');
+            }
+
+            $this->olxAccessToken = $this->olx->getOption('olxAccessToken');
+            $this->olxRefreshToken = $this->olx->getOption('olxRefreshToken');
+
+            return true;
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+
+            return false;
+        }
     }
 }

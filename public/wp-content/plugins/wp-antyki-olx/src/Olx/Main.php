@@ -26,10 +26,6 @@ class Main
 
     public function getOption($optionName)
     {
-        if (isset($_ENV[$optionName])) {
-            return $_ENV[$optionName];
-        }
-
         if (defined($optionName)) {
             return constant($optionName);
         }
