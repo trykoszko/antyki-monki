@@ -30,6 +30,10 @@ class Main
             return $_ENV[$optionName];
         }
 
+        if (defined($optionName)) {
+            return constant($optionName);
+        }
+
         if (\get_option($optionName)) {
             return \get_option($optionName);
         }

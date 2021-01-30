@@ -40,9 +40,10 @@ define('SECURE_AUTH_SALT', $_ENV['SECURE_AUTH_SALT']);
 define('LOGGED_IN_SALT', $_ENV['LOGGED_IN_SALT']);
 define('NONCE_SALT', $_ENV['NONCE_SALT']);
 
-define('ANTYKI_OLX_CLIENT_ID', $_ENV['ANTYKI_OLX_CLIENT_ID']);
-define('ANTYKI_OLX_CLIENT_SECRET', $_ENV['ANTYKI_OLX_CLIENT_SECRET']);
-define('ANTYKI_OLX_STATE', $_ENV['ANTYKI_OLX_STATE']);
+define('ANTYKI_OLX_CLIENT_ID', $_ENV['olxClientId']);
+define('ANTYKI_OLX_CLIENT_SECRET', $_ENV['olxClientSecret']);
+define('ANTYKI_OLX_STATE', $_ENV['olxState']);
+define('ANTYKI_OLX_CODE', $_ENV['olxCode']);
 
 if ( ! defined( 'ABSPATH' ) ) {
     define('ABSPATH', dirname( __FILE__ ) . '/wp/');
