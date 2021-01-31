@@ -1,0 +1,71 @@
+{
+    "name": "mtrykoszko/antyki",
+    "description": "antyki",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Michal Trykoszko",
+            "email": "trykoszkom@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "composer/installers": "1.*",
+        "johnpbloch/wordpress": "^5",
+        "guzzlehttp/guzzle": "^6.5",
+        "twig/twig": "^3.2",
+        "php-di/php-di": "^6.3",
+        "advanced-custom-fields/advanced-custom-fields-pro": "^5.0",
+        "wpackagist-plugin/acf-to-rest-api": "^3.3",
+        "vlucas/phpdotenv": "^5.3",
+        "wpackagist-plugin/imsanity": "^2.7",
+        "wpackagist-plugin/regenerate-thumbnails-advanced": "^2.4",
+        "wpackagist-plugin/wordfence": "^7.4",
+        "wpackagist-plugin/wp-crontrol": "^1.9",
+        "wpackagist-plugin/wp-graphql": "^1.1",
+        "wpackagist-plugin/wp-jamstack-deployments": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Antyki\\": "public/wp-content/plugins/wp-antyki-olx/src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --configuration phpunit.xml --verbose"
+    },
+    "extra": {
+        "wordpress-install-dir": "public/wp",
+        "installer-paths": {
+            "public/wp-content/mu-plugins/{$name}/": [
+                "type:wordpress-muplugin"
+            ],
+            "public/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "public/wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "advanced-custom-fields/advanced-custom-fields-pro",
+                "version": "5.0",
+                "type": "wordpress-plugin",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODc0NTZ8dHlwZT1kZXZlbG9wZXJ8ZGF0ZT0yMDE2LTA4LTExIDE4OjMwOjU0&t=5.9.3"
+                }
+            }
+        }
+    ]
+}

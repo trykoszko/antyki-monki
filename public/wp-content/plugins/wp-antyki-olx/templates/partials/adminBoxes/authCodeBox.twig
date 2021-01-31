@@ -1,0 +1,31 @@
+<div id="widget_auth_box" class="postbox">
+	<h2 class="hndle ui-sortable-handle">
+		<span>{{ __('Autoryzacja [code]') }}</span>
+	</h2>
+	<div class="inside">
+		{{ settingsErrors() }}
+		<form method="post" action="options.php">
+			{{ settingsFields('olxAuthSettings') }}
+			<table class="form-table" role="presentation">
+				<tbody>
+					<tr>
+						<th scope="row">
+							<label for="olxCode">{{ __('OLX Code') }}</label>
+						</th>
+						<td>
+							<input name="olxCode" type="text" id="olxCode" value="{{ olxAuth.olxCode }}" class="regular-text"/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>
+				<a target="_blank" href="https://www.olx.pl/oauth/authorize/?client_id={{ olxAuth.olxClientId }}&response_type=code&state={{ olxAuth.olxState }}&scope=read+write+v2">Uzyskaj kod</a>
+			</p>
+
+			<br/>
+
+			{{ submitButton() }}
+		</form>
+	</div>
+</div>

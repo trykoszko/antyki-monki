@@ -1,0 +1,38 @@
+<div id="widget_ending_adverts" class="postbox">
+	<h2 class="hndle ui-sortable-handle">
+		<span>{{ __('Ogłoszenia, które niedługo się deaktywują') }}</span>
+	</h2>
+	<div class="inside">
+		<table>
+			{# {% if endingAdverts and not endingAdverts.error %} #}
+			{% if endingAdverts %}
+				<tr>
+					<td>
+						{{ __('OLX') }}
+					</td>
+					<td>
+						{{ __('Edytuj') }}
+					</td>
+					<td>
+						{{ __('Ważne do') }}
+					</td>
+				</tr>
+				{% for advert in endingAdverts %}
+					<tr>
+						<td>
+							<a href="{{ advert.url }}">{{ advert.title }}</a>
+						</td>
+						<td>
+							<a href="{{ advert.product.url }}">{{ advert.product.title }}</a>
+						</td>
+						<td>
+							<strong>{{ advert.valid_to }}</strong>
+						</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+				{{ __('Brak ogłoszeń') }}
+			{% endif %}
+		</table>
+	</div>
+</div>

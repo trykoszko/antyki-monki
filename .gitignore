@@ -1,9 +1,21 @@
-wp-config.php
-wp-config.production.php
-wp-content/uploads
-wp-content/cache
-
 php_errorlog
 wp-admin/php_errorlog
 
 wp-content/debug.log
+
+.env
+
+/vendor/
+.phpunit.result.cache
+
+public/wp
+
+public/wp-content/uploads
+public/wp-content/cache
+
+public/wp-content/plugins/*
+!public/wp-content/plugins/wp-antyki-olx
+!public/wp-content/plugins/wp-graphql-acf
+
+
+debug.log

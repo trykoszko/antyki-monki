@@ -1,0 +1,47 @@
+<div id="widget_auth_box" class="postbox">
+	<h2 class="hndle ui-sortable-handle">
+		<span>{{ __('Autoryzacja [access]') }}</span>
+	</h2>
+	<div class="inside">
+		{{ settingsErrors() }}
+		<form method="post" action="options.php">
+			{{ settingsFields('olxSettings') }}
+			<table class="form-table" role="presentation">
+				<tbody>
+					<tr>
+						<th scope="row">
+							<label for="olxClientId">{{ __('Client ID') }}</label>
+						</th>
+						<td>
+							<input name="olxClientId" type="text" id="olxClientId" value="{{ olxAuth.olxClientId }}" class="regular-text"/>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row">
+							<label for="olxClientSecret">{{ __('Client secret') }}</label>
+						</th>
+						<td>
+							<input name="olxClientSecret" type="text" id="olxClientSecret" value="{{ olxAuth.olxClientSecret }}" class="regular-text"/>
+
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row">
+							<label for="olxState">{{ __('State') }}</label>
+						</th>
+						<td>
+							<input name="olxState" type="text" id="olxState" value="{{ olxAuth.olxState }}" class="regular-text"/>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<br/>
+
+			{{ submitButton() }}
+		</form>
+	</div>
+</div>

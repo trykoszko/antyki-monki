@@ -1,0 +1,65 @@
+{% if isSold %}
+	<div class="olx-status-row olx-status-row--fullwidth">
+		<div class="olx-status-dot olx-status-dot--blue"></div>
+		{{__('Sprzedane')}}
+	</div>
+	{% if validTo %}
+		{% if isStillValid %}
+			<div class="olx-status-row olx-status-row--fullwidth olx-status-row--error">
+				<div class="olx-status-dot olx-status-dot--green"></div>
+				{{__('Aukcja nadal aktywna')}}
+			</div>
+			<br/>
+			<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
+				{{__('Dezaktywuj')}}
+			</button>
+		{% endif %}
+	{% endif %}
+{% else %}
+	{% if validTo %}
+		{% if isStillValid %}
+			<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
+				<div class="olx-status-dot olx-status-dot--green"></div>
+				<h4>
+					{{__('Aukcja aktywna')}}
+				</h4>
+			</div>
+			<br/>
+			<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
+				{{__('Dezaktywuj')}}
+			</button>
+			&nbsp;
+			<button data-product-id="{{postId}}" class="button js-olx-advert-update">
+				{{__('Zaktualizuj dane')}}
+			</button>
+			&nbsp;
+			<a target="_blank" href="{{olxData.url}}" class="button">
+				{{__('Zobacz')}}
+			</a>
+			<h4>{{__('Statystyki')}}</h4>
+			<ul>
+				<li>{{__('Wyświetlenia')}}: <strong>{{olxStats.advert_views}}</strong></li>
+				<li>{{__('Wyświetlenia nr. tel.')}}: <strong>{{olxStats.phone_views}}</strong></li>
+				<li>{{__('Obserwujący')}}: <strong>{{olxStats.users_observing}}</strong></li>
+			</ul>
+		{% else %}
+			<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
+				<div class="olx-status-dot olx-status-dot--red"></div>
+				{{__('Aukcja istnieje, ale nie jest aktywna')}}
+			</div>
+			<br/>
+			<button data-product-id="{{postId}}" class="button js-olx-advert-refresh">
+				{{__('Odśwież')}}
+			</button>
+		{% endif %}
+	{% else %}
+		<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
+			<div class="olx-status-dot"></div>
+			{{__('Aukcja nie istnieje')}}
+		</div>
+		<br/>
+		<button data-product-id="{{postId}}" class="button js-olx-advert-publish">
+			{{__('Aktywuj')}}
+		</button>
+	{% endif %}
+{% endif %}

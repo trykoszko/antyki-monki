@@ -1,0 +1,46 @@
+<div id="widget_packets" class="postbox">
+	<h2 class="hndle ui-sortable-handle">
+		<span>{{ __('Pakiety ogłoszeń') }}</span>
+	</h2>
+	<div class="inside">
+		{% if packets %}
+			<table>
+				<tr>
+					<td>
+						<strong>{{ __('#') }}</strong>
+					</td>
+					<td>
+						<strong>{{ __('Nazwa') }}</strong>
+					</td>
+					<td>
+						<strong>{{ __('Pozostało ogłoszeń') }}</strong>
+					</td>
+					<td>
+						<strong>{{ __('Aktywne do') }}</strong>
+					</td>
+					<td>
+						<strong>{{ __('Ważne w kategorii') }}</strong>
+					</td>
+				</tr>
+				{% for packet in packets %}
+					<tr>
+						<td>{{ loop.index }}</td>
+						<td>{{ packet.name }}</td>
+						<td>{{ packet.left }}</td>
+						<td>
+							{% if packet.is_active %}
+								{{ packet.active_to }}
+							{% else %}
+								{{ __( 'Nieaktywny' ) }}
+							{% endif %}
+						</td>
+						<td>{{ packet.categories_labels | first }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+			<a target="_blank" href="https://www.olx.pl/mojolx/shoppacks/">{{ __('Wszystkie pakiety') }}</a>
+		{% else %}
+			{{ __('Brak pakietów ogłoszeń') }}
+		{% endif %}
+	</div>
+</div>

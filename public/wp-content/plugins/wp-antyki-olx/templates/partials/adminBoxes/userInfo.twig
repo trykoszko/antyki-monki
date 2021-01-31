@@ -1,0 +1,33 @@
+<div id="widget_user_info" class="postbox">
+  <h2 class="hndle ui-sortable-handle">
+    <span>{{ __('Informacje o użytkowniku') }}</span>
+  </h2>
+  <div class="inside">
+    <table>
+      <tr>
+        <td>
+          <strong>{{ __('E-Mail') }}</strong>
+        </td>
+        <td>
+          {{ userInfo.email }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>{{ __('Imię') }}</strong>
+        </td>
+        <td>
+          {{ userInfo.name }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>{{ __('Ostatnie logowanie') }}</strong>
+        </td>
+        <td>
+          {{ userInfo.last_login_at }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
