@@ -18,30 +18,37 @@
 {% else %}
 	{% if validTo %}
 		{% if isStillValid %}
-			<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
-				<div class="olx-status-dot olx-status-dot--green"></div>
-				<h4>
-					{{__('Aukcja aktywna')}}
-				</h4>
+			<div class="wrapper">
+				<div class="olx-status-row olx-status-row--fullwidth">
+					<div class="olx-status-dot olx-status-dot--green"></div>
+					<h4>
+						{{__('Aukcja aktywna')}}
+					</h4>
+				</div>
+				<br/>
+				<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
+					{{__('Dezaktywuj')}}
+				</button>
+				&nbsp;
+				<button data-product-id="{{postId}}" class="button js-olx-advert-update">
+					{{__('Zaktualizuj dane')}}
+				</button>
+				&nbsp;
+				<a target="_blank" href="{{olxData.url}}" class="button">
+					{{__('Zobacz')}}
+				</a>
+				<hr />
+				<h4>{{__('Statystyki')}}</h4>
+				<ul>
+					<li>{{__('Wyświetlenia')}}: <strong>{{olxStats.advert_views}}</strong></li>
+					<li>{{__('Wyświetlenia nr. tel.')}}: <strong>{{olxStats.phone_views}}</strong></li>
+					<li>{{__('Obserwujący')}}: <strong>{{olxStats.users_observing}}</strong></li>
+				</ul>
+				<hr />
+				<button data-product-id="{{postId}}" class="button warning js-olx-advert-sold">
+					{{__('Sprzedany!')}}
+				</button>
 			</div>
-			<br/>
-			<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
-				{{__('Dezaktywuj')}}
-			</button>
-			&nbsp;
-			<button data-product-id="{{postId}}" class="button js-olx-advert-update">
-				{{__('Zaktualizuj dane')}}
-			</button>
-			&nbsp;
-			<a target="_blank" href="{{olxData.url}}" class="button">
-				{{__('Zobacz')}}
-			</a>
-			<h4>{{__('Statystyki')}}</h4>
-			<ul>
-				<li>{{__('Wyświetlenia')}}: <strong>{{olxStats.advert_views}}</strong></li>
-				<li>{{__('Wyświetlenia nr. tel.')}}: <strong>{{olxStats.phone_views}}</strong></li>
-				<li>{{__('Obserwujący')}}: <strong>{{olxStats.users_observing}}</strong></li>
-			</ul>
 		{% else %}
 			<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
 				<div class="olx-status-dot olx-status-dot--red"></div>

@@ -38,6 +38,32 @@
             }, 60000)
         }
 
+        var $refreshStatsBtn = $('#olx-refresh-stats')
+        if ($refreshStatsBtn.length) {
+            $refreshStatsBtn.on('click', function (e) {
+                e.preventDefault()
+                $.ajax({
+                    url: olxData.ajaxUrl,
+                    data: {
+                        action: 'refreshStats',
+                        nonce: olxData.security
+                    }
+                })
+                    .done(function (res) {
+                        toggleButton($btn)
+                        alert('Statystyki odświeżone')
+                        console.log('Statystyki odświeżone', res)
+                        location.reload()
+                    })
+                    .fail(function (error) {
+                        toggleButton($btn)
+                        alert('Błąd podczas odświeżania statystyk')
+                        console.error('Błąd podczas odświeżania statystyk', error)
+                        return false
+                    });
+            })
+        }
+
         var $publishAdvertBtns = $('.js-olx-advert-publish')
         if ($publishAdvertBtns.length) {
             $publishAdvertBtns.on('click', function (e) {
@@ -64,7 +90,7 @@
                         alert('Błąd podczas dodawania ogłoszenia')
                         console.error('Błąd podczas dodawania ogłoszenia', error)
                         return false
-                    });
+                    })
             })
         }
 
@@ -108,6 +134,36 @@
                     url: olxData.ajaxUrl,
                     data: {
                         action: 'unpublishAdvert',
+                        nonce: olxData.security,
+                        productId: productId
+                    }
+                })
+                    .done(function (res) {
+                        toggleButton($btn)
+                        alert('Ogłoszenie dezaktywowane')
+                        console.log('Ogłoszenie dezaktywowane', res)
+                        location.reload()
+                    })
+                    .fail(function (error) {
+                        toggleButton($btn)
+                        alert('Błąd deaktywacji ogłoszenia')
+                        console.error('Błąd deaktywacji ogłoszenia', error)
+                        return false
+                    });
+            })
+        }
+
+        var $advertSoldBtns = $('.js-olx-advert-sold')
+        if ($advertSoldBtns.length) {
+            $advertSoldBtns.on('click', function (e) {
+                e.preventDefault()
+                var $btn = $(this)
+                var productId = $btn.attr('data-product-id')
+                toggleButton($btn)
+                $.ajax({
+                    url: olxData.ajaxUrl,
+                    data: {
+                        action: 'advertSold',
                         nonce: olxData.security,
                         productId: productId
                     }

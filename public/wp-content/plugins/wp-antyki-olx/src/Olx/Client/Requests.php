@@ -448,4 +448,21 @@ class Requests
         return $stats;
     }
 
+    public function markAdvertAsSold($productId)
+    {
+        return wp_update_post([
+            'ID' => $productId,
+            'post_status' => ANTYKI_CPT_CUSTOM_STATUS
+        ]);
+    }
+
+    public function advertSold($productId)
+    {
+        $advertUnpublishedOlx = $this->unpublishAdvert($productId);
+        $advertMarkedAsSoldWp = $this->markAdvertAsSold($productId);
+        if ($advertUnpublishedOlx && $advertMarkedAsSoldWp) {
+            return true;
+        }
+    }
+
 }
