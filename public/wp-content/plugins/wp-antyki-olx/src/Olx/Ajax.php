@@ -26,7 +26,11 @@ class Ajax
 
     public function loadAjaxHooks()
     {
-        $hooks = ['checkStatus'];
+        $hooks = [
+            'checkStatus',
+            'addAdvert',
+            'updateAdvert'
+        ];
 
         foreach ($hooks as $hook) {
             add_action('wp_ajax_' . $hook, [$this, $hook]);
@@ -63,21 +67,29 @@ class Ajax
      *
      * @return void
      */
-    // public function ajax_add_advert()
-    // {
+    public function addAdvert()
+    {
+        // arguments from AJAX request
+        $args = $_REQUEST;
+        $productId = $args['productId'];
+        $advert = $this->olxClient->requests->addAdvert($productId);
 
-    //     // arguments from AJAX request
-    //     $args = $_REQUEST;
-    //     $product_id = $args['product_id'];
+        // return json response
+        echo \json_encode($advert);
+        \wp_die();
+    }
 
-    //     // create Visbook instance, add advert
-    //     $olx = new Main();
-    //     $advert = $olx->add_advert($product_id);
+    public function updateAdvert()
+    {
+        // arguments from AJAX request
+        $args = $_REQUEST;
+        $productId = $args['productId'];
+        $advert = $this->olxClient->requests->updateAdvert($productId);
 
-    //     // return json response
-    //     echo \json_encode($advert);
-    //     \wp_die();
-    // }
+        // return json response
+        echo \json_encode($advert);
+        \wp_die();
+    }
 
     // public function __construct($duplicator_instance)
     // {

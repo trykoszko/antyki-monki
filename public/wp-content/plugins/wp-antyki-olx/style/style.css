@@ -58,10 +58,37 @@
     background-color: rgba(255, 0, 0, .4);
 }
 
+.olx-status-row--offset-top {
+    margin-top: 15px;
+}
+
 #the-list .status-sold {
     opacity: .5;
 }
 
 #the-list .status-sold:hover {
     opacity: 1;
+}
+
+.button.is-loading {
+    position: relative;
+}
+
+.button.is-loading:after {
+    content: 'Poczekaj...';
+
+    background: lightgoldenrodyellow;
+    color: black;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

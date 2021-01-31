@@ -3,6 +3,7 @@
 namespace Antyki\Plugin;
 
 use Antyki\Container\Main as DIContainer;
+use Antyki\Plugin\Cron as CRON;
 
 /**
  * Main plugin class
@@ -14,6 +15,7 @@ class Main
     public $isAuthenticated;
     public $adminViews;
     public $ajax;
+    public $cron;
 
     public function __construct(DIContainer $container)
     {
@@ -29,6 +31,7 @@ class Main
         );
         $this->adminViews = $this->container->get('AdminViews');
         $this->ajax = $this->container->get('Ajax');
+        $this->cron = new CRON($this->olx);
     }
 
     public function run()
@@ -52,7 +55,7 @@ class Main
     {
         \add_action('plugins_loaded', [$this, 'loadTextdomain']);
         \add_action('admin_menu', [$this, 'addToAdminMenu']);
-        \add_action('antyki_cron_hook', [$this, 'bindCronActions']);
+        \add_action('wpAntykiOlxCRON', [$this, 'bindCronActions']);
         \add_action('admin_bar_menu', [$this, 'addOlxStatusToAdminBar'], 100);
         \add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
         \add_action('admin_init', [$this, 'registerCustomSettings']);
@@ -106,7 +109,7 @@ class Main
 
     public function bindCronActions()
     {
-        // handle all cron actions here
+        $this->cron->refreshAdvertStats();
     }
 
     public function addOlxStatusToAdminBar($admin_bar)
@@ -142,14 +145,14 @@ class Main
                 200
             );
 
-            add_submenu_page(
-                ANTYKI_ADMIN_MENU_SLUG,
-                __('Antyki - Ustawienia', TEXTDOMAIN),
-                __('Ustawienia', TEXTDOMAIN),
-                'manage_options',
-                ANTYKI_ADMIN_MENU_SLUG . '-settings',
-                [$this->adminViews, 'settingsPage']
-            );
+            // add_submenu_page(
+            //     ANTYKI_ADMIN_MENU_SLUG,
+            //     __('Antyki - Ustawienia', TEXTDOMAIN),
+            //     __('Ustawienia', TEXTDOMAIN),
+            //     'manage_options',
+            //     ANTYKI_ADMIN_MENU_SLUG . '-settings',
+            //     [$this->adminViews, 'settingsPage']
+            // );
         } else {
             add_menu_page(
                 __('Antyki - OLX - x', TEXTDOMAIN),
@@ -215,10 +218,16 @@ class Main
                 break;
             case 'productOlx':
                 $this->adminViews->twig->render('adminColumns_productOlx', [
-                    'postId' => $postId,
+                    'postId' =>
+                        $postId,
+                    'olxData' =>
+                        get_field('olx_olx_data', $postId) ? json_decode(get_field('olx_olx_data', $postId)) : null,
+                    'olxStats' =>
+                        get_field('olx_advert_stats', $postId) ? json_decode(get_field('olx_advert_stats', $postId)) : null,
                     'isSold' =>
                         get_post_status($postId) == ANTYKI_CPT_CUSTOM_STATUS,
-                    'validTo' => get_field('olx_valid_to', $postId),
+                    'validTo' =>
+                        get_field('olx_valid_to', $postId),
                     'isStillValid' =>
                         get_field('olx_valid_to', $postId) >
                         date('Y-m-d H:i:s'),
