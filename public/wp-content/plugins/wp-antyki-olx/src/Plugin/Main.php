@@ -74,8 +74,6 @@ class Main
         add_action('init', [$this, 'cptsInit']);
         add_action('init', [$this, 'postStatusesInit']);
         add_action('init', [$this, 'initAcfOptionsPage']);
-        add_filter('acf/settings/save_json', [$this, 'acfSetSavePoint']);
-        add_filter('acf/settings/load_json', [$this, 'acfSetLoadPoint']);
         add_action('admin_menu', [$this, 'hideMenuForNonAdmins']);
         add_action('admin_footer', [$this, 'hideAdminBarForNonAdmins']);
         add_action('admin_footer-post.php', [
@@ -380,18 +378,6 @@ class Main
             'capability' => 'edit_posts',
             'redirect' => false,
         ]);
-    }
-
-    public function acfSetSavePoint($path)
-    {
-        $path = dirname(__FILE__) . '/inc/acf-json';
-        return $path;
-    }
-
-    public function acfSetLoadPoint($paths)
-    {
-        $paths[0] = dirname(__FILE__) . '/inc/acf-json';
-        return $paths;
     }
 
     public function hideMenuForNonAdmins()
