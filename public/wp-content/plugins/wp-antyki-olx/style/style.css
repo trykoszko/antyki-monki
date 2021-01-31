@@ -5,6 +5,10 @@
     }
 } */
 
+.column-productOlx .wrapper {
+    padding: 30px 15px;
+}
+
 .olx-status-dot {
     display: flex;
     flex-direction: row;
@@ -58,10 +62,6 @@
     background-color: rgba(255, 0, 0, .4);
 }
 
-.olx-status-row--offset-top {
-    margin-top: 15px;
-}
-
 #the-list .status-sold {
     opacity: .5;
 }
@@ -91,4 +91,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.button.warning {
+    color: darkred;
+    border-color: darkred;
 }

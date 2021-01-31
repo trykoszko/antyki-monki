@@ -127,5 +127,35 @@
             })
         }
 
+        var $advertSoldBtns = $('.js-olx-advert-sold')
+        if ($advertSoldBtns.length) {
+            $advertSoldBtns.on('click', function (e) {
+                e.preventDefault()
+                var $btn = $(this)
+                var productId = $btn.attr('data-product-id')
+                toggleButton($btn)
+                $.ajax({
+                    url: olxData.ajaxUrl,
+                    data: {
+                        action: 'advertSold',
+                        nonce: olxData.security,
+                        productId: productId
+                    }
+                })
+                    .done(function (res) {
+                        toggleButton($btn)
+                        alert('Ogłoszenie dezaktywowane')
+                        console.log('Ogłoszenie dezaktywowane', res)
+                        location.reload()
+                    })
+                    .fail(function (error) {
+                        toggleButton($btn)
+                        alert('Błąd deaktywacji ogłoszenia')
+                        console.error('Błąd deaktywacji ogłoszenia', error)
+                        return false
+                    });
+            })
+        }
+
     })
 })(jQuery)

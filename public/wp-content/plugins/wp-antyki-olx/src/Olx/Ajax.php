@@ -29,7 +29,8 @@ class Ajax
         $hooks = [
             'checkStatus',
             'addAdvert',
-            'updateAdvert'
+            'updateAdvert',
+            'advertSold'
         ];
 
         foreach ($hooks as $hook) {
@@ -85,6 +86,18 @@ class Ajax
         $args = $_REQUEST;
         $productId = $args['productId'];
         $advert = $this->olxClient->requests->updateAdvert($productId);
+
+        // return json response
+        echo \json_encode($advert);
+        \wp_die();
+    }
+
+    public function advertSold()
+    {
+        // arguments from AJAX request
+        $args = $_REQUEST;
+        $productId = $args['productId'];
+        $advert = $this->olxClient->requests->advertSold($productId);
 
         // return json response
         echo \json_encode($advert);

@@ -80,7 +80,14 @@ class Main
             $this,
             'addCustomPostStatusToSelect',
         ]);
+        add_action( 'admin_menu', [$this, 'adminRedirectToPublishedProducts'] );
     }
+
+    public function adminRedirectToPublishedProducts() {
+        global $submenu;
+        $submenu['edit.php?post_type=product'][5][2] = 'edit.php?post_type=product&post_status=publish';
+    }
+
 
     public function enqueueAdminAssets()
     {
@@ -246,9 +253,9 @@ class Main
             ),
             'public' => true,
             'exclude_from_search' => false,
-            'show_in_admin_all_list' => true,
+            'show_in_admin_all_list' => false,
             'show_in_admin_status_list' => true,
-            'internal' => false,
+            'internal' => true,
             'protected' => false,
             'publicly_queryable' => true,
         ]);
