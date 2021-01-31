@@ -56,7 +56,7 @@ class Main
         \add_action('plugins_loaded', [$this, 'loadTextdomain']);
         \add_action('admin_menu', [$this, 'addToAdminMenu']);
         \add_action('wpAntykiOlxCRON', [$this, 'bindCronActions']);
-        \add_action('admin_bar_menu', [$this, 'addOlxStatusToAdminBar'], 100);
+        \add_action('admin_bar_menu', [$this, 'addOlxButtonsToAdminBar'], 100);
         \add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
         \add_action('admin_init', [$this, 'registerCustomSettings']);
         \add_filter('manage_product_posts_columns', [
@@ -88,7 +88,6 @@ class Main
         $submenu['edit.php?post_type=product'][5][2] = 'edit.php?post_type=product&post_status=publish';
     }
 
-
     public function enqueueAdminAssets()
     {
         wp_register_script(
@@ -117,12 +116,24 @@ class Main
         $this->cron->refreshAdvertStats();
     }
 
-    public function addOlxStatusToAdminBar($admin_bar)
+    public function addOlxButtonsToAdminBar($admin_bar)
     {
         $admin_bar->add_node([
             'id' => 'olx-status',
             'title' => 'OLX',
             'href' => admin_url('/admin.php?page=wp-antyki-olx'),
+        ]);
+        $admin_bar->add_node([
+            'parent' => 'olx-status',
+            'id' => 'olx-show-dashboard',
+            'title' => 'Panel',
+            'href' => admin_url('/admin.php?page=wp-antyki-olx'),
+        ]);
+        $admin_bar->add_node([
+            'parent' => 'olx-status',
+            'id' => 'olx-refresh-stats',
+            'title' => 'Odśwież statystyki',
+            'href' => '#',
         ]);
     }
 
