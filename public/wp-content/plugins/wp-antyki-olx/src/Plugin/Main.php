@@ -53,9 +53,15 @@ class Main
 
     public function initHooks()
     {
+        \add_filter('cron_schedules', [$this, 'createCustomCronSchedules']);
+
         \add_action('plugins_loaded', [$this, 'loadTextdomain']);
         \add_action('admin_menu', [$this, 'addToAdminMenu']);
-        \add_action('wpAntykiOlxCRON', [$this, 'bindCronActions']);
+
+        \add_action('wpAntykiOlx_cron_daily_8am', [$this->cron, 'run_daily_8am']);
+        \add_action('wpAntykiOlx_cron_daily_10am', [$this->cron, 'run_daily_10am']);
+        \add_action('wpAntykiOlx_cron_every_6_hours', [$this->cron, 'run_every_6_hours']);
+
         \add_action('admin_bar_menu', [$this, 'addOlxButtonsToAdminBar'], 100);
         \add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
         \add_action('admin_init', [$this, 'registerCustomSettings']);
@@ -81,6 +87,15 @@ class Main
             'addCustomPostStatusToSelect',
         ]);
         add_action( 'admin_menu', [$this, 'adminRedirectToPublishedProducts'] );
+    }
+
+    public function createCustomCronSchedules($schedules)
+    {
+        $schedules['every_six_hours'] = array(
+            'interval' => 21600,
+            'display'  => __( 'Every 6 hours' ),
+        );
+        return $schedules;
     }
 
     public function adminRedirectToPublishedProducts() {
@@ -109,11 +124,6 @@ class Main
             [],
             '1.0.0'
         );
-    }
-
-    public function bindCronActions()
-    {
-        $this->cron->refreshAdvertStats();
     }
 
     public function addOlxButtonsToAdminBar($admin_bar)
@@ -160,15 +170,6 @@ class Main
                 $menuIcon,
                 200
             );
-
-            // add_submenu_page(
-            //     ANTYKI_ADMIN_MENU_SLUG,
-            //     __('Antyki - Ustawienia', TEXTDOMAIN),
-            //     __('Ustawienia', TEXTDOMAIN),
-            //     'manage_options',
-            //     ANTYKI_ADMIN_MENU_SLUG . '-settings',
-            //     [$this->adminViews, 'settingsPage']
-            // );
         } else {
             add_menu_page(
                 __('Antyki - OLX - x', TEXTDOMAIN),

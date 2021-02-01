@@ -421,10 +421,7 @@ class Requests
                 );
                 $data = json_decode($response->getBody())->data;
                 update_field('olx_advert_stats', json_encode($data), $product);
-                error_log("refreshAdvertStats id: $product->ID, success");
                 return $data;
-            } else {
-                error_log("refreshAdvertStats id: $product->ID, no advert");
             }
         } catch (RequestException $e) {
             error_log('----------------------------------');
@@ -464,5 +461,8 @@ class Requests
             return true;
         }
     }
+
+    public function refreshStats()
+    {}
 
 }
