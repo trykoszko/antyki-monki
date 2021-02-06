@@ -23,7 +23,8 @@ class Main
         $this->olx = $this->container->get('Olx');
         $this->isAuthenticated = $this->container->call(
             function ($olxInstance) {
-                return $olxInstance->auth->isAuthenticated;
+                $isConnected = $olxInstance->auth->isConnected();
+                return $isConnected;
             },
             [
                 'olxInstance' => $this->olx,

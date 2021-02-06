@@ -120,10 +120,10 @@ class Requests
             if ($data) {
                 foreach ($data as $advert) {
                     $assignedWpProduct = RequestHelper::getWpProductByAdvertId(
-                        $advert['id']
+                        $advert->id
                     );
                     if ($assignedWpProduct) {
-                        $advert['wpProduct'] = $assignedWpProduct;
+                        $advert->wpProduct = $assignedWpProduct;
                     }
                     $adverts[] = &$advert;
                 }
@@ -146,7 +146,7 @@ class Requests
                 return false;
             }
             usort($adverts, function ($a, $b) {
-                return strcmp($a['valid_to'], $b['valid_to']);
+                return strcmp($a->valid_to, $b->valid_to);
             });
             return array_slice($adverts, 0, 10);
         } catch (Exception $e) {

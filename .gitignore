@@ -16,6 +16,8 @@ public/wp-content/cache
 public/wp-content/plugins/*
 !public/wp-content/plugins/wp-antyki-olx
 !public/wp-content/plugins/wp-graphql-acf
+!public/wp-content/plugins/wp-sync-db
+!public/wp-content/plugins/wp-sync-db-media-files
 
 
 debug.log
