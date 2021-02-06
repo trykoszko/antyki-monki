@@ -38,6 +38,21 @@ class Auth
         }
     }
 
+    public function isConnected()
+    {
+        $testConnection = $this->olx->requests->getUserData();
+
+        if (is_array($testConnection) && array_key_exists('error', $testConnection)) {
+            return false;
+        }
+
+        if (is_object($testConnection) && property_exists($testConnection, 'id')) {
+            return true;
+        }
+
+        return false;
+    }
+
     protected function hasOlxCode()
     {
         return $this->olx->getOption('olxCode');
@@ -87,46 +102,50 @@ class Auth
 
     protected function renewTokens()
     {
-        $response = $this->guzzleClient->request(
-            'POST',
-            '/api/open/oauth/token',
-            [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $this->olxAccessToken,
-                    'Version' => '2.0',
-                ],
-                'form_params' => [
-                    'grant_type' => 'refresh_token',
-                    'client_id' => $this->olxClientId,
-                    'client_secret' => $this->olxClientSecret,
-                    'refresh_token' => $this->olxRefreshToken,
-                ],
-            ]
-        );
+        try {
+            $response = $this->guzzleClient->request(
+                'POST',
+                '/api/open/oauth/token',
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $this->olxAccessToken,
+                        'Version' => '2.0',
+                    ],
+                    'form_params' => [
+                        'grant_type' => 'refresh_token',
+                        'client_id' => $this->olxClientId,
+                        'client_secret' => $this->olxClientSecret,
+                        'refresh_token' => $this->olxRefreshToken,
+                    ],
+                ]
+            );
 
-        // request body
-        $body = json_decode($response->getBody());
+            // request body
+            $body = json_decode($response->getBody());
 
-        $accessToken = $body->access_token;
-        $refreshToken = $body->refresh_token;
+            $accessToken = $body->access_token;
+            $refreshToken = $body->refresh_token;
 
-        $optionsUpdated =
-            \update_option('olxAccessToken', $accessToken) &&
-            \update_option('olxRefreshToken', $refreshToken);
+            $optionsUpdated =
+                \update_option('olxAccessToken', $accessToken) &&
+                \update_option('olxRefreshToken', $refreshToken);
 
-        $this->olxAccessToken = $accessToken;
-        $this->olxRefreshToken = $refreshToken;
+            $this->olxAccessToken = $accessToken;
+            $this->olxRefreshToken = $refreshToken;
 
-        $expiresIn = $body->expires_in;
-        $validUntil = new \DateTime(date('Y-m-d H:i:s'));
-        $validUntil->modify('+ ' . $expiresIn . ' sec');
-        $validUntilDate = $validUntil->format('Y-m-d H:i:s');
+            $expiresIn = $body->expires_in;
+            $validUntil = new \DateTime(date('Y-m-d H:i:s'));
+            $validUntil->modify('+ ' . $expiresIn . ' sec');
+            $validUntilDate = $validUntil->format('Y-m-d H:i:s');
 
-        // update options for last refresh
-        update_option('olxTokensLastRefresh', date('Y-m-d H:i:s'));
-        update_option('olxTokensValidUntil', $validUntilDate);
+            // update options for last refresh
+            update_option('olxTokensLastRefresh', date('Y-m-d H:i:s'));
+            update_option('olxTokensValidUntil', $validUntilDate);
 
-        return $optionsUpdated;
+            return $optionsUpdated;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     protected function getNewTokens()
@@ -165,13 +184,15 @@ class Auth
             $tokensValidUntil = $this->olx->getOption('olxTokensValidUntil');
             if (date('Y-m-d H:i:s') > $tokensValidUntil) {
                 error_log('[OLX] Renewing tokens');
-                $this->isAuthenticated = $this->renewTokens();
+                $renewedTokens = $this->renewTokens();
+                $this->isAuthenticated = $renewedTokens;
             } else {
                 // Tokens still valid
             }
         } else {
             $this->isAuthenticated = $this->getNewTokens();
         }
+
         return $this->isAuthenticated;
     }
 

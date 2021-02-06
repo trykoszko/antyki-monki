@@ -120,10 +120,10 @@ class Requests
             if ($data) {
                 foreach ($data as $advert) {
                     $assignedWpProduct = RequestHelper::getWpProductByAdvertId(
-                        $advert['id']
+                        $advert->id
                     );
                     if ($assignedWpProduct) {
-                        $advert['wpProduct'] = $assignedWpProduct;
+                        $advert->wpProduct = $assignedWpProduct;
                     }
                     $adverts[] = &$advert;
                 }
@@ -146,7 +146,7 @@ class Requests
                 return false;
             }
             usort($adverts, function ($a, $b) {
-                return strcmp($a['valid_to'], $b['valid_to']);
+                return strcmp($a->valid_to, $b->valid_to);
             });
             return array_slice($adverts, 0, 10);
         } catch (Exception $e) {
@@ -421,10 +421,7 @@ class Requests
                 );
                 $data = json_decode($response->getBody())->data;
                 update_field('olx_advert_stats', json_encode($data), $product);
-                error_log("refreshAdvertStats id: $product->ID, success");
                 return $data;
-            } else {
-                error_log("refreshAdvertStats id: $product->ID, no advert");
             }
         } catch (RequestException $e) {
             error_log('----------------------------------');
@@ -464,5 +461,8 @@ class Requests
             return true;
         }
     }
+
+    public function refreshStats()
+    {}
 
 }

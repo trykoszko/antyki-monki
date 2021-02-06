@@ -15,6 +15,24 @@ class Cron {
         $this->olx = $olx;
     }
 
+    public function run_daily_8am()
+    {
+        error_log('a');
+        $this->refreshAdvertStats();
+    }
+
+    public function run_daily_10am()
+    {
+        error_log('b');
+        // $this->cron->refreshAdvertStats();
+    }
+
+    public function run_every_6_hours()
+    {
+        error_log('c');
+        // $this->cron->refreshAdvertStats();
+    }
+
     public function refreshAdvertStats()
     {
         $products = get_posts([
@@ -23,9 +41,13 @@ class Cron {
             'fiels' => 'ids'
         ]);
         if ($products) {
+            $refreshed = [];
             foreach ($products as $productId) {
-                $this->olx->requests->refreshAdvertStats($productId);
+                $refreshed[] = $this->olx->requests->refreshAdvertStats($productId);
             }
+            error_log(json_encode([
+                'refreshedAdverts' => $refreshed
+            ]));
         }
     }
 

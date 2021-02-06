@@ -23,17 +23,7 @@ class Main
                 return new \Antyki\Plugin\Twig();
             }),
             'Olx' => factory(function (ContainerInterface $c) {
-                $olx = null;
-                try {
-                    $olx = new \Antyki\Olx\Main($c->get('GuzzleClient'));
-                } catch (\Exception $e) {
-                    error_log(
-                        json_encode([
-                            'OLX error' => $e->getMessage(),
-                        ])
-                    );
-                }
-                return $olx;
+                return new \Antyki\Olx\Main($c->get('GuzzleClient'));
             }),
             'Ajax' => factory(function (ContainerInterface $c) {
                 return new \Antyki\Olx\Ajax($c->get('Olx'));
