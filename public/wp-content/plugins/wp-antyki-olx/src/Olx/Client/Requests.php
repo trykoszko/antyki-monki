@@ -232,6 +232,8 @@ class Requests
             ' : ''; ?>
             <?php echo $additionalInfo ? 'Dodatkowe informacje: ' . $additionalInfo . '
             ' : ''; ?>
+
+
             Po więcej antyków i staroci zapraszamy na naszą stronę internetową: antyki-monki.pl
             <?php
         $desc = ob_get_contents();
