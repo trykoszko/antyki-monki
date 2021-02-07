@@ -160,10 +160,14 @@ class Requests
 
     public static function prepareAdvert($productId)
     {
+        $olxMaxImages = 8;
+
         // get product data
         $productAttributes = get_field( 'product_attributes', $productId );
         $productOlxAttributes = get_field( 'olx_attributes', $productId );
-        $productImages = get_field( 'product_gallery', $productId );
+        $productImages = (array) get_field( 'product_gallery', $productId );
+
+        $maxAllowedImages = array_slice($productImages, 0, $olxMaxImages);
 
         // additional info field
         $additionalInfo = null;
@@ -230,7 +234,7 @@ class Requests
 
         // images
         $images = array();
-        foreach ( $productImages as $image ) {
+        foreach ( $maxAllowedImages as $image ) {
             $images[] = array(
                 'url' => str_replace(
                     'antyki.sors.smarthost.pl.devlocal',
