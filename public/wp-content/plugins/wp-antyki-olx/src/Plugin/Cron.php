@@ -4,6 +4,8 @@ namespace Antyki\Plugin;
 
 use Antyki\Olx\Main as Olx;
 
+use Antyki\Notice\Main as Notice;
+
 class Cron {
 
     public $olx;
@@ -17,20 +19,20 @@ class Cron {
 
     public function run_daily_8am()
     {
-        error_log('a');
+        error_log('[CRON] run_daily_8am');
         $this->refreshAdvertStats();
     }
 
     public function run_daily_10am()
     {
-        error_log('b');
-        // $this->cron->refreshAdvertStats();
+        error_log('[CRON] run_every_6_hours');
+        $this->refreshAdvertStats();
     }
 
     public function run_every_6_hours()
     {
-        error_log('c');
-        // $this->cron->refreshAdvertStats();
+        error_log('[CRON] run_every_6_hours');
+        $this->refreshAdvertStats();
     }
 
     public function refreshAdvertStats()
@@ -47,6 +49,11 @@ class Cron {
             }
             error_log(json_encode([
                 'refreshedAdverts' => $refreshed
+            ]));
+            Notice::send('ajax', json_encode([
+                'Olx->Cron->refreshAdvertStats()' => [
+                    'result' => $refreshed
+                ]
             ]));
         }
     }

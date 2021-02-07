@@ -44,14 +44,14 @@ class Ajax
             $authTest = $this->olxClient->authTest();
             $isAuth = $this->olxClient->auth->isAuthenticated;
 
-            Notice::send(json_encode([
-                'Olx->Ajax->checkStatus()' => [
-                    'result' => [
-                        '$authTest' => $authTest,
-                        '$isAuth' => $isAuth
-                    ],
-                ]
-            ]));
+            // Notice::send('ajax', json_encode([
+            //     'Olx->Ajax->checkStatus()' => [
+            //         'result' => [
+            //             '$authTest' => $authTest,
+            //             '$isAuth' => $isAuth
+            //         ],
+            //     ]
+            // ]));
 
             wp_send_json_success($authTest || $isAuth);
             wp_die();
@@ -70,7 +70,7 @@ class Ajax
         $productId = $args['productId'];
         $advert = $this->olxClient->requests->addAdvert($productId);
 
-        Notice::send(json_encode([
+        Notice::send('ajax', json_encode([
             'Olx->Ajax->addAdvert()' => [
                 'params' => [
                     '$productId' => $productId
@@ -91,7 +91,7 @@ class Ajax
         $productId = $args['productId'];
         $advert = $this->olxClient->requests->updateAdvert($productId);
 
-        Notice::send(json_encode([
+        Notice::send('ajax', json_encode([
             'Olx->Ajax->updateAdvert()' => [
                 'params' => [
                     '$productId' => $productId
@@ -112,7 +112,7 @@ class Ajax
         $productId = $args['productId'];
         $advert = $this->olxClient->requests->advertSold($productId);
 
-        Notice::send(json_encode([
+        Notice::send('ajax', json_encode([
             'Olx->Ajax->advertSold()' => [
                 'params' => [
                     '$productId' => $productId
