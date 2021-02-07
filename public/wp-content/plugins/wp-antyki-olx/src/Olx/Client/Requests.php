@@ -197,7 +197,10 @@ class Requests
         ob_start();
             ?>Dzień dobry.
 
-            <?php echo isset( $productAttributes['desc'] ) ? $productAttributes['desc'] : ''; ?>
+            Oferujemy antyki i starocie takie jak meble, obrazy, ozdoby, artykuły mosiężne czy żyrandole.
+            Nasze produkty pochodzą głównie z z Niemiec oraz Belgii.
+
+            <?php echo isset( $productAttributes['desc'] ) ? ucfirst($productAttributes['desc']) : ''; ?>
 
             <?php
                 if (
@@ -235,6 +238,10 @@ class Requests
 
 
             Po więcej antyków i staroci zapraszamy na naszą stronę internetową: antyki-monki.pl
+
+            W ofercie posiadamy komplety stołów z krzesłami, gustowne kanapy z fotelami, zegary, komody, artykuły mosiężne, lampy i wiele innych eleganckich przedmiotów.
+            Nasza siedziba znajduje się w miejscowości Mońki w województwie Podlaskim, położonej 40 km od Białegostoku. Nie prowadzimy sklepu stacjonarnego, lecz po wcześniejszej rozmowie telefonicznej można obejrzeć produkty w naszej siedzibie.
+
             <?php
         $desc = ob_get_contents();
         ob_end_clean();
