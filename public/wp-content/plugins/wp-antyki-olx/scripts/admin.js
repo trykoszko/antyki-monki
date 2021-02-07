@@ -48,19 +48,17 @@
             }, 60000)
         }
 
-        var $refreshStatsBtn = $('#olx-refresh-stats')
+        var $refreshStatsBtn = $('#wp-admin-bar-olx-refresh-stats')
         if ($refreshStatsBtn.length) {
             $refreshStatsBtn.on('click', function (e) {
                 e.preventDefault()
                 $.ajax({
                     url: olxData.ajaxUrl,
                     data: {
-                        action: 'refreshStats',
-                        nonce: olxData.security
+                        action: 'refreshAdvertStats'
                     }
                 })
                     .done(function (res) {
-                        toggleButton($btn)
                         console.log('res', res)
                         if (res.error) {
                             alert('Błąd odświeżania statystyk: ' + res.error.detail)

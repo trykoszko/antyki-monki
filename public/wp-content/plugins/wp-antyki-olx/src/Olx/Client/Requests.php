@@ -200,6 +200,8 @@ class Requests
             Oferujemy antyki i starocie takie jak meble, obrazy, ozdoby, artykuły mosiężne czy żyrandole.
             Nasze produkty pochodzą głównie z z Niemiec oraz Belgii.
 
+            Na sprzedaż:
+
             <?php echo isset( $productAttributes['desc'] ) ? ucfirst($productAttributes['desc']) : ''; ?>
 
             <?php

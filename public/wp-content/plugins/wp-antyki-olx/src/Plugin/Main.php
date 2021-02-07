@@ -100,7 +100,7 @@ class Main
         if ($post->post_type === ANTYKI_CPT_PRODUCT) {
             $advertId = get_the_ID($post);
             $advertTitle = get_the_title($post);
-            Notice::send('general', '[ANTYKI] Nowe ogłoszenie do moderacji - ' . $advertTitle . '
+            Notice::send('general', '[ANTYKI] Nowy produkt do moderacji - ' . $advertTitle . '
             ' . get_edit_post_link($advertId, ''));
         }
     }

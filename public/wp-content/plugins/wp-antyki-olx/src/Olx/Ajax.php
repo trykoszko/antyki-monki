@@ -24,7 +24,8 @@ class Ajax
             'addAdvert',
             'updateAdvert',
             'advertSold',
-            'sendErrorNotice'
+            'sendErrorNotice',
+            'refreshAdvertStats'
         ];
 
         foreach ($hooks as $hook) {
@@ -135,6 +136,32 @@ class Ajax
 
         // return json response
         echo \json_encode($advertSold);
+        \wp_die();
+    }
+
+    public function refreshAdvertStats()
+    {
+        $products = get_posts([
+            'post_type' => ANTYKI_CPT_PRODUCT,
+            'posts_per_page' => -1,
+            'fiels' => 'ids'
+        ]);
+        if ($products) {
+            $refreshed = [];
+            foreach ($products as $productId) {
+                $refreshed[] = $this->olxClient->requests->refreshAdvertStats($productId);
+            }
+            error_log(json_encode([
+                'Olx->Ajax->refreshAdvertStats' => $refreshed
+            ]));
+            Notice::send('ajax', json_encode([
+                'Olx->Ajax->refreshAdvertStats()' => [
+                    'result' => count($refreshed) > 0
+                ]
+            ]));
+        }
+
+        echo \json_encode(true);
         \wp_die();
     }
 
