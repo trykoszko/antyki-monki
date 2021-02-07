@@ -23,12 +23,30 @@ class Ajax
             'checkStatus',
             'addAdvert',
             'updateAdvert',
-            'advertSold'
+            'advertSold',
+            'sendErrorNotice'
         ];
 
         foreach ($hooks as $hook) {
             add_action('wp_ajax_' . $hook, [$this, $hook]);
             add_action('wp_ajax_nopriv_' . $hook, [$this, $hook]);
+        }
+    }
+
+    public function sendErrorNotice()
+    {
+        try {
+            $args = $_REQUEST;
+            $message = $args['message'];
+            if (!isset($message) || !$message) {
+                return;
+            }
+            $messageSent = Notice::send('error', $message);
+            wp_send_json_success($messageSent);
+            wp_die();
+        } catch (Exception $e) {
+            wp_send_json_error(false);
+            wp_die();
         }
     }
 
@@ -43,15 +61,6 @@ class Ajax
 
             $authTest = $this->olxClient->authTest();
             $isAuth = $this->olxClient->auth->isAuthenticated;
-
-            // Notice::send('ajax', json_encode([
-            //     'Olx->Ajax->checkStatus()' => [
-            //         'result' => [
-            //             '$authTest' => $authTest,
-            //             '$isAuth' => $isAuth
-            //         ],
-            //     ]
-            // ]));
 
             wp_send_json_success($authTest || $isAuth);
             wp_die();
@@ -96,7 +105,10 @@ class Ajax
                 'params' => [
                     '$productId' => $productId
                 ],
-                'result' => $advert
+                'info' => [
+                    'post_title' => get_the_title($productId)
+                ],
+                'result' => property_exists($advert, 'id')
             ]
         ]));
 

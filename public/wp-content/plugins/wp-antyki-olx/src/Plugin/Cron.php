@@ -19,19 +19,25 @@ class Cron {
 
     public function run_daily_8am()
     {
-        error_log('[CRON] run_daily_8am');
+        error_log(json_encode([
+            'Olx->Cron->run_daily_8am'
+        ]));
         $this->refreshAdvertStats();
     }
 
     public function run_daily_10am()
     {
-        error_log('[CRON] run_every_6_hours');
+        error_log(json_encode([
+            'Olx->Cron->run_daily_10am'
+        ]));
         $this->refreshAdvertStats();
     }
 
     public function run_every_6_hours()
     {
-        error_log('[CRON] run_every_6_hours');
+        error_log(json_encode([
+            'Olx->Cron->run_every_6_hours'
+        ]));
         $this->refreshAdvertStats();
     }
 
@@ -48,7 +54,7 @@ class Cron {
                 $refreshed[] = $this->olx->requests->refreshAdvertStats($productId);
             }
             error_log(json_encode([
-                'refreshedAdverts' => $refreshed
+                'Olx->Cron->refreshAdvertStats' => $refreshed
             ]));
             Notice::send('ajax', json_encode([
                 'Olx->Cron->refreshAdvertStats()' => [

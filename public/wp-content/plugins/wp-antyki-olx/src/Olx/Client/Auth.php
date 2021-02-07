@@ -94,7 +94,9 @@ class Auth
 
             return true;
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            error_log(json_encode([
+                'Olx->Client->Auth->getCredentials error' => $e->getMessage()
+            ]));
 
             return false;
         }
@@ -183,7 +185,6 @@ class Auth
         if ($tokens) {
             $tokensValidUntil = $this->olx->getOption('olxTokensValidUntil');
             if (date('Y-m-d H:i:s') > $tokensValidUntil) {
-                error_log('[OLX] Renewing tokens');
                 $renewedTokens = $this->renewTokens();
                 $this->isAuthenticated = $renewedTokens;
             } else {
@@ -211,7 +212,9 @@ class Auth
 
             return true;
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            error_log(json_encode([
+                'Olx->Client->Auth->getTokens error' => $e->getMessage()
+            ]));
 
             return false;
         }

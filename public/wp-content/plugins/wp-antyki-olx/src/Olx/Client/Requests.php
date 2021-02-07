@@ -43,8 +43,9 @@ class Requests
             $data = json_decode($response->getBody())->data;
             return $data;
         } catch (RequestException $e) {
-            error_log('OLX Requests->getUserData error');
-            error_log($e);
+            error_log(json_encode([
+                'Olx->Client->Requests->getUserData error' => $e->getMessage()
+            ]));
             return [
                 'error' => $e,
             ];
@@ -68,8 +69,9 @@ class Requests
             $data = json_decode($response->getBody())->data;
             return $data;
         } catch (RequestException $e) {
-            error_log('OLX Requests->getMessages error');
-            error_log($e);
+            error_log(json_encode([
+                'Olx->Client->Requests->getMessages error' => $e->getMessage()
+            ]));
             return [
                 'error' => $e,
             ];
@@ -93,8 +95,9 @@ class Requests
             $data = json_decode($response->getBody())->data;
             return $data;
         } catch (RequestException $e) {
-            error_log('OLX Requests->getPackets error');
-            error_log($e);
+            error_log(json_encode([
+                'Olx->Client->Requests->getPackets error' => $e->getMessage()
+            ]));
             return [
                 'error' => $e,
             ];
@@ -130,8 +133,9 @@ class Requests
             }
             return $adverts;
         } catch (RequestException $e) {
-            error_log('OLX Requests->getAllAdverts error');
-            error_log($e);
+            error_log(json_encode([
+                'Olx->Client->Requests->getAllAdverts error' => $e->getMessage()
+            ]));
             return [
                 'error' => $e,
             ];
@@ -150,8 +154,9 @@ class Requests
             });
             return array_slice($adverts, 0, 10);
         } catch (Exception $e) {
-            error_log('OLX Requests->getEndingAdverts error');
-            error_log($e);
+            error_log(json_encode([
+                'Olx->Client->Requests->getEndingAdverts error' => $e->getMessage()
+            ]));
             return [
                 'error' => $e,
             ];
@@ -310,8 +315,9 @@ class Requests
             }
             return $data;
         } catch (RequestException $e) {
-            error_log('OLX Requests->addAdvert error');
-            error_log($e->getResponse()->getBody()->getContents());
+            error_log(json_encode([
+                'Olx->Client->Requests->addAdvert error' => $e->getResponse()->getBody()->getContents()
+            ]));
             return [
                 'error' => $e,
             ];
@@ -355,8 +361,9 @@ class Requests
             }
             return $data;
         } catch (RequestException $e) {
-            error_log('OLX Requests->updateAdvert error');
-            error_log($e->getResponse()->getBody()->getContents());
+            error_log(json_encode([
+                'Olx->Client->Requests->updateAdvert error' => $e->getResponse()->getBody()->getContents()
+            ]));
             return [
                 'error' => $e,
             ];
@@ -398,8 +405,9 @@ class Requests
             }
             return $adverts;
         } catch (RequestException $e) {
-            error_log('OLX Requests->updateAdvert error');
-            error_log($e->getResponse()->getBody()->getContents());
+            error_log(json_encode([
+                'Olx->Client->Requests->unpublishAdvert error' => $e->getResponse()->getBody()->getContents()
+            ]));
             return [
                 'error' => $e,
             ];
@@ -428,11 +436,9 @@ class Requests
                 return $data;
             }
         } catch (RequestException $e) {
-            error_log('----------------------------------');
-            error_log("refreshAdvertStats id: $product->ID, fail");
-            error_log('----------------------------------');
-            error_log('OLX Requests->getAdvertStats error');
-            error_log($e->getResponse()->getBody()->getContents());
+            error_log(json_encode([
+                'Olx->Client->Requests->getAdvertStats error' => $e->getResponse()->getBody()->getContents()
+            ]));
             return [
                 'error' => $e,
             ];

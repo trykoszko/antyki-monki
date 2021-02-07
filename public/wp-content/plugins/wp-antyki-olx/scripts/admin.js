@@ -27,7 +27,17 @@
                 .fail(function (error) {
                     console.log('error', error)
                     return false
-                });
+                })
+        }
+
+        function sendErrorMessage(message) {
+            $.ajax({
+                url: olxData.ajaxUrl,
+                data: {
+                    action: 'sendErrorNotice',
+                    message: message
+                }
+            })
         }
 
         var $statusBar = $('#wp-admin-bar-olx-status')
@@ -64,8 +74,9 @@
                         toggleButton($btn)
                         alert('Błąd podczas odświeżania statystyk')
                         console.error('Błąd podczas odświeżania statystyk', error)
+                        sendErrorMessage('Admin.js->refreshStats error: ' + error.statusText)
                         return false
-                    });
+                    })
             })
         }
 
@@ -99,6 +110,7 @@
                         toggleButton($btn)
                         alert('Błąd podczas dodawania ogłoszenia')
                         console.error('Błąd podczas dodawania ogłoszenia', error)
+                        sendErrorMessage('Admin.js->publishAdvert error: ' + error.statusText)
                         return false
                     })
             })
@@ -121,15 +133,20 @@
                 })
                     .done(function (res) {
                         toggleButton($btn)
-                        alert('Ogłoszenie zaktualizowane')
-                        console.log('Ogłoszenie zaktualizowane', res)
+                        if (res.error) {
+                            alert('Błąd aktualizacji ogłoszenia: ' + res.error.detail)
+                        } else {
+                            alert('Ogłoszenie zaktualizowane')
+                            console.log('Ogłoszenie zaktualizowane', res)
+                        }
                     })
                     .fail(function (error) {
                         toggleButton($btn)
                         alert('Błąd aktualizacji ogłoszenia')
                         console.error('Błąd aktualizacji ogłoszenia', error)
+                        sendErrorMessage('Admin.js->updateAdvert error: ' + error.statusText)
                         return false
-                    });
+                    })
             })
         }
 
@@ -158,8 +175,9 @@
                         toggleButton($btn)
                         alert('Błąd deaktywacji ogłoszenia')
                         console.error('Błąd deaktywacji ogłoszenia', error)
+                        sendErrorMessage('Admin.js->deactivateAdvert error: ' + error.statusText)
                         return false
-                    });
+                    })
             })
         }
 
@@ -188,8 +206,9 @@
                         toggleButton($btn)
                         alert('Błąd deaktywacji ogłoszenia')
                         console.error('Błąd deaktywacji ogłoszenia', error)
+                        sendErrorMessage('Admin.js->advertSold error: ' + error.statusText)
                         return false
-                    });
+                    })
             })
         }
 
