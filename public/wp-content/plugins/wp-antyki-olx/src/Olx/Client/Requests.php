@@ -239,9 +239,6 @@ class Requests
 
             Po więcej antyków i staroci zapraszamy na naszą stronę internetową: antyki-monki.pl
 
-            W ofercie posiadamy komplety stołów z krzesłami, gustowne kanapy z fotelami, zegary, komody, artykuły mosiężne, lampy i wiele innych eleganckich przedmiotów.
-            Nasza siedziba znajduje się w miejscowości Mońki w województwie Podlaskim, położonej 40 km od Białegostoku. Nie prowadzimy sklepu stacjonarnego, lecz po wcześniejszej rozmowie telefonicznej można obejrzeć produkty w naszej siedzibie.
-
             <?php
         $desc = ob_get_contents();
         ob_end_clean();
