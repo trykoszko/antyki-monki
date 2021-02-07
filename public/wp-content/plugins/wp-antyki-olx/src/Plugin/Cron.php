@@ -52,7 +52,7 @@ class Cron {
             ]));
             Notice::send('ajax', json_encode([
                 'Olx->Cron->refreshAdvertStats()' => [
-                    'result' => $refreshed
+                    'result' => count($refreshed) > 0
                 ]
             ]));
         }
