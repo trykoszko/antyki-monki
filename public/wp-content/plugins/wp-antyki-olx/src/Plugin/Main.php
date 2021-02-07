@@ -4,6 +4,7 @@ namespace Antyki\Plugin;
 
 use Antyki\Container\Main as DIContainer;
 use Antyki\Plugin\Cron as CRON;
+use Antyki\Notice\Main as Notice;
 
 /**
  * Main plugin class
@@ -88,6 +89,20 @@ class Main
             'addCustomPostStatusToSelect',
         ]);
         add_action( 'admin_menu', [$this, 'adminRedirectToPublishedProducts'] );
+
+        add_action('new_to_publish', [$this, 'sendNewProductNotification']);
+        add_action('draft_to_publish', [$this, 'sendNewProductNotification']);
+        add_action('pending_to_publish', [$this, 'sendNewProductNotification']);
+    }
+
+    public function sendNewProductNotification($post)
+    {
+        if ($post->post_type === ANTYKI_CPT_PRODUCT) {
+            $advertId = get_the_ID($post);
+            $advertTitle = get_the_title($post);
+            Notice::send('general', '[ANTYKI] Nowe ogłoszenie do moderacji - ' . $advertTitle . '
+            ' . get_edit_post_link($advertId, ''));
+        }
     }
 
     public function createCustomCronSchedules($schedules)
