@@ -2,6 +2,8 @@
 
 namespace Antyki\Olx;
 
+use Antyki\Notice\Main as Notice;
+
 use \Exception as Exception;
 
 class Ajax
@@ -42,6 +44,15 @@ class Ajax
             $authTest = $this->olxClient->authTest();
             $isAuth = $this->olxClient->auth->isAuthenticated;
 
+            Notice::send(json_encode([
+                'Olx->Ajax->checkStatus()' => [
+                    'result' => [
+                        '$authTest' => $authTest,
+                        '$isAuth' => $isAuth
+                    ],
+                ]
+            ]));
+
             wp_send_json_success($authTest || $isAuth);
             wp_die();
         } catch (Exception $e) {
@@ -59,6 +70,15 @@ class Ajax
         $productId = $args['productId'];
         $advert = $this->olxClient->requests->addAdvert($productId);
 
+        Notice::send(json_encode([
+            'Olx->Ajax->addAdvert()' => [
+                'params' => [
+                    '$productId' => $productId
+                ],
+                'result' => $advert
+            ]
+        ]));
+
         // return json response
         echo \json_encode($advert);
         \wp_die();
@@ -71,6 +91,15 @@ class Ajax
         $productId = $args['productId'];
         $advert = $this->olxClient->requests->updateAdvert($productId);
 
+        Notice::send(json_encode([
+            'Olx->Ajax->updateAdvert()' => [
+                'params' => [
+                    '$productId' => $productId
+                ],
+                'result' => $advert
+            ]
+        ]));
+
         // return json response
         echo \json_encode($advert);
         \wp_die();
@@ -82,6 +111,15 @@ class Ajax
         $args = $_REQUEST;
         $productId = $args['productId'];
         $advert = $this->olxClient->requests->advertSold($productId);
+
+        Notice::send(json_encode([
+            'Olx->Ajax->advertSold()' => [
+                'params' => [
+                    '$productId' => $productId
+                ],
+                'result' => $advert
+            ]
+        ]));
 
         // return json response
         echo \json_encode($advert);

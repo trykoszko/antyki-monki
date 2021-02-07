@@ -22,12 +22,12 @@ use Antyki\Plugin\Deactivator as Deactivator;
 
 use Antyki\Container\Main as DIContainer;
 
-// If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
 
 define('ANTYKI_VERSION', '1.0.0');
+
 if (!defined('TEXTDOMAIN')) {
     define('TEXTDOMAIN', 'antyki');
 }

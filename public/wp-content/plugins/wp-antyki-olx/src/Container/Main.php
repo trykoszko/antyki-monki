@@ -36,7 +36,7 @@ class Main
                     $c->get('Twig'),
                     $c->get('Olx')
                 );
-            }),
+            })
         ]);
         $this->container = $containerBuilder->build();
     }
