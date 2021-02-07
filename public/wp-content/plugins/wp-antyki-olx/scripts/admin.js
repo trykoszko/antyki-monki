@@ -51,9 +51,14 @@
                 })
                     .done(function (res) {
                         toggleButton($btn)
-                        alert('Statystyki odświeżone')
-                        console.log('Statystyki odświeżone', res)
-                        location.reload()
+                        console.log('res', res)
+                        if (res.error) {
+                            alert('Błąd odświeżania statystyk: ' + res.error.detail)
+                        } else {
+                            alert('Statystyki odświeżone')
+                            console.log('Statystyki odświeżone', res)
+                            location.reload()
+                        }
                     })
                     .fail(function (error) {
                         toggleButton($btn)
@@ -81,9 +86,14 @@
                 })
                     .done(function (res) {
                         toggleButton($btn)
-                        alert('Ogłoszenie dodane')
-                        console.log('Ogłoszenie dodane', res)
-                        location.reload()
+                        console.log('res', res)
+                        if (res.error) {
+                            alert('Błąd dodawania ogłoszenia: ' + res.error.detail)
+                        } else {
+                            alert('Ogłoszenie dodane')
+                            console.log('Ogłoszenie dodane', res)
+                            location.reload()
+                        }
                     })
                     .fail(function (error) {
                         toggleButton($btn)
