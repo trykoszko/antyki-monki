@@ -469,10 +469,9 @@ class Requests
         $advertMarkedAsSoldWp = $this->markAdvertAsSold($productId);
         if ($advertUnpublishedOlx && $advertMarkedAsSoldWp) {
             return true;
+        } else {
+            return false;
         }
     }
-
-    public function refreshStats()
-    {}
 
 }
