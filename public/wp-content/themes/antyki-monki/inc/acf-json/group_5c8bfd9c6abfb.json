@@ -181,34 +181,7 @@
             ]
         },
         {
-            "key": "field_5c8bfd9d09990",
-            "label": "Galeria",
-            "name": "product_gallery",
-            "type": "gallery",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "min": "",
-            "max": "",
-            "insert": "append",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "return_format": "array",
-            "preview_size": "medium"
-        },
-        {
-            "key": "field_5c8bfd9d0997b",
+            "key": "field_6027e830031fb",
             "label": "OLX",
             "name": "olx_attributes",
             "type": "group",
@@ -223,7 +196,7 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_5d62916060d95",
+                    "key": "field_6027e83068bfa",
                     "label": "Tytuł w OLX",
                     "name": "olx_title",
                     "type": "text",
@@ -242,7 +215,7 @@
                     "maxlength": 70
                 },
                 {
-                    "key": "field_5c8bfda08a92c",
+                    "key": "field_6027e83068c22",
                     "label": "Kategoria w OLX",
                     "name": "cat",
                     "type": "radio",
@@ -276,7 +249,7 @@
                     "save_other_choice": 0
                 },
                 {
-                    "key": "field_5c8bfda08a966",
+                    "key": "field_6027e83068c2f",
                     "label": "Cena w zł",
                     "name": "price",
                     "type": "number",
@@ -297,7 +270,7 @@
                     "step": ""
                 },
                 {
-                    "key": "field_5c8bfda08a98b",
+                    "key": "field_6027e83068c3c",
                     "label": "Cena minimalnie",
                     "name": "price_min",
                     "type": "number",
@@ -318,7 +291,7 @@
                     "step": ""
                 },
                 {
-                    "key": "field_5c8bfda08a9ae",
+                    "key": "field_6027e83068c49",
                     "label": "Stan",
                     "name": "state",
                     "type": "radio",
@@ -344,11 +317,11 @@
             ]
         },
         {
-            "key": "field_5c8bfda08a9d8",
-            "label": "OLX ID",
-            "name": "olx_id",
-            "type": "text",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
+            "key": "field_5c8bfd9d09990",
+            "label": "Galeria",
+            "name": "product_gallery",
+            "type": "gallery",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -356,68 +329,19 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5e8899072bde8",
-            "label": "OLX - Ogłoszenie od",
-            "name": "olx_created_at",
-            "type": "text",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5e8899112bde9",
-            "label": "OLX - Ogłoszenie do",
-            "name": "olx_valid_to",
-            "type": "text",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5e88991e2bdea",
-            "label": "OLX - response",
-            "name": "olx_olx_data",
-            "type": "textarea",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
+            "min": "",
+            "max": "",
+            "insert": "append",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "return_format": "array",
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -464,7 +388,9 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1586010471
+    "show_in_graphql": 0,
+    "graphql_field_name": "productAcf",
+    "modified": 1613229048
 }

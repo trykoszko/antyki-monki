@@ -3,7 +3,8 @@
 		<span>{{ __('Pakiety ogłoszeń') }}</span>
 	</h2>
 	<div class="inside">
-		{% if packets %}
+		{{ dump(packets) }}
+		{# {% if packets %}
 			<table>
 				<tr>
 					<td>
@@ -41,6 +42,6 @@
 			<a target="_blank" href="https://www.olx.pl/mojolx/shoppacks/">{{ __('Wszystkie pakiety') }}</a>
 		{% else %}
 			{{ __('Brak pakietów ogłoszeń') }}
-		{% endif %}
+		{% endif %} #}
 	</div>
 </div>

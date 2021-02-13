@@ -188,6 +188,148 @@
             ]
         },
         {
+            "key": "field_6027ebd7cfdbf",
+            "label": "OLX",
+            "name": "olx_attributes",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "show_in_graphql": 1,
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_6027ebd7cfdc0",
+                    "label": "Tytuł w OLX",
+                    "name": "olx_title",
+                    "type": "text",
+                    "instructions": "Maksymalnie 70 znaków",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": 70
+                },
+                {
+                    "key": "field_6027ebd7cfdc1",
+                    "label": "Kategoria w OLX",
+                    "name": "cat",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "choices": {
+                        "431": "Sport i hobby > Kolekcje",
+                        "575": "Wyposażenie wnętrz > Dekoracje",
+                        "584": "Ogród",
+                        "717": "Meble > Biurka",
+                        "718": "Meble > Fotele",
+                        "719": "Meble > Łóżka i materace",
+                        "720": "Meble > Regały",
+                        "721": "Meble > Stoły i krzesła",
+                        "722": "Meble > Sofy i kanapy",
+                        "723": "Meble > Szafy i komody",
+                        "724": "Meble > Komplety mebli",
+                        "725": "Meble > Pozostałe"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "save_other_choice": 0,
+                    "default_value": "",
+                    "layout": "",
+                    "return_format": ""
+                },
+                {
+                    "key": "field_6027ebd7cfdc2",
+                    "label": "Cena w zł",
+                    "name": "price",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_6027ebd7cfdc3",
+                    "label": "Cena minimalnie",
+                    "name": "price_min",
+                    "type": "number",
+                    "instructions": "Cena minimalna, poniżej której nie warto schodzić przy targowaniu",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                },
+                {
+                    "key": "field_6027ebd7cfdc4",
+                    "label": "Stan",
+                    "name": "state",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "choices": {
+                        "used": "używany",
+                        "new": "nowy"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "save_other_choice": 0,
+                    "default_value": "",
+                    "layout": "",
+                    "return_format": ""
+                }
+            ]
+        },
+        {
             "key": "field_5c6fd7643a377",
             "label": "Galeria",
             "name": "product_gallery",
@@ -213,218 +355,6 @@
             "mime_types": "",
             "return_format": "array",
             "preview_size": "medium"
-        },
-        {
-            "key": "field_5c780d868268d",
-            "label": "OLX",
-            "name": "olx_attributes",
-            "type": "group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "layout": "row",
-            "sub_fields": [
-                {
-                    "key": "field_5c77d840a39a1",
-                    "label": "Kategoria w OLX",
-                    "name": "cat",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "431": "Sport i hobby > Kolekcje",
-                        "575": "Wyposażenie wnętrz > Dekoracje",
-                        "584": "Ogród",
-                        "717": "Meble > Biurka",
-                        "718": "Meble > Fotele",
-                        "719": "Meble > Łóżka i materace",
-                        "720": "Meble > Regały",
-                        "721": "Meble > Stoły i krzesła",
-                        "722": "Meble > Sofy i kanapy",
-                        "723": "Meble > Szafy i komody",
-                        "724": "Meble > Komplety mebli",
-                        "725": "Meble > Pozostałe"
-                    },
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "array",
-                    "save_other_choice": 0
-                },
-                {
-                    "key": "field_5d6294677cbeb",
-                    "label": "Tytuł w OLX",
-                    "name": "olx_title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_5c7801cdb1f14",
-                    "label": "Cena w zł",
-                    "name": "price",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "min": "",
-                    "max": "",
-                    "step": ""
-                },
-                {
-                    "key": "field_5c780e658b9d2",
-                    "label": "Cena minimalnie",
-                    "name": "price_min",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "min": "",
-                    "max": "",
-                    "step": ""
-                },
-                {
-                    "key": "field_5c78025cb1f16",
-                    "label": "Stan",
-                    "name": "state",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "used": "używany",
-                        "new": "nowy"
-                    },
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
-                }
-            ]
-        },
-        {
-            "key": "field_5c8bfce81a4b5",
-            "label": "OLX ID",
-            "name": "olx_id",
-            "type": "text",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5e88970e2b0f8",
-            "label": "OLX - Ogłoszenie od",
-            "name": "olx_created_at",
-            "type": "text",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5e88972f2b0f9",
-            "label": "OLX - Ogłoszenie do",
-            "name": "olx_valid_to",
-            "type": "text",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5e8898ca2b0fa",
-            "label": "OLX - response",
-            "name": "olx_olx_data",
-            "type": "textarea",
-            "instructions": "NIE ZMIENIAĆ, NIE WPISYWAĆ NIC",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
         }
     ],
     "location": [
@@ -447,7 +377,9 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1586010845
+    "show_in_graphql": 0,
+    "graphql_field_name": "productAcf",
+    "modified": 1613229075
 }

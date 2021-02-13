@@ -23,7 +23,8 @@
         "wpackagist-plugin/wordfence": "^7.4",
         "wpackagist-plugin/wp-crontrol": "^1.9",
         "wpackagist-plugin/wp-graphql": "^1.1",
-        "wpackagist-plugin/wp-jamstack-deployments": "^1.1"
+        "wpackagist-plugin/wp-jamstack-deployments": "^1.1",
+        "wpackagist-plugin/wp-gatsby": "^1.0"
     },
     "autoload": {
         "psr-4": {

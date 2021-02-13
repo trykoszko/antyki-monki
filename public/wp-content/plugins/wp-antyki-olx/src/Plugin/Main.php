@@ -63,6 +63,7 @@ class Main
         \add_action('wpAntykiOlx_cron_daily_8am', [$this->cron, 'run_daily_8am']);
         \add_action('wpAntykiOlx_cron_daily_10am', [$this->cron, 'run_daily_10am']);
         \add_action('wpAntykiOlx_cron_every_6_hours', [$this->cron, 'run_every_6_hours']);
+        \add_action('wpAntykiOlx_cron_once_a_week', [$this->cron, 'run_once_a_week']);
 
         \add_action('admin_bar_menu', [$this, 'addOlxButtonsToAdminBar'], 100);
         \add_action('admin_enqueue_scripts', [$this, 'enqueueAdminAssets']);
@@ -84,6 +85,7 @@ class Main
         add_action('init', [$this, 'initAcfOptionsPage']);
         add_action('admin_menu', [$this, 'hideMenuForNonAdmins']);
         add_action('admin_footer', [$this, 'hideAdminBarForNonAdmins']);
+        add_action('admin_head-edit.php', [$this, 'adminCptListView']);
         add_action('admin_footer-post.php', [
             $this,
             'addCustomPostStatusToSelect',
@@ -93,6 +95,21 @@ class Main
         add_action('new_to_publish', [$this, 'sendNewProductNotification']);
         add_action('draft_to_publish', [$this, 'sendNewProductNotification']);
         add_action('pending_to_publish', [$this, 'sendNewProductNotification']);
+
+        add_filter('acf/load_field/key=acf-group_6027e82fe990b', function ($field) {
+            if (current_user_can('administrator')) {
+                return $field;
+            }
+        });
+    }
+
+    public function adminCptListView()
+    {
+        if ($this->isAuthenticated) {
+            if (isset($_REQUEST['post_type']) && $_REQUEST['post_type'] === ANTYKI_CPT_PRODUCT) {
+                $this->olx->requests->getPackets();
+            }
+        }
     }
 
     public function sendNewProductNotification($post)
@@ -225,6 +242,9 @@ class Main
 
         add_option('olxTokensLastRefresh');
         register_setting('olxAuthSettings', 'olxTokensLastRefresh');
+
+        add_option('olxPackets');
+        register_setting('olxPacketSettings', 'olxPackets');
     }
 
     public function addCustomCptColumns($columns)
@@ -243,20 +263,44 @@ class Main
             case 'productImage':
                 $this->adminViews->twig->render('adminColumns_productImage', [
                     'productImgUrl' => get_field('product_gallery', $postId)
-                        ? get_field('product_gallery', $postId)[0]['sizes'][
-                            'medium'
-                        ]
+                        ? get_field('product_gallery', $postId)[0]['sizes']['thumbnail']
                         : null,
                 ]);
                 break;
             case 'productOlx':
+                $olxData = get_field('olx_olx_data', $postId) ? json_decode(get_field('olx_olx_data', $postId)) : [];
+
+                $productCategoryId = get_field('olx_attributes', $postId) ? (int) get_field('olx_attributes_cat', $postId) : null;
+                $productCategoryParentId = (int) get_field('olx_parent_category_id', $postId) ?? null;
+
+                $olxCatId = $productCategoryId ?? $productCategoryParentId;
+
+                $allPackets = get_option('olxPackets');
+
+                $availablePackets = $allPackets ? array_filter($allPackets, function ($packet) {
+                    return $packet->is_active && $packet->left > 0;
+                }) : [];
+
+                $packetsAvailableForThisItem = count($availablePackets) > 0 ? array_filter($availablePackets, function ($packet) use ($productCategoryId, $productCategoryParentId) {
+                    $isForCurrentCat = array_search($productCategoryId, $packet->categories_ids) === 0;
+                    $isForParentCat = array_search($productCategoryParentId, $packet->categories_ids) === 0;
+
+                    if ($isForCurrentCat || $isForParentCat) {
+                        return $packet;
+                    }
+                }) : [];
+
+                $hasFreeAdSlot = count($packetsAvailableForThisItem);
+
                 $this->adminViews->twig->render('adminColumns_productOlx', [
                     'postId' =>
                         $postId,
                     'olxData' =>
-                        get_field('olx_olx_data', $postId) ? json_decode(get_field('olx_olx_data', $postId)) : null,
+                        $olxData,
+                    'olxCat' =>
+                        $olxCatId,
                     'olxStats' =>
-                        get_field('olx_advert_stats', $postId) ? json_decode(get_field('olx_advert_stats', $postId)) : null,
+                        get_field('olx_advert_stats', $postId) ? json_decode(get_field('olx_advert_stats', $postId)) : [],
                     'isSold' =>
                         get_post_status($postId) == ANTYKI_CPT_CUSTOM_STATUS,
                     'validTo' =>
@@ -264,6 +308,8 @@ class Main
                     'isStillValid' =>
                         get_field('olx_valid_to', $postId) >
                         date('Y-m-d H:i:s'),
+                    'hasFreeAdSlot' => $hasFreeAdSlot,
+                    'packetsAvailableForThisItem' => $packetsAvailableForThisItem
                 ]);
                 break;
         }
@@ -299,22 +345,22 @@ class Main
                 $complete = ' selected=\"selected\"';
                 $label =
                     '<span id=\"post-status-display\"> ' .
-                    ANTYKI_CPT_CUSTOM_STATUS_LABEL .
+                        ANTYKI_CPT_CUSTOM_STATUS_LABEL .
                     '</span>';
             }
             echo '
                 <script>
                     jQuery(document).ready(function($){
                         $("select#post_status").append("<option value=\"' .
-                ANTYKI_CPT_CUSTOM_STATUS .
-                '\" ' .
-                $complete .
-                '>' .
-                ANTYKI_CPT_CUSTOM_STATUS_LABEL .
-                '</option>");
-                        $(".misc-pub-section label").append("' .
-                $label .
-                '");
+                            ANTYKI_CPT_CUSTOM_STATUS .
+                            '\" ' .
+                            $complete .
+                            '>' .
+                            ANTYKI_CPT_CUSTOM_STATUS_LABEL .
+                            '</option>");
+                                    $(".misc-pub-section label").append("' .
+                            $label .
+                        '");
                     });
                 </script>
             ';

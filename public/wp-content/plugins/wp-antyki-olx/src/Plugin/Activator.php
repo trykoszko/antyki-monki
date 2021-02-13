@@ -16,5 +16,8 @@ class Activator
         if (!wp_next_scheduled('wpAntykiOlx_cron_every_6_hours')) {
             wp_schedule_event(strtotime('today 6am'), 'every_six_hours', 'wpAntykiOlx_cron_every_6_hours');
         }
+        if (!wp_next_scheduled('wpAntykiOlx_cron_once_a_week')) {
+            wp_schedule_event(strtotime('today 6am'), 'weekly', 'wpAntykiOlx_cron_once_a_week');
+        }
     }
 }

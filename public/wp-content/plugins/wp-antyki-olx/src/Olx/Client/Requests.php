@@ -67,7 +67,22 @@ class Requests
                 ]
             );
             $data = json_decode($response->getBody())->data;
-            return $data;
+            $messages = [];
+            foreach ($data as $message) {
+                $messageId = $message->id;
+                $advert = RequestHelper::getWpProductByAdvertId($message->advert_id);
+                $advertTitle = get_field('olx_attributes_olx_title', $advert);
+                $advertOlxData = json_decode(get_field('olx_olx_data', $advert));
+                $advertUrl = $advertOlxData && $advertOlxData->url;
+                $messages[] = [
+                    'messageId' => $messageId,
+                    'advertOlxData' => $advertOlxData,
+                    'advertTitle' => $advertTitle,
+                    'advertUrl' => $advertUrl,
+                    'isUnread' => $message->unread_count > 0
+                ];
+            }
+            return $messages;
         } catch (RequestException $e) {
             error_log(json_encode([
                 'Olx->Client->Requests->getMessages error' => $e->getMessage()
@@ -83,7 +98,7 @@ class Requests
         try {
             $response = $this->guzzleClient->request(
                 'GET',
-                '/api/partner/paid-features',
+                '/api/partner/users/me/packets',
                 [
                     'headers' => [
                         'Authorization' =>
@@ -93,6 +108,7 @@ class Requests
                 ]
             );
             $data = json_decode($response->getBody())->data;
+            update_option('olxPackets', $data);
             return $data;
         } catch (RequestException $e) {
             error_log(json_encode([
@@ -122,13 +138,11 @@ class Requests
             $adverts = [];
             if ($data) {
                 foreach ($data as $advert) {
-                    $assignedWpProduct = RequestHelper::getWpProductByAdvertId(
-                        $advert->id
-                    );
+                    $assignedWpProduct = RequestHelper::getWpProductByAdvertId($advert->id);
                     if ($assignedWpProduct) {
                         $advert->wpProduct = $assignedWpProduct;
                     }
-                    $adverts[] = &$advert;
+                    $adverts[] = $advert;
                 }
             }
             return $adverts;
@@ -479,6 +493,33 @@ class Requests
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function getParentCatId($catId)
+    {
+        try {
+            $response = $this->guzzleClient->request(
+                'GET',
+                "/api/partner/categories/$catId",
+                [
+                    'headers' => [
+                        'Authorization' =>
+                            'Bearer ' . $this->olx->auth->olxAccessToken,
+                        'Version' => '2.0',
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+            $category = json_decode($response->getBody())->data;
+            return $category->parent_id;
+        } catch (RequestException $e) {
+            error_log(json_encode([
+                'Olx->Client->Requests->getAdvertStats error' => $e->getResponse()->getBody()->getContents()
+            ]));
+            return [
+                'error' => $e,
+            ];
         }
     }
 

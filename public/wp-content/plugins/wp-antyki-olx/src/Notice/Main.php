@@ -12,9 +12,14 @@ class Main {
     public static function send($type, $message)
     {
         switch ($type) {
-            case 'ajax':
+            case 'ajax_text':
                 $webhookUrl = 'https://discord.com/api/webhooks/807987019463917658/UmVTi5zt1i2Zqws-zby7ke9dnDui1p5PkLPS0XHpRcZ_EMC_E1GD1W-QvCyZnXlc2mMS';
-                $content = '```' . json_encode(json_decode($message), JSON_PRETTY_PRINT) . '```';
+                $content = $message;
+                break;
+            case 'ajax':
+                $message = json_encode(json_decode($message), JSON_PRETTY_PRINT);
+                $webhookUrl = 'https://discord.com/api/webhooks/807987019463917658/UmVTi5zt1i2Zqws-zby7ke9dnDui1p5PkLPS0XHpRcZ_EMC_E1GD1W-QvCyZnXlc2mMS';
+                $content = "```bash\n$message```";
                 break;
             case 'general':
                 $webhookUrl = 'https://discord.com/api/webhooks/807967332496179211/snTM_QBA4nS2I9Essg8jVN5xedzjs0V6eR4Q1BJH1tXOjUP3-odIJbgW7Wlo7udeIVsT';
@@ -23,7 +28,7 @@ class Main {
             case 'error':
             default:
                 $webhookUrl = 'https://discord.com/api/webhooks/808006970694041630/lCfi_MG2WufkNJd_1-sRYD_kn8279kCtp441OqnxV7ZauRqtkjjadExW0-e29WdcIaaf';
-                $content = 'ERROR! ```' . $message . '```';
+                $content = "```css\n$message```\n\n";
                 break;
         }
 

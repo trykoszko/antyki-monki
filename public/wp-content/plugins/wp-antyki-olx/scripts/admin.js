@@ -210,5 +210,19 @@
             })
         }
 
+        var $olxFieldGroup = $('#acf-group_6027e82fe990b')
+        if ($olxFieldGroup.length) {
+            $olxFieldGroup.find('input, textarea').each(function() {
+                var $field = $(this)
+                var isTextarea = $field[0].tagName && $field[0].tagName.toLowerCase() == "textarea"
+                if (isTextarea) {
+                    $('<pre style="background: white; padding: 10px; break-word: break-all;">' + JSON.stringify(JSON.parse($field.val()), null, '\t') + '</pre>').insertBefore($field)
+                } else {
+                    $('<pre style="background: white; padding: 10px; break-word: break-all;">' + $field.val() + '</pre>').insertBefore($field)
+                }
+                $field.remove()
+            })
+        }
+
     })
 })(jQuery)

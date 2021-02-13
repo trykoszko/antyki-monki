@@ -24,10 +24,15 @@ class Views
 
     public function dashboardPage()
     {
+
         if ($this->olxClient->auth->isAuthenticated) {
+            $allPackets = $this->olxClient->requests->getPackets();
+            $availablePackets = array_filter($allPackets, function ($packet) {
+                return $packet->left > 0;
+            });
             $this->twig->render('dashboard', [
                 'endingAdverts' => $this->olxClient->requests->getEndingAdverts(),
-                'packets' => $this->olxClient->requests->getPackets(),
+                'packets' => $availablePackets,
                 'messages' => $this->olxClient->requests->getMessages(),
                 'userInfo' => $this->olxClient->requests->getUserData(),
             ]);

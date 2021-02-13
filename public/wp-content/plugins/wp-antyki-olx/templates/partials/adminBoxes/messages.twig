@@ -12,7 +12,14 @@
                 {% for message in messages %}
                     <tr>
                         <td>{{ loop.index }}</td>
-                        {# <td>{{ olx_get_product_id_by_advert_id( $message->advert_id ) }}</td> #}
+                        <td><a href="{{ message.advertUrl }}">{{ message.advertTitle }}</a></td>
+                        <td>
+                            {% if message.isUnread %}
+                                <span color="green">{{ __('Nowe wiadomości!') }}
+                            {% else %}
+                                <span>{{__('Wszystkie wiadomości przeczytane')}}</span>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
