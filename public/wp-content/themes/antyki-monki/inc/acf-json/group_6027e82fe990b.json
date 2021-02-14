@@ -143,6 +143,6 @@
     "active": true,
     "description": "",
     "show_in_graphql": 1,
-    "graphql_field_name": "productOlxData",
-    "modified": 1613240126
+    "graphql_field_name": "olx",
+    "modified": 1613255839
 }

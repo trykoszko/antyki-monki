@@ -1,9 +1,9 @@
 {
-    "key": "group_5c8bfd9c6abfb",
-    "title": "Produkt: Meble, Kolekcje, Ogrodowe",
+    "key": "group_product_obraz",
+    "title": "Product: General",
     "fields": [
         {
-            "key": "field_5c8bfd9d0991f",
+            "key": "field_5c6fd4f94ebe9",
             "label": "Atrybuty",
             "name": "product_attributes",
             "type": "group",
@@ -15,10 +15,11 @@
                 "class": "",
                 "id": ""
             },
+            "show_in_graphql": 1,
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_5c8bfd9d5f861",
+                    "key": "field_5c780a9788bd1",
                     "label": "Stan",
                     "name": "state",
                     "type": "radio",
@@ -44,7 +45,7 @@
                     "save_other_choice": 0
                 },
                 {
-                    "key": "field_5c8bfd9d5f87a",
+                    "key": "field_5c6fd54056cd1",
                     "label": "Opis",
                     "name": "desc",
                     "type": "textarea",
@@ -63,7 +64,7 @@
                     "new_lines": "br"
                 },
                 {
-                    "key": "field_5c8bfd9d5f88c",
+                    "key": "field_5c6fd5184ebea",
                     "label": "Szerokość (cm)",
                     "name": "width",
                     "type": "number",
@@ -71,7 +72,7 @@
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "31",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -84,7 +85,7 @@
                     "step": ""
                 },
                 {
-                    "key": "field_5c8bfd9d5f89d",
+                    "key": "field_5c6fd5284ebeb",
                     "label": "Wysokość (cm)",
                     "name": "height",
                     "type": "number",
@@ -92,7 +93,7 @@
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "31",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -103,6 +104,87 @@
                     "min": "",
                     "max": "",
                     "step": ""
+                },
+                {
+                    "key": "field_5c6fd55956cd2",
+                    "label": "Rodzaj podobrazia",
+                    "name": "canvas_type",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "płótno": "płótno",
+                        "dykta": "dykta",
+                        "deska": "deska",
+                        "papier": "papier",
+                        "metal": "metal",
+                        "skóra": "skóra",
+                        "witraż": "witraż"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "array",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_5c780b1688bd2",
+                    "label": "Dodatkowe informacje",
+                    "name": "additional",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "scripted": "podpisany przez autora",
+                        "noframe": "brak ramy",
+                        "framedestroyed": "rama uszkodzona",
+                        "canvasdestroyed": "pęknięte płótno"
+                    },
+                    "allow_custom": 0,
+                    "default_value": [],
+                    "layout": "horizontal",
+                    "toggle": 0,
+                    "return_format": "array",
+                    "save_custom": 0
+                },
+                {
+                    "key": "field_5c780b9c88bd3",
+                    "label": "Rodzaj wykończenia",
+                    "name": "paint_type",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "oil": "farba olejna",
+                        "aqua": "farba akwarela",
+                        "sewing": "haftowany",
+                        "carved": "rzeźbiony"
+                    },
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "default_value": "",
+                    "layout": "horizontal",
+                    "return_format": "array",
+                    "save_other_choice": 0
                 },
                 {
                     "key": "field_5c8bfd9d5f8ad",
@@ -133,55 +215,11 @@
                     "toggle": 0,
                     "return_format": "value",
                     "save_custom": 0
-                },
-                {
-                    "key": "field_5c8bfd9d5f8fd",
-                    "label": "Dodatkowe informacje",
-                    "name": "additional",
-                    "type": "checkbox",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "uszkodzony": "uszkodzony"
-                    },
-                    "allow_custom": 0,
-                    "default_value": [],
-                    "layout": "horizontal",
-                    "toggle": 0,
-                    "return_format": "array",
-                    "save_custom": 0
-                },
-                {
-                    "key": "field_5c8bfdb379e39",
-                    "label": "Głębokość (cm)",
-                    "name": "depth",
-                    "type": "number",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "31",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "min": "",
-                    "max": "",
-                    "step": ""
                 }
             ]
         },
         {
-            "key": "field_6027e830031fb",
+            "key": "field_6027ebd7cfdbf",
             "label": "OLX",
             "name": "olx_attributes",
             "type": "group",
@@ -193,10 +231,11 @@
                 "class": "",
                 "id": ""
             },
+            "show_in_graphql": 1,
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_6027e83068bfa",
+                    "key": "field_6027ebd7cfdc0",
                     "label": "Tytuł w OLX",
                     "name": "olx_title",
                     "type": "text",
@@ -208,6 +247,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "show_in_graphql": 1,
                     "default_value": "",
                     "placeholder": "",
                     "prepend": "",
@@ -215,7 +255,7 @@
                     "maxlength": 70
                 },
                 {
-                    "key": "field_6027e83068c22",
+                    "key": "field_6027ebd7cfdc1",
                     "label": "Kategoria w OLX",
                     "name": "cat",
                     "type": "radio",
@@ -227,6 +267,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "show_in_graphql": 1,
                     "choices": {
                         "431": "Sport i hobby > Kolekcje",
                         "575": "Wyposażenie wnętrz > Dekoracje",
@@ -243,13 +284,13 @@
                     },
                     "allow_null": 0,
                     "other_choice": 0,
+                    "save_other_choice": 0,
                     "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "array",
-                    "save_other_choice": 0
+                    "layout": "",
+                    "return_format": ""
                 },
                 {
-                    "key": "field_6027e83068c2f",
+                    "key": "field_6027ebd7cfdc2",
                     "label": "Cena w zł",
                     "name": "price",
                     "type": "number",
@@ -261,6 +302,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "show_in_graphql": 1,
                     "default_value": "",
                     "placeholder": "",
                     "prepend": "",
@@ -270,7 +312,7 @@
                     "step": ""
                 },
                 {
-                    "key": "field_6027e83068c3c",
+                    "key": "field_6027ebd7cfdc3",
                     "label": "Cena minimalnie",
                     "name": "price_min",
                     "type": "number",
@@ -282,6 +324,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "show_in_graphql": 1,
                     "default_value": "",
                     "placeholder": "",
                     "prepend": "",
@@ -291,7 +334,7 @@
                     "step": ""
                 },
                 {
-                    "key": "field_6027e83068c49",
+                    "key": "field_6027ebd7cfdc4",
                     "label": "Stan",
                     "name": "state",
                     "type": "radio",
@@ -303,21 +346,22 @@
                         "class": "",
                         "id": ""
                     },
+                    "show_in_graphql": 1,
                     "choices": {
                         "used": "używany",
                         "new": "nowy"
                     },
                     "allow_null": 0,
                     "other_choice": 0,
+                    "save_other_choice": 0,
                     "default_value": "",
-                    "layout": "vertical",
-                    "return_format": "value",
-                    "save_other_choice": 0
+                    "layout": "",
+                    "return_format": ""
                 }
             ]
         },
         {
-            "key": "field_5c8bfd9d09990",
+            "key": "field_5c6fd7643a377",
             "label": "Galeria",
             "name": "product_gallery",
             "type": "gallery",
@@ -329,19 +373,20 @@
                 "class": "",
                 "id": ""
             },
-            "min": "",
-            "max": "",
+            "show_in_graphql": 1,
+            "return_format": "array",
+            "preview_size": "medium",
             "insert": "append",
             "library": "all",
+            "min": "",
+            "max": "",
             "min_width": "",
             "min_height": "",
             "min_size": "",
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": "",
-            "return_format": "array",
-            "preview_size": "medium"
+            "mime_types": ""
         }
     ],
     "location": [
@@ -350,35 +395,6 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "product"
-            },
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:meble"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "product"
-            },
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:kolekcje"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "product"
-            },
-            {
-                "param": "post_category",
-                "operator": "==",
-                "value": "category:ogrod"
             }
         ]
     ],
@@ -390,7 +406,7 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "show_in_graphql": 0,
-    "graphql_field_name": "productAcf",
-    "modified": 1613229048
+    "show_in_graphql": 1,
+    "graphql_field_name": "customFields",
+    "modified": 1613333402
 }

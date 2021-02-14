@@ -82,7 +82,9 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1567010848
+    "show_in_graphql": 1,
+    "graphql_field_name": "wpOlxOptions",
+    "modified": 1613266717
 }

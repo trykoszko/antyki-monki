@@ -76,10 +76,10 @@
 				{{__('Aukcja nie istnieje')}}
 			</div>
 			<br/>
-			{% if hasFreeAdSlot %}
-				<button data-product-id="{{postId}}" class="button js-olx-advert-publish">
-					{{__('Aktywuj')}}
-				</button>
+			<button data-product-id="{{postId}}" class="button js-olx-advert-publish">
+				{{__('Aktywuj')}}
+			</button>
+			{# {% if hasFreeAdSlot %}
 			{% else %}
 				<hr />
 				<p>{{__('Nie można dodać ogłoszenia, bo skończył się pakiet w tej kategorii')}}</p>
@@ -89,7 +89,7 @@
 				{% else %}
 					<a target="_blank" class="button" href="https://www.olx.pl/buypackage/?bs=langingpage_buypackage_top">{{__('Dokup pakiet')}}</a>
 				{% endif %}
-			{% endif %}
+			{% endif %} #}
 		{% endif %}
 	{% endif %}
 </div>

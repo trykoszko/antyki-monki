@@ -101,6 +101,24 @@ class Main
                 return $field;
             }
         });
+
+        add_filter('admin_head', [$this, 'disableSettingsPageGutenberg'], 10, 2);
+    }
+
+    public function disableSettingsPageGutenberg()
+    {
+        $screen = get_current_screen();
+        if( 'page' !== $screen->id || ! isset( $_GET['post']) ) {
+            return;
+        }
+
+        $post = get_post($_GET['post']);
+        $postSlug = $post->post_name;
+
+        if( $postSlug === 'settings' ) {
+            error_log("$postSlug === 'settings'");
+            remove_post_type_support( 'page', 'editor' );
+        }
     }
 
     public function adminCptListView()
@@ -262,7 +280,7 @@ class Main
         switch ($column) {
             case 'productImage':
                 $this->adminViews->twig->render('adminColumns_productImage', [
-                    'productImgUrl' => get_field('product_gallery', $postId)
+                    'productImgUrl' => (get_field('product_gallery', $postId) && is_array(get_field('product_gallery', $postId)))
                         ? get_field('product_gallery', $postId)[0]['sizes']['thumbnail']
                         : null,
                 ]);
@@ -273,7 +291,7 @@ class Main
                 $productCategoryId = get_field('olx_attributes', $postId) ? (int) get_field('olx_attributes_cat', $postId) : null;
                 $productCategoryParentId = (int) get_field('olx_parent_category_id', $postId) ?? null;
 
-                $olxCatId = $productCategoryId ?? $productCategoryParentId;
+                $olxCatId = $productCategoryId ? $productCategoryId : $productCategoryParentId;
 
                 $allPackets = get_option('olxPackets');
 

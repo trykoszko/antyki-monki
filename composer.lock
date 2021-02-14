@@ -432,20 +432,20 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "5.6.0",
+            "version": "5.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "3055975734646c8d0b8caf7b5af168ced6ec4309"
+                "reference": "d7a597988102967cdfc28851b6b897d018613823"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/3055975734646c8d0b8caf7b5af168ced6ec4309",
-                "reference": "3055975734646c8d0b8caf7b5af168ced6ec4309",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/d7a597988102967cdfc28851b6b897d018613823",
+                "reference": "d7a597988102967cdfc28851b6b897d018613823",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "5.6.0",
+                "johnpbloch/wordpress-core": "5.6.1",
                 "johnpbloch/wordpress-core-installer": "^1.0 || ^2.0",
                 "php": ">=5.6.20"
             },
@@ -474,20 +474,20 @@
                 "source": "http://core.trac.wordpress.org/browser",
                 "wiki": "http://codex.wordpress.org/"
             },
-            "time": "2020-12-08T22:34:35+00:00"
+            "time": "2021-02-03T21:27:41+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "5.6.0",
+            "version": "5.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "f074617dd69f466302836d1ae5de75c0bd7b6dfd"
+                "reference": "82592ec73d42cf784da38adb0028a24dbacab1b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/f074617dd69f466302836d1ae5de75c0bd7b6dfd",
-                "reference": "f074617dd69f466302836d1ae5de75c0bd7b6dfd",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/82592ec73d42cf784da38adb0028a24dbacab1b4",
+                "reference": "82592ec73d42cf784da38adb0028a24dbacab1b4",
                 "shasum": ""
             },
             "require": {
@@ -495,7 +495,7 @@
                 "php": ">=5.6.20"
             },
             "provide": {
-                "wordpress/core-implementation": "5.6.0"
+                "wordpress/core-implementation": "5.6.1"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -522,7 +522,7 @@
                 "source": "https://core.trac.wordpress.org/browser",
                 "wiki": "https://codex.wordpress.org/"
             },
-            "time": "2020-12-08T22:34:23+00:00"
+            "time": "2021-02-03T21:27:35+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -1526,16 +1526,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.2.1",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "f795ca686d38530045859b0350b5352f7d63447d"
+                "reference": "1f3b7e2c06cc05d42936a8ad508ff1db7975cdc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f795ca686d38530045859b0350b5352f7d63447d",
-                "reference": "f795ca686d38530045859b0350b5352f7d63447d",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/1f3b7e2c06cc05d42936a8ad508ff1db7975cdc5",
+                "reference": "1f3b7e2c06cc05d42936a8ad508ff1db7975cdc5",
                 "shasum": ""
             },
             "require": {
@@ -1550,7 +1550,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -1586,7 +1586,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.2.1"
+                "source": "https://github.com/twigphp/Twig/tree/v3.3.0"
             },
             "funding": [
                 {
@@ -1598,7 +1598,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-05T15:40:36+00:00"
+            "time": "2021-02-08T09:54:36+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -1754,15 +1754,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-crontrol",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-crontrol/",
-                "reference": "tags/1.9.0"
+                "reference": "tags/1.9.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-crontrol.1.9.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-crontrol.1.9.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -2665,16 +2665,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.1",
+            "version": "9.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "e7bdf4085de85a825f4424eae52c99a1cec2f360"
+                "reference": "f661659747f2f87f9e72095bb207bceb0f151cb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e7bdf4085de85a825f4424eae52c99a1cec2f360",
-                "reference": "e7bdf4085de85a825f4424eae52c99a1cec2f360",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f661659747f2f87f9e72095bb207bceb0f151cb4",
+                "reference": "f661659747f2f87f9e72095bb207bceb0f151cb4",
                 "shasum": ""
             },
             "require": {
@@ -2752,7 +2752,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.1"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.2"
             },
             "funding": [
                 {
@@ -2764,7 +2764,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-17T07:42:25+00:00"
+            "time": "2021-02-02T14:45:58+00:00"
         },
         {
             "name": "sebastian/cli-parser",

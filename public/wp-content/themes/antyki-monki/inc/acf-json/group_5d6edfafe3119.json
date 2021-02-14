@@ -114,9 +114,9 @@
     "location": [
         [
             {
-                "param": "options_page",
+                "param": "page",
                 "operator": "==",
-                "value": "theme-settings"
+                "value": "1003"
             }
         ]
     ],
@@ -129,6 +129,6 @@
     "active": true,
     "description": "",
     "show_in_graphql": 1,
-    "graphql_field_name": "themeOptions",
-    "modified": 1609892922
+    "graphql_field_name": "wpAcfOptions",
+    "modified": 1613296658
 }
