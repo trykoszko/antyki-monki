@@ -78,19 +78,18 @@ class Ajax
         // arguments from AJAX request
         $args = $_REQUEST;
         $productId = $args['productId'];
+
         $advert = $this->olxClient->requests->addAdvert($productId);
 
-        Notice::send('ajax', json_encode([
-            'Olx->Ajax->addAdvert()' => [
-                'params' => [
-                    '$productId' => $productId
-                ],
-                'result' => true
-            ]
-        ]));
+        if ($advert && $advert['success']) {
+            \wp_send_json_success();
+        } else {
+            \wp_send_json_error();
+        }
 
-        // return json response
-        echo \json_encode($advert);
+        Notice::send('ajax', json_encode([
+            'Olx->Ajax->addAdvert() [' . $productId . '] - Success: ' . $advert['success']
+        ]));
         \wp_die();
     }
 

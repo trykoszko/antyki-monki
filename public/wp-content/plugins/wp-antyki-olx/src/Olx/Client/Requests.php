@@ -186,6 +186,11 @@ class Requests
         $productOlxAttributes = get_field( 'olx_attributes', $productId );
         $productImages = (array) get_field( 'product_gallery', $productId );
 
+        error_log(json_encode([
+            '$productId' => $productId,
+            '$productOlxAttributes' => $productOlxAttributes
+        ]));
+
         $maxAllowedImages = array_slice($productImages, 0, $olxMaxImages);
 
         // additional info field
@@ -279,7 +284,7 @@ class Requests
         $params = array(
             'title' => $productOlxAttributes['olx_title'],
             'description' => str_replace( '↵', '', $desc ),
-            'category_id' => $productOlxAttributes['cat']['value'],
+            'category_id' => $productOlxAttributes['cat'],
             'advertiser_type' => 'business',
             'contact' => array(
                 'name' => \get_field( 'olx_settings_person_name', 'option' ),
@@ -310,7 +315,6 @@ class Requests
     {
         try {
             $params = self::prepareAdvert($productId);
-
             $response = $this->guzzleClient->request(
                 'POST',
                 '/api/partner/adverts',
@@ -335,13 +339,18 @@ class Requests
                 update_field( 'olx_olx_data', json_encode( $data ), $productId );
                 update_field( 'olx_status', 'active', $productId );
             }
-            return $data;
+            return [
+                'success' => true,
+                'message' => ''
+            ];
         } catch (RequestException $e) {
+            $errorMessage = $e->getResponse()->getBody()->getContents();
             error_log(json_encode([
-                'Olx->Client->Requests->addAdvert error' => $e->getResponse()->getBody()->getContents()
+                'Olx->Client->Requests->addAdvert error' => $errorMessage
             ]));
             return [
-                'error' => $e,
+                'success' => false,
+                'message' => $errorMessage
             ];
         }
     }

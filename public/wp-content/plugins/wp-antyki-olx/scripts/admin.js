@@ -96,8 +96,8 @@
                     .done(function (res) {
                         toggleButton($btn)
                         console.log('res', res)
-                        if (res.error) {
-                            alert('Błąd dodawania ogłoszenia: ' + res.error.detail)
+                        if (res.error || !res.success) {
+                            alert('Błąd dodawania ogłoszenia')
                         } else {
                             alert('Ogłoszenie dodane')
                             console.log('Ogłoszenie dodane', res)
