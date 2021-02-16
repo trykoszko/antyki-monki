@@ -5,6 +5,7 @@ namespace Antyki\Plugin;
 use Antyki\Container\Main as DIContainer;
 use Antyki\Plugin\Cron as CRON;
 use Antyki\Notice\Main as Notice;
+use Antyki\Api\Main as Api;
 
 /**
  * Main plugin class
@@ -17,6 +18,7 @@ class Main
     public $adminViews;
     public $ajax;
     public $cron;
+    public $api;
 
     public function __construct(DIContainer $container)
     {
@@ -34,6 +36,7 @@ class Main
         $this->adminViews = $this->container->get('AdminViews');
         $this->ajax = $this->container->get('Ajax');
         $this->cron = new CRON($this->olx);
+        $this->api = new Api();
     }
 
     public function run()
@@ -49,6 +52,8 @@ class Main
         define('ANTYKI_CPT_PRODUCT_ALT_PLURAL', 'antyki');
         define('ANTYKI_CPT_CUSTOM_STATUS', 'sold');
         define('ANTYKI_CPT_CUSTOM_STATUS_LABEL', 'Sprzedane');
+
+        define('ANTYKI_API_VERSION', 'v1');
 
         $this->initHooks();
     }
