@@ -33,7 +33,7 @@ class Main {
         $prodUrl = 'https://discord.com/api/webhooks/811711163125465188/ROyrjyFOwOyklYj7j4nkGLp0_aE0TSNwIgW6_lquJ-2a815D6JSIEQQaq64uyHzNEj1k';
         $testUrl = 'https://discord.com/api/webhooks/807987019463917658/UmVTi5zt1i2Zqws-zby7ke9dnDui1p5PkLPS0XHpRcZ_EMC_E1GD1W-QvCyZnXlc2mMS';
 
-        $webhookUrl = getenv('WP_LOCAL_DEV') ? $testUrl : $prodUrl;
+        $webhookUrl = defined('WP_LOCAL_DEV') && WP_LOCAL_DEV ? $testUrl : $prodUrl;
 
         $tapMiddleware = GuzzleMiddleware::tap(function ($request) {
             error_log($request->getHeaderLine('Content-Type'));

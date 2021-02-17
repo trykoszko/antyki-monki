@@ -44,8 +44,6 @@ define('ANTYKI_OLX_CLIENT_ID', $_ENV['ANTYKI_OLX_CLIENT_ID']);
 define('ANTYKI_OLX_CLIENT_SECRET', $_ENV['ANTYKI_OLX_CLIENT_SECRET']);
 define('ANTYKI_OLX_STATE', $_ENV['ANTYKI_OLX_STATE']);
 
-define('GRAPHQL_DEBUG', true);
-
 if ( ! defined( 'ABSPATH' ) ) {
     define('ABSPATH', dirname( __FILE__ ) . '/wp/');
 }
