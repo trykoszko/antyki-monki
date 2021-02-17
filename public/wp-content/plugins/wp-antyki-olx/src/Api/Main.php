@@ -4,6 +4,8 @@ namespace Antyki\Api;
 
 use Antyki\Api\Controller as Controller;
 
+use OpenApi as OpenApi;
+
 class Main {
 
     public $apiVersion;
@@ -18,31 +20,45 @@ class Main {
 
         $this->controller = new Controller();
 
+        // $this->initApi();
         $this->initRoutes();
+    }
+
+    public function initApi()
+    {
+        // @TODO:
+        $openApi = OpenApi\scan(__DIR__);
+        header('Content-Type: application/x-yaml');
+        echo $openApi->toYaml();
     }
 
     public function initRoutes()
     {
         $routeList = [
-            // $endpointName => $args
             'products' => [
-                'methods' => 'GET',
-                'callback' => [$this->controller, 'getAllProducts'],
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getAllProducts']
             ],
-            'products/(?P<id>\d+)' => [
-                'methods' => 'GET',
-                'callback' => [$this->controller, 'getSingleProduct'],
-                // 'args' => [
-                //     'id' => [
-                //         'validate_callback' => function($param) {
-                //             return is_numeric($param);
-                //         }
-                //     ]
-                // ],
+            'product/(?P<id>\d+)' => [
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getSingleProduct']
             ],
-            // 'categories' => [],
-            // 'category' => ['term_id'],
-            // 'pages' => []
+            'categories' => [
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getAllCategories']
+            ],
+            'category/(?P<id>\d+)' => [
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getSingleCategory']
+            ],
+            'pages' => [
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getAllPages']
+            ],
+            'options' => [
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getAllOptions']
+            ]
         ];
         foreach ($routeList as $endpoint => $args) {
             add_action('rest_api_init', function () use ($endpoint, $args) {

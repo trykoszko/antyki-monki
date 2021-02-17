@@ -13,26 +13,27 @@ class Main {
     {
         switch ($type) {
             case 'ajax_text':
-                $webhookUrl = 'https://discord.com/api/webhooks/807987019463917658/UmVTi5zt1i2Zqws-zby7ke9dnDui1p5PkLPS0XHpRcZ_EMC_E1GD1W-QvCyZnXlc2mMS';
                 $content = $message;
                 break;
             case 'ajax':
                 $message = json_encode(json_decode($message), JSON_PRETTY_PRINT);
-                $webhookUrl = 'https://discord.com/api/webhooks/807987019463917658/UmVTi5zt1i2Zqws-zby7ke9dnDui1p5PkLPS0XHpRcZ_EMC_E1GD1W-QvCyZnXlc2mMS';
                 $content = "```bash\n$message```";
                 break;
             case 'general':
-                $webhookUrl = 'https://discord.com/api/webhooks/807967332496179211/snTM_QBA4nS2I9Essg8jVN5xedzjs0V6eR4Q1BJH1tXOjUP3-odIJbgW7Wlo7udeIVsT';
                 $content = $message;
                 break;
             case 'error':
             default:
-                $webhookUrl = 'https://discord.com/api/webhooks/808006970694041630/lCfi_MG2WufkNJd_1-sRYD_kn8279kCtp441OqnxV7ZauRqtkjjadExW0-e29WdcIaaf';
                 $content = "```css\n$message```\n\n";
                 break;
         }
 
         $avatarUrl = 'https://img-resizer.prd.01.eu-west-1.eu.olx.org/img-eu-olxpl-production/921433466_1_192x192_rev001.jpg';
+
+        $prodUrl = 'https://discord.com/api/webhooks/811711163125465188/ROyrjyFOwOyklYj7j4nkGLp0_aE0TSNwIgW6_lquJ-2a815D6JSIEQQaq64uyHzNEj1k';
+        $testUrl = 'https://discord.com/api/webhooks/807987019463917658/UmVTi5zt1i2Zqws-zby7ke9dnDui1p5PkLPS0XHpRcZ_EMC_E1GD1W-QvCyZnXlc2mMS';
+
+        $webhookUrl = getenv('WP_LOCAL_DEV') ? $testUrl : $prodUrl;
 
         $tapMiddleware = GuzzleMiddleware::tap(function ($request) {
             error_log($request->getHeaderLine('Content-Type'));
