@@ -15,16 +15,18 @@ class Main {
 
     public function __construct()
     {
-        $this->apiVersion = defined('ANTYKI_API_VERSION') ? ANTYKI_API_VERSION : 'v1';
-        $this->apiUrl = '/api/' . $this->apiVersion . '/';
+        if (defined('WP_LOCAL_DEV') && WP_LOCAL_DEV) {
+            $this->apiVersion = defined('ANTYKI_API_VERSION') ? ANTYKI_API_VERSION : 'v1';
+            $this->apiUrl = '/api/' . $this->apiVersion . '/';
 
-        $this->controller = new Controller();
+            $this->controller = new Controller();
 
-        // $this->initApi();
-        $this->initRoutes();
+            // $this->initDocs();
+            $this->initRoutes();
+        }
     }
 
-    public function initApi()
+    public function initDocs()
     {
         // @TODO:
         $openApi = OpenApi\scan(__DIR__);
