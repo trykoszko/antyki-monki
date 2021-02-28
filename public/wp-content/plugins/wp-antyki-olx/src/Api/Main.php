@@ -15,15 +15,13 @@ class Main {
 
     public function __construct()
     {
-        if (defined('WP_LOCAL_DEV') && WP_LOCAL_DEV) {
-            $this->apiVersion = defined('ANTYKI_API_VERSION') ? ANTYKI_API_VERSION : 'v1';
-            $this->apiUrl = '/api/' . $this->apiVersion . '/';
+        $this->apiVersion = defined('ANTYKI_API_VERSION') ? ANTYKI_API_VERSION : 'v1';
+        $this->apiUrl = '/api/' . $this->apiVersion . '/';
 
-            $this->controller = new Controller();
+        $this->controller = new Controller();
 
-            // $this->initDocs();
-            $this->initRoutes();
-        }
+        // $this->initDocs();
+        $this->initRoutes();
     }
 
     public function initDocs()
@@ -41,7 +39,11 @@ class Main {
                 'method' => 'GET',
                 'callback' => [$this->controller, 'getAllProducts']
             ],
-            'product/(?P<id>\d+)' => [
+            'products_slugs' => [
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getAllProductSlugs']
+            ],
+            'product/(?P<id>\S+)' => [
                 'method' => 'GET',
                 'callback' => [$this->controller, 'getSingleProduct']
             ],
@@ -60,6 +62,10 @@ class Main {
             'options' => [
                 'method' => 'GET',
                 'callback' => [$this->controller, 'getAllOptions']
+            ],
+            'menus' => [
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getAllMenus']
             ]
         ];
         foreach ($routeList as $endpoint => $args) {

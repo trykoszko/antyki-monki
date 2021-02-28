@@ -78,6 +78,15 @@ class Controller {
     public function getSingleProduct($request)
     {
         $postId = $request->get_param('id');
+        if (!is_numeric($postId)) {
+            $posts = get_posts([
+                'name' => $postId,
+                'post_type' => ANTYKI_CPT_PRODUCT,
+                'post_status' => 'all',
+                'numberposts' => 1
+            ]);
+            $postId = !empty($posts) ? $posts[0]->ID : null;
+        }
         if ($postId) {
             $product = self::prepareProduct($postId);
         } else {
@@ -95,12 +104,32 @@ class Controller {
         $products = [];
         $posts = get_posts([
             'post_type' => ANTYKI_CPT_PRODUCT,
-            'numberposts' => -1,
+            // 'numberposts' => -1,
+            'numberposts' => 5,
             'post_status' => 'publish',
             'fields' => 'ids'
         ]);
         foreach ($posts as $postId) {
             $products[] = self::prepareProduct($postId);
+        }
+        echo json_encode($products);
+        die();
+    }
+
+    public function getAllProductSlugs()
+    {
+        $posts = get_posts([
+            'post_type' => ANTYKI_CPT_PRODUCT,
+            'numberposts' => -1,
+            'post_status' => 'publish',
+            'fields' => 'ids'
+        ]);
+        $products = [];
+        if ($posts) {
+            foreach ($posts as $postId) {
+                $post = get_post($postId);
+                $products[$postId] = $post->post_name;
+            }
         }
         echo json_encode($products);
         die();
@@ -162,8 +191,67 @@ class Controller {
     public function getAllOptions()
     {
         $options = get_fields('option');
-        echo json_encode($options);
+        $settings = self::getGlobalSettings();
+        $menus = self::getAllMenus();
+        echo json_encode([
+            'themeOptions' => $options,
+            'menus' => $menus,
+            'globalSettings' => $settings
+        ]);
         die();
+    }
+
+    public static function getAllMenus()
+    {
+        $menus = get_registered_nav_menus();
+        $menusWithItems = [];
+        if ($menus) {
+            foreach ($menus as $menuSlug => $menuName) {
+                $menu = [
+                    'name' => $menuName,
+                    'slug' => $menuSlug
+                ];
+                $items = wp_get_nav_menu_items($menuName);
+                if ($items) {
+                    foreach ($items as $item) {
+                        $menuItemUrl = str_replace(
+                            'https://antyki.sors.smarthost.pl',
+                            '',
+                            str_replace(
+                                'https://antyki.sors.smarthost.pl.devlocal',
+                                '',
+                                $item->url
+                            )
+                        );
+                        $menu['items'][] = [
+                            'id' => $item->ID,
+                            'title' => $item->title,
+                            'target' => $item->target,
+                            'url' => $menuItemUrl,
+                            'order' => $item->menu_order,
+                            'parent_id' => $item->menu_item_parent
+                        ];
+                    }
+                }
+                $menusWithItems[] = $menu;
+            }
+        }
+        return $menusWithItems;
+    }
+
+    public static function getGlobalSettings()
+    {
+        $allOptions = wp_load_alloptions();
+        $itemsToGet = [
+            'blogname', 'blogdescription', 'admin_email'
+        ];
+        $optionsToReturn = [];
+        foreach ($allOptions as $optionName => $optionValue) {
+            if (in_array($optionName, $itemsToGet)) {
+                $optionsToReturn[$optionName] = $optionValue;
+            }
+        }
+        return $optionsToReturn;
     }
 
 }
