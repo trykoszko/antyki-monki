@@ -104,7 +104,7 @@
         },
         {
             "key": "field_5da38266343ec",
-            "label": "Opisy w stopce",
+            "label": "Footer descs",
             "name": "footer_descs",
             "type": "repeater",
             "instructions": "",
@@ -115,6 +115,7 @@
                 "class": "",
                 "id": ""
             },
+            "show_in_graphql": 1,
             "collapsed": "",
             "min": 0,
             "max": 0,
@@ -265,5 +266,5 @@
     "description": "",
     "show_in_graphql": 1,
     "graphql_field_name": "wpAcfOptions",
-    "modified": 1614539133
+    "modified": 1614539249
 }
