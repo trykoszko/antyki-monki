@@ -8,6 +8,23 @@ namespace Antyki\Api;
 
 class Controller {
 
+    // private static function getImageObject($img)
+    // {
+    //     if (!is_countable($img)) {
+    //         return [];
+    //     }
+    //     return [
+    //         'id' => $img['ID'],
+    //         'title' => $img['title'],
+    //         'alt' => $img['alt'],
+    //         'url' => $img['url'],
+    //         'dimensions' => [
+    //             'width' => $img['width'],
+    //             'height' => $img['height']
+    //         ]
+    //     ];
+    // }
+
     public static function prepareProduct($postId, $isTeaser = false)
     {
         $post = get_post($postId);
@@ -23,6 +40,8 @@ class Controller {
                 ];
             }
             $product = [
+                'success' => true,
+                'message' => '',
                 'id' => is_object($post) ? $post->ID : $post,
                 'title' => get_the_title($post),
                 'status' => get_post_status($post),
@@ -69,12 +88,6 @@ class Controller {
         return $category;
     }
 
-    /**
-     * @OA\Get(
-     *     path="/wp-json/antyki/v1/product",
-     *     @OA\Response(response="200", description="An example resource")
-     * )
-     */
     public function getSingleProduct($request)
     {
         $postId = $request->get_param('id');
@@ -104,7 +117,6 @@ class Controller {
         $products = [];
         $posts = get_posts([
             'post_type' => ANTYKI_CPT_PRODUCT,
-            // 'numberposts' => -1,
             'numberposts' => 5,
             'post_status' => 'publish',
             'fields' => 'ids'
@@ -188,9 +200,27 @@ class Controller {
         die();
     }
 
-    public function getAllOptions()
+    public static function getThemeOptions()
     {
         $options = get_fields('option');
+        $itemsToGet = [
+            'footer_descs',
+            'hero_image',
+            'logo',
+            'socials'
+        ];
+        $optionsToReturn = [];
+        foreach ($options as $optionName => $optionValue) {
+            if (in_array($optionName, $itemsToGet)) {
+                $optionsToReturn[$optionName] = $optionValue;
+            }
+        }
+        return $optionsToReturn;
+    }
+
+    public function getAllOptions()
+    {
+        $options = self::getThemeOptions();
         $settings = self::getGlobalSettings();
         $menus = self::getAllMenus();
         echo json_encode([
@@ -243,7 +273,9 @@ class Controller {
     {
         $allOptions = wp_load_alloptions();
         $itemsToGet = [
-            'blogname', 'blogdescription', 'admin_email'
+            'blogname',
+            'blogdescription',
+            // 'admin_email'
         ];
         $optionsToReturn = [];
         foreach ($allOptions as $optionName => $optionValue) {

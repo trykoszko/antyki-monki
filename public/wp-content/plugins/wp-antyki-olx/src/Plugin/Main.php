@@ -107,6 +107,13 @@ class Main
             }
         });
 
+        add_filter('acf/format_value/type=image', function ($field) {
+            error_log(json_encode([
+                'field' => $field
+            ]));
+            return $field;
+        });
+
         add_filter('admin_head', [$this, 'disableSettingsPageGutenberg'], 10, 2);
     }
 
