@@ -4,31 +4,36 @@ namespace Antyki\Api;
 
 class Controller {
 
-    public static function prepareProduct($postId, $isTeaser = false)
+    public static function prepareProduct($postId, $basic = false)
     {
         $post = get_post($postId);
         if ($post->post_type === ANTYKI_CPT_PRODUCT) {
-            $categories = [];
-            $cats = get_the_category($post);
-            foreach ($cats as $cat) {
-                $categories[] = [
-                    'id' => $cat->term_id,
-                    'name' => $cat->name,
-                    'slug' => $cat->slug,
-                    'items' => $cat->count
-                ];
-            }
             $product = [
                 'success' => true,
                 'message' => '',
                 'id' => is_object($post) ? $post->ID : $post,
                 'title' => get_the_title($post),
-                'status' => get_post_status($post),
-                'slug' => get_post_field('post_name', $post),
-                'date' => get_post_datetime($post),
-                'cats' => $categories,
-                'acf' => get_fields($post)
+                'slug' => get_post_field('post_name', $post)
+                // @TODO: add product image url
             ];
+            if (!$basic) {
+                $categories = [];
+                $cats = get_the_category($post);
+                foreach ($cats as $cat) {
+                    $categories[] = [
+                        'id' => $cat->term_id,
+                        'name' => $cat->name,
+                        'slug' => $cat->slug,
+                        'items' => $cat->count
+                    ];
+                }
+                array_merge($product, [
+                    'status' => get_post_status($post),
+                    'date' => get_post_datetime($post),
+                    'cats' => $categories,
+                    'acf' => get_fields($post)
+                ]);
+            }
         } else {
             $product = [
                 'success' => false,
@@ -46,20 +51,20 @@ class Controller {
         $items = [];
         $products = get_posts([
             'post_type' => ANTYKI_CPT_PRODUCT,
-            'numberposts' => -1,
+            'numberposts' => 3,
             'post_status' => 'publish',
             'fields' => 'ids'
         ]);
         if ($products) {
             foreach ($products as $product) {
-                $items[] = self::prepareProduct($product);
+                $items[] = self::prepareProduct($product, $basic = true);
             }
         }
         $category = [
             'id' => $cat->term_id,
             'name' => $cat->name,
             'slug' => $cat->slug,
-            'count' => $cat->count,
+            'count' => count($items),
             'desc' => $cat->description,
             'acf' => get_fields($cat),
             'items' => $items
