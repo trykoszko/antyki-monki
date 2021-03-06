@@ -9,8 +9,6 @@ class Controller {
         $post = get_post($postId);
         if ($post->post_type === ANTYKI_CPT_PRODUCT) {
             $product = [
-                'success' => true,
-                'message' => '',
                 'id' => is_object($post) ? $post->ID : $post,
                 'title' => get_the_title($post),
                 'slug' => get_post_field('post_name', $post)
@@ -28,6 +26,8 @@ class Controller {
                     ];
                 }
                 $product = array_merge($product, [
+                    'success' => true,
+                    'message' => '',
                     'status' => get_post_status($post),
                     'date' => get_post_datetime($post),
                     'cats' => $categories,
@@ -61,6 +61,8 @@ class Controller {
             }
         }
         $category = [
+            'success' => true,
+            'message' => '',
             'id' => $cat->term_id,
             'name' => $cat->name,
             'slug' => $cat->slug,
@@ -150,14 +152,14 @@ class Controller {
 
     public function getSingleCategory($request)
     {
-        $termId = $request->get_param('id');
-        if ($termId) {
-            $cat = get_term($termId);
+        $termSlug = $request->get_param('slug');
+        if ($termSlug) {
+            $cat = get_term_by('slug', $termSlug, 'category');
             $category = self::prepareCategory($cat);
         } else {
             $category = [
                 'success' => false,
-                'message' => "Category $termId not found"
+                'message' => "Category $termSlug not found"
             ];
         }
         echo json_encode($category);

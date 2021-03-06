@@ -55,7 +55,7 @@ class Main {
                 'method' => 'GET',
                 'callback' => [$this->controller, 'getAllCategorySlugs']
             ],
-            'category/(?P<id>\d+)' => [
+            'category/(?P<slug>\S+)' => [
                 'method' => 'GET',
                 'callback' => [$this->controller, 'getSingleCategory']
             ],
