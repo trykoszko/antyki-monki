@@ -1,29 +1,8 @@
 <?php
 
-/**
- * @OA\Info(title="My First API", version="0.1")
- */
-
 namespace Antyki\Api;
 
 class Controller {
-
-    // private static function getImageObject($img)
-    // {
-    //     if (!is_countable($img)) {
-    //         return [];
-    //     }
-    //     return [
-    //         'id' => $img['ID'],
-    //         'title' => $img['title'],
-    //         'alt' => $img['alt'],
-    //         'url' => $img['url'],
-    //         'dimensions' => [
-    //             'width' => $img['width'],
-    //             'height' => $img['height']
-    //         ]
-    //     ];
-    // }
 
     public static function prepareProduct($postId, $isTeaser = false)
     {
