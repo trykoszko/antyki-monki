@@ -4,7 +4,7 @@ namespace Antyki\Api;
 
 class Controller {
 
-    public static function prepareProduct($postId, $basic = false)
+    public static function prepareProduct($postId, $basic)
     {
         $post = get_post($postId);
         if ($post->post_type === ANTYKI_CPT_PRODUCT) {
@@ -27,7 +27,7 @@ class Controller {
                         'items' => $cat->count
                     ];
                 }
-                array_merge($product, [
+                $product = array_merge($product, [
                     'status' => get_post_status($post),
                     'date' => get_post_datetime($post),
                     'cats' => $categories,
@@ -85,7 +85,7 @@ class Controller {
             $postId = !empty($posts) ? $posts[0]->ID : null;
         }
         if ($postId) {
-            $product = self::prepareProduct($postId);
+            $product = self::prepareProduct($postId, false);
         } else {
             $product = [
                 'success' => false,
@@ -106,7 +106,7 @@ class Controller {
             'fields' => 'ids'
         ]);
         foreach ($posts as $postId) {
-            $products[] = self::prepareProduct($postId);
+            $products[] = self::prepareProduct($postId, false);
         }
         echo json_encode($products);
         die();
