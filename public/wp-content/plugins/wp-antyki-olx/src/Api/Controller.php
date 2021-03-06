@@ -137,13 +137,12 @@ class Controller {
     {
         $categories = get_terms([
             'hide_empty' => true,
-            'taxonomy' => 'category',
-
+            'taxonomy' => 'category'
         ]);
         $cats = [];
         if ($categories) {
             foreach ($categories as $cat) {
-                $cats[] = $cat->slug;
+                $cats[$cat->term_id] = $cat->slug;
             }
         }
         echo json_encode($cats);
