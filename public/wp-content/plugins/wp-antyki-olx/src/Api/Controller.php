@@ -53,7 +53,15 @@ class Controller {
             'post_type' => ANTYKI_CPT_PRODUCT,
             'numberposts' => 3,
             'post_status' => 'publish',
-            'fields' => 'ids'
+            'fields' => 'ids',
+            'tax_query' => [
+                [
+                    'taxonomy' => 'category',
+                    'field' => 'term_id',
+                    'terms' => (int) $cat->term_id,
+                    'include_children' => true
+                ]
+            ]
         ]);
         if ($products) {
             foreach ($products as $product) {
@@ -170,7 +178,7 @@ class Controller {
         $categories = [];
         $cats = get_terms([
             'taxonomy' => 'category',
-            'hide_empty' => false
+            'hide_empty' => true
         ]);
         foreach ($cats as $cat) {
             $categories[] = self::prepareCategory($cat);
