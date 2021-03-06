@@ -96,7 +96,7 @@ class Controller {
         $products = [];
         $posts = get_posts([
             'post_type' => ANTYKI_CPT_PRODUCT,
-            'numberposts' => 5,
+            'numberposts' => -1,
             'post_status' => 'publish',
             'fields' => 'ids'
         ]);
@@ -123,6 +123,23 @@ class Controller {
             }
         }
         echo json_encode($products);
+        die();
+    }
+
+    public function getAllCategorySlugs()
+    {
+        $categories = get_terms([
+            'hide_empty' => true,
+            'taxonomy' => 'category',
+
+        ]);
+        $cats = [];
+        if ($categories) {
+            foreach ($categories as $cat) {
+                $cats[] = $cat->slug;
+            }
+        }
+        echo json_encode($cats);
         die();
     }
 
