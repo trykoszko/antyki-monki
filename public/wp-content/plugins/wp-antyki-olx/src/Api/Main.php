@@ -63,6 +63,10 @@ class Main {
                 'method' => 'GET',
                 'callback' => [$this->controller, 'getAllPages']
             ],
+            'page/(?P<slug>\S+)' => [
+                'method' => 'GET',
+                'callback' => [$this->controller, 'getPageBySlug']
+            ],
             'options' => [
                 'method' => 'GET',
                 'callback' => [$this->controller, 'getAllOptions']

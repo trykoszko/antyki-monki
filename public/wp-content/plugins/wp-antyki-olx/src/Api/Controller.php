@@ -296,4 +296,27 @@ class Controller {
         return $optionsToReturn;
     }
 
+    public function getPageBySlug($request) {
+        $slug = $request->get_param('slug');
+        if (!is_numeric($slug)) {
+            $posts = get_posts([
+                'name' => $slug,
+                'post_type' => 'page',
+                'post_status' => 'all',
+                'numberposts' => 1
+            ]);
+            $postId = !empty($posts) ? reset($posts)->ID : null;
+        }
+        if ($postId) {
+            $product = reset($posts);
+        } else {
+            $product = [
+                'success' => false,
+                'message' => "Post $slug not found"
+            ];
+        }
+        echo json_encode($product);
+        die();
+    }
+
 }
