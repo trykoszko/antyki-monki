@@ -217,7 +217,7 @@ class Requests
             ?>Dzień dobry.
 
             Oferujemy antyki i starocie takie jak meble, obrazy, ozdoby, artykuły mosiężne czy żyrandole.
-            Nasze produkty pochodzą głównie z z Niemiec oraz Belgii.
+            Nasze produkty pochodzą głównie z Niemiec oraz Belgii.
 
             Na sprzedaż:
 
@@ -248,10 +248,24 @@ class Requests
             ' : ''; ?>
             <?php echo $materialInfo ? 'Materiał wykonania: ' . $materialInfo . '
             ' : ''; ?>
-            <?php echo isset( $productAttributes['canvas_type'] ) ? 'Rodzaj podobrazia: ' . $productAttributes['canvas_type']['label'] . '
-            ' : ''; ?>
-            <?php echo isset( $productAttributes['paint_type'] ) ? 'Rodzaj wykończenia: ' . $productAttributes['paint_type']['label'] . '
-            ' : ''; ?>
+            <?php
+                // only if it's needed
+                echo isset( $productAttributes['canvas_type'] )
+                    ? ($productAttributes['canvas_type'] !== 'nie dotyczy'
+                        ? ('Rodzaj podobrazia: ' . $productAttributes['canvas_type']['label'] . '
+                            ')
+                        : '')
+                    : '';
+            ?>
+            <?php
+                // only if it's needed
+                echo isset( $productAttributes['paint_type'] )
+                    ? ($productAttributes['paint_type'] !== 'none'
+                        ? ('Rodzaj wykończenia: ' . $productAttributes['paint_type']['label'] . '
+                            ')
+                        : '')
+                    : '';
+            ?>
             <?php echo isset( $productAttributes['state'] ) ? 'Stan: ' . $productAttributes['state']['label'] . '
             ' : ''; ?>
             <?php echo $additionalInfo ? 'Dodatkowe informacje: ' . $additionalInfo . '
@@ -266,18 +280,25 @@ class Requests
 
         // images
         $images = array();
-        foreach ( $maxAllowedImages as $image ) {
-            $images[] = array(
-                'url' => str_replace(
-                    'antyki.sors.smarthost.pl.devlocal',
-                    'antyki.sors.smarthost.pl',
-                    str_replace(
-                        'antyki-stage.sors.smarthost.pl',
+        if ($maxAllowedImages) {
+            foreach ( $maxAllowedImages as $image ) {
+                if (is_numeric($image)) {
+                    $image = wp_get_attachment_url($image);
+                } else {
+                    $image = $image['url'];
+                }
+                $images[] = array(
+                    'url' => str_replace(
+                        'antyki.sors.smarthost.pl.devlocal',
                         'antyki.sors.smarthost.pl',
-                        $image['url']
+                        str_replace(
+                            'antyki-stage.sors.smarthost.pl',
+                            'antyki.sors.smarthost.pl',
+                            $image
+                        )
                     )
-                )
-            );
+                );
+            }
         }
 
         // product params

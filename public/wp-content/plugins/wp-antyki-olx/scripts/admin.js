@@ -114,6 +114,43 @@
             })
         }
 
+        // @TODO: add php ajax method for refreshing ad status from olx.
+        // var $refreshStatusBtns = $('.js-olx-advert-refresh-status')
+        // if ($refreshStatusBtns.length) {
+        //     $refreshStatusBtn.on('click', function (e) {
+        //         e.preventDefault()
+        //         var $btn = $(this)
+        //         var productId = $btn.attr('data-product-id')
+        //         toggleButton($btn)
+        //         $.ajax({
+        //             url: olxData.ajaxUrl,
+        //             data: {
+        //                 action: 'refreshAdvertStatus',
+        //                 nonce: olxData.security,
+        //                 productId: productId
+        //             }
+        //         })
+        //             .done(function (res) {
+        //                 toggleButton($btn)
+        //                 console.log('res', res)
+        //                 if (res.error || !res.success) {
+        //                     alert('Błąd odświeżania statusu ogłoszenia')
+        //                 } else {
+        //                     alert('Ogłoszenie powinno być już aktywne')
+        //                     console.log('Ogłoszenie powinno być już aktywne', res)
+        //                     location.reload()
+        //                 }
+        //             })
+        //             .fail(function (error) {
+        //                 toggleButton($btn)
+        //                 alert('Błąd podczas odświeżania statusu')
+        //                 console.error('Błąd podczas odświeżania statusu', error)
+        //                 sendErrorMessage('Admin.js->refreshStatus error: ' + error.statusText)
+        //                 return false
+        //             })
+        //     })
+        // }
+
         var $updateAdvertBtns = $('.js-olx-advert-update')
         if ($updateAdvertBtns.length) {
             $updateAdvertBtns.on('click', function (e) {

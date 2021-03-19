@@ -40,6 +40,9 @@
 				<hr />
 				{% if olxData.status is same as 'limited' %}
 					<a target="_blank" class="button" href="https://www.olx.pl/mojolx/waiting/">{{__('Zobacz czemu')}}</a>
+					<button data-product-id="{{postId}}" class="button js-olx-advert-refresh-status">
+						{{__('Odśwież status')}}
+					</button>
 				{% endif %}
 				{% if olxData.status is same as 'new' or olxData.status is same as 'active' %}
 					<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
