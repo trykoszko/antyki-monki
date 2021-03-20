@@ -214,6 +214,12 @@ class Main
             'title' => 'Synchronizacja',
             'href' => '#',
         ]);
+        $admin_bar->add_node([
+            'parent' => 'olx-status',
+            'id' => 'olx-cleanup-adverts',
+            'title' => 'Cleanup',
+            'href' => '#',
+        ]);
     }
 
     public function loadTextdomain()
@@ -304,7 +310,8 @@ class Main
                 ]);
                 break;
             case 'productOlx':
-                $olxData = get_field('olx_olx_data', $postId) ? json_decode(get_field('olx_olx_data', $postId)) : [];
+                $olxData = get_field('olx_olx_data', $postId) ? json_decode(get_field('olx_olx_data', $postId), JSON_UNESCAPED_UNICODE) : [];
+                $olxId = get_field('olx_id', $postId);
 
                 $productCategoryId = get_field('olx_attributes', $postId) ? (int) get_field('olx_attributes_cat', $postId) : null;
                 $productCategoryParentId = (int) get_field('olx_parent_category_id', $postId) ?? null;
@@ -328,13 +335,96 @@ class Main
 
                 $hasFreeAdSlot = count($packetsAvailableForThisItem);
 
+                $status = get_field('olx_status', $postId);
+
+                $olxStatus = '';
+                $olxStatusColor = 'white';
+
+                switch ($status) {
+                    case 'new':
+                        $olxStatus = __('nieaktywna - czeka na aktywację');
+                        $olxStatusColor = 'lightblue';
+                        break;
+                    case 'active':
+                        $olxStatus = __('aktywna');
+                        $olxStatusColor = 'green';
+                        break;
+                    case 'limited':
+                        $olxStatus = __('nieaktywna - brakuje pakietu');
+                        $olxStatusColor = 'red';
+                        break;
+                    case 'removed_by_user':
+                        $olxStatus = __('nieaktywna - usunięta');
+                        $olxStatusColor = 'grey';
+                        break;
+                    case 'outdated':
+                        $olxStatus = __('nieaktywna - przeterminowana');
+                        $olxStatusColor = 'lightgrey';
+                        break;
+                    case 'unconfirmed':
+                        $olxStatus = __('nieaktywna - czeka na potwierdzenie');
+                        $olxStatusColor = 'darkblue';
+                        break;
+                    case 'unpaid':
+                        $olxStatus = __('nieaktywna - czeka na płatność');
+                        $olxStatusColor = 'darkblue';
+                        break;
+                    case 'moderated':
+                        $olxStatus = __('nieaktywna - odrzucona przez OLX');
+                        $olxStatusColor = 'red';
+                        break;
+                    case 'blocked':
+                        $olxStatus = __('nieaktywna - zablokowana przez OLX');
+                        $olxStatusColor = 'red';
+                        break;
+                    case 'disabled':
+                        $olxStatus = __('nieaktywna - czeka na weryfikację');
+                        $olxStatusColor = 'red';
+                        break;
+                    case 'removed_by_moderator':
+                        $olxStatus = __('nieaktywna - usunięta przez OLX');
+                        $olxStatusColor = 'red';
+                        break;
+                }
+
+                $olxRenewCatId = 0;
+                switch ($olxCatId) {
+                    // kolekcje
+                        // @TODO:
+                    // dekoracje
+                    case 1409:
+                    case 575:
+                        $olxRenewCatId = 575;
+                        break;
+                    // ogrod - meble ogrodowe
+                    case 584:
+                        $olxRenewCatId = 1635;
+                        break;
+                    // meble
+                    case 717:
+                    case 718:
+                    case 719:
+                    case 720:
+                    case 721:
+                    case 722:
+                    case 723:
+                    case 724:
+                    case 725:
+                    default:
+                        $olxRenewCatId = 565;
+                }
+
                 $this->adminViews->twig->render('adminColumns_productOlx', [
                     'postId' =>
                         $postId,
                     'olxData' =>
                         $olxData,
+                    'olxId' =>
+                        $olxId,
                     'olxCat' =>
                         $olxCatId,
+                    'olxRenewCat' =>
+                        $olxRenewCatId,
                     'olxStats' =>
                         get_field('olx_advert_stats', $postId) ? json_decode(get_field('olx_advert_stats', $postId)) : [],
                     'isSold' =>
@@ -345,7 +435,11 @@ class Main
                         get_field('olx_valid_to', $postId) >
                         date('Y-m-d H:i:s'),
                     'olxStatus' =>
-                        get_field('olx_status', $postId),
+                        $olxStatus,
+                    'olxStatusName' =>
+                        $status,
+                    'olxStatusColor' =>
+                        $olxStatusColor,
                     'hasFreeAdSlot' => $hasFreeAdSlot,
                     'packetsAvailableForThisItem' => $packetsAvailableForThisItem
                 ]);

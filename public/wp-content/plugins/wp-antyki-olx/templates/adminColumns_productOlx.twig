@@ -1,109 +1,181 @@
 <div class="wrapper">
-	{% if isSold %}
+
+	{# has OLX ID #}
+	{% if olxId %}
+
 		<div class="olx-status-row olx-status-row--fullwidth">
-			<div class="olx-status-dot olx-status-dot--blue"></div>
-			{{__('Sprzedany')}}
+			<div class="olx-status-dot" style="color: {{ olxStatusColor }};"></div>
+			Aukcja {{ olxStatus }}
 		</div>
-		{% if validTo %}
-			{% if isStillValid %}
-				{% if olxStatus is same as 'active' %}
-					<div class="olx-status-row olx-status-row--fullwidth olx-status-row--error">
-						<div class="olx-status-dot olx-status-dot--green"></div>
-						{{__('Aukcja nadal aktywna')}}
-					</div>
-					<br/>
-					<button data-product-id="{{postId}}" class="button warning js-olx-advert-sold">
-						{{__('Zabij te aukcje człowieku')}}
+
+		<hr />
+
+		{% if olxStatusName is same as 'active' %}
+			<div class="olx-status-row olx-status-row--fullwidth">
+				<h3 style="color: {% if isSold %}red{% else %}black{% endif %}">
+					<a target="_blank" href="{{olxData.url}}">
+						{{olxData.title | capitalize | slice(0, 30) }}
+						{% if olxData.title | length > 30 %} ... {% endif %}
+						&raquo;
+					</a>
+				</h3>
+			</div>
+			<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
+				<ul>
+					<li>{{__('Wyświetlenia')}}: <strong>{{olxStats.advert_views}}</strong></li>
+					<li>{{__('Wyświetlenia nr. tel.')}}: <strong>{{olxStats.phone_views}}</strong></li>
+					<li>{{__('Obserwujący')}}: <strong>{{olxStats.users_observing}}</strong></li>
+				</ul>
+			</div>
+		{% endif %}
+
+		{% if olxStatusName is same as 'limited' %}
+
+			<div class="olx-status-row olx-status-row--fullwidth">
+				{% if hasFreeAdSlot %}
+					Możesz aktywować aukcję, pakiety są dostępne
+					&nbsp;&nbsp;
+					<button data-product-id="{{postId}}" class="button js-olx-advert-activate">
+						{{__('Aktywuj aukcję')}}
 					</button>
+				{% else %}
+					&nbsp;&nbsp;
+					<a target="_blank" class="button" href="https://www.olx.pl/bundles/packet/?id={{ olxRenewCat }}&bs=langingpage_buypackage_top">{{__('Dokup pakiet')}}</a>
 				{% endif %}
-			{% endif %}
+			</div>
+
 		{% endif %}
-		{% if olxStatus is same as 'removed_by_user' or olxStatus is same as 'outdated' %}
-			Aukcja nieaktywna
-		{% endif %}
-	{% else %}
-		{% if validTo %}
-			{% if isStillValid %}
-				<div class="olx-status-row olx-status-row--fullwidth">
-					{% if olxData.status is same as 'new' or olxData.status is same as 'active' %}
-						<div class="olx-status-dot olx-status-dot--green"></div>
-						<h3 style="color: black">
-							<a target="_blank" href="{{olxData.url}}">
-								{{olxData.title | capitalize | slice(0, 30) }}
-								{% if olxData.title | length > 30 %} ... {% endif %}
-								&raquo;
-							</a>
-						</h3>
-					{% endif %}
-					{% if olxData.status is same as 'limited' %}
-						<div class="olx-status-dot olx-status-dot--orange"></div>
-						<h4>
-							{{__('Aukcja została dodana, ale nie jest aktywna')}}
-						</h4>
-					{% endif %}
-				</div>
+
+		{% if isSold %}
+
+			<hr />
+
+			<div class="olx-status-row olx-status-row--fullwidth">
+				Sprzedane
+			</div>
+
+		{% else %}
+
+			{% if olxStatusName is not same as 'limited' %}
+
 				<hr />
-				{% if olxData.status is same as 'limited' %}
-					<a target="_blank" class="button" href="https://www.olx.pl/mojolx/waiting/">{{__('Zobacz czemu')}}</a>
-					<button data-product-id="{{postId}}" class="button js-olx-advert-refresh-status">
-						{{__('Odśwież status')}}
-					</button>
-				{% endif %}
-				{% if olxData.status is same as 'removed_by_user' %}
-					Aukcja Wyłączona
-				{% endif %}
-				{% if olxData.status is same as 'new' or olxData.status is same as 'active' %}
-					{# <button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
-						{{__('Dezaktywuj')}}
-					</button> #}
-					{# <button data-product-id="{{postId}}" class="button warning js-olx-advert-sold">
-						{{__('Sprzedany!')}}
-					</button> #}
-					&nbsp;
-					<button data-product-id="{{postId}}" class="button js-olx-advert-update">
-						{{__('Zaktualizuj dane')}}
-					</button>
-					<hr />
-					<ul>
-						<li>{{__('Wyświetlenia')}}: <strong>{{olxStats.advert_views}}</strong></li>
-						<li>{{__('Wyświetlenia nr. tel.')}}: <strong>{{olxStats.phone_views}}</strong></li>
-						<li>{{__('Obserwujący')}}: <strong>{{olxStats.users_observing}}</strong></li>
-					</ul>
-					<hr />
+
+				<div class="olx-status-row olx-status-row--fullwidth">
 					<button data-product-id="{{postId}}" class="button warning js-olx-advert-sold">
 						{{__('Sprzedany!')}}
 					</button>
-				{% endif %}
-			{% else %}
-				<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
-					<div class="olx-status-dot olx-status-dot--red"></div>
-					{{__('Aukcja istnieje, ale nie jest aktywna')}}
+				</div>
+
+			{% endif %}
+
+			{# {% if validTo %} #}
+
+				{# {% if isStillValid %}
+					<div class="olx-status-row olx-status-row--fullwidth">
+						{% if olxData.status is same as 'new' or olxData.status is same as 'active' %}
+							<div class="olx-status-dot olx-status-dot--green"></div>
+							<h3 style="color: black">
+								<a target="_blank" href="{{olxData.url}}">
+									{{olxData.title | capitalize | slice(0, 30) }}
+									{% if olxData.title | length > 30 %} ... {% endif %}
+									&raquo;
+								</a>
+							</h3>
+						{% endif %}
+						{% if olxData.status is same as 'limited' %}
+							<div class="olx-status-dot olx-status-dot--orange"></div>
+							<h4>
+								{{__('Aukcja została dodana, ale nie jest aktywna')}}
+							</h4>
+						{% endif %}
+					</div>
+					<hr />
+					{% if olxData.status is same as 'limited' %}
+						<a target="_blank" class="button" href="https://www.olx.pl/mojolx/waiting/">{{__('Zobacz czemu')}}</a>
+						<button data-product-id="{{postId}}" class="button js-olx-advert-refresh-status">
+							{{__('Odśwież status')}}
+						</button>
+					{% endif %}
+					{% if olxData.status is same as 'removed_by_user' %}
+						Aukcja Wyłączona
+					{% endif %}
+					{% if olxData.status is same as 'new' or olxData.status is same as 'active' %}
+						<button data-product-id="{{postId}}" class="button js-olx-advert-update">
+							{{__('Zaktualizuj dane')}}
+						</button>
+						<hr />
+						<ul>
+							<li>{{__('Wyświetlenia')}}: <strong>{{olxStats.advert_views}}</strong></li>
+							<li>{{__('Wyświetlenia nr. tel.')}}: <strong>{{olxStats.phone_views}}</strong></li>
+							<li>{{__('Obserwujący')}}: <strong>{{olxStats.users_observing}}</strong></li>
+						</ul>
+						<hr />
+						<button data-product-id="{{postId}}" class="button warning js-olx-advert-sold">
+							{{__('Sprzedany!')}}
+						</button>
+					{% endif %}
+				{% else %}
+					{% if olxData.status is same as 'limited' %}
+						{{__('Aukcja czeka na aktywację')}}
+						<a target="_blank" class="button" href="https://www.olx.pl/mojolx/waiting/">{{__('Zobacz')}}</a>
+						<hr />
+						<button data-product-id="{{postId}}" class="button js-olx-advert-refresh-status">
+							{{__('Odśwież status')}}
+						</button>
+					{% else %}
+						<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
+							<div class="olx-status-dot olx-status-dot--red"></div>
+							{{__('Aukcja istnieje, ale nie jest aktywna')}}
+						</div>
+						<br/>
+						<button data-product-id="{{postId}}" class="button js-olx-advert-renew">
+							{{__('Odśwież')}}
+						</button>
+					{% endif %}
+				{% endif %} #}
+
+			{# {% else %} #}
+
+				{# <div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
+					<div class="olx-status-dot"></div>
+					{{__('Aukcja nie istnieje')}}
 				</div>
 				<br/>
-				<button data-product-id="{{postId}}" class="button js-olx-advert-renew">
-					{{__('Odśwież')}}
-				</button>
-			{% endif %}
-		{% else %}
-			<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
-				<div class="olx-status-dot"></div>
-				{{__('Aukcja nie istnieje')}}
-			</div>
-			<br/>
-			<button data-product-id="{{postId}}" class="button js-olx-advert-publish">
-				{{__('Aktywuj')}}
-			</button>
-			{# {% if hasFreeAdSlot %}
-			{% else %}
-				<hr />
-				<p>{{__('Nie można dodać ogłoszenia, bo skończył się pakiet w tej kategorii')}}</p>
-				<hr />
-				{% if olxCat is not same as 0 and olxCat is not same as 1 %}
-					<a target="_blank" class="button" href="https://www.olx.pl/bundles/packet/?id={{olxCat}}&bs=langingpage_buypackage_top">{{__('Dokup pakiet')}}</a>
+				<button data-product-id="{{postId}}" class="button js-olx-advert-publish">
+					{{__('Aktywuj')}}
+				</button> #}
+				{# {% if hasFreeAdSlot %}
 				{% else %}
-					<a target="_blank" class="button" href="https://www.olx.pl/buypackage/?bs=langingpage_buypackage_top">{{__('Dokup pakiet')}}</a>
-				{% endif %}
-			{% endif %} #}
+					<hr />
+					<p>{{__('Nie można dodać ogłoszenia, bo skończył się pakiet w tej kategorii')}}</p>
+					<hr />
+					{% if olxCat is not same as 0 and olxCat is not same as 1 %}
+						<a target="_blank" class="button" href="https://www.olx.pl/bundles/packet/?id={{olxCat}}&bs=langingpage_buypackage_top">{{__('Dokup pakiet')}}</a>
+					{% else %}
+						<a target="_blank" class="button" href="https://www.olx.pl/buypackage/?bs=langingpage_buypackage_top">{{__('Dokup pakiet')}}</a>
+					{% endif %}
+				{% endif %} #}
+
+			{# {% endif %} #}
+
 		{% endif %}
+
+	{# no OLX ID #}
+	{% else %}
+
+		<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
+			<div class="olx-status-dot"></div>
+			{{__('Brak aukcji')}}
+		</div>
+
+		<hr />
+
+		<div class="olx-status-row olx-status-row--fullwidth olx-status-row--offset-top">
+			<button data-product-id="{{postId}}" class="button js-olx-advert-publish">
+				{{__('Wystaw')}}
+			</button>
+		</div>
+
 	{% endif %}
+
 </div>

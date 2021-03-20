@@ -490,9 +490,7 @@ class Requests
                 );
                 $data = json_decode($response->getBody());
 
-                if ($data) {
-                    update_field('olx_status', 'active', $productId);
-                }
+                $this->pullAdvertDataFromOlx($productId);
 
                 return $data;
             }
@@ -537,6 +535,15 @@ class Requests
             'advertUnpublishedOlx' => $advertUnpublishedOlx,
             'advertMarkedAsSoldWp' => $advertMarkedAsSoldWp
         ];
+    }
+
+    public function cleanupAdvert($productId)
+    {
+        error_log('cleanupAdverts WP ID: ' . $productId);
+        update_field( 'olx_created_at', '', $productId );
+        update_field( 'olx_valid_to', '', $productId );
+        update_field( 'olx_olx_data', '', $productId );
+        update_field( 'olx_status', '', $productId );
     }
 
     public function getParentCatId($catId)

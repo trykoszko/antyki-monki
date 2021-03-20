@@ -27,7 +27,9 @@ class Ajax
             'sendErrorNotice',
             'refreshAdvertStats',
             'renewAdvert',
-            'syncAllOlxToWp'
+            'syncAllOlxToWp',
+            'cleanupAllAdverts',
+            'activateAdvert'
         ];
 
         foreach ($hooks as $hook) {
@@ -86,6 +88,28 @@ class Ajax
 
         Notice::send('ajax', json_encode([
             'Olx->Ajax->addAdvert() [' . $productId . '] - Success: ' . $isAdded
+        ]));
+
+        if ($isAdded) {
+            \wp_send_json_success();
+        } else {
+            \wp_send_json_error();
+        }
+
+        \wp_die();
+    }
+
+    public function activateAdvert()
+    {
+        // arguments from AJAX request
+        $args = $_REQUEST;
+        $productId = $args['productId'];
+
+        $advert = $this->olxClient->requests->renewAdvert($productId);
+        $isAdded = $advert && $advert['success'];
+
+        Notice::send('ajax', json_encode([
+            'Olx->Ajax->activateAdvert() [' . $productId . '] - Success: ' . $isAdded
         ]));
 
         if ($isAdded) {
@@ -211,6 +235,36 @@ class Ajax
             Notice::send('ajax', json_encode([
                 'Olx->Ajax->syncAllOlxToWp()' => [
                     'result' => count($synced)
+                ]
+            ]));
+        }
+
+        echo \json_encode(true);
+        \wp_die();
+    }
+
+    public function cleanupAllAdverts()
+    {
+        $products = get_posts([
+            'post_type' => ANTYKI_CPT_PRODUCT,
+            'post_status' => ['publish', 'sold'],
+            'posts_per_page' => -1,
+            'fields' => 'ids'
+        ]);
+        if ($products) {
+            $cleaned = [];
+            foreach ($products as $productId) {
+                $isCleaned = $this->olxClient->requests->cleanupAdvert($productId);
+                if ($isCleaned) {
+                    $cleaned[] = $isCleaned;
+                }
+            }
+            error_log(json_encode([
+                'Olx->Ajax->cleanupAllAdverts' => $cleaned
+            ]));
+            Notice::send('ajax', json_encode([
+                'Olx->Ajax->cleanupAllAdverts()' => [
+                    'result' => count($cleaned)
                 ]
             ]));
         }

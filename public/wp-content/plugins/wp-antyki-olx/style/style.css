@@ -1,12 +1,10 @@
-/* @media only screen and (min-width: 1500px) and (max-width: 1800px) {
-    #wpbody-content #dashboard-widgets #postbox-container-1,
-    #wpbody-content #dashboard-widgets #postbox-container-2 {
-        width: 50%;
-    }
-} */
-
 .column-productOlx .wrapper {
     padding: 15px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
 }
 
 .olx-status-dot {
@@ -27,31 +25,12 @@
     height: 6px;
     border-radius: 100%;
     border: 1px solid grey;
-}
-
-.olx-status-dot--green:after {
-    border-color: green;
-    background-color: green;
-}
-
-.olx-status-dot--red:after {
-    border-color: red;
-    background-color: red;
-}
-
-.olx-status-dot--blue:after {
-    border-color: lightskyblue;
-    background-color: lightskyblue;
-}
-
-.olx-status-dot--orange:after {
-    border-color: peru;
-    background-color: peru;
+    border-color: currentColor;
+    background-color: currentColor;
 }
 
 .olx-status-row {
     width: 100%;
-    height: 20px;
 
     margin: 0;
     margin-bottom: 5px;
@@ -64,7 +43,16 @@
 
 .olx-status-row h3 {
     width: calc(100% - 30px);
-    margin-left: 10px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.olx-status-row ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: stretch;
 }
 
 .olx-status-row--error {

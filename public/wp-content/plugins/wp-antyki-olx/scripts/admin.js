@@ -109,6 +109,37 @@
             })
         }
 
+        var $cleanupAdverts = $('#wp-admin-bar-olx-cleanup-adverts')
+        if ($cleanupAdverts.length) {
+            $cleanupAdverts.on('click', function (e) {
+                console.log('sync olx')
+                e.preventDefault()
+                $.ajax({
+                    url: olxData.ajaxUrl,
+                    data: {
+                        action: 'cleanupAllAdverts'
+                    }
+                })
+                    .done(function (res) {
+                        console.log('res', res)
+                        if (res.error) {
+                            alert('Błąd: ' + res.error.detail)
+                        } else {
+                            alert('Porządek zrobiony')
+                            console.log('Porządek zrobiony', res)
+                            location.reload()
+                        }
+                    })
+                    .fail(function (error) {
+                        toggleButton($btn)
+                        alert('Błąd cleanup')
+                        console.error('Błąd cleanup', error)
+                        sendErrorMessage('Admin.js->cleanupAdverts error: ' + error.statusText)
+                        return false
+                    })
+            })
+        }
+
         var $publishAdvertBtns = $('.js-olx-advert-publish')
         if ($publishAdvertBtns.length) {
             $publishAdvertBtns.on('click', function (e) {
@@ -140,6 +171,42 @@
                         alert('Błąd podczas dodawania ogłoszenia')
                         console.error('Błąd podczas dodawania ogłoszenia', error)
                         sendErrorMessage('Admin.js->publishAdvert error: ' + error.statusText)
+                        return false
+                    })
+            })
+        }
+
+        var $activateAdvertBtns = $('.js-olx-advert-activate')
+        if ($activateAdvertBtns.length) {
+            $activateAdvertBtns.on('click', function (e) {
+                e.preventDefault()
+                var $btn = $(this)
+                var productId = $btn.attr('data-product-id')
+                toggleButton($btn)
+                $.ajax({
+                    url: olxData.ajaxUrl,
+                    data: {
+                        action: 'activateAdvert',
+                        nonce: olxData.security,
+                        productId: productId
+                    }
+                })
+                    .done(function (res) {
+                        toggleButton($btn)
+                        console.log('res', res)
+                        if (res.error || !res.success) {
+                            alert('Błąd aktywacji ogłoszenia')
+                        } else {
+                            alert('Ogłoszenie dodane')
+                            console.log('Ogłoszenie dodane', res)
+                            location.reload()
+                        }
+                    })
+                    .fail(function (error) {
+                        toggleButton($btn)
+                        alert('Błąd podczas aktywacji ogłoszenia')
+                        console.error('Błąd podczas aktywacji ogłoszenia', error)
+                        sendErrorMessage('Admin.js->activateAdvert error: ' + error.statusText)
                         return false
                     })
             })
