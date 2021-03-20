@@ -6,15 +6,20 @@
 		</div>
 		{% if validTo %}
 			{% if isStillValid %}
-				<div class="olx-status-row olx-status-row--fullwidth olx-status-row--error">
-					<div class="olx-status-dot olx-status-dot--green"></div>
-					{{__('Aukcja nadal aktywna')}}
-				</div>
-				<br/>
-				<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
-					{{__('Dezaktywuj')}}
-				</button>
+				{% if olxStatus is same as 'active' %}
+					<div class="olx-status-row olx-status-row--fullwidth olx-status-row--error">
+						<div class="olx-status-dot olx-status-dot--green"></div>
+						{{__('Aukcja nadal aktywna')}}
+					</div>
+					<br/>
+					<button data-product-id="{{postId}}" class="button warning js-olx-advert-sold">
+						{{__('Zabij te aukcje człowieku')}}
+					</button>
+				{% endif %}
 			{% endif %}
+		{% endif %}
+		{% if olxStatus is same as 'removed_by_user' or olxStatus is same as 'outdated' %}
+			Aukcja nieaktywna
 		{% endif %}
 	{% else %}
 		{% if validTo %}
@@ -44,10 +49,16 @@
 						{{__('Odśwież status')}}
 					</button>
 				{% endif %}
+				{% if olxData.status is same as 'removed_by_user' %}
+					Aukcja Wyłączona
+				{% endif %}
 				{% if olxData.status is same as 'new' or olxData.status is same as 'active' %}
-					<button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
+					{# <button data-product-id="{{postId}}" class="button js-olx-advert-unpublish">
 						{{__('Dezaktywuj')}}
-					</button>
+					</button> #}
+					{# <button data-product-id="{{postId}}" class="button warning js-olx-advert-sold">
+						{{__('Sprzedany!')}}
+					</button> #}
 					&nbsp;
 					<button data-product-id="{{postId}}" class="button js-olx-advert-update">
 						{{__('Zaktualizuj dane')}}
@@ -69,7 +80,7 @@
 					{{__('Aukcja istnieje, ale nie jest aktywna')}}
 				</div>
 				<br/>
-				<button data-product-id="{{postId}}" class="button js-olx-advert-refresh">
+				<button data-product-id="{{postId}}" class="button js-olx-advert-renew">
 					{{__('Odśwież')}}
 				</button>
 			{% endif %}

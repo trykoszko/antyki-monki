@@ -48,7 +48,7 @@ class Main {
             'json' => [
                 'username' => 'Antyki',
                 'avatar_url' => $avatarUrl,
-                'content' => $content,
+                'content' => trim($content, 1500),
                 'handler' => $tapMiddleware($handler)
             ]
         ]);

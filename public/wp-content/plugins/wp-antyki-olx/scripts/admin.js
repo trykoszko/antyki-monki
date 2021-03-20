@@ -78,6 +78,37 @@
             })
         }
 
+        var $syncOlx = $('#wp-admin-bar-olx-sync-olx-data')
+        if ($syncOlx.length) {
+            $syncOlx.on('click', function (e) {
+                console.log('sync olx')
+                e.preventDefault()
+                $.ajax({
+                    url: olxData.ajaxUrl,
+                    data: {
+                        action: 'syncAllOlxToWp'
+                    }
+                })
+                    .done(function (res) {
+                        console.log('res', res)
+                        if (res.error) {
+                            alert('Błąd: ' + res.error.detail)
+                        } else {
+                            alert('Synchronizacja udana')
+                            console.log('Synchronizacja udana', res)
+                            location.reload()
+                        }
+                    })
+                    .fail(function (error) {
+                        toggleButton($btn)
+                        alert('Błąd synchronizacji')
+                        console.error('Błąd synchronizacji', error)
+                        sendErrorMessage('Admin.js->syncOlxToWp error: ' + error.statusText)
+                        return false
+                    })
+            })
+        }
+
         var $publishAdvertBtns = $('.js-olx-advert-publish')
         if ($publishAdvertBtns.length) {
             $publishAdvertBtns.on('click', function (e) {
@@ -114,6 +145,43 @@
             })
         }
 
+        var $renewAdBtns = $('.js-olx-advert-renew')
+        if ($renewAdBtns.length) {
+            $renewAdBtns.on('click', function (e) {
+                console.log('advert renew')
+                e.preventDefault()
+                var $btn = $(this)
+                var productId = $btn.attr('data-product-id')
+                toggleButton($btn)
+                $.ajax({
+                    url: olxData.ajaxUrl,
+                    data: {
+                        action: 'renewAdvert',
+                        nonce: olxData.security,
+                        productId: productId
+                    }
+                })
+                    .done(function (res) {
+                        toggleButton($btn)
+                        console.log('res', res)
+                        if (res.error || !res.success) {
+                            alert('Błąd odświeżania ogłoszenia')
+                        } else {
+                            alert('Ogłoszenie powinno być już aktywne')
+                            console.log('Ogłoszenie powinno być już aktywne', res)
+                            location.reload()
+                        }
+                    })
+                    .fail(function (error) {
+                        toggleButton($btn)
+                        alert('Błąd podczas odświeżania')
+                        console.error('Błąd podczas odświeżania', error)
+                        sendErrorMessage('Admin.js->renewAd error: ' + error.statusText)
+                        return false
+                    })
+            })
+        }
+
         // @TODO: add php ajax method for refreshing ad status from olx.
         // var $refreshStatusBtns = $('.js-olx-advert-refresh-status')
         // if ($refreshStatusBtns.length) {
@@ -138,7 +206,7 @@
         //                 } else {
         //                     alert('Ogłoszenie powinno być już aktywne')
         //                     console.log('Ogłoszenie powinno być już aktywne', res)
-        //                     location.reload()
+                            // location.reload()
         //                 }
         //             })
         //             .fail(function (error) {

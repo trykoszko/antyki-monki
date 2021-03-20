@@ -46,9 +46,7 @@ class Requests
             error_log(json_encode([
                 'Olx->Client->Requests->getUserData error' => $e->getMessage()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getMessage();
         }
     }
 
@@ -87,9 +85,7 @@ class Requests
             error_log(json_encode([
                 'Olx->Client->Requests->getMessages error' => $e->getMessage()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getMessage();
         }
     }
 
@@ -114,9 +110,7 @@ class Requests
             error_log(json_encode([
                 'Olx->Client->Requests->getPackets error' => $e->getMessage()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getMessage();
         }
     }
 
@@ -150,9 +144,7 @@ class Requests
             error_log(json_encode([
                 'Olx->Client->Requests->getAllAdverts error' => $e->getMessage()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getMessage();
         }
     }
 
@@ -171,9 +163,7 @@ class Requests
             error_log(json_encode([
                 'Olx->Client->Requests->getEndingAdverts error' => $e->getMessage()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getMessage();
         }
     }
 
@@ -365,14 +355,10 @@ class Requests
                 'message' => ''
             ];
         } catch (RequestException $e) {
-            $errorMessage = $e->getResponse()->getBody()->getContents();
             error_log(json_encode([
-                'Olx->Client->Requests->addAdvert error' => $errorMessage
+                'Olx->Client->Requests->addAdvert error' => $e->getResponse()->getBody()->getContents()
             ]));
-            return [
-                'success' => false,
-                'message' => $errorMessage
-            ];
+            return $e->getResponse()->getBody()->getContents();
         }
     }
 
@@ -416,9 +402,7 @@ class Requests
             error_log(json_encode([
                 'Olx->Client->Requests->updateAdvert error' => $e->getResponse()->getBody()->getContents()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getResponse()->getBody()->getContents();
         }
     }
 
@@ -439,30 +423,17 @@ class Requests
                     ],
                     'body' => json_encode([
                         'command' => 'deactivate',
-                        'isSuccess' => true
+                        'is_success' => true
                     ])
                 ]
             );
-            $data = json_decode($response->getBody())->data;
-            $adverts = [];
-            if ($data) {
-                $olxId = $data->id;
-                $olxCreatedAt = $data->created_at;
-                $olxValidTo = $data->valid_to;
-                update_field( 'olx_id', $olxId, $productId );
-                update_field( 'olx_created_at', $olxCreatedAt, $productId );
-                update_field( 'olx_valid_to', $olxValidTo, $productId );
-                update_field( 'olx_olx_data', json_encode( $data ), $productId );
-                update_field( 'olx_status', 'deactivated', $productId );
-            }
-            return $adverts;
+            $data = json_decode($response->getBody());
+            return $data;
         } catch (RequestException $e) {
             error_log(json_encode([
                 'Olx->Client->Requests->unpublishAdvert error' => $e->getResponse()->getBody()->getContents()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getResponse()->getBody()->getContents();
         }
     }
 
@@ -491,10 +462,46 @@ class Requests
             error_log(json_encode([
                 'Olx->Client->Requests->getAdvertStats error' => $e->getResponse()->getBody()->getContents()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getResponse()->getBody()->getContents();
         }
+    }
+
+    public function renewAdvert($productId)
+    {
+        try {
+            $advertId = self::getAdvertId($productId);
+
+            if ($advertId) {
+                $response = $this->guzzleClient->request(
+                    'POST',
+                    "/api/partner/adverts/$advertId/commands",
+                    [
+                        'headers' => [
+                            'Authorization' =>
+                                'Bearer ' . $this->olx->auth->olxAccessToken,
+                            'Version' => '2.0',
+                            'Content-Type' => 'application/json',
+                        ],
+                        'body' => json_encode([
+                            'command' => 'activate',
+                            'is_success' => true
+                        ])
+                    ]
+                );
+                $data = json_decode($response->getBody());
+
+                if ($data) {
+                    update_field('olx_status', 'active', $productId);
+                }
+
+                return $data;
+            }
+        } catch (RequestException $e) {
+            error_log(json_encode([
+                'Olx->Client->Requests->renewAdvert error' => $e->getResponse()->getBody()->getContents()
+            ]));
+        }
+        return $e->getResponse()->getBody()->getContents();
     }
 
     public function getAdvertStats($productId)
@@ -509,21 +516,27 @@ class Requests
 
     public function markAdvertAsSold($productId)
     {
-        return wp_update_post([
+        $soldStatusAdded = wp_update_post([
             'ID' => $productId,
             'post_status' => ANTYKI_CPT_CUSTOM_STATUS
         ]);
+
+        $createdAt = update_field( 'olx_created_at', '', $productId );
+        $validTo = update_field( 'olx_valid_to', '', $productId );
+        $olxData = update_field( 'olx_olx_data', '', $productId );
+        $olxStatus = update_field( 'olx_status', 'removed_by_user', $productId );
+
+        return $soldStatusAdded && $createdAt && $validTo && $olxData && $olxStatus;
     }
 
     public function advertSold($productId)
     {
         $advertUnpublishedOlx = $this->unpublishAdvert($productId);
         $advertMarkedAsSoldWp = $this->markAdvertAsSold($productId);
-        if ($advertUnpublishedOlx && $advertMarkedAsSoldWp) {
-            return true;
-        } else {
-            return false;
-        }
+        return [
+            'advertUnpublishedOlx' => $advertUnpublishedOlx,
+            'advertMarkedAsSoldWp' => $advertMarkedAsSoldWp
+        ];
     }
 
     public function getParentCatId($catId)
@@ -547,9 +560,54 @@ class Requests
             error_log(json_encode([
                 'Olx->Client->Requests->getAdvertStats error' => $e->getResponse()->getBody()->getContents()
             ]));
-            return [
-                'error' => $e,
-            ];
+            return $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function pullAdvertDataFromOlx($productId)
+    {
+        try {
+            $advertId = self::getAdvertId($productId);
+
+            $response = $this->guzzleClient->request(
+                'GET',
+                "/api/partner/adverts/$advertId",
+                [
+                    'headers' => [
+                        'Authorization' =>
+                            'Bearer ' . $this->olx->auth->olxAccessToken,
+                        'Version' => '2.0',
+                        'Content-Type' => 'application/json'
+                    ]
+                ]
+            );
+            $data = json_decode($response->getBody())->data;
+            if ($data) {
+                if (is_array($data)) {
+                    $data = reset($data);
+                }
+                $olxId = $data->id;
+                error_log('Pulling Advert data from OLX. WP ID: ' . $productId . ', OLX ID: ' . $olxId);
+                $olxCreatedAt = $data->created_at;
+                $olxValidTo = $data->valid_to;
+                $olxStatus = $data->status;
+                update_field( 'olx_created_at', $olxCreatedAt, $productId );
+                update_field( 'olx_valid_to', $olxValidTo, $productId );
+                update_field( 'olx_olx_data', json_encode( $data ), $productId );
+                update_field( 'olx_status', $olxStatus, $productId );
+            } else {
+                error_log('Pulling Advert data from OLX. WP ID: ' . $productId . ', OLX ID: [NOT EXISTS]');
+                update_field( 'olx_created_at', '', $productId );
+                update_field( 'olx_valid_to', '', $productId );
+                update_field( 'olx_olx_data', '', $productId );
+                update_field( 'olx_status', 'removed_by_user', $productId );
+            }
+            return $data;
+        } catch (RequestException $e) {
+            error_log(json_encode([
+                'Olx->Client->Requests->pullAdvertDataFromOlx error' => $e->getResponse()->getBody()->getContents()
+            ]));
+            return $e->getResponse()->getBody()->getContents();
         }
     }
 

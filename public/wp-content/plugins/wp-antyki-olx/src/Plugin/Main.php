@@ -208,6 +208,12 @@ class Main
             'title' => 'Odśwież statystyki',
             'href' => '#',
         ]);
+        $admin_bar->add_node([
+            'parent' => 'olx-status',
+            'id' => 'olx-sync-olx-data',
+            'title' => 'Synchronizacja',
+            'href' => '#',
+        ]);
     }
 
     public function loadTextdomain()
@@ -338,6 +344,8 @@ class Main
                     'isStillValid' =>
                         get_field('olx_valid_to', $postId) >
                         date('Y-m-d H:i:s'),
+                    'olxStatus' =>
+                        get_field('olx_status', $postId),
                     'hasFreeAdSlot' => $hasFreeAdSlot,
                     'packetsAvailableForThisItem' => $packetsAvailableForThisItem
                 ]);

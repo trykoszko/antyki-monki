@@ -25,7 +25,9 @@ class Ajax
             'updateAdvert',
             'advertSold',
             'sendErrorNotice',
-            'refreshAdvertStats'
+            'refreshAdvertStats',
+            'renewAdvert',
+            'syncAllOlxToWp'
         ];
 
         foreach ($hooks as $hook) {
@@ -158,6 +160,57 @@ class Ajax
             Notice::send('ajax', json_encode([
                 'Olx->Ajax->refreshAdvertStats()' => [
                     'result' => count($refreshed) > 0
+                ]
+            ]));
+        }
+
+        echo \json_encode(true);
+        \wp_die();
+    }
+
+    public function renewAdvert()
+    {
+        $args = $_REQUEST;
+        $productId = $args['productId'];
+
+        if ($productId) {
+            $refreshed = $this->olxClient->requests->renewAdvert($productId);
+            error_log(json_encode([
+                'Olx->Ajax->renewAdvert' => $refreshed
+            ]));
+            Notice::send('ajax', json_encode([
+                'Olx->Ajax->renewAdvert()' => [
+                    'result' => count($refreshed) > 0
+                ]
+            ]));
+        }
+
+        echo \json_encode(true);
+        \wp_die();
+    }
+
+    public function syncAllOlxToWp()
+    {
+        $products = get_posts([
+            'post_type' => ANTYKI_CPT_PRODUCT,
+            'post_status' => ['publish', 'sold'],
+            'posts_per_page' => -1,
+            'fields' => 'ids'
+        ]);
+        if ($products) {
+            $synced = [];
+            foreach ($products as $productId) {
+                $isSynced = $this->olxClient->requests->pullAdvertDataFromOlx($productId);
+                if ($isSynced) {
+                    $synced[] = $isSynced;
+                }
+            }
+            error_log(json_encode([
+                'Olx->Ajax->syncAllOlxToWp' => $synced
+            ]));
+            Notice::send('ajax', json_encode([
+                'Olx->Ajax->syncAllOlxToWp()' => [
+                    'result' => count($synced)
                 ]
             ]));
         }
